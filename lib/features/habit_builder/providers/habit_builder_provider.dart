@@ -1,5 +1,7 @@
 // lib/features/habit_builder/providers/habit_builder_provider.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/foundation.dart';
+
 import '../models/habit_template.dart';
 import '../services/habit_builder_service.dart';
 import '../../../core/models/habit.dart';
@@ -147,7 +149,7 @@ class HabitBuilderNotifier extends StateNotifier<HabitBuilderState> {
         state = state.copyWith(recommendedTemplates: recommendations);
       }
     } catch (e) {
-      print('خطأ في تحميل التوصيات: $e');
+      debugPrint('خطأ في تحميل التوصيات: $e');
     }
   }
 

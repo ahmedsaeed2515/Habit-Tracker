@@ -1,6 +1,7 @@
 // lib/core/providers/habits_provider.dart
 // مزود حالة العادات اليومية
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -42,7 +43,7 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
       state = [...state, habit];
     } catch (e) {
       // يمكن إضافة معالجة الأخطاء هنا
-      print('خطأ في إضافة العادة: $e');
+      debugPrint('خطأ في إضافة العادة: $e');
     }
   }
 
@@ -54,7 +55,7 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
           .map((habit) => habit.id == updatedHabit.id ? updatedHabit : habit)
           .toList();
     } catch (e) {
-      print('خطأ في تحديث العادة: $e');
+      debugPrint('خطأ في تحديث العادة: $e');
     }
   }
 
@@ -64,7 +65,7 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
       await _habitsBox.delete(habitId);
       state = state.where((habit) => habit.id != habitId).toList();
     } catch (e) {
-      print('خطأ في حذف العادة: $e');
+      debugPrint('خطأ في حذف العادة: $e');
     }
   }
 
@@ -117,7 +118,7 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
       newState[habitIndex] = habit;
       state = newState;
     } catch (e) {
-      print('خطأ في إكمال العادة: $e');
+      debugPrint('خطأ في إكمال العادة: $e');
     }
   }
 
@@ -176,7 +177,7 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
       newState[habitIndex] = habit;
       state = newState;
     } catch (e) {
-      print('خطأ في تسجيل قيمة العادة: $e');
+      debugPrint('خطأ في تسجيل قيمة العادة: $e');
     }
   }
 
@@ -195,7 +196,7 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
       newState[habitIndex] = updatedHabit;
       state = newState;
     } catch (e) {
-      print('خطأ في تبديل حالة النشاط: $e');
+      debugPrint('خطأ في تبديل حالة النشاط: $e');
     }
   }
 

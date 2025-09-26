@@ -1,6 +1,7 @@
 // lib/features/habit_builder/services/habit_builder_service.dart
 import 'dart:math';
 import 'package:hive/hive.dart';
+import 'package:flutter/foundation.dart';
 import '../models/habit_template.dart';
 import '../../../core/models/habit.dart';
 
@@ -21,7 +22,7 @@ class HabitBuilderService {
         await _initializeDefaultTemplates();
       }
     } catch (e) {
-      print('خطأ في تهيئة خدمة بناء العادات: $e');
+      debugPrint('خطأ في تهيئة خدمة بناء العادات: $e');
       rethrow;
     }
   }
@@ -58,7 +59,7 @@ class HabitBuilderService {
 
       return templates.take(limit).toList();
     } catch (e) {
-      print('خطأ في الحصول على القوالب المُوصى بها: $e');
+      debugPrint('خطأ في الحصول على القوالب المُوصى بها: $e');
       return [];
     }
   }
@@ -107,7 +108,7 @@ class HabitBuilderService {
 
       return scoredTemplates.take(limit).map((e) => e.key).toList();
     } catch (e) {
-      print('خطأ في الحصول على التوصيات الشخصية: $e');
+      debugPrint('خطأ في الحصول على التوصيات الشخصية: $e');
       return getRecommendedTemplates(limit: limit);
     }
   }
@@ -132,7 +133,7 @@ class HabitBuilderService {
         isActive: true,
       );
     } catch (e) {
-      print('خطأ في إنشاء عادة من القالب: $e');
+      debugPrint('خطأ في إنشاء عادة من القالب: $e');
       rethrow;
     }
   }
@@ -142,7 +143,7 @@ class HabitBuilderService {
     try {
       return _profileBox.get(userId);
     } catch (e) {
-      print('خطأ في الحصول على ملف المستخدم: $e');
+      debugPrint('خطأ في الحصول على ملف المستخدم: $e');
       return null;
     }
   }
@@ -152,7 +153,7 @@ class HabitBuilderService {
     try {
       await _profileBox.put(profile.id, profile);
     } catch (e) {
-      print('خطأ في تحديث ملف المستخدم: $e');
+      debugPrint('خطأ في تحديث ملف المستخدم: $e');
       rethrow;
     }
   }
@@ -184,7 +185,7 @@ class HabitBuilderService {
       await _profileBox.put(userId, profile);
       return profile;
     } catch (e) {
-      print('خطأ في إنشاء ملف مستخدم جديد: $e');
+      debugPrint('خطأ في إنشاء ملف مستخدم جديد: $e');
       rethrow;
     }
   }
@@ -204,7 +205,7 @@ class HabitBuilderService {
             tags.contains(query);
       }).toList();
     } catch (e) {
-      print('خطأ في البحث في القوالب: $e');
+      debugPrint('خطأ في البحث في القوالب: $e');
       return [];
     }
   }
@@ -216,7 +217,7 @@ class HabitBuilderService {
           .where((template) => template.category == category)
           .toList();
     } catch (e) {
-      print('خطأ في الحصول على القوالب حسب الفئة: $e');
+      debugPrint('خطأ في الحصول على القوالب حسب الفئة: $e');
       return [];
     }
   }
@@ -230,7 +231,7 @@ class HabitBuilderService {
         await _templatesBox.put(template.id, template);
       }
     } catch (e) {
-      print('خطأ في إضافة القوالب الافتراضية: $e');
+      debugPrint('خطأ في إضافة القوالب الافتراضية: $e');
     }
   }
 

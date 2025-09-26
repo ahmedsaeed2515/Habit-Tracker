@@ -5,6 +5,7 @@ Thank you for your interest in contributing to Habit Tracker! This document prov
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Flutter SDK 3.9.2 or higher
 - Dart SDK 3.0.0 or higher
 - Git knowledge
@@ -34,13 +35,16 @@ Thank you for your interest in contributing to Habit Tracker! This document prov
 ## 🏗️ Project Architecture
 
 ### Core Principles
+
 - **Modular Architecture**: Each feature should be self-contained
 - **Separation of Concerns**: Models, Services, Providers, and UI components are separated
 - **Localization First**: All features must support both Arabic and English
 - **Clean Code**: Follow Dart/Flutter best practices
 
 ### Folder Structure Pattern
+
 For each new feature, follow this pattern:
+
 ```
 lib/features/feature_name/
 ├── models/           # Data models with Hive adapters
@@ -53,12 +57,14 @@ lib/features/feature_name/
 ## 📝 Contribution Guidelines
 
 ### Code Style
+
 - Follow the existing code style and naming conventions
 - Use meaningful variable and function names
 - Add comprehensive comments for complex logic
 - Ensure consistent indentation (2 spaces)
 
 ### Feature Development
+
 1. **Create a feature branch**:
    ```bash
    git checkout -b feature/your-feature-name
@@ -69,7 +75,9 @@ lib/features/feature_name/
 5. **Ensure localization support**
 
 ### Commit Guidelines
+
 Follow conventional commit format:
+
 - `feat:` for new features
 - `fix:` for bug fixes
 - `docs:` for documentation changes
@@ -78,11 +86,13 @@ Follow conventional commit format:
 - `chore:` for maintenance tasks
 
 Example:
+
 ```bash
 git commit -m "feat: add gamification system with points and achievements"
 ```
 
 ### Pull Request Process
+
 1. **Update documentation** if necessary
 2. **Test thoroughly** on iOS and Android
 3. **Ensure all features work** in both Arabic and English
@@ -92,23 +102,27 @@ git commit -m "feat: add gamification system with points and achievements"
 ## 🔧 Technical Requirements
 
 ### Database (Hive)
+
 - All new models must extend HiveObject
 - Assign unique typeId (check existing ones in core/models/)
 - Generate adapters with build_runner
 - Follow the existing pattern for database operations
 
 ### State Management (Riverpod)
+
 - Use appropriate provider types (StateProvider, NotifierProvider, etc.)
 - Keep providers focused and single-responsibility
 - Follow the existing provider patterns
 
 ### Localization
+
 - Add new strings to both `ar.json` and `en.json`
 - Use the existing localization system
 - Test RTL layout for Arabic text
 - Ensure proper text direction handling
 
 ### UI/UX Guidelines
+
 - Follow Material Design 3 principles
 - Maintain consistency with existing theme
 - Support both light and dark modes
@@ -117,6 +131,7 @@ git commit -m "feat: add gamification system with points and achievements"
 ## 🐛 Bug Reports
 
 When reporting bugs, please include:
+
 - Flutter version and platform (iOS/Android)
 - Steps to reproduce the issue
 - Expected vs actual behavior
@@ -126,6 +141,7 @@ When reporting bugs, please include:
 ## 💡 Feature Requests
 
 For new features:
+
 - Check the [Development Roadmap](DEVELOPMENT_ROADMAP_UPDATED.md) first
 - Describe the feature and its benefits
 - Consider implementation complexity
@@ -134,6 +150,7 @@ For new features:
 ## 📈 Development Priorities
 
 Current high-priority areas for contribution:
+
 1. **Gamification System** - Points, achievements, leaderboards
 2. **Health Data Integration** - Fitness tracking APIs
 3. **Dynamic Theming** - Customizable color schemes
@@ -150,6 +167,7 @@ Current high-priority areas for contribution:
 ## 📞 Getting Help
 
 If you need help:
+
 - Create an issue with the `question` label
 - Check existing issues and discussions
 - Review the project documentation

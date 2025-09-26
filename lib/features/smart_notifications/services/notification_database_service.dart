@@ -1,4 +1,5 @@
 // lib/features/smart_notifications/services/notification_database_service.dart
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/smart_notification.dart';
 
@@ -13,15 +14,15 @@ class NotificationDatabaseService {
   static Future<void> initialize() async {
     try {
       // تسجيل adapters الإشعارات (سيتم إضافتها لاحقاً)
-      print('⚠️ تم تخطي تسجيل Hive adapters - سيتم إضافتها لاحقاً');
+      debugPrint('تم تخطي تسجيل Hive adapters - سيتم إضافتها لاحقاً');
 
       // فتح الصناديق كصناديق عامة مؤقتاً
       await Hive.openBox('smart_notifications');
       await Hive.openBox('notification_settings');
 
-      print('✅ تم تهيئة قاعدة بيانات الإشعارات بنجاح (وضع مؤقت)');
+      debugPrint('تم تهيئة قاعدة بيانات الإشعارات بنجاح (وضع مؤقت)');
     } catch (e) {
-      print('❌ خطأ في تهيئة قاعدة بيانات الإشعارات: $e');
+      debugPrint('خطأ في تهيئة قاعدة بيانات الإشعارات: $e');
       rethrow;
     }
   }

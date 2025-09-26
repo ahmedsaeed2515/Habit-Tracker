@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../core/models/task.dart';
@@ -16,7 +17,7 @@ class TasksNotifier extends StateNotifier<List<Task>> {
       _taskBox = await Hive.openBox<Task>('tasks');
       state = _taskBox!.values.toList();
     } catch (e) {
-      print('خطأ في تحميل المهام: $e');
+      debugPrint('خطأ في تحميل المهام: $e');
     }
   }
 
@@ -26,7 +27,7 @@ class TasksNotifier extends StateNotifier<List<Task>> {
       await _taskBox?.put(task.id, task);
       state = [...state, task];
     } catch (e) {
-      print('خطأ في إضافة المهمة: $e');
+      debugPrint('خطأ في إضافة المهمة: $e');
     }
   }
 
@@ -38,7 +39,7 @@ class TasksNotifier extends StateNotifier<List<Task>> {
         return task.id == updatedTask.id ? updatedTask : task;
       }).toList();
     } catch (e) {
-      print('خطأ في تحديث المهمة: $e');
+      debugPrint('خطأ في تحديث المهمة: $e');
     }
   }
 
@@ -48,7 +49,7 @@ class TasksNotifier extends StateNotifier<List<Task>> {
       await _taskBox?.delete(taskId);
       state = state.where((task) => task.id != taskId).toList();
     } catch (e) {
-      print('خطأ في حذف المهمة: $e');
+      debugPrint('خطأ في حذف المهمة: $e');
     }
   }
 

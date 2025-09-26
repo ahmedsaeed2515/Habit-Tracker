@@ -12,6 +12,7 @@ import 'shared/localization/app_localizations.dart';
 import 'features/smart_notifications/services/notification_service.dart';
 import 'features/smart_notifications/services/notification_database_service.dart';
 import 'features/analytics/services/analytics_service.dart';
+import 'features/gamification/services/unified_gamification_service.dart';
 import 'app.dart';
 
 Future<void> main() async {
@@ -31,12 +32,13 @@ Future<void> main() async {
     final analyticsService = AnalyticsService();
     await analyticsService.init();
 
-    print('✅ تم تهيئة قاعدة البيانات ونظام الإشعارات بنجاح');
+    // تهيئة خدمة الألعاب والتحفيز
+    await _initializeGamificationService();
 
     // تشغيل التطبيق
     runApp(const ProviderScope(child: UltimateHabitTrackerApp()));
   } catch (e) {
-    print('❌ خطأ في تهيئة التطبيق: $e');
+    debugPrint('خطأ في تهيئة التطبيق: $e');
 
     // تشغيل التطبيق مع واجهة خطأ بسيطة
     runApp(
@@ -154,5 +156,16 @@ class ErrorScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+// تهيئة خدمة الألعاب والتحفيز
+Future<void> _initializeGamificationService() async {
+  try {
+    final gamificationService = UnifiedGamificationService();
+    await gamificationService.initialize();
+    debugPrint('✅ Gamification service initialized successfully');
+  } catch (e) {
+    debugPrint('❌ Error initializing gamification service: $e');
   }
 }

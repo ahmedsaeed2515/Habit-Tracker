@@ -174,8 +174,6 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
   }
 
   Widget _buildFilterChips() {
-    final theme = Theme.of(context);
-
     return Container(
       height: 60,
       padding: const EdgeInsets.symmetric(vertical: 8),

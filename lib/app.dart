@@ -9,12 +9,13 @@ import 'features/gym_tracker/screens/gym_tracker_screen.dart';
 import 'features/morning_exercises/screens/morning_exercises_screen.dart';
 import 'features/daily_habits/screens/daily_habits_screen.dart';
 import 'features/smart_todo/screens/smart_todo_screen.dart';
+import 'features/gamification/screens/enhanced_gamification_screen.dart';
 import 'features/dashboard/screens/dashboard_screen.dart';
 import 'features/settings/screens/settings_screen.dart';
 
 /// مقدم حالة مؤشر التبويب المحدد
 final selectedTabIndexProvider = StateProvider<int>(
-  (ref) => 4,
+  (ref) => 5,
 ); // البداية من لوحة التحكم
 
 class MainAppScreen extends ConsumerWidget {
@@ -24,6 +25,7 @@ class MainAppScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(selectedTabIndexProvider);
     final localizations = AppLocalizations.of(context)!;
+    final isArabic = Localizations.localeOf(context).languageCode == 'ar';
 
     // قائمة الشاشات
     final screens = [
@@ -31,6 +33,7 @@ class MainAppScreen extends ConsumerWidget {
       const MorningExercisesScreen(),
       const DailyHabitsScreen(),
       const SmartTodoScreen(),
+      const EnhancedGamificationScreen(),
       const DashboardScreen(),
       const SettingsScreen(),
     ];
@@ -56,6 +59,11 @@ class MainAppScreen extends ConsumerWidget {
         icon: const Icon(Icons.checklist),
         activeIcon: const Icon(Icons.checklist),
         label: localizations.smartTodo,
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.videogame_asset),
+        activeIcon: const Icon(Icons.videogame_asset),
+        label: isArabic ? 'الألعاب' : 'Gamification',
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.dashboard),
