@@ -12,9 +12,11 @@ abstract class BaseDatabaseManager {
       if (!Hive.isAdapterRegistered(typeId)) {
         Hive.registerAdapter(adapter);
         debugPrint('✅ تم تسجيل adapter للنوع $T بـ ID $typeId');
+      } else {
+        debugPrint('⚠️ تخطي تسجيل adapter للنوع $T: ID $typeId مسجل مسبقاً');
       }
     } catch (e) {
-      debugPrint('⚠️ تخطي تسجيل adapter للنوع $T: $e');
+      debugPrint('⚠️ خطأ في تسجيل adapter للنوع $T: $e');
     }
   }
 

@@ -130,7 +130,9 @@ class UnifiedAchievement {
       rarityColor: map['rarityColor'] ?? '#4CAF50',
       isUnlocked: map['isUnlocked'] ?? false,
       unlockedAt: map['unlockedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['unlockedAt'])
+          ? (map['unlockedAt'] is DateTime
+                ? map['unlockedAt']
+                : DateTime.fromMillisecondsSinceEpoch(map['unlockedAt'] as int))
           : null,
       requirements: List<String>.from(map['requirements'] ?? []),
       progress: map['progress']?.toDouble() ?? 0.0,

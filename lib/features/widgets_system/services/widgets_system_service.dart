@@ -5,7 +5,8 @@ import '../../../core/database/database_helper.dart';
 import '../../../core/models/habit.dart';
 
 class WidgetsSystemService {
-  static final WidgetsSystemService _instance = WidgetsSystemService._internal();
+  static final WidgetsSystemService _instance =
+      WidgetsSystemService._internal();
   factory WidgetsSystemService() => _instance;
   WidgetsSystemService._internal();
 
@@ -55,7 +56,7 @@ class WidgetsSystemService {
         debugPrint('صندوق العادات غير مفتوح');
         return 0.0;
       }
-      
+
       final habitsBox = Hive.box<Habit>('habits');
       final habit = habitsBox.get(habitId);
       if (habit == null) return 0.0;
@@ -63,13 +64,18 @@ class WidgetsSystemService {
       final dateStart = DateTime(date.year, date.month, date.day);
       final dateEnd = dateStart.add(const Duration(days: 1));
 
-      final entry = habit.entries.where((entry) => 
-          entry.date.isAfter(dateStart.subtract(const Duration(milliseconds: 1))) &&
-          entry.date.isBefore(dateEnd)
-      ).firstOrNull;
+      final entry = habit.entries
+          .where(
+            (entry) =>
+                entry.date.isAfter(
+                  dateStart.subtract(const Duration(milliseconds: 1)),
+                ) &&
+                entry.date.isBefore(dateEnd),
+          )
+          .firstOrNull;
 
       if (entry == null) return 0.0;
-      
+
       if (habit.type == HabitType.boolean) {
         return entry.isCompleted ? 100.0 : 0.0;
       } else {
@@ -81,17 +87,25 @@ class WidgetsSystemService {
     }
   }
 
-  Future<Map<String, dynamic>> _getStatistics(DateTime start, DateTime end) async {
+  Future<Map<String, dynamic>> _getStatistics(
+    DateTime start,
+    DateTime end,
+  ) async {
     final habits = await _getActiveHabits();
     int totalHabits = habits.length;
     int completedHabits = 0;
 
     for (final habit in habits) {
-      final entries = habit.entries.where((entry) => 
-          entry.date.isAfter(start.subtract(const Duration(milliseconds: 1))) &&
-          entry.date.isBefore(end.add(const Duration(milliseconds: 1)))
-      ).toList();
-      
+      final entries = habit.entries
+          .where(
+            (entry) =>
+                entry.date.isAfter(
+                  start.subtract(const Duration(milliseconds: 1)),
+                ) &&
+                entry.date.isBefore(end.add(const Duration(milliseconds: 1))),
+          )
+          .toList();
+
       if (entries.isNotEmpty && entries.any((e) => e.isCompleted)) {
         completedHabits++;
       }
@@ -100,7 +114,9 @@ class WidgetsSystemService {
     return {
       'totalHabits': totalHabits,
       'completedHabits': completedHabits,
-      'completionRate': totalHabits > 0 ? (completedHabits / totalHabits * 100) : 0.0,
+      'completionRate': totalHabits > 0
+          ? (completedHabits / totalHabits * 100)
+          : 0.0,
     };
   }
 
@@ -109,10 +125,10 @@ class WidgetsSystemService {
     try {
       final box = await _databaseHelper.openBox<WidgetConfig>('widgets');
       await box.put(widget.id, widget);
-      
+
       // إنشاء بيانات أولية للودجت
       await _initializeWidgetData(widget);
-      
+
       return true;
     } catch (e) {
       debugPrint('خطأ في إنشاء الودجت: $e');
@@ -159,10 +175,10 @@ class WidgetsSystemService {
     try {
       final box = await _databaseHelper.openBox<WidgetConfig>('widgets');
       await box.put(widget.id, widget);
-      
+
       // تحديث بيانات الودجت
       await refreshWidgetData(widget.id);
-      
+
       return true;
     } catch (e) {
       debugPrint('خطأ في تحديث الودجت: $e');
@@ -175,11 +191,11 @@ class WidgetsSystemService {
     try {
       final box = await _databaseHelper.openBox<WidgetConfig>('widgets');
       await box.delete(id);
-      
+
       // حذف بيانات الودجت
       final dataBox = await _databaseHelper.openBox<WidgetData>('widget_data');
       await dataBox.delete(id);
-      
+
       return true;
     } catch (e) {
       debugPrint('خطأ في حذف الودجت: $e');
@@ -194,19 +210,19 @@ class WidgetsSystemService {
       if (widget == null || !widget.isEnabled) return false;
 
       final data = await _generateWidgetData(widget);
-      
+
       final dataBox = await _databaseHelper.openBox<WidgetData>('widget_data');
       final widgetData = WidgetData(
         widgetId: widgetId,
         data: data,
         lastUpdate: DateTime.now(),
       );
-      
+
       await dataBox.put(widgetId, widgetData);
       return true;
     } catch (e) {
       debugPrint('خطأ في تحديث بيانات الودجت: $e');
-      
+
       // تسجيل الخطأ في بيانات الودجت
       final dataBox = await _databaseHelper.openBox<WidgetData>('widget_data');
       final errorData = WidgetData(
@@ -216,7 +232,7 @@ class WidgetsSystemService {
         errorMessage: e.toString(),
       );
       await dataBox.put(widgetId, errorData);
-      
+
       return false;
     }
   }
@@ -225,7 +241,7 @@ class WidgetsSystemService {
   Future<void> refreshAllWidgetData() async {
     try {
       final activeWidgets = await getActiveWidgets();
-      
+
       for (final widget in activeWidgets) {
         await refreshWidgetData(widget.id);
       }
@@ -258,13 +274,9 @@ class WidgetsSystemService {
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
           priority: 1,
-          settings: {
-            'showPercentage': true,
-            'showCount': true,
-            'maxHabits': 5,
-          },
+          settings: {'showPercentage': true, 'showCount': true, 'maxHabits': 5},
         ),
-        
+
         // ودجت مهام اليوم
         WidgetConfig(
           id: 'today_tasks_widget',
@@ -280,7 +292,7 @@ class WidgetsSystemService {
             'sortBy': 'priority',
           },
         ),
-        
+
         // ودجت عداد السلاسل
         WidgetConfig(
           id: 'streak_counter_widget',
@@ -296,7 +308,7 @@ class WidgetsSystemService {
             'animateChanges': true,
           },
         ),
-        
+
         // ودجت الاقتباس التحفيزي
         WidgetConfig(
           id: 'motivational_quote_widget',
@@ -365,7 +377,7 @@ class WidgetsSystemService {
   Future<bool> updateWidgetPriorities(List<String> widgetIds) async {
     try {
       final box = await _databaseHelper.openBox<WidgetConfig>('widgets');
-      
+
       for (int i = 0; i < widgetIds.length; i++) {
         final widget = box.get(widgetIds[i]);
         if (widget != null) {
@@ -374,7 +386,7 @@ class WidgetsSystemService {
           await widget.save();
         }
       }
-      
+
       return true;
     } catch (e) {
       debugPrint('خطأ في تحديث ترتيب الودجت: $e');
@@ -398,11 +410,11 @@ class WidgetsSystemService {
     try {
       final widget = await getWidget(widgetId);
       if (widget == null) return false;
-      
+
       widget.theme = theme;
       widget.updatedAt = DateTime.now();
       await widget.save();
-      
+
       return true;
     } catch (e) {
       debugPrint('خطأ في تحديث موضوع الودجت: $e');
@@ -442,7 +454,9 @@ class WidgetsSystemService {
   }
 
   // توليد بيانات ودجت تقدم العادات
-  Future<Map<String, dynamic>> _generateHabitProgressData(WidgetConfig widget) async {
+  Future<Map<String, dynamic>> _generateHabitProgressData(
+    WidgetConfig widget,
+  ) async {
     try {
       final habits = widget.habitIds.isNotEmpty
           ? await _getHabitsByIds(widget.habitIds)
@@ -450,17 +464,20 @@ class WidgetsSystemService {
 
       final maxHabits = widget.getSetting<int>('maxHabits') ?? 5;
       final selectedHabits = habits.take(maxHabits).toList();
-      
+
       final progressData = <Map<String, dynamic>>[];
       int totalCompleted = 0;
       int totalHabits = selectedHabits.length;
-      
+
       for (final habit in selectedHabits) {
-        final todayCompletion = await _getHabitCompletion(habit.id, DateTime.now());
+        final todayCompletion = await _getHabitCompletion(
+          habit.id,
+          DateTime.now(),
+        );
         final progress = todayCompletion >= 100.0 ? 1.0 : 0.0;
-        
+
         if (progress > 0) totalCompleted++;
-        
+
         progressData.add({
           'id': habit.id,
           'name': habit.name,
@@ -469,9 +486,11 @@ class WidgetsSystemService {
           'isCompleted': progress >= 1.0,
         });
       }
-      
-      final overallProgress = totalHabits > 0 ? totalCompleted / totalHabits : 0.0;
-      
+
+      final overallProgress = totalHabits > 0
+          ? totalCompleted / totalHabits
+          : 0.0;
+
       return {
         'habits': progressData,
         'totalHabits': totalHabits,
@@ -486,20 +505,22 @@ class WidgetsSystemService {
   }
 
   // توليد بيانات ودجت مهام اليوم
-  Future<Map<String, dynamic>> _generateTodayTasksData(WidgetConfig widget) async {
+  Future<Map<String, dynamic>> _generateTodayTasksData(
+    WidgetConfig widget,
+  ) async {
     try {
       final today = DateTime.now();
       final habits = await _getHabitsForDay(today);
-      
+
       final maxTasks = widget.getSetting<int>('maxTasks') ?? 10;
       final showCompleted = widget.getSetting<bool>('showCompleted') ?? false;
-      
+
       final tasks = <Map<String, dynamic>>[];
-      
+
       for (final habit in habits.take(maxTasks)) {
         final completion = await _getHabitCompletion(habit.id, today);
         final isCompleted = completion >= 100.0;
-        
+
         if (showCompleted || !isCompleted) {
           tasks.add({
             'id': habit.id,
@@ -511,11 +532,13 @@ class WidgetsSystemService {
           });
         }
       }
-      
+
       // ترتيب المهام
       final sortBy = widget.getSetting<String>('sortBy') ?? 'priority';
       if (sortBy == 'priority') {
-        tasks.sort((a, b) => (b['priority'] ?? 0).compareTo(a['priority'] ?? 0));
+        tasks.sort(
+          (a, b) => (b['priority'] ?? 0).compareTo(a['priority'] ?? 0),
+        );
       } else if (sortBy == 'time') {
         tasks.sort((a, b) {
           final timeA = a['time'] as String?;
@@ -526,7 +549,7 @@ class WidgetsSystemService {
           return timeA.compareTo(timeB);
         });
       }
-      
+
       return {
         'tasks': tasks,
         'totalTasks': tasks.length,
@@ -539,17 +562,19 @@ class WidgetsSystemService {
   }
 
   // توليد بيانات ودجت التقدم الأسبوعي
-  Future<Map<String, dynamic>> _generateWeeklyProgressData(WidgetConfig widget) async {
+  Future<Map<String, dynamic>> _generateWeeklyProgressData(
+    WidgetConfig widget,
+  ) async {
     try {
       final today = DateTime.now();
       final startOfWeek = today.subtract(Duration(days: today.weekday - 1));
-      
+
       final weeklyData = <Map<String, dynamic>>[];
-      
+
       for (int i = 0; i < 7; i++) {
         final date = startOfWeek.add(Duration(days: i));
         final dayHabits = await _getHabitsForDay(date);
-        
+
         int completed = 0;
         for (final habit in dayHabits) {
           final completion = await _getHabitCompletion(habit.id, date);
@@ -557,21 +582,31 @@ class WidgetsSystemService {
             completed++;
           }
         }
-        
-        final progress = dayHabits.isNotEmpty ? completed / dayHabits.length : 0.0;
-        
+
+        final progress = dayHabits.isNotEmpty
+            ? completed / dayHabits.length
+            : 0.0;
+
         weeklyData.add({
           'date': date.toIso8601String(),
           'dayName': _getDayName(date.weekday),
           'totalHabits': dayHabits.length,
           'completedHabits': completed,
           'progress': progress,
-          'isToday': date.day == today.day && date.month == today.month && date.year == today.year,
+          'isToday':
+              date.day == today.day &&
+              date.month == today.month &&
+              date.year == today.year,
         });
       }
-      
-      final totalProgress = weeklyData.fold(0.0, (sum, day) => sum + (day['progress'] as double)) / 7;
-      
+
+      final totalProgress =
+          weeklyData.fold(
+            0.0,
+            (sum, day) => sum + (day['progress'] as double),
+          ) /
+          7;
+
       return {
         'weeklyData': weeklyData,
         'overallProgress': totalProgress,
@@ -583,21 +618,25 @@ class WidgetsSystemService {
   }
 
   // توليد بيانات ودجت الاقتباس التحفيزي
-  Future<Map<String, dynamic>> _generateMotivationalQuoteData(WidgetConfig widget) async {
+  Future<Map<String, dynamic>> _generateMotivationalQuoteData(
+    WidgetConfig widget,
+  ) async {
     try {
       final quotes = _getMotivationalQuotes();
       final category = widget.getSetting<String>('category') ?? 'motivation';
       final showAuthor = widget.getSetting<bool>('showAuthor') ?? true;
-      
+
       // اختيار اقتباس عشوائي أو يومي
       final changeDaily = widget.getSetting<bool>('changeDaily') ?? true;
-      final seed = changeDaily 
-          ? DateTime.now().day + DateTime.now().month * 31 + DateTime.now().year * 365
+      final seed = changeDaily
+          ? DateTime.now().day +
+                DateTime.now().month * 31 +
+                DateTime.now().year * 365
           : DateTime.now().millisecondsSinceEpoch;
-      
+
       final randomIndex = seed % quotes.length;
       final selectedQuote = quotes[randomIndex];
-      
+
       return {
         'text': selectedQuote['text'],
         'author': showAuthor ? selectedQuote['author'] : null,
@@ -610,7 +649,9 @@ class WidgetsSystemService {
   }
 
   // توليد بيانات ودجت عداد السلاسل
-  Future<Map<String, dynamic>> _generateStreakCounterData(WidgetConfig widget) async {
+  Future<Map<String, dynamic>> _generateStreakCounterData(
+    WidgetConfig widget,
+  ) async {
     try {
       final habits = widget.habitIds.isNotEmpty
           ? await _getHabitsByIds(widget.habitIds)
@@ -618,20 +659,20 @@ class WidgetsSystemService {
 
       final showBest = widget.getSetting<bool>('showBest') ?? true;
       final showCurrent = widget.getSetting<bool>('showCurrent') ?? true;
-      
+
       final streakData = <Map<String, dynamic>>[];
       int totalCurrentStreak = 0;
       int bestStreak = 0;
-      
+
       for (final habit in habits) {
         final currentStreak = habit.currentStreak;
         final longestStreak = habit.longestStreak;
-        
+
         totalCurrentStreak += currentStreak;
         if (longestStreak > bestStreak) {
           bestStreak = longestStreak;
         }
-        
+
         streakData.add({
           'id': habit.id,
           'name': habit.name,
@@ -640,7 +681,7 @@ class WidgetsSystemService {
           'color': '#2196F3', // لون افتراضي
         });
       }
-      
+
       return {
         'habits': streakData,
         'totalCurrentStreak': totalCurrentStreak,
@@ -654,23 +695,27 @@ class WidgetsSystemService {
   }
 
   // توليد بيانات ودجت نظرة عامة على الإحصائيات
-  Future<Map<String, dynamic>> _generateStatisticsOverviewData(WidgetConfig widget) async {
+  Future<Map<String, dynamic>> _generateStatisticsOverviewData(
+    WidgetConfig widget,
+  ) async {
     try {
       final today = DateTime.now();
       final thisWeek = today.subtract(Duration(days: 7));
       final thisMonth = today.subtract(Duration(days: 30));
-      
+
       final todayHabits = await _getHabitsForDay(today);
       final todayCompleted = await _getTotalCompletedHabits(todayHabits, today);
-      
+
       final weeklyStats = await _getStatistics(thisWeek, today);
       final monthlyStats = await _getStatistics(thisMonth, today);
-      
+
       return {
         'today': {
           'total': todayHabits.length,
           'completed': todayCompleted,
-          'percentage': todayHabits.isNotEmpty ? (todayCompleted / todayHabits.length * 100).round() : 0,
+          'percentage': todayHabits.isNotEmpty
+              ? (todayCompleted / todayHabits.length * 100).round()
+              : 0,
         },
         'thisWeek': {
           'completionRate': weeklyStats['completionRate'] ?? 0,
@@ -689,33 +734,39 @@ class WidgetsSystemService {
   }
 
   // توليد بيانات ودجت التذكيرات القادمة
-  Future<Map<String, dynamic>> _generateUpcomingRemindersData(WidgetConfig widget) async {
+  Future<Map<String, dynamic>> _generateUpcomingRemindersData(
+    WidgetConfig widget,
+  ) async {
     try {
       // المتغيرات محجوزة للاستخدام المستقبلي
       // final today = DateTime.now();
       // final tomorrow = today.add(Duration(days: 1));
-      
+
       // تم إزالة المتغيرات غير المستخدمة
       // final todayHabits = await _getHabitsForDay(today);
       // final tomorrowHabits = await _getHabitsForDay(tomorrow);
-      
+
       final upcomingReminders = <Map<String, dynamic>>[];
-      
+
       // تم تعطيل التذكيرات لأن نموذج Habit لا يحتوي على reminderTime
       // يمكن إضافة منطق تذكيرات بديل هنا
-      
+
       // ترتيب التذكيرات حسب الوقت (فارغة حالياً)
       upcomingReminders.sort((a, b) {
         final timeA = DateTime.parse(a['time']);
         final timeB = DateTime.parse(b['time']);
         return timeA.compareTo(timeB);
       });
-      
+
       return {
         'reminders': upcomingReminders,
         'totalReminders': upcomingReminders.length,
-        'todayReminders': upcomingReminders.where((r) => r['isToday'] == true).length,
-        'tomorrowReminders': upcomingReminders.where((r) => r['isToday'] == false).length,
+        'todayReminders': upcomingReminders
+            .where((r) => r['isToday'] == true)
+            .length,
+        'tomorrowReminders': upcomingReminders
+            .where((r) => r['isToday'] == false)
+            .length,
       };
     } catch (e) {
       throw Exception('خطأ في توليد بيانات التذكيرات القادمة: $e');
@@ -723,7 +774,9 @@ class WidgetsSystemService {
   }
 
   // توليد بيانات ودجت شارات الإنجازات
-  Future<Map<String, dynamic>> _generateAchievementsBadgesData(WidgetConfig widget) async {
+  Future<Map<String, dynamic>> _generateAchievementsBadgesData(
+    WidgetConfig widget,
+  ) async {
     try {
       // في التطبيق الحقيقي، ستحصل على الإنجازات من خدمة الألعاب
       final achievements = <Map<String, dynamic>>[
@@ -733,7 +786,9 @@ class WidgetsSystemService {
           'description': 'أول عادة',
           'icon': '🌟',
           'isUnlocked': true,
-          'unlockedAt': DateTime.now().subtract(Duration(days: 10)).toIso8601String(),
+          'unlockedAt': DateTime.now()
+              .subtract(Duration(days: 10))
+              .toIso8601String(),
         },
         {
           'id': 'week_streak',
@@ -741,7 +796,9 @@ class WidgetsSystemService {
           'description': 'سلسلة أسبوع',
           'icon': '🔥',
           'isUnlocked': true,
-          'unlockedAt': DateTime.now().subtract(Duration(days: 3)).toIso8601String(),
+          'unlockedAt': DateTime.now()
+              .subtract(Duration(days: 3))
+              .toIso8601String(),
         },
         {
           'id': 'perfect_day',
@@ -752,18 +809,25 @@ class WidgetsSystemService {
           'unlockedAt': null,
         },
       ];
-      
-      final unlockedAchievements = achievements.where((a) => a['isUnlocked'] == true).toList();
-      final recentAchievements = unlockedAchievements
-          .where((a) => DateTime.parse(a['unlockedAt']).isAfter(DateTime.now().subtract(Duration(days: 7))))
+
+      final unlockedAchievements = achievements
+          .where((a) => a['isUnlocked'] == true)
           .toList();
-      
+      final recentAchievements = unlockedAchievements
+          .where(
+            (a) => DateTime.parse(
+              a['unlockedAt'],
+            ).isAfter(DateTime.now().subtract(Duration(days: 7))),
+          )
+          .toList();
+
       return {
         'achievements': achievements,
         'unlockedCount': unlockedAchievements.length,
         'totalCount': achievements.length,
         'recentAchievements': recentAchievements,
-        'completionPercentage': (unlockedAchievements.length / achievements.length * 100).round(),
+        'completionPercentage':
+            (unlockedAchievements.length / achievements.length * 100).round(),
       };
     } catch (e) {
       throw Exception('خطأ في توليد بيانات شارات الإنجازات: $e');
@@ -773,13 +837,22 @@ class WidgetsSystemService {
   // الحصول على اسم اليوم
   String _getDayName(int weekday) {
     const dayNames = [
-      'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت', 'الأحد'
+      'الإثنين',
+      'الثلاثاء',
+      'الأربعاء',
+      'الخميس',
+      'الجمعة',
+      'السبت',
+      'الأحد',
     ];
     return dayNames[weekday - 1];
   }
 
   // الحصول على عدد العادات المكتملة في يوم معين
-  Future<int> _getTotalCompletedHabits(List<Habit> habits, DateTime date) async {
+  Future<int> _getTotalCompletedHabits(
+    List<Habit> habits,
+    DateTime date,
+  ) async {
     int completed = 0;
     for (final habit in habits) {
       final completion = await _getHabitCompletion(habit.id, date);
@@ -793,15 +866,35 @@ class WidgetsSystemService {
   // الحصول على الاقتباسات التحفيزية
   List<Map<String, String>> _getMotivationalQuotes() {
     return [
-      {'text': 'النجاح هو مجموع الجهود الصغيرة المتكررة يوماً بعد يوم', 'author': 'روبرت كولير'},
-      {'text': 'العادات الجيدة هي صعبة التكوين ولكن سهلة المعيشة معها', 'author': 'بريان تريسي'},
-      {'text': 'لا تنتظر اللحظة المناسبة، اجعل اللحظة مناسبة', 'author': 'جورج برنارد شو'},
-      {'text': 'الثبات على العادات الصغيرة يؤدي إلى تغييرات كبيرة', 'author': 'جيمس كلير'},
-      {'text': 'كل يوم جديد فرصة لتصبح نسخة أفضل من نفسك', 'author': 'غير معروف'},
+      {
+        'text': 'النجاح هو مجموع الجهود الصغيرة المتكررة يوماً بعد يوم',
+        'author': 'روبرت كولير',
+      },
+      {
+        'text': 'العادات الجيدة هي صعبة التكوين ولكن سهلة المعيشة معها',
+        'author': 'بريان تريسي',
+      },
+      {
+        'text': 'لا تنتظر اللحظة المناسبة، اجعل اللحظة مناسبة',
+        'author': 'جورج برنارد شو',
+      },
+      {
+        'text': 'الثبات على العادات الصغيرة يؤدي إلى تغييرات كبيرة',
+        'author': 'جيمس كلير',
+      },
+      {
+        'text': 'كل يوم جديد فرصة لتصبح نسخة أفضل من نفسك',
+        'author': 'غير معروف',
+      },
       {'text': 'التقدم، وليس الكمال، هو الهدف', 'author': 'غير معروف'},
-      {'text': 'العادات هي الفائدة المركبة للتحسن الذاتي', 'author': 'جيمس كلير'},
-      {'text': 'أنت لا تصل إلى مستوى أهدافك، بل تنحدر إلى مستوى أنظمتك', 'author': 'جيمس كلير'},
+      {
+        'text': 'العادات هي الفائدة المركبة للتحسن الذاتي',
+        'author': 'جيمس كلير',
+      },
+      {
+        'text': 'أنت لا تصل إلى مستوى أهدافك، بل تنحدر إلى مستوى أنظمتك',
+        'author': 'جيمس كلير',
+      },
     ];
   }
 }
-

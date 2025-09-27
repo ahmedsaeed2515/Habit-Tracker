@@ -26,10 +26,10 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
     with TickerProviderStateMixin {
   late AnimationController _headerAnimationController;
   late AnimationController _listAnimationController;
-  
+
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _searchController = TextEditingController();
-  
+
   bool _isCompactView = false;
   bool _showCompleted = false;
   String _searchQuery = '';
@@ -45,7 +45,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
       duration: const Duration(milliseconds: 1200),
       vsync: this,
     );
-    
+
     _headerAnimationController.forward();
     _listAnimationController.forward();
   }
@@ -66,15 +66,25 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
       body: SafeArea(
         child: Column(
           children: [
-            // Header with Timer and Quick Stats
+            // Header with Timer and Quick Stats (Fixed Height)
             _buildHeader(),
-            
-            // Search and Filter Bar
-            _buildSearchAndFilterBar(),
-            
-            // Task List
+
+            // Scrollable Content
             Expanded(
-              child: _buildTaskList(),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // Search and Filter Bar
+                    _buildSearchAndFilterBar(),
+
+                    // Task List (with minimum height)
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      child: _buildTaskList(),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
@@ -91,13 +101,13 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
     final analysis = ref.watch(productivityAnalysisProvider);
 
     return SlideTransition(
-      position: Tween<Offset>(
-        begin: const Offset(0, -1),
-        end: Offset.zero,
-      ).animate(CurvedAnimation(
-        parent: _headerAnimationController,
-        curve: Curves.easeOutBack,
-      )),
+      position: Tween<Offset>(begin: const Offset(0, -1), end: Offset.zero)
+          .animate(
+            CurvedAnimation(
+              parent: _headerAnimationController,
+              curve: Curves.easeOutBack,
+            ),
+          ),
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
@@ -169,17 +179,14 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 20),
-            
+
             // Active Timer or Quick Stats
             if (activeSession != null)
               PomodoroTimerWidget(session: activeSession)
             else
-              QuickStatsWidget(
-                stats: stats,
-                analysis: analysis,
-              ),
+              QuickStatsWidget(stats: stats, analysis: analysis),
           ],
         ),
       ),
@@ -204,16 +211,18 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
                 });
               },
               suffixIcon: _searchQuery.isNotEmpty ? Icons.clear : null,
-              onSuffixIconPressed: _searchQuery.isNotEmpty ? () {
-                _searchController.clear();
-                setState(() {
-                  _searchQuery = '';
-                });
-              } : null,
+              onSuffixIconPressed: _searchQuery.isNotEmpty
+                  ? () {
+                      _searchController.clear();
+                      setState(() {
+                        _searchQuery = '';
+                      });
+                    }
+                  : null,
             ),
-            
+
             const SizedBox(height: 12),
-            
+
             // Filter and View Options
             Row(
               children: [
@@ -226,38 +235,33 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
                         _buildFilterChip(
                           'الكل',
                           true,
-                          () => ref.read(taskFilterProvider.notifier).resetFilter(),
+                          () => ref
+                              .read(taskFilterProvider.notifier)
+                              .resetFilter(),
                         ),
                         _buildFilterChip(
                           'عالي الأولوية',
                           false,
-                          () => ref.read(taskFilterProvider.notifier)
+                          () => ref
+                              .read(taskFilterProvider.notifier)
                               .updatePriority(TaskPriority.high),
                         ),
-                        _buildFilterChip(
-                          'مستحقة اليوم',
-                          false,
-                          () {
-                            // تصفية المهام المستحقة اليوم
-                            ref.read(dueTodayTasksProvider);
-                            // يمكن تطبيق منطق أكثر تعقيداً هنا
-                          },
-                        ),
-                        _buildFilterChip(
-                          'متأخرة',
-                          false,
-                          () {
-                            // تصفية المهام المتأخرة
-                            ref.read(overdueTasksProvider);
-                          },
-                        ),
+                        _buildFilterChip('مستحقة اليوم', false, () {
+                          // تصفية المهام المستحقة اليوم
+                          ref.read(dueTodayTasksProvider);
+                          // يمكن تطبيق منطق أكثر تعقيداً هنا
+                        }),
+                        _buildFilterChip('متأخرة', false, () {
+                          // تصفية المهام المتأخرة
+                          ref.read(overdueTasksProvider);
+                        }),
                       ],
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(width: 8),
-                
+
                 // View Toggle
                 IconButton(
                   onPressed: () {
@@ -271,7 +275,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
                   ),
                   tooltip: _isCompactView ? 'عرض مفصل' : 'عرض مضغوط',
                 ),
-                
+
                 // Show Completed Toggle
                 IconButton(
                   onPressed: () {
@@ -281,8 +285,8 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
                   },
                   icon: Icon(
                     _showCompleted ? Icons.visibility : Icons.visibility_off,
-                    color: _showCompleted 
-                        ? Theme.of(context).primaryColor 
+                    color: _showCompleted
+                        ? Theme.of(context).primaryColor
                         : Colors.grey,
                   ),
                   tooltip: _showCompleted ? 'إخفاء المكتملة' : 'عرض المكتملة',
@@ -310,12 +314,8 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
         onSelected: (_) => onTap(),
         backgroundColor: Colors.transparent,
         selectedColor: Theme.of(context).primaryColor,
-        side: BorderSide(
-          color: Theme.of(context).primaryColor,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        side: BorderSide(color: Theme.of(context).primaryColor),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
     );
   }
@@ -325,19 +325,29 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
       builder: (context, ref, child) {
         final filteredTasks = ref.watch(filteredTasksProvider);
         final overdueCount = ref.watch(overdueTasksProvider).length;
-        
+
         // تصفية بناء على البحث
         final searchFilteredTasks = _searchQuery.isEmpty
             ? filteredTasks
-            : filteredTasks.where((task) =>
-                task.title.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-                (task.description?.toLowerCase().contains(_searchQuery.toLowerCase()) ?? false)
-              ).toList();
+            : filteredTasks
+                  .where(
+                    (task) =>
+                        task.title.toLowerCase().contains(
+                          _searchQuery.toLowerCase(),
+                        ) ||
+                        (task.description?.toLowerCase().contains(
+                              _searchQuery.toLowerCase(),
+                            ) ??
+                            false),
+                  )
+                  .toList();
 
         // تصفية المهام المكتملة
         final displayTasks = _showCompleted
             ? searchFilteredTasks
-            : searchFilteredTasks.where((task) => task.status != TaskStatus.completed).toList();
+            : searchFilteredTasks
+                  .where((task) => task.status != TaskStatus.completed)
+                  .toList();
 
         if (displayTasks.isEmpty) {
           return _buildEmptyState();
@@ -346,9 +356,8 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
         return Column(
           children: [
             // Overdue Tasks Alert
-            if (overdueCount > 0)
-              _buildOverdueAlert(overdueCount),
-            
+            if (overdueCount > 0) _buildOverdueAlert(overdueCount),
+
             // Tasks List
             Expanded(
               child: AnimationLimiter(
@@ -371,7 +380,8 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
                               isCompact: _isCompactView,
                               onTap: () => _navigateToTaskDetails(task),
                               onComplete: () => _completeTask(task.id),
-                              onStartPomodoro: () => _startPomodoroForTask(task),
+                              onStartPomodoro: () =>
+                                  _startPomodoroForTask(task),
                             ),
                           ),
                         ),
@@ -418,10 +428,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
               ref.read(taskFilterProvider.notifier).resetFilter();
               // يمكن إضافة فلتر خاص للمهام المتأخرة
             },
-            child: Text(
-              'عرض',
-              style: TextStyle(color: Colors.red.shade600),
-            ),
+            child: Text('عرض', style: TextStyle(color: Colors.red.shade600)),
           ),
         ],
       ),
@@ -433,11 +440,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.task_alt,
-            size: 80,
-            color: Colors.grey[400],
-          ),
+          Icon(Icons.task_alt, size: 80, color: Colors.grey[400]),
           const SizedBox(height: 16),
           Text(
             _searchQuery.isNotEmpty
@@ -454,10 +457,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
             _searchQuery.isNotEmpty
                 ? 'جرب مصطلح بحث مختلف'
                 : 'اضغط على + لإضافة مهمة جديدة',
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.grey,
-            ),
+            style: const TextStyle(fontSize: 14, color: Colors.grey),
           ),
           if (_searchQuery.isEmpty) ...[
             const SizedBox(height: 24),
@@ -498,7 +498,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
                 ),
               ],
             ),
-            
+
             // Right Side - Views
             Row(
               children: [
@@ -546,7 +546,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
 
   void _completeTask(String taskId) {
     ref.read(advancedTasksProvider.notifier).completeTask(taskId);
-    
+
     // إظهار رسالة تأكيد
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -562,11 +562,10 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
   }
 
   void _startPomodoroForTask(AdvancedTask task) {
-    ref.read(activeSessionProvider.notifier).startSession(
-      type: SessionType.focus,
-      taskId: task.id,
-    );
-    
+    ref
+        .read(activeSessionProvider.notifier)
+        .startSession(type: SessionType.focus, taskId: task.id);
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('تم بدء جلسة Pomodoro! 🍅'),
@@ -632,10 +631,7 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
             children: [
               const Text(
                 'إضافة مهمة جديدة',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               IconButton(
                 onPressed: () => Navigator.pop(context),
@@ -643,18 +639,18 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
               ),
             ],
           ),
-          
+
           const SizedBox(height: 20),
-          
+
           // Title Field
           CustomTextField(
             controller: _titleController,
             hintText: 'عنوان المهمة *',
             prefixIcon: Icons.task,
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Description Field
           CustomTextField(
             controller: _descriptionController,
@@ -662,14 +658,11 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
             prefixIcon: Icons.description,
             maxLines: 3,
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Priority Selector
-          Text(
-            'الأولوية',
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
+          Text('الأولوية', style: Theme.of(context).textTheme.titleSmall),
           const SizedBox(height: 8),
           Row(
             children: TaskPriority.values.map((priority) {
@@ -685,9 +678,9 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
               );
             }).toList(),
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Due Date and Duration
           Row(
             children: [
@@ -695,9 +688,11 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
                 child: ListTile(
                   leading: const Icon(Icons.calendar_today),
                   title: Text(_dueDate == null ? 'تحديد موعد' : 'موعد الإنجاز'),
-                  subtitle: _dueDate == null ? null : Text(
-                    '${_dueDate!.day}/${_dueDate!.month}/${_dueDate!.year}',
-                  ),
+                  subtitle: _dueDate == null
+                      ? null
+                      : Text(
+                          '${_dueDate!.day}/${_dueDate!.month}/${_dueDate!.year}',
+                        ),
                   onTap: _selectDueDate,
                   dense: true,
                 ),
@@ -705,19 +700,21 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
               Expanded(
                 child: ListTile(
                   leading: const Icon(Icons.timer),
-                  title: Text(_estimatedDuration == null ? 'تقدير الوقت' : 'الوقت المقدر'),
-                  subtitle: _estimatedDuration == null ? null : Text(
-                    '${_estimatedDuration!.inMinutes} دقيقة',
+                  title: Text(
+                    _estimatedDuration == null ? 'تقدير الوقت' : 'الوقت المقدر',
                   ),
+                  subtitle: _estimatedDuration == null
+                      ? null
+                      : Text('${_estimatedDuration!.inMinutes} دقيقة'),
                   onTap: _selectDuration,
                   dense: true,
                 ),
               ),
             ],
           ),
-          
+
           const SizedBox(height: 24),
-          
+
           // Action Buttons
           Row(
             children: [
@@ -779,19 +776,23 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
   void _addTask() async {
     if (_titleController.text.isEmpty) return;
 
-    await ref.read(advancedTasksProvider.notifier).createTask(
-      title: _titleController.text,
-      description: _descriptionController.text.isEmpty ? null : _descriptionController.text,
-      priority: _priority,
-      dueDate: _dueDate,
-      estimatedDuration: _estimatedDuration,
-    );
+    await ref
+        .read(advancedTasksProvider.notifier)
+        .createTask(
+          title: _titleController.text,
+          description: _descriptionController.text.isEmpty
+              ? null
+              : _descriptionController.text,
+          priority: _priority,
+          dueDate: _dueDate,
+          estimatedDuration: _estimatedDuration,
+        );
 
     if (mounted) {
       Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('تم إضافة المهمة بنجاح! ✅')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('تم إضافة المهمة بنجاح! ✅')));
     }
   }
 }
@@ -836,7 +837,7 @@ class _DurationPickerDialogState extends State<DurationPickerDialog> {
               ),
             ],
           ),
-          
+
           // Minutes
           Column(
             mainAxisSize: MainAxisSize.min,
@@ -891,37 +892,34 @@ class QuickActionsBottomSheet extends ConsumerWidget {
         children: [
           const Text(
             'إجراءات سريعة',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
-          
+
           ListTile(
             leading: const Icon(Icons.flash_on, color: Colors.orange),
             title: const Text('جلسة تركيز سريعة'),
             subtitle: const Text('بدء جلسة 25 دقيقة'),
             onTap: () {
               Navigator.pop(context);
-              ref.read(activeSessionProvider.notifier).startSession(
-                type: SessionType.focus,
-              );
+              ref
+                  .read(activeSessionProvider.notifier)
+                  .startSession(type: SessionType.focus);
             },
           ),
-          
+
           ListTile(
             leading: const Icon(Icons.coffee, color: Colors.brown),
             title: const Text('استراحة قصيرة'),
             subtitle: const Text('بدء استراحة 5 دقائق'),
             onTap: () {
               Navigator.pop(context);
-              ref.read(activeSessionProvider.notifier).startSession(
-                type: SessionType.shortBreak,
-              );
+              ref
+                  .read(activeSessionProvider.notifier)
+                  .startSession(type: SessionType.shortBreak);
             },
           ),
-          
+
           ListTile(
             leading: const Icon(Icons.checklist, color: Colors.green),
             title: const Text('إكمال جميع المهام السهلة'),
@@ -931,7 +929,7 @@ class QuickActionsBottomSheet extends ConsumerWidget {
               _completeEasyTasks(ref);
             },
           ),
-          
+
           ListTile(
             leading: const Icon(Icons.schedule, color: Colors.blue),
             title: const Text('جدولة المهام تلقائياً'),
@@ -949,11 +947,14 @@ class QuickActionsBottomSheet extends ConsumerWidget {
   void _completeEasyTasks(WidgetRef ref) {
     // منطق إكمال المهام السهلة
     final tasks = ref.read(advancedTasksProvider);
-    final easyTasks = tasks.where((t) => 
-      t.priority == TaskPriority.low && 
-      t.estimatedDuration != null && 
-      t.estimatedDuration!.inMinutes <= 10
-    ).toList();
+    final easyTasks = tasks
+        .where(
+          (t) =>
+              t.priority == TaskPriority.low &&
+              t.estimatedDuration != null &&
+              t.estimatedDuration!.inMinutes <= 10,
+        )
+        .toList();
 
     for (final task in easyTasks) {
       ref.read(advancedTasksProvider.notifier).completeTask(task.id);

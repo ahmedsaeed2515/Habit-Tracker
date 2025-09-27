@@ -25,17 +25,19 @@ class SmartPomodoroService {
   StreamController<PomodoroSession>? _sessionController;
   StreamController<PomodoroStats>? _statsController;
 
-  // Getters للـBoxes
-  Box<PomodoroSession> get _sessionsBox => Hive.box<PomodoroSession>(_sessionsBoxName);
-  Box<AdvancedTask> get _tasksBox => Hive.box<AdvancedTask>(_tasksBoxName);
-  Box<PomodoroStats> get _statsBox => Hive.box<PomodoroStats>(_statsBoxName);
-  Box<PomodoroSettings> get _settingsBox => Hive.box<PomodoroSettings>(_settingsBoxName);
-  Box<Achievement> get _achievementsBox => Hive.box<Achievement>(_achievementsBoxName);
-  Box<MultiTimer> get _multiTimersBox => Hive.box<MultiTimer>(_multiTimersBoxName);
+  // Getters للـBoxes - استخدام dynamic box وcast عند الحاجة
+  Box<dynamic> get _sessionsBox => Hive.box(_sessionsBoxName);
+  Box<dynamic> get _tasksBox => Hive.box(_tasksBoxName);
+  Box<dynamic> get _statsBox => Hive.box(_statsBoxName);
+  Box<dynamic> get _settingsBox => Hive.box(_settingsBoxName);
+  Box<dynamic> get _achievementsBox => Hive.box(_achievementsBoxName);
+  Box<dynamic> get _multiTimersBox => Hive.box(_multiTimersBoxName);
 
   // Streams
-  Stream<PomodoroSession> get sessionStream => _sessionController?.stream ?? const Stream.empty();
-  Stream<PomodoroStats> get statsStream => _statsController?.stream ?? const Stream.empty();
+  Stream<PomodoroSession> get sessionStream =>
+      _sessionController?.stream ?? const Stream.empty();
+  Stream<PomodoroStats> get statsStream =>
+      _statsController?.stream ?? const Stream.empty();
 
   /// تهيئة الخدمة
   Future<void> initialize() async {
@@ -45,7 +47,7 @@ class SmartPomodoroService {
 
     // تهيئة الإعدادات الافتراضية
     await _initializeDefaultSettings();
-    
+
     // تهيئة الإنجازات الافتراضية
     await _initializeAchievements();
 
@@ -93,7 +95,7 @@ class SmartPomodoroService {
 
   /// بدء الجلسة
   Future<void> startSession(String sessionId) async {
-    final session = _sessionsBox.get(sessionId);
+    final session = _sessionsBox.get(sessionId) as PomodoroSession?;
     if (session == null) return;
 
     final updatedSession = session.copyWith(
@@ -108,7 +110,10 @@ class SmartPomodoroService {
     _startSessionTimer(updatedSession);
 
     // إشعار البداية
-    await _sendSessionNotification(updatedSession, 'بدأت جلسة ${_getSessionTypeText(updatedSession.type)}');
+    await _sendSessionNotification(
+      updatedSession,
+      'بدأت جلسة ${_getSessionTypeText(updatedSession.type)}',
+    );
 
     // تحديث الإحصائيات
     await _updateStats();
@@ -116,7 +121,7 @@ class SmartPomodoroService {
 
   /// إيقاف الجلسة مؤقتاً
   Future<void> pauseSession(String sessionId) async {
-    final session = _sessionsBox.get(sessionId);
+    final session = _sessionsBox.get(sessionId) as PomodoroSession?;
     if (session == null || session.status != SessionStatus.active) return;
 
     final updatedSession = session.copyWith(status: SessionStatus.paused);
@@ -128,7 +133,7 @@ class SmartPomodoroService {
 
   /// استئناف الجلسة
   Future<void> resumeSession(String sessionId) async {
-    final session = _sessionsBox.get(sessionId);
+    final session = _sessionsBox.get(sessionId) as PomodoroSession?;
     if (session == null || session.status != SessionStatus.paused) return;
 
     final updatedSession = session.copyWith(status: SessionStatus.active);
@@ -140,7 +145,7 @@ class SmartPomodoroService {
 
   /// إنهاء الجلسة
   Future<void> completeSession(String sessionId) async {
-    final session = _sessionsBox.get(sessionId);
+    final session = _sessionsBox.get(sessionId) as PomodoroSession?;
     if (session == null) return;
 
     final now = DateTime.now();
@@ -164,7 +169,10 @@ class SmartPomodoroService {
     }
 
     // إشعار الانتهاء
-    await _sendSessionNotification(updatedSession, 'انتهت جلسة ${_getSessionTypeText(updatedSession.type)}');
+    await _sendSessionNotification(
+      updatedSession,
+      'انتهت جلسة ${_getSessionTypeText(updatedSession.type)}',
+    );
 
     // تحديث الإحصائيات
     await _updateStats();
@@ -178,7 +186,7 @@ class SmartPomodoroService {
 
   /// تخطي الجلسة
   Future<void> skipSession(String sessionId) async {
-    final session = _sessionsBox.get(sessionId);
+    final session = _sessionsBox.get(sessionId) as PomodoroSession?;
     if (session == null) return;
 
     final updatedSession = session.copyWith(
@@ -195,7 +203,7 @@ class SmartPomodoroService {
 
   /// إلغاء الجلسة
   Future<void> cancelSession(String sessionId) async {
-    final session = _sessionsBox.get(sessionId);
+    final session = _sessionsBox.get(sessionId) as PomodoroSession?;
     if (session == null) return;
 
     final updatedSession = session.copyWith(
@@ -255,9 +263,12 @@ class SmartPomodoroService {
   /// حذف المهمة
   Future<void> deleteTask(String taskId) async {
     await _tasksBox.delete(taskId);
-    
+
     // حذف الجلسات المرتبطة
-    final sessions = _sessionsBox.values.where((s) => s.taskId == taskId).toList();
+    final sessions = _sessionsBox.values
+        .cast<PomodoroSession>()
+        .where((s) => s.taskId == taskId)
+        .toList();
     for (final session in sessions) {
       await _sessionsBox.delete(session.id);
     }
@@ -319,32 +330,45 @@ class SmartPomodoroService {
     final suggestions = <AITaskSuggestion>[];
 
     // اقتراح تقسيم المهمة
-    if (task.subtasks.isEmpty && task.estimatedDuration != null && 
+    if (task.subtasks.isEmpty &&
+        task.estimatedDuration != null &&
         task.estimatedDuration!.inMinutes > 90) {
-      suggestions.add(AITaskSuggestion(
-        id: _generateId(),
-        taskId: taskId,
-        type: SuggestionType.taskBreakdown,
-        suggestion: 'يُنصح بتقسيم هذه المهمة إلى مهام فرعية أصغر لسهولة الإدارة',
-        confidence: 0.8,
-        reasons: ['المهمة طويلة (${task.estimatedDuration!.inMinutes} دقيقة)', 'لا توجد مهام فرعية'],
-        createdAt: DateTime.now(),
-      ));
+      suggestions.add(
+        AITaskSuggestion(
+          id: _generateId(),
+          taskId: taskId,
+          type: SuggestionType.taskBreakdown,
+          suggestion:
+              'يُنصح بتقسيم هذه المهمة إلى مهام فرعية أصغر لسهولة الإدارة',
+          confidence: 0.8,
+          reasons: [
+            'المهمة طويلة (${task.estimatedDuration!.inMinutes} دقيقة)',
+            'لا توجد مهام فرعية',
+          ],
+          createdAt: DateTime.now(),
+        ),
+      );
     }
 
     // اقتراح الأولوية
     if (task.dueDate != null && task.priority == TaskPriority.medium) {
       final daysUntilDue = task.dueDate!.difference(DateTime.now()).inDays;
       if (daysUntilDue <= 2) {
-        suggestions.add(AITaskSuggestion(
-          id: _generateId(),
-          taskId: taskId,
-          type: SuggestionType.taskPriority,
-          suggestion: 'يُنصح برفع أولوية هذه المهمة إلى عالية نظراً لقرب موعد التسليم',
-          confidence: 0.9,
-          reasons: ['موعد التسليم خلال $daysUntilDue يوم', 'الأولوية الحالية متوسطة'],
-          createdAt: DateTime.now(),
-        ));
+        suggestions.add(
+          AITaskSuggestion(
+            id: _generateId(),
+            taskId: taskId,
+            type: SuggestionType.taskPriority,
+            suggestion:
+                'يُنصح برفع أولوية هذه المهمة إلى عالية نظراً لقرب موعد التسليم',
+            confidence: 0.9,
+            reasons: [
+              'موعد التسليم خلال $daysUntilDue يوم',
+              'الأولوية الحالية متوسطة',
+            ],
+            createdAt: DateTime.now(),
+          ),
+        );
       }
     }
 
@@ -353,16 +377,19 @@ class SmartPomodoroService {
       final similarTasks = _findSimilarTasks(task);
       if (similarTasks.isNotEmpty) {
         final avgDuration = _calculateAverageDuration(similarTasks);
-        suggestions.add(AITaskSuggestion(
-          id: _generateId(),
-          taskId: taskId,
-          type: SuggestionType.timeEstimation,
-          suggestion: 'بناءً على المهام المماثلة، الوقت المقدر: ${avgDuration.inMinutes} دقيقة',
-          confidence: 0.7,
-          reasons: ['تحليل ${similarTasks.length} مهمة مماثلة'],
-          data: {'estimatedDuration': avgDuration.inMinutes},
-          createdAt: DateTime.now(),
-        ));
+        suggestions.add(
+          AITaskSuggestion(
+            id: _generateId(),
+            taskId: taskId,
+            type: SuggestionType.timeEstimation,
+            suggestion:
+                'بناءً على المهام المماثلة، الوقت المقدر: ${avgDuration.inMinutes} دقيقة',
+            confidence: 0.7,
+            reasons: ['تحليل ${similarTasks.length} مهمة مماثلة'],
+            data: {'estimatedDuration': avgDuration.inMinutes},
+            createdAt: DateTime.now(),
+          ),
+        );
       }
     }
 
@@ -382,7 +409,7 @@ class SmartPomodoroService {
           'اجلس بشكل مستقيم',
           'أدر رأسك يميناً ويساراً ببطء',
           'ارفع كتفيك لأعلى واخفضهما',
-          'مد ذراعيك فوق رأسك'
+          'مد ذراعيك فوق رأسك',
         ],
       ),
       const BreakSuggestion(
@@ -391,11 +418,7 @@ class SmartPomodoroService {
         description: 'وقت شرب الماء للحفاظ على الترطيب',
         duration: Duration(minutes: 2),
         type: BreakType.hydration,
-        instructions: [
-          'احضر كوب ماء',
-          'اشرب ببطء',
-          'تنفس بعمق'
-        ],
+        instructions: ['احضر كوب ماء', 'اشرب ببطء', 'تنفس بعمق'],
       ),
       const BreakSuggestion(
         id: 'eye_rest',
@@ -407,7 +430,7 @@ class SmartPomodoroService {
           'انظر بعيداً عن الشاشة',
           'ركز على نقطة بعيدة لمدة 20 ثانية',
           'أغلق عينيك وافتحهما عدة مرات',
-          'قم بحركات دائرية بالعينين'
+          'قم بحركات دائرية بالعينين',
         ],
       ),
     ];
@@ -422,7 +445,7 @@ class SmartPomodoroService {
     TaskSortBy sortBy = TaskSortBy.dueDate,
     bool ascending = true,
   }) {
-    var tasks = _tasksBox.values.toList();
+    var tasks = _tasksBox.values.cast<AdvancedTask>().toList();
 
     // التصفية
     if (status != null) {
@@ -432,7 +455,9 @@ class SmartPomodoroService {
       tasks = tasks.where((t) => t.priority == priority).toList();
     }
     if (tags != null && tags.isNotEmpty) {
-      tasks = tasks.where((t) => tags.any((tag) => t.tags.contains(tag))).toList();
+      tasks = tasks
+          .where((t) => tags.any((tag) => t.tags.contains(tag)))
+          .toList();
     }
     if (projectId != null) {
       tasks = tasks.where((t) => t.projectId == projectId).toList();
@@ -449,7 +474,9 @@ class SmartPomodoroService {
           comparison = a.dueDate!.compareTo(b.dueDate!);
           break;
         case TaskSortBy.priority:
-          comparison = _priorityToInt(a.priority).compareTo(_priorityToInt(b.priority));
+          comparison = _priorityToInt(
+            a.priority,
+          ).compareTo(_priorityToInt(b.priority));
           break;
         case TaskSortBy.createdAt:
           comparison = a.createdAt.compareTo(b.createdAt);
@@ -471,38 +498,32 @@ class SmartPomodoroService {
   PomodoroStats getTodayStats() {
     final today = DateTime.now();
     final todayKey = '${today.year}-${today.month}-${today.day}';
-    
-    return _statsBox.get(todayKey) ?? PomodoroStats(
-      id: todayKey,
-      date: today,
-    );
+
+    return _statsBox.get(todayKey) ?? PomodoroStats(id: todayKey, date: today);
   }
 
   /// الحصول على إحصائيات الأسبوع
   List<PomodoroStats> getWeeklyStats() {
     final now = DateTime.now();
     final weekStart = now.subtract(Duration(days: now.weekday - 1));
-    
+
     final weeklyStats = <PomodoroStats>[];
     for (int i = 0; i < 7; i++) {
       final date = weekStart.add(Duration(days: i));
       final key = '${date.year}-${date.month}-${date.day}';
-      final stats = _statsBox.get(key) ?? PomodoroStats(
-        id: key,
-        date: date,
-      );
+      final stats = _statsBox.get(key) ?? PomodoroStats(id: key, date: date);
       weeklyStats.add(stats);
     }
-    
+
     return weeklyStats;
   }
-  
+
   /// الحصول على إحصائيات الشهر
   PomodoroStats getMonthlyStats() {
     final now = DateTime.now();
     final monthStart = DateTime(now.year, now.month, 1);
     final monthEnd = DateTime(now.year, now.month + 1, 0);
-    
+
     // تجميع إحصائيات الشهر
     int totalSessions = 0;
     int totalSkipped = 0;
@@ -511,23 +532,23 @@ class SmartPomodoroService {
     int totalTasks = 0;
     double totalProductivity = 0.0;
     int daysCount = 0;
-    
+
     for (int i = 1; i <= monthEnd.day; i++) {
       final date = DateTime(now.year, now.month, i);
       final key = '${date.year}-${date.month}-${date.day}';
       final stats = _statsBox.get(key);
-      
+
       if (stats != null) {
-        totalSessions += stats.completedSessions;
-        totalSkipped += stats.skippedSessions;
+        totalSessions = totalSessions + (stats.completedSessions as int);
+        totalSkipped = totalSkipped + (stats.skippedSessions as int);
         totalFocus += stats.totalFocusTime;
         totalBreak += stats.totalBreakTime;
-        totalTasks += stats.completedTasks;
+        totalTasks = totalTasks + (stats.completedTasks as int);
         totalProductivity += stats.productivityScore;
         daysCount++;
       }
     }
-    
+
     return PomodoroStats(
       id: '${now.year}-${now.month}',
       date: monthStart,
@@ -539,12 +560,12 @@ class SmartPomodoroService {
       productivityScore: daysCount > 0 ? totalProductivity / daysCount : 0.0,
     );
   }
-  
+
   /// الحصول على إحصائيات السنة
   PomodoroStats getYearlyStats() {
     final now = DateTime.now();
     final yearStart = DateTime(now.year, 1, 1);
-    
+
     // تجميع إحصائيات السنة
     int totalSessions = 0;
     int totalSkipped = 0;
@@ -553,30 +574,30 @@ class SmartPomodoroService {
     int totalTasks = 0;
     double totalProductivity = 0.0;
     int monthsCount = 0;
-    
+
     for (int month = 1; month <= 12; month++) {
       final monthEnd = DateTime(now.year, month + 1, 0);
       bool hasData = false;
-      
+
       for (int day = 1; day <= monthEnd.day; day++) {
         final date = DateTime(now.year, month, day);
         final key = '${date.year}-${date.month}-${date.day}';
         final stats = _statsBox.get(key);
-        
+
         if (stats != null) {
-          totalSessions += stats.completedSessions;
-          totalSkipped += stats.skippedSessions;
+          totalSessions = totalSessions + (stats.completedSessions as int);
+          totalSkipped = totalSkipped + (stats.skippedSessions as int);
           totalFocus += stats.totalFocusTime;
           totalBreak += stats.totalBreakTime;
-          totalTasks += stats.completedTasks;
+          totalTasks = totalTasks + (stats.completedTasks as int);
           totalProductivity += stats.productivityScore;
           hasData = true;
         }
       }
-      
+
       if (hasData) monthsCount++;
     }
-    
+
     return PomodoroStats(
       id: now.year.toString(),
       date: yearStart,
@@ -585,13 +606,16 @@ class SmartPomodoroService {
       totalFocusTime: totalFocus,
       totalBreakTime: totalBreak,
       completedTasks: totalTasks,
-      productivityScore: monthsCount > 0 ? totalProductivity / monthsCount : 0.0,
+      productivityScore: monthsCount > 0
+          ? totalProductivity / monthsCount
+          : 0.0,
     );
   }
 
   /// الحصول على الإعدادات
   PomodoroSettings getSettings() {
-    return _settingsBox.get('settings') ?? const PomodoroSettings();
+    return _settingsBox.get('settings') as PomodoroSettings? ??
+        const PomodoroSettings();
   }
 
   /// تحديث الإعدادات
@@ -601,12 +625,15 @@ class SmartPomodoroService {
 
   /// الحصول على الإنجازات
   List<Achievement> getAchievements() {
-    return _achievementsBox.values.toList();
+    return _achievementsBox.values.cast<Achievement>().toList();
   }
 
   /// الحصول على الإنجازات المفتوحة
   List<Achievement> getUnlockedAchievements() {
-    return _achievementsBox.values.where((a) => a.isUnlocked).toList();
+    return _achievementsBox.values
+        .cast<Achievement>()
+        .where((a) => a.isUnlocked)
+        .toList();
   }
 
   /// تصدير البيانات
@@ -637,14 +664,16 @@ class SmartPomodoroService {
     final today = DateTime.now();
     final todayStart = DateTime(today.year, today.month, today.day);
     final todaySessions = _sessionsBox.values
-        .where((s) => s.startTime.isAfter(todayStart) && s.type == SessionType.focus)
+        .where(
+          (s) => s.startTime.isAfter(todayStart) && s.type == SessionType.focus,
+        )
         .length;
     return (todaySessions ~/ 4) + 1;
   }
 
   void _startSessionTimer(PomodoroSession session) {
     _sessionTimer?.cancel();
-    
+
     final remainingTime = session.remainingTime;
     if (remainingTime <= Duration.zero) {
       completeSession(session.id);
@@ -661,7 +690,10 @@ class SmartPomodoroService {
     });
   }
 
-  Future<void> _sendSessionNotification(PomodoroSession session, String message) async {
+  Future<void> _sendSessionNotification(
+    PomodoroSession session,
+    String message,
+  ) async {
     if (!getSettings().enableNotifications) return;
 
     await _notificationService.showNotification(
@@ -687,35 +719,52 @@ class SmartPomodoroService {
   Future<void> _updateStats() async {
     final today = DateTime.now();
     final todayKey = '${today.year}-${today.month}-${today.day}';
-    
-    final currentStats = _statsBox.get(todayKey) ?? PomodoroStats(
-      id: todayKey,
-      date: today,
-    );
+
+    final currentStats =
+        _statsBox.get(todayKey) ?? PomodoroStats(id: todayKey, date: today);
 
     // حساب الإحصائيات الجديدة
     final todayStart = DateTime(today.year, today.month, today.day);
     final todayEnd = todayStart.add(const Duration(days: 1));
 
     final todaySessions = _sessionsBox.values
-        .where((s) => s.startTime.isAfter(todayStart) && s.startTime.isBefore(todayEnd))
+        .where(
+          (s) =>
+              s.startTime.isAfter(todayStart) && s.startTime.isBefore(todayEnd),
+        )
         .toList();
 
     final completedSessions = todaySessions.where((s) => s.isCompleted).length;
-    final skippedSessions = todaySessions.where((s) => s.status == SessionStatus.skipped).length;
-    
+    final skippedSessions = todaySessions
+        .where((s) => s.status == SessionStatus.skipped)
+        .length;
+
     final totalFocusTime = todaySessions
         .where((s) => s.type == SessionType.focus && s.isCompleted)
-        .fold<Duration>(Duration.zero, (total, s) => total + (s.actualDuration ?? s.duration));
+        .fold<Duration>(
+          Duration.zero,
+          (total, s) => total + (s.actualDuration ?? s.duration),
+        );
 
     final totalBreakTime = todaySessions
-        .where((s) => (s.type == SessionType.shortBreak || s.type == SessionType.longBreak) && s.isCompleted)
-        .fold<Duration>(Duration.zero, (total, s) => total + (s.actualDuration ?? s.duration));
+        .where(
+          (s) =>
+              (s.type == SessionType.shortBreak ||
+                  s.type == SessionType.longBreak) &&
+              s.isCompleted,
+        )
+        .fold<Duration>(
+          Duration.zero,
+          (total, s) => total + (s.actualDuration ?? s.duration),
+        );
 
     final completedTasks = _tasksBox.values
-        .where((t) => t.status == TaskStatus.completed && 
-                     t.updatedAt.isAfter(todayStart) && 
-                     t.updatedAt.isBefore(todayEnd))
+        .where(
+          (t) =>
+              t.status == TaskStatus.completed &&
+              t.updatedAt.isAfter(todayStart) &&
+              t.updatedAt.isBefore(todayEnd),
+        )
         .length;
 
     final streakDays = _calculateStreakDays();
@@ -739,38 +788,38 @@ class SmartPomodoroService {
     // حساب أيام السلسلة المتتالية
     int streak = 0;
     DateTime checkDate = DateTime.now();
-    
+
     while (true) {
       final key = '${checkDate.year}-${checkDate.month}-${checkDate.day}';
       final dayStats = _statsBox.get(key);
-      
+
       if (dayStats == null || dayStats.completedSessions == 0) {
         break;
       }
-      
+
       streak++;
       checkDate = checkDate.subtract(const Duration(days: 1));
     }
-    
+
     return streak;
   }
 
   double _calculateProductivityScore() {
     final todayStats = getTodayStats();
     double score = 0.0;
-    
+
     // نقاط للجلسات المكتملة
     score += todayStats.completedSessions * 10.0;
-    
+
     // خصم للجلسات المتخطاة
     score -= todayStats.skippedSessions * 5.0;
-    
+
     // نقاط للمهام المكتملة
     score += todayStats.completedTasks * 15.0;
-    
+
     // نقاط لوقت التركيز
     score += todayStats.totalFocusTime.inMinutes * 0.5;
-    
+
     return math.max(0.0, math.min(100.0, score));
   }
 
@@ -790,13 +839,13 @@ class SmartPomodoroService {
   Future<void> _checkAchievements() async {
     final achievements = _achievementsBox.values.toList();
     final stats = getTodayStats();
-    
+
     for (final achievement in achievements) {
       if (achievement.isUnlocked) continue;
-      
+
       bool shouldUnlock = false;
       int newValue = achievement.currentValue;
-      
+
       switch (achievement.type) {
         case AchievementType.sessionsCompleted:
           newValue = stats.completedSessions;
@@ -821,16 +870,16 @@ class SmartPomodoroService {
         default:
           break;
       }
-      
+
       if (shouldUnlock) {
         final unlockedAchievement = achievement.copyWith(
           isUnlocked: true,
           unlockedAt: DateTime.now(),
           currentValue: newValue,
         );
-        
+
         await _achievementsBox.put(achievement.id, unlockedAchievement);
-        
+
         // إشعار فتح الإنجاز
         await _notificationService.showNotification(
           title: 'إنجاز جديد! 🏆',
@@ -848,15 +897,16 @@ class SmartPomodoroService {
     if (!settings.autoStartBreaks && !settings.autoStartFocus) return;
 
     SessionType? nextType;
-    
+
     if (completedSession.type == SessionType.focus) {
       if (settings.autoStartBreaks) {
         // تحديد نوع الاستراحة
-        final isLongBreak = completedSession.cycleNumber % settings.longBreakInterval == 0;
+        final isLongBreak =
+            completedSession.cycleNumber % settings.longBreakInterval == 0;
         nextType = isLongBreak ? SessionType.longBreak : SessionType.shortBreak;
       }
-    } else if (completedSession.type == SessionType.shortBreak || 
-               completedSession.type == SessionType.longBreak) {
+    } else if (completedSession.type == SessionType.shortBreak ||
+        completedSession.type == SessionType.longBreak) {
       if (settings.autoStartFocus) {
         nextType = SessionType.focus;
       }
@@ -867,7 +917,7 @@ class SmartPomodoroService {
         type: nextType,
         taskId: completedSession.taskId,
       );
-      
+
       // تأخير قصير قبل البدء التلقائي
       await Future.delayed(const Duration(seconds: 3));
       await startSession(nextSession.id);
@@ -876,22 +926,25 @@ class SmartPomodoroService {
 
   List<AdvancedTask> _findSimilarTasks(AdvancedTask task) {
     return _tasksBox.values
-        .where((t) => 
-          t.id != task.id &&
-          t.actualDuration > Duration.zero &&
-          (t.tags.any((tag) => task.tags.contains(tag)) ||
-           t.priority == task.priority))
+        .cast<AdvancedTask>()
+        .where(
+          (t) =>
+              t.id != task.id &&
+              t.actualDuration > Duration.zero &&
+              (t.tags.any((tag) => task.tags.contains(tag)) ||
+                  t.priority == task.priority),
+        )
         .toList();
   }
 
   Duration _calculateAverageDuration(List<AdvancedTask> tasks) {
     if (tasks.isEmpty) return Duration.zero;
-    
+
     final totalMinutes = tasks.fold<int>(
-      0, 
+      0,
       (sum, task) => sum + task.actualDuration.inMinutes,
     );
-    
+
     return Duration(minutes: totalMinutes ~/ tasks.length);
   }
 
@@ -999,11 +1052,11 @@ class SmartPomodoroService {
 
 /// أنواع ترتيب المهام
 enum TaskSortBy {
-  dueDate,      // تاريخ الاستحقاق
-  priority,     // الأولوية
-  createdAt,    // تاريخ الإنشاء
-  title,        // العنوان
-  progress,     // التقدم
+  dueDate, // تاريخ الاستحقاق
+  priority, // الأولوية
+  createdAt, // تاريخ الإنشاء
+  title, // العنوان
+  progress, // التقدم
 }
 
 /// امتدادات مفيدة

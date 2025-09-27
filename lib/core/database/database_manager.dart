@@ -74,12 +74,12 @@ class DatabaseManager extends BaseDatabaseManager {
   /// فتح صناديق Pomodoro
   static Future<void> _openPomodoroBoxes() async {
     try {
-      await Hive.openBox('pomodoro_sessions');
-      await Hive.openBox('pomodoro_tasks');
-      await Hive.openBox('pomodoro_stats');
-      await Hive.openBox('pomodoro_settings');
-      await Hive.openBox('achievements');
-      await Hive.openBox('multi_timers');
+      await BaseDatabaseManager.openBoxSafe('pomodoro_sessions');
+      await BaseDatabaseManager.openBoxSafe('pomodoro_tasks');
+      await BaseDatabaseManager.openBoxSafe('pomodoro_stats');
+      await BaseDatabaseManager.openBoxSafe('pomodoro_settings');
+      await BaseDatabaseManager.openBoxSafe('achievements');
+      await BaseDatabaseManager.openBoxSafe('multi_timers');
       debugPrint('✅ تم فتح جميع صناديق Pomodoro');
     } catch (e) {
       debugPrint('⚠️ خطأ في فتح صناديق Pomodoro: $e');

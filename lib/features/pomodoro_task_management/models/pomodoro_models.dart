@@ -101,38 +101,38 @@ class PomodoroSession {
 @HiveType(typeId: 82)
 enum SessionType {
   @HiveField(0)
-  focus,      // تركيز
+  focus, // تركيز
 
   @HiveField(1)
   shortBreak, // استراحة قصيرة
 
   @HiveField(2)
-  longBreak,  // استراحة طويلة
+  longBreak, // استراحة طويلة
 
   @HiveField(3)
-  custom,     // مخصص
+  custom, // مخصص
 }
 
 /// حالة الجلسة
 @HiveType(typeId: 83)
 enum SessionStatus {
   @HiveField(0)
-  waiting,    // في الانتظار
+  waiting, // في الانتظار
 
   @HiveField(1)
-  active,     // نشط
+  active, // نشط
 
   @HiveField(2)
-  paused,     // متوقف مؤقتاً
+  paused, // متوقف مؤقتاً
 
   @HiveField(3)
-  completed,  // مكتمل
+  completed, // مكتمل
 
   @HiveField(4)
-  skipped,    // تم التخطي
+  skipped, // تم التخطي
 
   @HiveField(5)
-  cancelled,  // ملغي
+  cancelled, // ملغي
 }
 
 /// إعدادات Pomodoro
@@ -179,16 +179,16 @@ class PomodoroSettings {
 
   @HiveField(13)
   final Map<String, dynamic> customSettings;
-  
+
   @HiveField(14)
   final int dailyGoal; // هدف يومي لجلسات Pomodoro
-  
+
   @HiveField(15)
   final bool taskReminders; // تذكيرات المهام
-  
+
   @HiveField(16)
   final bool achievementNotifications; // إشعارات الإنجازات
-  
+
   @HiveField(17)
   final String notificationSound; // صوت الإشعارات
 
@@ -250,11 +250,12 @@ class PomodoroSettings {
       customSettings: customSettings ?? this.customSettings,
       dailyGoal: dailyGoal ?? this.dailyGoal,
       taskReminders: taskReminders ?? this.taskReminders,
-      achievementNotifications: achievementNotifications ?? this.achievementNotifications,
+      achievementNotifications:
+          achievementNotifications ?? this.achievementNotifications,
       notificationSound: notificationSound ?? this.notificationSound,
     );
   }
-  
+
   /// Getter methods for aliases used in widgets
   bool get autoStartBreak => autoStartBreaks;
   bool get backgroundMode => enableBackgroundMode;
@@ -419,38 +420,38 @@ class AdvancedTask {
 @HiveType(typeId: 86)
 enum TaskPriority {
   @HiveField(0)
-  urgent,   // عاجل
+  urgent, // عاجل
 
   @HiveField(1)
-  high,     // عالي
+  high, // عالي
 
   @HiveField(2)
-  medium,   // متوسط
+  medium, // متوسط
 
   @HiveField(3)
-  low,      // منخفض
+  low, // منخفض
 }
 
 /// حالة المهمة
 @HiveType(typeId: 87)
 enum TaskStatus {
   @HiveField(0)
-  pending,      // في الانتظار
+  pending, // في الانتظار
 
   @HiveField(1)
-  inProgress,   // قيد التنفيذ
+  inProgress, // قيد التنفيذ
 
   @HiveField(2)
-  completed,    // مكتملة
+  completed, // مكتملة
 
   @HiveField(3)
-  cancelled,    // ملغية
+  cancelled, // ملغية
 
   @HiveField(4)
-  onHold,       // معلقة
+  onHold, // معلقة
 
   @HiveField(5)
-  archived,     // مؤرشفة
+  archived, // مؤرشفة
 }
 
 /// مهمة فرعية
@@ -556,7 +557,8 @@ class RecurrenceRule {
         return DateTime(from.year + interval, from.month, from.day);
       case RecurrenceType.weekdays:
         DateTime next = from.add(const Duration(days: 1));
-        while (next.weekday > 5) { // تخطي عطلة نهاية الأسبوع
+        while (next.weekday > 5) {
+          // تخطي عطلة نهاية الأسبوع
           next = next.add(const Duration(days: 1));
         }
         return next;
@@ -578,22 +580,22 @@ class RecurrenceRule {
 @HiveType(typeId: 90)
 enum RecurrenceType {
   @HiveField(0)
-  daily,    // يومي
+  daily, // يومي
 
   @HiveField(1)
-  weekly,   // أسبوعي
+  weekly, // أسبوعي
 
   @HiveField(2)
-  monthly,  // شهري
+  monthly, // شهري
 
   @HiveField(3)
-  yearly,   // سنوي
+  yearly, // سنوي
 
   @HiveField(4)
   weekdays, // أيام الأسبوع فقط
 
   @HiveField(5)
-  custom,   // مخصص
+  custom, // مخصص
 }
 
 /// مشروع
@@ -679,19 +681,19 @@ class Project {
 @HiveType(typeId: 92)
 enum ProjectStatus {
   @HiveField(0)
-  active,     // نشط
+  active, // نشط
 
   @HiveField(1)
-  completed,  // مكتمل
+  completed, // مكتمل
 
   @HiveField(2)
-  onHold,     // معلق
+  onHold, // معلق
 
   @HiveField(3)
-  cancelled,  // ملغي
+  cancelled, // ملغي
 
   @HiveField(4)
-  archived,   // مؤرشف
+  archived, // مؤرشف
 }
 
 /// إحصائيات Pomodoro
@@ -790,34 +792,34 @@ class PomodoroStats {
 @HiveType(typeId: 101)
 enum AchievementCategory {
   @HiveField(0)
-  productivity,  // إنتاجية
-  
+  productivity, // إنتاجية
+
   @HiveField(1)
-  focus,         // تركيز
-  
+  focus, // تركيز
+
   @HiveField(2)
-  consistency,   // ثبات
-  
+  consistency, // ثبات
+
   @HiveField(3)
-  milestone,     // إنجاز
-  
+  milestone, // إنجاز
+
   @HiveField(4)
-  social,        // اجتماعي
-  
+  social, // اجتماعي
+
   @HiveField(5)
-  sessions,      // جلسات
-  
+  sessions, // جلسات
+
   @HiveField(6)
-  tasks,         // مهام
-  
+  tasks, // مهام
+
   @HiveField(7)
-  streaks,       // سلاسل
-  
+  streaks, // سلاسل
+
   @HiveField(8)
-  time,          // وقت
-  
+  time, // وقت
+
   @HiveField(9)
-  special,       // خاص
+  special, // خاص
 }
 
 /// إنجاز/شارة
@@ -855,7 +857,7 @@ class Achievement {
 
   @HiveField(10)
   final int points; // نقاط الإنجاز
-  
+
   @HiveField(11)
   final AchievementCategory category; // فئة الإنجاز
 
@@ -911,25 +913,25 @@ class Achievement {
 @HiveType(typeId: 95)
 enum AchievementType {
   @HiveField(0)
-  sessionsCompleted,  // جلسات مكتملة
+  sessionsCompleted, // جلسات مكتملة
 
   @HiveField(1)
-  focusTime,         // وقت التركيز
+  focusTime, // وقت التركيز
 
   @HiveField(2)
-  tasksCompleted,    // مهام مكتملة
+  tasksCompleted, // مهام مكتملة
 
   @HiveField(3)
-  streak,            // سلسلة متتالية
+  streak, // سلسلة متتالية
 
   @HiveField(4)
-  productivity,      // إنتاجية
+  productivity, // إنتاجية
 
   @HiveField(5)
-  consistency,       // الثبات
+  consistency, // الثبات
 
   @HiveField(6)
-  milestone,         // إنجاز معين
+  milestone, // إنجاز معين
 }
 
 /// تايمر متعدد
@@ -1001,7 +1003,10 @@ class MultiTimer {
     if (sessions.isEmpty) return 0.0;
     final completedSessions = sessions.take(currentSessionIndex).length;
     final currentProgress = currentSession?.progress ?? 0.0;
-    return ((completedSessions + currentProgress) / sessions.length).clamp(0.0, 1.0);
+    return ((completedSessions + currentProgress) / sessions.length).clamp(
+      0.0,
+      1.0,
+    );
   }
 }
 
@@ -1076,22 +1081,22 @@ class AITaskSuggestion {
 @HiveType(typeId: 98)
 enum SuggestionType {
   @HiveField(0)
-  taskPriority,      // أولوية المهمة
+  taskPriority, // أولوية المهمة
 
   @HiveField(1)
-  taskBreakdown,     // تقسيم المهمة
+  taskBreakdown, // تقسيم المهمة
 
   @HiveField(2)
-  timeEstimation,    // تقدير الوقت
+  timeEstimation, // تقدير الوقت
 
   @HiveField(3)
-  scheduling,        // الجدولة
+  scheduling, // الجدولة
 
   @HiveField(4)
-  taskOptimization,  // تحسين المهمة
+  taskOptimization, // تحسين المهمة
 
   @HiveField(5)
-  focusImprovement,  // تحسين التركيز
+  focusImprovement, // تحسين التركيز
 }
 
 /// ثيم تطبيق Pomodoro
@@ -1165,22 +1170,22 @@ class PomodoroTheme {
 @HiveType(typeId: 100)
 enum ThemeStyle {
   @HiveField(0)
-  minimal,        // بسيط
+  minimal, // بسيط
 
   @HiveField(1)
-  neon,           // نيون
+  neon, // نيون
 
   @HiveField(2)
-  glassmorphism,  // زجاجي
+  glassmorphism, // زجاجي
 
   @HiveField(3)
-  nature,         // طبيعي
+  nature, // طبيعي
 
   @HiveField(4)
-  dark,           // داكن
+  dark, // داكن
 
   @HiveField(5)
-  colorful,       // ملون
+  colorful, // ملون
 }
 
 /// إعدادات اقتراحات الاستراحة
@@ -1248,23 +1253,23 @@ class BreakSuggestion {
 @HiveType(typeId: 252)
 enum BreakType {
   @HiveField(0)
-  stretch,       // تمدد
+  stretch, // تمدد
 
   @HiveField(1)
-  hydration,     // شرب الماء
+  hydration, // شرب الماء
 
   @HiveField(2)
-  breathing,     // تنفس
+  breathing, // تنفس
 
   @HiveField(3)
-  eyeRest,       // راحة العين
+  eyeRest, // راحة العين
 
   @HiveField(4)
-  walk,          // مشي
+  walk, // مشي
 
   @HiveField(5)
-  meditation,    // تأمل
+  meditation, // تأمل
 
   @HiveField(6)
-  snack,         // وجبة خفيفة
+  snack, // وجبة خفيفة
 }

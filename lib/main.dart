@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hive/hive.dart';
 
 import 'core/database/database_manager.dart';
 import 'core/providers/settings_provider.dart';
@@ -44,8 +43,7 @@ Future<void> main() async {
     // تهيئة نظام الودجت
     await _initializeWidgetsSystem();
 
-    // تهيئة نظام Pomodoro Task Management
-    await _initializePomodoroSystem();
+    // نظام Pomodoro Task Management تم تهيئته مع DatabaseManager
 
     // تشغيل التطبيق
     runApp(const ProviderScope(child: UltimateHabitTrackerApp()));
@@ -205,28 +203,5 @@ Future<void> _initializeWidgetsSystem() async {
     debugPrint('✅ Widgets System service initialized successfully');
   } catch (e) {
     debugPrint('❌ Error initializing Widgets System service: $e');
-  }
-}
-
-// تهيئة نظام Pomodoro Task Management
-Future<void> _initializePomodoroSystem() async {
-  try {
-    // تحقق من أن جميع الصناديق مفتوحة
-    if (!Hive.isBoxOpen('pomodoro_sessions')) {
-      await Hive.openBox('pomodoro_sessions');
-    }
-    if (!Hive.isBoxOpen('pomodoro_tasks')) {
-      await Hive.openBox('pomodoro_tasks');
-    }
-    if (!Hive.isBoxOpen('pomodoro_stats')) {
-      await Hive.openBox('pomodoro_stats');
-    }
-    if (!Hive.isBoxOpen('pomodoro_settings')) {
-      await Hive.openBox('pomodoro_settings');
-    }
-    
-    debugPrint('✅ Pomodoro System initialized successfully');
-  } catch (e) {
-    debugPrint('❌ Error initializing Pomodoro System: $e');
   }
 }

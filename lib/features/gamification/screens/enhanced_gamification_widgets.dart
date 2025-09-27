@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/unified_gamification_provider.dart';
 import '../models/unified_achievement.dart';
@@ -52,16 +53,18 @@ class EnhancedGamificationWidgets {
                 if (recentAchievements.isEmpty)
                   _buildEmptyAchievements(context, isArabic)
                 else
-                  ...recentAchievements
-                      .take(3)
-                      .map(
-                        (achievement) => _buildAchievementTile(
-                          context,
-                          isArabic,
-                          UnifiedAchievement.fromMap(achievement),
-                        ),
-                      )
-                      .toList(),
+                  ...recentAchievements.take(3).map((achievement) {
+                    try {
+                      return _buildAchievementTile(
+                        context,
+                        isArabic,
+                        UnifiedAchievement.fromMap(achievement),
+                      );
+                    } catch (e) {
+                      debugPrint('خطأ في تحويل الإنجاز: $e');
+                      return const SizedBox.shrink();
+                    }
+                  }).toList(),
               ],
             ),
           ),
