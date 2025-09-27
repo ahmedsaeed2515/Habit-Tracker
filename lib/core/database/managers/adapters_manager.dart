@@ -6,6 +6,8 @@ import '../../../features/smart_notifications/models/smart_notification.dart';
 import '../../../features/voice_commands/models/voice_command.dart';
 import '../../../features/habit_builder/models/habit_template.dart';
 import '../../../features/ai_assistant/models/ai_message.dart';
+import '../../../features/widgets_system/models/widget_config.dart';
+import '../../../features/pomodoro_task_management/models/pomodoro_models.dart' as pomodoro;
 import '../../models/workout.dart';
 import '../../models/morning_exercise.dart';
 import '../../models/habit.dart';
@@ -26,6 +28,8 @@ class AdaptersManager {
     _registerVoiceCommandAdapters();
     _registerHabitBuilderAdapters();
     _registerAIAssistantAdapters();
+    _registerWidgetsSystemAdapters();
+    _registerPomodoroAdapters();
 
     debugPrint('✅ تم تسجيل جميع محولات Hive بنجاح');
   }
@@ -92,5 +96,53 @@ class AdaptersManager {
     BaseDatabaseManager.registerAdapterSafe(AIMessageTypeAdapter(), 25);
     BaseDatabaseManager.registerAdapterSafe(AIPersonalityProfileAdapter(), 26);
     BaseDatabaseManager.registerAdapterSafe(PersonalityTypeAdapter(), 27);
+  }
+
+  /// تسجيل محولات نظام الودجت (IDs: 73-80)
+  static void _registerWidgetsSystemAdapters() {
+    BaseDatabaseManager.registerAdapterSafe(WidgetConfigAdapter(), 73);
+    BaseDatabaseManager.registerAdapterSafe(WidgetTypeAdapter(), 74);
+    BaseDatabaseManager.registerAdapterSafe(WidgetSizeAdapter(), 75);
+    BaseDatabaseManager.registerAdapterSafe(WidgetThemeAdapter(), 76);
+    BaseDatabaseManager.registerAdapterSafe(RefreshIntervalAdapter(), 77);
+    BaseDatabaseManager.registerAdapterSafe(WidgetDataAdapter(), 78);
+    BaseDatabaseManager.registerAdapterSafe(WidgetLayoutAdapter(), 79);
+    BaseDatabaseManager.registerAdapterSafe(WidgetPositionAdapter(), 80);
+  }
+
+  /// تسجيل محولات Pomodoro (IDs: 81-110)
+  static void _registerPomodoroAdapters() {
+    // Core Pomodoro Models
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.PomodoroSessionAdapter(), 81);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.SessionTypeAdapter(), 82);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.SessionStatusAdapter(), 83);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.PomodoroSettingsAdapter(), 84);
+    
+    // Task Management
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.AdvancedTaskAdapter(), 85);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.TaskPriorityAdapter(), 86);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.TaskStatusAdapter(), 87);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.SubtaskAdapter(), 88);
+    
+    // Statistics and Analytics  
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.PomodoroStatsAdapter(), 89);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.RecurrenceRuleAdapter(), 90);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.ProjectAdapter(), 91);
+    
+    // Achievements and Gamification
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.AchievementAdapter(), 92);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.AchievementTypeAdapter(), 93);
+    
+    // Multi-Timer and AI Features
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.MultiTimerAdapter(), 94);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.AITaskSuggestionAdapter(), 95);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.PomodoroThemeAdapter(), 96);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.BreakSuggestionAdapter(), 97);
+    
+    // Additional Enums
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.RecurrenceTypeAdapter(), 98);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.ProjectStatusAdapter(), 99);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.AchievementCategoryAdapter(), 100);
+    BaseDatabaseManager.registerAdapterSafe(pomodoro.SuggestionTypeAdapter(), 101);
   }
 }

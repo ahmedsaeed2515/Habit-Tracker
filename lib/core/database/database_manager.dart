@@ -66,6 +66,24 @@ class DatabaseManager extends BaseDatabaseManager {
     _settingsBox = await BaseDatabaseManager.openBoxSafe<AppSettings>(
       _settingsBoxName,
     );
+
+    // فتح صناديق Pomodoro
+    await _openPomodoroBoxes();
+  }
+
+  /// فتح صناديق Pomodoro
+  static Future<void> _openPomodoroBoxes() async {
+    try {
+      await Hive.openBox('pomodoro_sessions');
+      await Hive.openBox('pomodoro_tasks');
+      await Hive.openBox('pomodoro_stats');
+      await Hive.openBox('pomodoro_settings');
+      await Hive.openBox('achievements');
+      await Hive.openBox('multi_timers');
+      debugPrint('✅ تم فتح جميع صناديق Pomodoro');
+    } catch (e) {
+      debugPrint('⚠️ خطأ في فتح صناديق Pomodoro: $e');
+    }
   }
 
   /// إنشاء البيانات الافتراضية

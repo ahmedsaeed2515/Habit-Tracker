@@ -39,13 +39,7 @@ class SmartPomodoroService {
 
   /// تهيئة الخدمة
   Future<void> initialize() async {
-    await Hive.openBox<PomodoroSession>(_sessionsBoxName);
-    await Hive.openBox<AdvancedTask>(_tasksBoxName);
-    await Hive.openBox<PomodoroStats>(_statsBoxName);
-    await Hive.openBox<PomodoroSettings>(_settingsBoxName);
-    await Hive.openBox<Achievement>(_achievementsBoxName);
-    await Hive.openBox<MultiTimer>(_multiTimersBoxName);
-
+    // الصناديق مفتوحة بالفعل في DatabaseManager
     _sessionController = StreamController<PomodoroSession>.broadcast();
     _statsController = StreamController<PomodoroStats>.broadcast();
 

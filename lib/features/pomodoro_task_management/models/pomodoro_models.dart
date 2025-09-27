@@ -7,7 +7,7 @@ part 'pomodoro_models.g.dart';
 /// TypeIds: 231-280
 
 /// جلسة Pomodoro
-@HiveType(typeId: 231)
+@HiveType(typeId: 81)
 class PomodoroSession {
   @HiveField(0)
   final String id;
@@ -98,7 +98,7 @@ class PomodoroSession {
 }
 
 /// نوع الجلسة
-@HiveType(typeId: 232)
+@HiveType(typeId: 82)
 enum SessionType {
   @HiveField(0)
   focus,      // تركيز
@@ -114,7 +114,7 @@ enum SessionType {
 }
 
 /// حالة الجلسة
-@HiveType(typeId: 233)
+@HiveType(typeId: 83)
 enum SessionStatus {
   @HiveField(0)
   waiting,    // في الانتظار
@@ -136,7 +136,7 @@ enum SessionStatus {
 }
 
 /// إعدادات Pomodoro
-@HiveType(typeId: 234)
+@HiveType(typeId: 84)
 class PomodoroSettings {
   @HiveField(0)
   final Duration focusSession;
@@ -264,7 +264,7 @@ class PomodoroSettings {
 }
 
 /// مهمة To-Do متقدمة
-@HiveType(typeId: 235)
+@HiveType(typeId: 85)
 class AdvancedTask {
   @HiveField(0)
   final String id;
@@ -416,7 +416,7 @@ class AdvancedTask {
 }
 
 /// أولوية المهمة
-@HiveType(typeId: 236)
+@HiveType(typeId: 86)
 enum TaskPriority {
   @HiveField(0)
   urgent,   // عاجل
@@ -432,7 +432,7 @@ enum TaskPriority {
 }
 
 /// حالة المهمة
-@HiveType(typeId: 237)
+@HiveType(typeId: 87)
 enum TaskStatus {
   @HiveField(0)
   pending,      // في الانتظار
@@ -454,7 +454,7 @@ enum TaskStatus {
 }
 
 /// مهمة فرعية
-@HiveType(typeId: 238)
+@HiveType(typeId: 88)
 class Subtask {
   @HiveField(0)
   final String id;
@@ -503,7 +503,7 @@ class Subtask {
 }
 
 /// قاعدة التكرار
-@HiveType(typeId: 239)
+@HiveType(typeId: 89)
 class RecurrenceRule {
   @HiveField(0)
   final RecurrenceType type;
@@ -575,7 +575,7 @@ class RecurrenceRule {
 }
 
 /// نوع التكرار
-@HiveType(typeId: 240)
+@HiveType(typeId: 90)
 enum RecurrenceType {
   @HiveField(0)
   daily,    // يومي
@@ -597,7 +597,7 @@ enum RecurrenceType {
 }
 
 /// مشروع
-@HiveType(typeId: 241)
+@HiveType(typeId: 91)
 class Project {
   @HiveField(0)
   final String id;
@@ -676,7 +676,7 @@ class Project {
 }
 
 /// حالة المشروع
-@HiveType(typeId: 242)
+@HiveType(typeId: 92)
 enum ProjectStatus {
   @HiveField(0)
   active,     // نشط
@@ -695,7 +695,7 @@ enum ProjectStatus {
 }
 
 /// إحصائيات Pomodoro
-@HiveType(typeId: 243)
+@HiveType(typeId: 93)
 class PomodoroStats {
   @HiveField(0)
   final String id;
@@ -787,7 +787,7 @@ class PomodoroStats {
 }
 
 /// فئة الإنجاز
-@HiveType(typeId: 253)
+@HiveType(typeId: 101)
 enum AchievementCategory {
   @HiveField(0)
   productivity,  // إنتاجية
@@ -821,7 +821,7 @@ enum AchievementCategory {
 }
 
 /// إنجاز/شارة
-@HiveType(typeId: 244)
+@HiveType(typeId: 94)
 class Achievement {
   @HiveField(0)
   final String id;
@@ -908,7 +908,7 @@ class Achievement {
 }
 
 /// نوع الإنجاز
-@HiveType(typeId: 245)
+@HiveType(typeId: 95)
 enum AchievementType {
   @HiveField(0)
   sessionsCompleted,  // جلسات مكتملة
@@ -933,7 +933,7 @@ enum AchievementType {
 }
 
 /// تايمر متعدد
-@HiveType(typeId: 246)
+@HiveType(typeId: 96)
 class MultiTimer {
   @HiveField(0)
   final String id;
@@ -1006,7 +1006,7 @@ class MultiTimer {
 }
 
 /// اقتراح AI للمهام
-@HiveType(typeId: 247)
+@HiveType(typeId: 97)
 class AITaskSuggestion {
   @HiveField(0)
   final String id;
@@ -1073,7 +1073,7 @@ class AITaskSuggestion {
 }
 
 /// نوع الاقتراح
-@HiveType(typeId: 248)
+@HiveType(typeId: 98)
 enum SuggestionType {
   @HiveField(0)
   taskPriority,      // أولوية المهمة
@@ -1095,7 +1095,7 @@ enum SuggestionType {
 }
 
 /// ثيم تطبيق Pomodoro
-@HiveType(typeId: 249)
+@HiveType(typeId: 99)
 class PomodoroTheme {
   @HiveField(0)
   final String id;
@@ -1162,7 +1162,7 @@ class PomodoroTheme {
 }
 
 /// أنماط الثيم
-@HiveType(typeId: 250)
+@HiveType(typeId: 100)
 enum ThemeStyle {
   @HiveField(0)
   minimal,        // بسيط

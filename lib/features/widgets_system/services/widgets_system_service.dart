@@ -1,5 +1,6 @@
 ﻿import '../models/widget_config.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
 import '../../../core/database/database_helper.dart';
 import '../../../core/models/habit.dart';
 
@@ -12,15 +13,35 @@ class WidgetsSystemService {
 
   // Helper methods لاستبدال HabitService
   Future<List<Habit>> _getActiveHabits() async {
-    return DatabaseHelper.habitsBox.values.where((habit) => habit.isActive).toList();
+    try {
+      if (!Hive.isBoxOpen('habits')) {
+        debugPrint('تحذير: صندوق العادات غير مفتوح');
+        return [];
+      }
+      final habitsBox = Hive.box<Habit>('habits');
+      return habitsBox.values.where((habit) => habit.isActive).toList();
+    } catch (e) {
+      debugPrint('خطأ في الحصول على العادات النشطة: $e');
+      return [];
+    }
   }
 
   Future<List<Habit>> _getHabitsByIds(List<String> habitIds) async {
-    return habitIds
-        .map((id) => DatabaseHelper.habitsBox.get(id))
-        .where((habit) => habit != null)
-        .cast<Habit>()
-        .toList();
+    try {
+      if (!Hive.isBoxOpen('habits')) {
+        debugPrint('صندوق العادات غير مفتوح');
+        return [];
+      }
+      final habitsBox = Hive.box<Habit>('habits');
+      return habitIds
+          .map((id) => habitsBox.get(id))
+          .where((habit) => habit != null)
+          .cast<Habit>()
+          .toList();
+    } catch (e) {
+      debugPrint('خطأ في الحصول على العادات بالمعرف: $e');
+      return [];
+    }
   }
 
   Future<List<Habit>> _getHabitsForDay(DateTime date) async {
@@ -29,23 +50,34 @@ class WidgetsSystemService {
   }
 
   Future<double> _getHabitCompletion(String habitId, DateTime date) async {
-    final habit = DatabaseHelper.habitsBox.get(habitId);
-    if (habit == null) return 0.0;
+    try {
+      if (!Hive.isBoxOpen('habits')) {
+        debugPrint('صندوق العادات غير مفتوح');
+        return 0.0;
+      }
+      
+      final habitsBox = Hive.box<Habit>('habits');
+      final habit = habitsBox.get(habitId);
+      if (habit == null) return 0.0;
 
-    final dateStart = DateTime(date.year, date.month, date.day);
-    final dateEnd = dateStart.add(const Duration(days: 1));
+      final dateStart = DateTime(date.year, date.month, date.day);
+      final dateEnd = dateStart.add(const Duration(days: 1));
 
-    final entry = habit.entries.where((entry) => 
-        entry.date.isAfter(dateStart.subtract(const Duration(milliseconds: 1))) &&
-        entry.date.isBefore(dateEnd)
-    ).firstOrNull;
+      final entry = habit.entries.where((entry) => 
+          entry.date.isAfter(dateStart.subtract(const Duration(milliseconds: 1))) &&
+          entry.date.isBefore(dateEnd)
+      ).firstOrNull;
 
-    if (entry == null) return 0.0;
-    
-    if (habit.type == HabitType.boolean) {
-      return entry.isCompleted ? 100.0 : 0.0;
-    } else {
-      return (entry.value / habit.targetValue * 100).clamp(0.0, 100.0);
+      if (entry == null) return 0.0;
+      
+      if (habit.type == HabitType.boolean) {
+        return entry.isCompleted ? 100.0 : 0.0;
+      } else {
+        return (entry.value / habit.targetValue * 100).clamp(0.0, 100.0);
+      }
+    } catch (e) {
+      debugPrint('خطأ في الحصول على إكمال العادة: $e');
+      return 0.0;
     }
   }
 

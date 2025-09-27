@@ -12,6 +12,10 @@ import 'features/smart_todo/screens/smart_todo_screen.dart';
 import 'features/gamification/screens/enhanced_gamification_screen.dart';
 import 'features/dashboard/screens/dashboard_screen.dart';
 import 'features/settings/screens/settings_screen.dart';
+// الميزات الجديدة
+import 'features/smart_calendar/screens/smart_calendar_screen.dart';
+import 'features/widgets_system/screens/widgets_dashboard_screen.dart';
+import 'features/pomodoro_task_management/screens/pomodoro_todo_screen.dart';
 
 /// مقدم حالة مؤشر التبويب المحدد
 final selectedTabIndexProvider = StateProvider<int>(
@@ -35,6 +39,9 @@ class MainAppScreen extends ConsumerWidget {
       const SmartTodoScreen(),
       const EnhancedGamificationScreen(),
       const DashboardScreen(),
+      const SmartCalendarScreen(), // التقويم الذكي
+      const WidgetsDashboardScreen(), // نظام الودجت
+      const PomodoroTodoScreen(), // إدارة المهام مع تقنية Pomodoro
       const SettingsScreen(),
     ];
 
@@ -70,6 +77,22 @@ class MainAppScreen extends ConsumerWidget {
         activeIcon: const Icon(Icons.dashboard),
         label: localizations.dashboard,
       ),
+      // الميزات الجديدة
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.calendar_month),
+        activeIcon: const Icon(Icons.calendar_month),
+        label: isArabic ? 'التقويم' : 'Calendar',
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.widgets),
+        activeIcon: const Icon(Icons.widgets),
+        label: isArabic ? 'الودجت' : 'Widgets',
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.timer),
+        activeIcon: const Icon(Icons.timer),
+        label: isArabic ? 'بومودورو' : 'Pomodoro',
+      ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.settings),
         activeIcon: const Icon(Icons.settings),
@@ -79,12 +102,9 @@ class MainAppScreen extends ConsumerWidget {
 
     return Scaffold(
       body: IndexedStack(index: selectedIndex, children: screens),
-      bottomNavigationBar: _buildBottomNavigationBar(
-        context,
-        ref,
-        selectedIndex,
-        navItems,
-      ),
+      bottomNavigationBar: navItems.length > 5
+          ? _buildScrollableBottomNavBar(context, ref, selectedIndex, navItems)
+          : _buildBottomNavigationBar(context, ref, selectedIndex, navItems),
     );
   }
 
@@ -120,6 +140,80 @@ class MainAppScreen extends ConsumerWidget {
         unselectedFontSize: 10,
         elevation: 0, // إزالة الظل الافتراضي لاستخدام ظل مخصص
         enableFeedback: true,
+      ),
+    );
+  }
+
+  Widget _buildScrollableBottomNavBar(
+    BuildContext context,
+    WidgetRef ref,
+    int selectedIndex,
+    List<BottomNavigationBarItem> items,
+  ) {
+    final theme = Theme.of(context);
+
+    return Container(
+      height: 65,
+      decoration: BoxDecoration(
+        color: theme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, -2),
+          ),
+        ],
+      ),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          final item = items[index];
+          final isSelected = index == selectedIndex;
+
+          return GestureDetector(
+            onTap: () {
+              ref.read(selectedTabIndexProvider.notifier).state = index;
+            },
+            child: Container(
+              width: 80,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? theme.bottomNavigationBarTheme.selectedItemColor
+                                ?.withOpacity(0.1)
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: const EdgeInsets.all(4),
+                    child: item.icon,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    item.label ?? '',
+                    style: TextStyle(
+                      color: isSelected
+                          ? theme.bottomNavigationBarTheme.selectedItemColor
+                          : theme.bottomNavigationBarTheme.unselectedItemColor,
+                      fontSize: isSelected ? 11 : 10,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

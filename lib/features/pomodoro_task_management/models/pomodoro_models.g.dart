@@ -8,7 +8,7 @@ part of 'pomodoro_models.dart';
 
 class PomodoroSessionAdapter extends TypeAdapter<PomodoroSession> {
   @override
-  final int typeId = 231;
+  final int typeId = 81;
 
   @override
   PomodoroSession read(BinaryReader reader) {
@@ -72,7 +72,7 @@ class PomodoroSessionAdapter extends TypeAdapter<PomodoroSession> {
 
 class PomodoroSettingsAdapter extends TypeAdapter<PomodoroSettings> {
   @override
-  final int typeId = 234;
+  final int typeId = 84;
 
   @override
   PomodoroSettings read(BinaryReader reader) {
@@ -157,7 +157,7 @@ class PomodoroSettingsAdapter extends TypeAdapter<PomodoroSettings> {
 
 class AdvancedTaskAdapter extends TypeAdapter<AdvancedTask> {
   @override
-  final int typeId = 235;
+  final int typeId = 85;
 
   @override
   AdvancedTask read(BinaryReader reader) {
@@ -242,7 +242,7 @@ class AdvancedTaskAdapter extends TypeAdapter<AdvancedTask> {
 
 class SubtaskAdapter extends TypeAdapter<Subtask> {
   @override
-  final int typeId = 238;
+  final int typeId = 88;
 
   @override
   Subtask read(BinaryReader reader) {
@@ -291,7 +291,7 @@ class SubtaskAdapter extends TypeAdapter<Subtask> {
 
 class RecurrenceRuleAdapter extends TypeAdapter<RecurrenceRule> {
   @override
-  final int typeId = 239;
+  final int typeId = 89;
 
   @override
   RecurrenceRule read(BinaryReader reader) {
@@ -337,7 +337,7 @@ class RecurrenceRuleAdapter extends TypeAdapter<RecurrenceRule> {
 
 class ProjectAdapter extends TypeAdapter<Project> {
   @override
-  final int typeId = 241;
+  final int typeId = 91;
 
   @override
   Project read(BinaryReader reader) {
@@ -401,7 +401,7 @@ class ProjectAdapter extends TypeAdapter<Project> {
 
 class PomodoroStatsAdapter extends TypeAdapter<PomodoroStats> {
   @override
-  final int typeId = 243;
+  final int typeId = 93;
 
   @override
   PomodoroStats read(BinaryReader reader) {
@@ -465,7 +465,7 @@ class PomodoroStatsAdapter extends TypeAdapter<PomodoroStats> {
 
 class AchievementAdapter extends TypeAdapter<Achievement> {
   @override
-  final int typeId = 244;
+  final int typeId = 94;
 
   @override
   Achievement read(BinaryReader reader) {
@@ -532,7 +532,7 @@ class AchievementAdapter extends TypeAdapter<Achievement> {
 
 class MultiTimerAdapter extends TypeAdapter<MultiTimer> {
   @override
-  final int typeId = 246;
+  final int typeId = 96;
 
   @override
   MultiTimer read(BinaryReader reader) {
@@ -581,7 +581,7 @@ class MultiTimerAdapter extends TypeAdapter<MultiTimer> {
 
 class AITaskSuggestionAdapter extends TypeAdapter<AITaskSuggestion> {
   @override
-  final int typeId = 247;
+  final int typeId = 97;
 
   @override
   AITaskSuggestion read(BinaryReader reader) {
@@ -639,7 +639,7 @@ class AITaskSuggestionAdapter extends TypeAdapter<AITaskSuggestion> {
 
 class PomodoroThemeAdapter extends TypeAdapter<PomodoroTheme> {
   @override
-  final int typeId = 249;
+  final int typeId = 99;
 
   @override
   PomodoroTheme read(BinaryReader reader) {
@@ -752,7 +752,7 @@ class BreakSuggestionAdapter extends TypeAdapter<BreakSuggestion> {
 
 class SessionTypeAdapter extends TypeAdapter<SessionType> {
   @override
-  final int typeId = 232;
+  final int typeId = 82;
 
   @override
   SessionType read(BinaryReader reader) {
@@ -801,7 +801,7 @@ class SessionTypeAdapter extends TypeAdapter<SessionType> {
 
 class SessionStatusAdapter extends TypeAdapter<SessionStatus> {
   @override
-  final int typeId = 233;
+  final int typeId = 83;
 
   @override
   SessionStatus read(BinaryReader reader) {
@@ -860,7 +860,7 @@ class SessionStatusAdapter extends TypeAdapter<SessionStatus> {
 
 class TaskPriorityAdapter extends TypeAdapter<TaskPriority> {
   @override
-  final int typeId = 236;
+  final int typeId = 86;
 
   @override
   TaskPriority read(BinaryReader reader) {
@@ -909,7 +909,7 @@ class TaskPriorityAdapter extends TypeAdapter<TaskPriority> {
 
 class TaskStatusAdapter extends TypeAdapter<TaskStatus> {
   @override
-  final int typeId = 237;
+  final int typeId = 87;
 
   @override
   TaskStatus read(BinaryReader reader) {
@@ -968,7 +968,7 @@ class TaskStatusAdapter extends TypeAdapter<TaskStatus> {
 
 class RecurrenceTypeAdapter extends TypeAdapter<RecurrenceType> {
   @override
-  final int typeId = 240;
+  final int typeId = 90;
 
   @override
   RecurrenceType read(BinaryReader reader) {
@@ -1027,7 +1027,7 @@ class RecurrenceTypeAdapter extends TypeAdapter<RecurrenceType> {
 
 class ProjectStatusAdapter extends TypeAdapter<ProjectStatus> {
   @override
-  final int typeId = 242;
+  final int typeId = 92;
 
   @override
   ProjectStatus read(BinaryReader reader) {
@@ -1081,7 +1081,7 @@ class ProjectStatusAdapter extends TypeAdapter<ProjectStatus> {
 
 class AchievementCategoryAdapter extends TypeAdapter<AchievementCategory> {
   @override
-  final int typeId = 253;
+  final int typeId = 101;
 
   @override
   AchievementCategory read(BinaryReader reader) {
@@ -1160,7 +1160,7 @@ class AchievementCategoryAdapter extends TypeAdapter<AchievementCategory> {
 
 class AchievementTypeAdapter extends TypeAdapter<AchievementType> {
   @override
-  final int typeId = 245;
+  final int typeId = 95;
 
   @override
   AchievementType read(BinaryReader reader) {
@@ -1224,7 +1224,7 @@ class AchievementTypeAdapter extends TypeAdapter<AchievementType> {
 
 class SuggestionTypeAdapter extends TypeAdapter<SuggestionType> {
   @override
-  final int typeId = 248;
+  final int typeId = 98;
 
   @override
   SuggestionType read(BinaryReader reader) {
@@ -1283,7 +1283,7 @@ class SuggestionTypeAdapter extends TypeAdapter<SuggestionType> {
 
 class ThemeStyleAdapter extends TypeAdapter<ThemeStyle> {
   @override
-  final int typeId = 250;
+  final int typeId = 100;
 
   @override
   ThemeStyle read(BinaryReader reader) {

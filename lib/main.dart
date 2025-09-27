@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive/hive.dart';
 
 import 'core/database/database_manager.dart';
 import 'core/providers/settings_provider.dart';
@@ -13,6 +14,8 @@ import 'features/smart_notifications/services/notification_service.dart';
 import 'features/smart_notifications/services/notification_database_service.dart';
 import 'features/analytics/services/analytics_service.dart';
 import 'features/gamification/services/unified_gamification_service.dart';
+import 'features/smart_calendar/services/smart_calendar_service.dart';
+import 'features/widgets_system/services/widgets_system_service.dart';
 import 'app.dart';
 
 Future<void> main() async {
@@ -34,6 +37,15 @@ Future<void> main() async {
 
     // تهيئة خدمة الألعاب والتحفيز
     await _initializeGamificationService();
+
+    // تهيئة خدمة التقويم الذكي
+    await _initializeSmartCalendar();
+
+    // تهيئة نظام الودجت
+    await _initializeWidgetsSystem();
+
+    // تهيئة نظام Pomodoro Task Management
+    await _initializePomodoroSystem();
 
     // تشغيل التطبيق
     runApp(const ProviderScope(child: UltimateHabitTrackerApp()));
@@ -167,5 +179,54 @@ Future<void> _initializeGamificationService() async {
     debugPrint('✅ Gamification service initialized successfully');
   } catch (e) {
     debugPrint('❌ Error initializing gamification service: $e');
+  }
+}
+
+// تهيئة خدمة التقويم الذكي
+Future<void> _initializeSmartCalendar() async {
+  try {
+    final calendarService = SmartCalendarService();
+    await calendarService.initialize();
+    debugPrint('✅ Smart Calendar service initialized successfully');
+  } catch (e) {
+    debugPrint('❌ Error initializing Smart Calendar service: $e');
+  }
+}
+
+// تهيئة نظام الودجت
+Future<void> _initializeWidgetsSystem() async {
+  try {
+    final widgetsService = WidgetsSystemService();
+    // إنشاء ودجت افتراضية إذا لم تكن موجودة
+    final existingWidgets = await widgetsService.getAllWidgets();
+    if (existingWidgets.isEmpty) {
+      await widgetsService.createDefaultWidgets();
+    }
+    debugPrint('✅ Widgets System service initialized successfully');
+  } catch (e) {
+    debugPrint('❌ Error initializing Widgets System service: $e');
+  }
+}
+
+// تهيئة نظام Pomodoro Task Management
+Future<void> _initializePomodoroSystem() async {
+  try {
+    // تحقق من أن جميع الصناديق مفتوحة
+    if (!Hive.isBoxOpen('pomodoro_sessions')) {
+      await Hive.openBox('pomodoro_sessions');
+    }
+    if (!Hive.isBoxOpen('pomodoro_tasks')) {
+      await Hive.openBox('pomodoro_tasks');
+    }
+    if (!Hive.isBoxOpen('pomodoro_stats')) {
+      await Hive.openBox('pomodoro_stats');
+    }
+    if (!Hive.isBoxOpen('pomodoro_settings')) {
+      await Hive.openBox('pomodoro_settings');
+    }
+    
+    debugPrint('✅ Pomodoro System initialized successfully');
+  } catch (e) {
+    debugPrint('❌ Error initializing Pomodoro System: $e');
   }
 }

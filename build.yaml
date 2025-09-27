@@ -1,0 +1,9 @@
+targets:
+  $default:
+    builders:
+      hive_generator|hive_generator:
+        enabled: true
+        generate_for:
+          - lib/**.dart
+        options:
+          auto_dispose: false
