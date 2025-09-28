@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:hive_flutter/hive_flutter.dart';
 import '../models/theming_models.dart';
 import '../services/dynamic_theming_service.dart';
+
 /// موفر خدمة التصميم الديناميكي
 final dynamicThemingServiceProvider = Provider<DynamicThemingService>((ref) {
   return DynamicThemingService();
@@ -14,7 +15,9 @@ final dynamicThemingInitProvider = FutureProvider<void>((ref) async {
 });
 
 /// موفر الثيم الحالي
-final currentThemeProvider = StateNotifierProvider<ThemeNotifier, ThemeState>((ref) {
+final currentThemeProvider = StateNotifierProvider<ThemeNotifier, ThemeState>((
+  ref,
+) {
   final service = ref.read(dynamicThemingServiceProvider);
   return ThemeNotifier(service);
 });
@@ -38,7 +41,9 @@ final presetThemesProvider = FutureProvider<List<DynamicTheme>>((ref) async {
 });
 
 /// موفر إعدادات الثيم - مبسط
-final themeSettingsProvider = StateProvider<ThemeSettings>((ref) => ThemeSettings());
+final themeSettingsProvider = StateProvider<ThemeSettings>(
+  (ref) => ThemeSettings(),
+);
 
 /// موفر حالة التحميل
 final themeLoadingProvider = Provider<bool>((ref) {
@@ -66,11 +71,11 @@ class ThemeNotifier extends StateNotifier<ThemeState> {
 
   Future<void> changeTheme(String themeId) async {
     if (state is! ThemeLoaded) return;
-    
+
     try {
       state = ThemeState.changing((state as ThemeLoaded).theme, themeId);
       await _service.changeTheme(themeId);
-      
+
       final newTheme = await _service.getThemeById(themeId);
       if (newTheme != null) {
         state = ThemeState.loaded(newTheme);
@@ -99,7 +104,7 @@ class ThemeNotifier extends StateNotifier<ThemeState> {
         components: components,
         animations: animations,
       );
-      
+
       state = ThemeState.loaded(theme);
     } catch (e) {
       state = ThemeState.error(e.toString());
@@ -114,7 +119,8 @@ abstract class ThemeState {
 
   factory ThemeState.loading() = ThemeLoading;
   factory ThemeState.loaded(DynamicTheme theme) = ThemeLoaded;
-  factory ThemeState.changing(DynamicTheme currentTheme, String newThemeId) = ThemeChanging;
+  factory ThemeState.changing(DynamicTheme currentTheme, String newThemeId) =
+      ThemeChanging;
   factory ThemeState.error(String message) = ThemeError;
 }
 

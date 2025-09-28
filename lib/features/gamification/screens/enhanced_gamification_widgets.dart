@@ -23,49 +23,50 @@ class EnhancedGamificationWidgets {
           ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.emoji_events_rounded,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      isArabic ? 'أحدث الإنجازات' : 'Recent Achievements',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.emoji_events_rounded,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                    ),
-                    const Spacer(),
-                    TextButton(
-                      onPressed: () {
-                        // TODO: التنقل إلى تبويب الإنجازات
-                      },
-                      child: Text(isArabic ? 'عرض الكل' : 'View All'),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
+                      const SizedBox(width: 8),
+                      Text(
+                        isArabic ? 'أحدث الإنجازات' : 'Recent Achievements',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {
+                          // TODO: التنقل إلى تبويب الإنجازات
+                        },
+                        child: Text(isArabic ? 'عرض الكل' : 'View All'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
 
-                if (recentAchievements.isEmpty)
-                  _buildEmptyAchievements(context, isArabic)
-                else
-                  ...recentAchievements.take(3).map((achievement) {
-                    try {
-                      return _buildAchievementTile(
-                        context,
-                        isArabic,
-                        UnifiedAchievement.fromMap(achievement),
-                      );
-                    } catch (e) {
-                      debugPrint('خطأ في تحويل الإنجاز: $e');
-                      return const SizedBox.shrink();
-                    }
-                  }).toList(),
-              ],
+                  if (recentAchievements.isEmpty)
+                    _buildEmptyAchievements(context, isArabic)
+                  else
+                    ...recentAchievements.take(3).map((achievement) {
+                      try {
+                        return _buildAchievementTile(
+                          context,
+                          isArabic,
+                          UnifiedAchievement.fromMap(achievement),
+                        );
+                      } catch (e) {
+                        debugPrint('خطأ في تحويل الإنجاز: $e');
+                        return const SizedBox.shrink();
+                      }
+                    }).toList(),
+                ],
+              ),
             ),
           ),
         );
@@ -89,47 +90,48 @@ class EnhancedGamificationWidgets {
           ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.flag_rounded,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      isArabic ? 'التحديات النشطة' : 'Active Challenges',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.flag_rounded,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
-                    ),
-                    const Spacer(),
-                    TextButton(
-                      onPressed: () {
-                        // TODO: التنقل إلى تبويب التحديات
-                      },
-                      child: Text(isArabic ? 'عرض الكل' : 'View All'),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
+                      const SizedBox(width: 8),
+                      Text(
+                        isArabic ? 'التحديات النشطة' : 'Active Challenges',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {
+                          // TODO: التنقل إلى تبويب التحديات
+                        },
+                        child: Text(isArabic ? 'عرض الكل' : 'View All'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
 
-                if (activeChallenges.isEmpty)
-                  _buildEmptyChallenges(context, isArabic)
-                else
-                  ...activeChallenges
-                      .take(3)
-                      .map(
-                        (challenge) => _buildChallengeTile(
-                          context,
-                          isArabic,
-                          UnifiedChallenge.fromMap(challenge),
-                        ),
-                      )
-                      .toList(),
-              ],
+                  if (activeChallenges.isEmpty)
+                    _buildEmptyChallenges(context, isArabic)
+                  else
+                    ...activeChallenges
+                        .take(3)
+                        .map(
+                          (challenge) => _buildChallengeTile(
+                            context,
+                            isArabic,
+                            UnifiedChallenge.fromMap(challenge),
+                          ),
+                        )
+                        .toList(),
+                ],
+              ),
             ),
           ),
         );
@@ -158,48 +160,50 @@ class EnhancedGamificationWidgets {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(Icons.lightbulb_rounded, color: Colors.amber[600]),
-                const SizedBox(width: 8),
-                Text(
-                  isArabic ? 'نصائح سريعة' : 'Quick Tips',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-
-            ...tips
-                .map(
-                  (tip) => Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.arrow_right_rounded,
-                          size: 16,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        const SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            tip,
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
-                        ),
-                      ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.lightbulb_rounded, color: Colors.amber[600]),
+                  const SizedBox(width: 8),
+                  Text(
+                    isArabic ? 'نصائح سريعة' : 'Quick Tips',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                )
-                .toList(),
-          ],
+                ],
+              ),
+              const SizedBox(height: 12),
+
+              ...tips
+                  .map(
+                    (tip) => Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.arrow_right_rounded,
+                            size: 16,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              tip,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ],
+          ),
         ),
       ),
     );
@@ -221,37 +225,38 @@ class EnhancedGamificationWidgets {
           ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.auto_awesome_rounded, color: Colors.purple),
-                    const SizedBox(width: 8),
-                    Text(
-                      isArabic ? 'الإنجازات النادرة' : 'Rare Achievements',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.auto_awesome_rounded, color: Colors.purple),
+                      const SizedBox(width: 8),
+                      Text(
+                        isArabic ? 'الإنجازات النادرة' : 'Rare Achievements',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
 
-                if (rareAchievements.isEmpty)
-                  _buildEmptyRareAchievements(context, isArabic)
-                else
-                  ...rareAchievements
-                      .take(5)
-                      .map(
-                        (achievement) => _buildRareAchievementTile(
-                          context,
-                          isArabic,
-                          UnifiedAchievement.fromMap(achievement),
-                        ),
-                      )
-                      .toList(),
-              ],
+                  if (rareAchievements.isEmpty)
+                    _buildEmptyRareAchievements(context, isArabic)
+                  else
+                    ...rareAchievements
+                        .take(5)
+                        .map(
+                          (achievement) => _buildRareAchievementTile(
+                            context,
+                            isArabic,
+                            UnifiedAchievement.fromMap(achievement),
+                          ),
+                        )
+                        .toList(),
+                ],
+              ),
             ),
           ),
         );
