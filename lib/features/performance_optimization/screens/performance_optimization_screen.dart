@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../widgets/performance_overview_widget.dart';
-import '../widgets/performance_charts_widget.dart';
 import '../providers/performance_providers.dart';
+import '../widgets/performance_charts_widget.dart';
+import '../widgets/performance_overview_widget.dart';
 
 class PerformanceOptimizationScreen extends ConsumerStatefulWidget {
   const PerformanceOptimizationScreen({super.key});

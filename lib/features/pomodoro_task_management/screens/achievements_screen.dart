@@ -650,9 +650,9 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
 class AchievementDetailsDialog extends StatelessWidget {
 
   const AchievementDetailsDialog({
-    Key? key,
+    super.key,
     required this.achievement,
-  }) : super(key: key);
+  });
   final Achievement achievement;
 
   @override

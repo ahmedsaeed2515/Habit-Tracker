@@ -19,7 +19,7 @@ class UserPoints extends HiveObject {
   }) : pointsHistory = pointsHistory ?? {};
 
   // إنشاء من بيانات اللعبة
-  factory UserPoints.fromGameData(dynamic gameData) {
+  factory UserPoints.fromGameData(gameData) {
     return UserPoints(
       totalPoints: gameData.totalPoints ?? 0,
       currentLevel: gameData.currentLevel ?? 1,

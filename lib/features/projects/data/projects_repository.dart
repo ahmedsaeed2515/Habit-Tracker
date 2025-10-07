@@ -4,9 +4,9 @@ import 'package:hive/hive.dart';
 import '../models/project_models.dart';
 
 class ProjectsRepository {
-  static final ProjectsRepository _instance = ProjectsRepository._internal();
   factory ProjectsRepository() => _instance;
   ProjectsRepository._internal();
+  static final ProjectsRepository _instance = ProjectsRepository._internal();
 
   Box<Project>? _projectsBox;
   Box<ProjectPhase>? _phasesBox;

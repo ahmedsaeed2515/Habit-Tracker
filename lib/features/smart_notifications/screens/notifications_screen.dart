@@ -1,10 +1,11 @@
 // lib/features/smart_notifications/screens/notifications_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../common/widgets/empty_state_widget.dart';
 import '../models/smart_notification.dart';
 import '../providers/smart_notifications_provider.dart';
 import '../widgets/notification_card.dart';
-import '../../../common/widgets/empty_state_widget.dart';
 
 class NotificationsScreen extends ConsumerStatefulWidget {
   const NotificationsScreen({super.key});

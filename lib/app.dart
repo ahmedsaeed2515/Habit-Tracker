@@ -4,14 +4,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'shared/localization/app_localizations.dart';
 import 'features/dashboard/screens/dashboard_screen.dart';
-import 'features/settings/screens/settings_screen.dart';
-import 'features/smart_calendar/screens/smart_calendar_screen.dart';
+import 'features/gamification_system/screens/gamification_screen.dart';
 import 'features/main_tabs/daily_screen.dart';
 import 'features/main_tabs/productivity_screen.dart';
-import 'features/gamification_system/screens/gamification_screen.dart';
+import 'features/settings/screens/settings_screen.dart';
+import 'features/smart_calendar/screens/smart_calendar_screen.dart';
 import 'features/social/screens/social_screen.dart';
+import 'shared/localization/app_localizations.dart';
 
 /// مقدم حالة مؤشر التبويب المحدد
 final selectedTabIndexProvider = StateProvider<int>(

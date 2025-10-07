@@ -1,6 +1,5 @@
 // lib/features/smart_notifications/services/notification_service.dart
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../models/smart_notification.dart';

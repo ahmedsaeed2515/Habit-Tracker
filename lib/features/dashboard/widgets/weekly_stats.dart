@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../shared/themes/app_theme.dart';
+
 import '../../../shared/localization/app_localizations.dart';
+import '../../../shared/themes/app_theme.dart';
 
 /// ويدجت الإحصائيات الأسبوعية
 class WeeklyStats extends StatelessWidget {

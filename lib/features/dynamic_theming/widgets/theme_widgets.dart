@@ -55,10 +55,10 @@ extension ColorPaletteExtension on ColorPalette {
 class CustomCard extends StatelessWidget {
   
   const CustomCard({
-    Key? key,
+    super.key,
     required this.child,
     this.padding = const EdgeInsets.all(16),
-  }) : super(key: key);
+  });
   final Widget child;
   final EdgeInsetsGeometry? padding;
   
@@ -75,14 +75,14 @@ class CustomCard extends StatelessWidget {
 
 /// Widget لعرض قائمة الثيمات المتاحة
 class ThemeList extends ConsumerWidget {
-  final bool showCustomOnly;
-  final ThemeCategory? filterCategory;
 
   const ThemeList({
     super.key,
     this.showCustomOnly = false,
     this.filterCategory,
   });
+  final bool showCustomOnly;
+  final ThemeCategory? filterCategory;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -155,9 +155,9 @@ class ThemeList extends ConsumerWidget {
 class ThemeCard extends ConsumerWidget {
 
   const ThemeCard({
-    Key? key,
+    super.key,
     required this.theme,
-  }) : super(key: key);
+  });
   final DynamicTheme theme;
 
   @override
@@ -351,14 +351,14 @@ class ThemeCard extends ConsumerWidget {
 
 /// Widget لعرض قائمة فئات الثيمات
 class ThemeCategoryFilter extends ConsumerWidget {
-  final ThemeCategory? selectedCategory;
-  final ValueChanged<ThemeCategory?> onCategoryChanged;
 
   const ThemeCategoryFilter({
     super.key,
     required this.selectedCategory,
     required this.onCategoryChanged,
   });
+  final ThemeCategory? selectedCategory;
+  final ValueChanged<ThemeCategory?> onCategoryChanged;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -415,12 +415,12 @@ class ThemeCategoryFilter extends ConsumerWidget {
 
 /// Widget لإنشاء/تعديل الثيمات
 class ThemeEditorSheet extends ConsumerStatefulWidget {
-  final DynamicTheme? theme;
 
   const ThemeEditorSheet({
     super.key,
     this.theme,
   });
+  final DynamicTheme? theme;
 
   @override
   ConsumerState<ThemeEditorSheet> createState() => _ThemeEditorSheetState();

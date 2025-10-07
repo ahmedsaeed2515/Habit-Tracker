@@ -1,9 +1,11 @@
 // lib/features/habit_builder/services/habit_builder_service.dart
 import 'dart:math';
-import 'package:hive/hive.dart';
+
 import 'package:flutter/foundation.dart';
-import '../models/habit_template.dart';
+import 'package:hive/hive.dart';
+
 import '../../../core/models/habit.dart';
+import '../models/habit_template.dart';
 
 class HabitBuilderService {
   static const String _templatesBoxName = 'habit_templates';

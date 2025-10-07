@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/unified_gamification_provider.dart';
+
 import '../models/unified_achievement.dart';
 import '../models/unified_challenge.dart';
+import '../providers/unified_gamification_provider.dart';
 
 /// فئة لجميع الويدجات والأقسام المساعدة في الشاشة الرئيسية
 class EnhancedGamificationWidgets {

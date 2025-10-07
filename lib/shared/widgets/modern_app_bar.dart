@@ -53,7 +53,6 @@ class ModernAppBar extends StatelessWidget implements PreferredSizeWidget {
               border: Border(
                 bottom: BorderSide(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
-                  width: 1,
                 ),
               ),
             ),

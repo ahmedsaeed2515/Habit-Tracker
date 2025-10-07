@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CustomCard extends StatelessWidget {
 
   const CustomCard({
-    Key? key,
+    super.key,
     required this.child,
     this.margin,
     this.padding,
@@ -16,7 +16,7 @@ class CustomCard extends StatelessWidget {
     this.gradient,
     this.onTap,
     this.isClickable = false,
-  }) : super(key: key);
+  });
   final Widget child;
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
@@ -74,7 +74,7 @@ class CustomCard extends StatelessWidget {
 class CustomCardWithHeader extends StatelessWidget {
 
   const CustomCardWithHeader({
-    Key? key,
+    super.key,
     required this.title,
     required this.body,
     this.subtitle,
@@ -86,7 +86,7 @@ class CustomCardWithHeader extends StatelessWidget {
     this.borderRadius,
     this.elevation,
     this.onTap,
-  }) : super(key: key);
+  });
   final String title;
   final Widget? subtitle;
   final Widget body;
@@ -177,14 +177,14 @@ class CustomCardWithHeader extends StatelessWidget {
 class StatCard extends StatelessWidget {
 
   const StatCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.value,
     required this.icon,
     this.color,
     this.subtitle,
     this.onTap,
-  }) : super(key: key);
+  });
   final String title;
   final String value;
   final IconData icon;
@@ -265,14 +265,14 @@ class StatCard extends StatelessWidget {
 class ListCard extends StatelessWidget {
 
   const ListCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.items,
     this.maxItems,
     this.trailing,
     this.onSeeMore,
     this.margin,
-  }) : super(key: key);
+  });
   final String title;
   final List<Widget> items;
   final int? maxItems;
@@ -373,10 +373,10 @@ class ListCard extends StatelessWidget {
 class LoadingCard extends StatelessWidget {
 
   const LoadingCard({
-    Key? key,
+    super.key,
     this.message,
     this.height,
-  }) : super(key: key);
+  });
   final String? message;
   final double? height;
 
@@ -415,12 +415,12 @@ class LoadingCard extends StatelessWidget {
 class EmptyCard extends StatelessWidget {
 
   const EmptyCard({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
     this.icon,
     this.action,
-  }) : super(key: key);
+  });
   final String title;
   final String? subtitle;
   final IconData? icon;

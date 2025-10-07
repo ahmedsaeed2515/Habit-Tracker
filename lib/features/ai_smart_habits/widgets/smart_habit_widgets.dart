@@ -10,12 +10,12 @@ import '../providers/ai_smart_habits_providers.dart';
 class SmartHabitCard extends ConsumerWidget {
 
   const SmartHabitCard({
-    Key? key,
+    super.key,
     required this.habit,
     this.onTap,
     this.onAnalyze,
     this.onAdapt,
-  }) : super(key: key);
+  });
   final SmartHabit habit;
   final VoidCallback? onTap;
   final VoidCallback? onAnalyze;
@@ -333,11 +333,11 @@ class SmartHabitCard extends ConsumerWidget {
 class SmartHabitsList extends ConsumerWidget {
 
   const SmartHabitsList({
-    Key? key,
+    super.key,
     required this.userId,
     this.filterCategory,
     this.showAIGeneratedOnly = false,
-  }) : super(key: key);
+  });
   final String userId;
   final SmartHabitCategory? filterCategory;
   final bool showAIGeneratedOnly;
@@ -427,9 +427,9 @@ class SmartHabitsList extends ConsumerWidget {
 class SmartHabitDetailsSheet extends ConsumerWidget {
 
   const SmartHabitDetailsSheet({
-    Key? key,
+    super.key,
     required this.habit,
-  }) : super(key: key);
+  });
   final SmartHabit habit;
 
   @override

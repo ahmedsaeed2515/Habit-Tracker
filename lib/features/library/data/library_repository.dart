@@ -7,7 +7,7 @@ class LibraryRepository {
   final Uuid _uuid = const Uuid();
 
   Future<Box> _openBox() async {
-    return await Hive.openBox(boxName);
+    return Hive.openBox(boxName);
   }
 
   Future<LinkItem> addLink({

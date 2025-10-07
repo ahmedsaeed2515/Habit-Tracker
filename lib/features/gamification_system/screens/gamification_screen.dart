@@ -29,7 +29,7 @@ class GamificationScreen extends ConsumerWidget {
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (error, stack) => const SizedBox.shrink(),
               data: (points) => points != null
-                  ? const PointsDisplay(compact: false)
+                  ? const PointsDisplay()
                   : const SizedBox.shrink(),
             ),
             const SizedBox(height: 24),

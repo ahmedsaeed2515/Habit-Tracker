@@ -64,10 +64,10 @@ class AnalyticsLineChart extends StatelessWidget {
                   ),
                   titlesData: FlTitlesData(
                     rightTitles: const AxisTitles(
-                      sideTitles: SideTitles(),
+                      
                     ),
                     topTitles: const AxisTitles(
-                      sideTitles: SideTitles(),
+                      
                     ),
                     bottomTitles: AxisTitles(
                       sideTitles: SideTitles(

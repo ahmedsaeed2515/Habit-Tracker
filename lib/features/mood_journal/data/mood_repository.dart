@@ -70,8 +70,6 @@ class MoodRepository {
       tagFrequency: tagPercent,
       moodDistribution: distribution,
       improvementSuggestions: _basicSuggestions(distribution),
-      habitCorrelation: const {},
-      taskCorrelation: const {},
     );
     await _analyticsBox!.put(analytics.id, analytics);
   }

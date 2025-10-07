@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/providers/habits_provider.dart';
 import '../providers/habit_builder_provider.dart';
 // import '../models/habit_template.dart';
 import '../widgets/category_selection_widget.dart';
 import '../widgets/template_card.dart';
-import '../../../core/providers/habits_provider.dart';
 
 class HabitBuilderScreen extends ConsumerStatefulWidget {
   const HabitBuilderScreen({super.key});

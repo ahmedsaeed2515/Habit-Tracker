@@ -1,7 +1,8 @@
 import 'dart:math';
-import '../models/habit_recommendation.dart';
+
 import '../../../core/models/habit.dart';
 import '../../../core/models/habit_extensions.dart';
+import '../models/habit_recommendation.dart';
 
 class SmartRecommendationService {
   factory SmartRecommendationService() => _instance;

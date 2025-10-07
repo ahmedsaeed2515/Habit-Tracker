@@ -101,7 +101,7 @@ class BudgetRepository {
   Future<void> updateCategory(BudgetCategory cat) async => cat.save();
 
   Future<FinancialReport> generateMonthlyReport(DateTime month) async {
-    final start = DateTime(month.year, month.month, 1);
+    final start = DateTime(month.year, month.month);
     final end = DateTime(month.year, month.month + 1, 0);
     final expenses = await getExpenses(start: start, end: end);
     final incomes = await getIncomes(start: start, end: end);

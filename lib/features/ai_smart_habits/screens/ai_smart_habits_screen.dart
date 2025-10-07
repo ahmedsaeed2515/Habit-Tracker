@@ -12,7 +12,7 @@ import '../widgets/smart_habit_widgets.dart';
 /// شاشة العادات الذكية الرئيسية
 class AISmartHabitsScreen extends ConsumerStatefulWidget {
 
-  const AISmartHabitsScreen({Key? key, required this.userId}) : super(key: key);
+  const AISmartHabitsScreen({super.key, required this.userId});
   final String userId;
 
   @override

@@ -7,6 +7,23 @@ part 'project_models.g.dart';
 /// Project model - typeId 263
 @HiveType(typeId: 263)
 class Project extends HiveObject {
+
+  Project({
+    required this.id,
+    required this.name,
+    this.description = '',
+    required this.startDate,
+    this.endDate,
+    required this.createdAt,
+    required this.updatedAt,
+    this.status = ProjectStatus.planning,
+    this.progress = 0,
+    this.tags = const [],
+    this.colorHex,
+    this.isArchived = false,
+    this.phaseIds = const [],
+    this.milestones = const [],
+  });
   @HiveField(0)
   String id;
 
@@ -48,23 +65,6 @@ class Project extends HiveObject {
 
   @HiveField(13)
   List<String> milestones;
-
-  Project({
-    required this.id,
-    required this.name,
-    this.description = '',
-    required this.startDate,
-    this.endDate,
-    required this.createdAt,
-    required this.updatedAt,
-    this.status = ProjectStatus.planning,
-    this.progress = 0,
-    this.tags = const [],
-    this.colorHex,
-    this.isArchived = false,
-    this.phaseIds = const [],
-    this.milestones = const [],
-  });
 
   Project copyWith({
     String? id,
@@ -118,7 +118,19 @@ enum ProjectStatus {
 
 /// ProjectPhase model - typeId 265
 @HiveType(typeId: 265)
-class ProjectPhase extends HiveObject {
+class ProjectPhase extends HiveObject { // References to ProjectTask
+
+  ProjectPhase({
+    required this.id,
+    required this.projectId,
+    required this.name,
+    this.description = '',
+    required this.startDate,
+    this.endDate,
+    required this.orderIndex,
+    this.status = PhaseStatus.pending,
+    this.taskIds = const [],
+  });
   @HiveField(0)
   String id;
 
@@ -144,19 +156,7 @@ class ProjectPhase extends HiveObject {
   PhaseStatus status;
 
   @HiveField(8)
-  List<String> taskIds; // References to ProjectTask
-
-  ProjectPhase({
-    required this.id,
-    required this.projectId,
-    required this.name,
-    this.description = '',
-    required this.startDate,
-    this.endDate,
-    required this.orderIndex,
-    this.status = PhaseStatus.pending,
-    this.taskIds = const [],
-  });
+  List<String> taskIds;
 
   ProjectPhase copyWith({
     String? id,
@@ -199,6 +199,24 @@ enum PhaseStatus {
 /// ProjectTask model - typeId 267
 @HiveType(typeId: 267)
 class ProjectTask extends HiveObject {
+
+  ProjectTask({
+    required this.id,
+    required this.phaseId,
+    required this.title,
+    this.description = '',
+    required this.createdAt,
+    this.dueDate,
+    this.completedAt,
+    this.priority = TaskPriority.medium,
+    this.status = TaskStatus.todo,
+    this.assignedTo,
+    this.dependencies = const [],
+    this.estimatedHours = 0,
+    this.actualHours = 0,
+    this.tags = const [],
+    this.attachments = const [],
+  });
   @HiveField(0)
   String id;
 
@@ -243,24 +261,6 @@ class ProjectTask extends HiveObject {
 
   @HiveField(14)
   List<String> attachments;
-
-  ProjectTask({
-    required this.id,
-    required this.phaseId,
-    required this.title,
-    this.description = '',
-    required this.createdAt,
-    this.dueDate,
-    this.completedAt,
-    this.priority = TaskPriority.medium,
-    this.status = TaskStatus.todo,
-    this.assignedTo,
-    this.dependencies = const [],
-    this.estimatedHours = 0,
-    this.actualHours = 0,
-    this.tags = const [],
-    this.attachments = const [],
-  });
 
   ProjectTask copyWith({
     String? id,

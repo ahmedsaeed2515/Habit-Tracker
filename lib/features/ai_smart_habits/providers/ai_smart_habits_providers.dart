@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../services/ai_smart_habits_service.dart';
+
 import '../models/ai_models.dart';
+import '../services/ai_smart_habits_service.dart';
 
 /// موفر خدمة العادات الذكية
 final aiSmartHabitsServiceProvider =

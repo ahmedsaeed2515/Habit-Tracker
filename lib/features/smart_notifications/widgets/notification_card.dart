@@ -6,8 +6,7 @@ import '../providers/smart_notifications_provider.dart';
 
 class NotificationCard extends ConsumerWidget {
 
-  const NotificationCard({Key? key, required this.notification})
-    : super(key: key);
+  const NotificationCard({super.key, required this.notification});
   final SmartNotification notification;
 
   @override
@@ -305,11 +304,11 @@ class NotificationCard extends ConsumerWidget {
 class NotificationDetailsSheet extends StatelessWidget {
 
   const NotificationDetailsSheet({
-    Key? key,
+    super.key,
     required this.notification,
     required this.onEdit,
     required this.onDelete,
-  }) : super(key: key);
+  });
   final SmartNotification notification;
   final VoidCallback onEdit;
   final VoidCallback onDelete;

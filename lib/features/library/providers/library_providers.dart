@@ -12,11 +12,11 @@ final libraryListProvider =
     );
 
 class LibraryListNotifier extends StateNotifier<List<LinkItem>> {
-  final LibraryRepository _repo;
 
   LibraryListNotifier(this._repo) : super([]) {
     _load();
   }
+  final LibraryRepository _repo;
 
   Future<void> _load() async {
     final items = await _repo.getAllLinks();

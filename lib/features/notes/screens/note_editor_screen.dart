@@ -4,8 +4,8 @@ import '../../notes/providers/notes_providers.dart';
 import '../models/note_models.dart';
 
 class NoteEditorScreen extends ConsumerStatefulWidget {
-  final String? noteId;
   const NoteEditorScreen({super.key, this.noteId});
+  final String? noteId;
 
   @override
   ConsumerState<NoteEditorScreen> createState() => _NoteEditorScreenState();

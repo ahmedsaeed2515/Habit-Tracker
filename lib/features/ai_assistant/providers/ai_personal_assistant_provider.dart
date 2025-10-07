@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../core/providers/habits_provider.dart';
 import '../models/ai_message.dart';
 import '../services/ai_personal_assistant_service.dart';
-import '../../../core/providers/habits_provider.dart';
 
 final aiPersonalAssistantProvider =
     StateNotifierProvider<

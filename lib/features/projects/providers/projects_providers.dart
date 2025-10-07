@@ -23,11 +23,11 @@ final projectsListProvider =
     });
 
 class ProjectsListNotifier extends StateNotifier<AsyncValue<List<Project>>> {
-  final ProjectsRepository _repository;
 
   ProjectsListNotifier(this._repository) : super(const AsyncValue.loading()) {
     loadProjects();
   }
+  final ProjectsRepository _repository;
 
   Future<void> loadProjects({bool includeArchived = false}) async {
     state = const AsyncValue.loading();

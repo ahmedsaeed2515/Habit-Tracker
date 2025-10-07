@@ -20,9 +20,9 @@ Future<T?> showModernBottomSheet<T>({
     backgroundColor: Colors.transparent,
     isScrollControlled: true,
     builder: (context) => ModernBottomSheetContent(
-      child: child,
       backgroundColor: backgroundColor,
       maxHeight: maxHeight,
+      child: child,
     ),
   );
 }

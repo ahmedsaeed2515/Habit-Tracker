@@ -1,7 +1,8 @@
 import 'dart:math';
-import '../models/ai_message.dart';
+
 import '../../../core/models/habit.dart';
 import '../../../core/models/habit_extensions.dart';
+import '../models/ai_message.dart';
 
 class AIPersonalAssistantService {
   factory AIPersonalAssistantService() => _instance;

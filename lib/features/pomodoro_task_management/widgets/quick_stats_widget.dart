@@ -8,10 +8,10 @@ import '../providers/pomodoro_providers.dart';
 class QuickStatsWidget extends ConsumerWidget {
 
   const QuickStatsWidget({
-    Key? key,
+    super.key,
     required this.stats,
     required this.analysis,
-  }) : super(key: key);
+  });
   final PomodoroStats stats;
   final ProductivityAnalysis analysis;
 

@@ -312,9 +312,9 @@ class PomodoroNavigationHelper {
 class PomodoroNavigationWrapper extends StatefulWidget {
 
   const PomodoroNavigationWrapper({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
   final Widget child;
 
   @override

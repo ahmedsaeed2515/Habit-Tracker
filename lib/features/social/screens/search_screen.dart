@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../models/social_user.dart';
 import '../providers/social_providers.dart';
-import '../widgets/post_card.dart';
 import '../screens/profile_screen.dart';
+import '../widgets/post_card.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});

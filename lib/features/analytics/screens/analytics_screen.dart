@@ -1,11 +1,12 @@
 // lib/features/analytics/screens/analytics_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../providers/analytics_provider.dart';
-import '../widgets/kpi_cards.dart';
+import '../widgets/charts/heatmap_widget.dart';
 import '../widgets/charts/line_chart_widget.dart';
 import '../widgets/charts/pie_chart_widget.dart';
-import '../widgets/charts/heatmap_widget.dart';
+import '../widgets/kpi_cards.dart';
 
 /// شاشة التحليلات المتقدمة
 class AnalyticsScreen extends ConsumerStatefulWidget {

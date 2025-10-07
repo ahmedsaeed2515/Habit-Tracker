@@ -6,7 +6,17 @@ import 'package:hive/hive.dart';
 part 'budget_models.g.dart';
 
 @HiveType(typeId: 258)
-class Expense extends HiveObject {
+class Expense extends HiveObject { // مسار إيصال اختياري
+
+  Expense({
+    required this.id,
+    required this.amount,
+    required this.categoryId,
+    required this.date,
+    required this.description,
+    this.tags = const [],
+    this.receiptPath,
+  });
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -20,21 +30,21 @@ class Expense extends HiveObject {
   @HiveField(5)
   List<String> tags;
   @HiveField(6)
-  String? receiptPath; // مسار إيصال اختياري
-
-  Expense({
-    required this.id,
-    required this.amount,
-    required this.categoryId,
-    required this.date,
-    required this.description,
-    this.tags = const [],
-    this.receiptPath,
-  });
+  String? receiptPath;
 }
 
 @HiveType(typeId: 259)
 class Income extends HiveObject {
+
+  Income({
+    required this.id,
+    required this.amount,
+    required this.source,
+    required this.date,
+    required this.description,
+    this.isRecurring = false,
+    this.recurrenceType,
+  });
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -49,20 +59,20 @@ class Income extends HiveObject {
   bool isRecurring;
   @HiveField(6)
   RecurrenceType? recurrenceType;
-
-  Income({
-    required this.id,
-    required this.amount,
-    required this.source,
-    required this.date,
-    required this.description,
-    this.isRecurring = false,
-    this.recurrenceType,
-  });
 }
 
 @HiveType(typeId: 260)
-class BudgetCategory extends HiveObject {
+class BudgetCategory extends HiveObject { // نسبة مئوية (0-100)
+
+  BudgetCategory({
+    required this.id,
+    required this.name,
+    required this.monthlyLimit,
+    required this.color,
+    this.icon = '💰',
+    this.alertEnabled = true,
+    this.alertThreshold = 80.0,
+  });
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -76,17 +86,7 @@ class BudgetCategory extends HiveObject {
   @HiveField(5)
   bool alertEnabled;
   @HiveField(6)
-  double alertThreshold; // نسبة مئوية (0-100)
-
-  BudgetCategory({
-    required this.id,
-    required this.name,
-    required this.monthlyLimit,
-    required this.color,
-    this.icon = '💰',
-    this.alertEnabled = true,
-    this.alertThreshold = 80.0,
-  });
+  double alertThreshold;
 
   double getSpent(List<Expense> expenses, DateTime month) {
     return expenses
@@ -107,6 +107,15 @@ class BudgetCategory extends HiveObject {
 
 @HiveType(typeId: 261)
 class FinancialReport extends HiveObject {
+
+  FinancialReport({
+    required this.id,
+    required this.period,
+    required this.totalIncome,
+    required this.totalExpenses,
+    required this.expensesByCategory,
+    required this.generatedAt,
+  });
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -119,15 +128,6 @@ class FinancialReport extends HiveObject {
   Map<String, double> expensesByCategory;
   @HiveField(5)
   DateTime generatedAt;
-
-  FinancialReport({
-    required this.id,
-    required this.period,
-    required this.totalIncome,
-    required this.totalExpenses,
-    required this.expensesByCategory,
-    required this.generatedAt,
-  });
 
   double get balance => totalIncome - totalExpenses;
   double get savingsRate =>

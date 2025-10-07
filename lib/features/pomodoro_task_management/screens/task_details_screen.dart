@@ -7,9 +7,9 @@ import '../providers/pomodoro_providers.dart';
 class TaskDetailsScreen extends ConsumerStatefulWidget {
 
   const TaskDetailsScreen({
-    Key? key,
+    super.key,
     required this.taskId,
-  }) : super(key: key);
+  });
   final String taskId;
 
   @override

@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../core/providers/habits_provider.dart';
 import '../models/habit_recommendation.dart';
 import '../services/smart_recommendation_service.dart';
-import '../../../core/providers/habits_provider.dart';
 
 final smartRecommendationProvider =
     StateNotifierProvider<

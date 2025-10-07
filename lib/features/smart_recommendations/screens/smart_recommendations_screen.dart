@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/smart_recommendation_provider.dart';
+
 import '../models/habit_recommendation.dart';
-import '../widgets/recommendation_card.dart';
+import '../providers/smart_recommendation_provider.dart';
 import '../widgets/pattern_insights_widget.dart';
+import '../widgets/recommendation_card.dart';
 
 class SmartRecommendationsScreen extends ConsumerStatefulWidget {
   const SmartRecommendationsScreen({super.key});

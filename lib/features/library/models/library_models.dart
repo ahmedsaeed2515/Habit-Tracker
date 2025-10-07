@@ -2,11 +2,6 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 class LinkItem {
-  final String id;
-  final String title;
-  final String url;
-  final List<String> tags;
-  final DateTime createdAt;
 
   const LinkItem({
     required this.id,
@@ -15,6 +10,11 @@ class LinkItem {
     this.tags = const [],
     required this.createdAt,
   });
+  final String id;
+  final String title;
+  final String url;
+  final List<String> tags;
+  final DateTime createdAt;
 
   Map<String, dynamic> toMap() => {
     'id': id,

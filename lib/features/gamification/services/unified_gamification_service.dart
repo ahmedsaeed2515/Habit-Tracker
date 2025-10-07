@@ -11,7 +11,7 @@ class UnifiedGamificationService {
       UnifiedGamificationService._internal();
 
   UserGameData _userData = UserGameData(
-    currentLevel: 1,
+    
   );
 
   /// الحصول على بيانات المستخدم الحالية

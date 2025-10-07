@@ -55,7 +55,7 @@ class NotesListScreen extends ConsumerWidget {
                 title: Text(n.title),
                 subtitle: Text(
                   n.content.length > 80
-                      ? n.content.substring(0, 80) + '...'
+                      ? '${n.content.substring(0, 80)}...'
                       : n.content,
                 ),
                 leading: n.isPinned

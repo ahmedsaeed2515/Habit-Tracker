@@ -396,7 +396,6 @@ class _HealthDataTab extends ConsumerWidget {
                     labelText: 'فلترة حسب النوع',
                     border: OutlineInputBorder(),
                   ),
-                  initialValue: null,
                   items: [
                     const DropdownMenuItem(
                       child: Text('جميع الأنواع'),

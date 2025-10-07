@@ -84,7 +84,7 @@ class _ModernFloatingActionButtonState extends State<ModernFloatingActionButton>
       // Extended FAB with label
       return ScaleTransition(
         scale: _scaleAnimation,
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             gradient: gradient,
             borderRadius: AppDesignSystem.borderRadiusLarge,

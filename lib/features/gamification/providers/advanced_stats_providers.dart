@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'core_gamification_providers.dart';
+
 import 'achievements_providers.dart';
 import 'challenges_providers.dart';
+import 'core_gamification_providers.dart';
 
 /// مُقدِمات الإحصائيات المتقدمة - ملف منفصل للصيانة (أقل من 150 سطر)
 /// يجمع البيانات من جميع المُقدِمات الأخرى لإنتاج إحصائيات شاملة

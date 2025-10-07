@@ -1,8 +1,9 @@
-﻿import '../models/widget_config.dart';
-import 'package:flutter/foundation.dart';
+﻿import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
+
 import '../../../core/database/database_helper.dart';
 import '../../../core/models/habit.dart';
+import '../models/widget_config.dart';
 
 class WidgetsSystemService {
   factory WidgetsSystemService() => _instance;

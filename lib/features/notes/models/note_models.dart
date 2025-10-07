@@ -7,6 +7,19 @@ part 'note_models.g.dart';
 
 @HiveType(typeId: 250)
 class Note extends HiveObject {
+
+  Note({
+    required this.id,
+    required this.title,
+    required this.content,
+    this.tags = const [],
+    this.attachments = const [],
+    this.links = const [],
+    required this.createdAt,
+    required this.updatedAt,
+    this.isArchived = false,
+    this.isPinned = false,
+  });
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -27,19 +40,6 @@ class Note extends HiveObject {
   bool isArchived;
   @HiveField(9)
   bool isPinned;
-
-  Note({
-    required this.id,
-    required this.title,
-    required this.content,
-    this.tags = const [],
-    this.attachments = const [],
-    this.links = const [],
-    required this.createdAt,
-    required this.updatedAt,
-    this.isArchived = false,
-    this.isPinned = false,
-  });
 
   Note copyWith({
     String? title,
@@ -68,6 +68,15 @@ class Note extends HiveObject {
 
 @HiveType(typeId: 251)
 class NoteAttachment extends HiveObject {
+
+  NoteAttachment({
+    required this.id,
+    required this.noteId,
+    required this.type,
+    required this.path,
+    required this.sizeBytes,
+    required this.createdAt,
+  });
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -80,19 +89,19 @@ class NoteAttachment extends HiveObject {
   int sizeBytes;
   @HiveField(5)
   DateTime createdAt;
-
-  NoteAttachment({
-    required this.id,
-    required this.noteId,
-    required this.type,
-    required this.path,
-    required this.sizeBytes,
-    required this.createdAt,
-  });
 }
 
 @HiveType(typeId: 252)
 class NoteLink extends HiveObject {
+
+  NoteLink({
+    required this.id,
+    required this.sourceNoteId,
+    required this.targetId,
+    required this.targetType,
+    required this.relation,
+    required this.createdAt,
+  });
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -105,15 +114,6 @@ class NoteLink extends HiveObject {
   String relation; // مثل: references, expands, related, derivedFrom
   @HiveField(5)
   DateTime createdAt;
-
-  NoteLink({
-    required this.id,
-    required this.sourceNoteId,
-    required this.targetId,
-    required this.targetType,
-    required this.relation,
-    required this.createdAt,
-  });
 }
 
 @HiveType(typeId: 253)

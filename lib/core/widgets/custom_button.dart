@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
 
   const CustomButton({
-    Key? key,
+    super.key,
     required this.text,
     this.onPressed,
     this.style,
@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
     this.icon,
     this.iconOnRight = false,
     this.elevation,
-  }) : super(key: key);
+  });
   final String text;
   final VoidCallback? onPressed;
   final ButtonStyle? style;
@@ -156,7 +156,7 @@ class CustomButton extends StatelessWidget {
 class CustomOutlinedButton extends StatelessWidget {
 
   const CustomOutlinedButton({
-    Key? key,
+    super.key,
     required this.text,
     this.onPressed,
     this.borderColor,
@@ -167,7 +167,7 @@ class CustomOutlinedButton extends StatelessWidget {
     this.isLoading = false,
     this.icon,
     this.iconOnRight = false,
-  }) : super(key: key);
+  });
   final String text;
   final VoidCallback? onPressed;
   final Color? borderColor;
@@ -245,7 +245,7 @@ class CustomOutlinedButton extends StatelessWidget {
 class CustomTextButton extends StatelessWidget {
 
   const CustomTextButton({
-    Key? key,
+    super.key,
     required this.text,
     this.onPressed,
     this.textColor,
@@ -254,7 +254,7 @@ class CustomTextButton extends StatelessWidget {
     this.isLoading = false,
     this.icon,
     this.iconOnRight = false,
-  }) : super(key: key);
+  });
   final String text;
   final VoidCallback? onPressed;
   final Color? textColor;
@@ -323,7 +323,7 @@ class CustomTextButton extends StatelessWidget {
 class CustomFloatingActionButton extends StatelessWidget {
 
   const CustomFloatingActionButton({
-    Key? key,
+    super.key,
     this.onPressed,
     required this.icon,
     this.backgroundColor,
@@ -331,7 +331,7 @@ class CustomFloatingActionButton extends StatelessWidget {
     this.tooltip,
     this.mini = false,
     this.heroTag,
-  }) : super(key: key);
+  });
   final VoidCallback? onPressed;
   final IconData icon;
   final Color? backgroundColor;
@@ -360,14 +360,14 @@ class CustomFloatingActionButton extends StatelessWidget {
 class CustomButtonGroup extends StatelessWidget {
 
   const CustomButtonGroup({
-    Key? key,
+    super.key,
     required this.buttons,
     this.direction = Axis.horizontal,
     this.mainAxisAlignment = MainAxisAlignment.spaceEvenly,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.padding,
     this.spacing,
-  }) : super(key: key);
+  });
   final List<CustomButtonGroupItem> buttons;
   final Axis direction;
   final MainAxisAlignment mainAxisAlignment;
@@ -485,14 +485,14 @@ enum ButtonType {
 class CustomActionButton extends StatelessWidget {
 
   const CustomActionButton({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
     required this.icon,
     this.onPressed,
     this.color,
     this.isLoading = false,
-  }) : super(key: key);
+  });
   final String title;
   final String? subtitle;
   final IconData icon;

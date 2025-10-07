@@ -11,11 +11,11 @@ final inboxListProvider = StateNotifierProvider<InboxListNotifier, List<Idea>>(
 );
 
 class InboxListNotifier extends StateNotifier<List<Idea>> {
-  final InboxRepository _repo;
 
   InboxListNotifier(this._repo) : super([]) {
     _load();
   }
+  final InboxRepository _repo;
 
   Future<void> _load() async {
     final items = await _repo.getAllIdeas();

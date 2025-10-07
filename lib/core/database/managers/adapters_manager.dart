@@ -301,8 +301,9 @@ class AdaptersManager {
       if (!Hive.isAdapterRegistered(251)) {
         Hive.registerAdapter(NoteAttachmentAdapter());
       }
-      if (!Hive.isAdapterRegistered(252))
+      if (!Hive.isAdapterRegistered(252)) {
         Hive.registerAdapter(NoteLinkAdapter());
+      }
       if (!Hive.isAdapterRegistered(253)) {
         Hive.registerAdapter(AttachmentTypeAdapter());
       }
@@ -316,8 +317,9 @@ class AdaptersManager {
 
   static void _registerMoodJournalAdapters() {
     try {
-      if (!Hive.isAdapterRegistered(255))
+      if (!Hive.isAdapterRegistered(255)) {
         Hive.registerAdapter(MoodEntryAdapter());
+      }
       if (!Hive.isAdapterRegistered(256)) {
         Hive.registerAdapter(JournalEntryAdapter());
       }
@@ -332,8 +334,9 @@ class AdaptersManager {
   /// Register all budget system adapters (IDs: 258-262)
   static void _registerBudgetAdapters() {
     try {
-      if (!Hive.isAdapterRegistered(258))
+      if (!Hive.isAdapterRegistered(258)) {
         Hive.registerAdapter(ExpenseAdapter());
+      }
       if (!Hive.isAdapterRegistered(259)) {
         Hive.registerAdapter(IncomeAdapter());
       }
@@ -354,8 +357,9 @@ class AdaptersManager {
   /// Register all project system adapters (IDs: 263-267)
   static void _registerProjectsAdapters() {
     try {
-      if (!Hive.isAdapterRegistered(263))
+      if (!Hive.isAdapterRegistered(263)) {
         Hive.registerAdapter(ProjectAdapter());
+      }
       if (!Hive.isAdapterRegistered(264)) {
         Hive.registerAdapter(ProjectTaskAdapter());
       }

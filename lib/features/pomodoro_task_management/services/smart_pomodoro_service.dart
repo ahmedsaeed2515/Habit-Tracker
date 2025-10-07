@@ -564,7 +564,7 @@ class SmartPomodoroService {
   /// الحصول على إحصائيات السنة
   PomodoroStats getYearlyStats() {
     final now = DateTime.now();
-    final yearStart = DateTime(now.year, 1);
+    final yearStart = DateTime(now.year);
 
     // تجميع إحصائيات السنة
     int totalSessions = 0;

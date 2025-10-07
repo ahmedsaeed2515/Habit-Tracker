@@ -5,10 +5,10 @@ import 'package:hive/hive.dart';
 import '../models/note_models.dart';
 
 class NotesRepository {
-  static const String notesBoxName = 'notes_box';
-  static NotesRepository? _instance;
   NotesRepository._();
   factory NotesRepository() => _instance ??= NotesRepository._();
+  static const String notesBoxName = 'notes_box';
+  static NotesRepository? _instance;
 
   Box<Note>? _notesBox;
 

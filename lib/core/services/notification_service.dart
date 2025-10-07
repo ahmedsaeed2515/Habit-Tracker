@@ -27,7 +27,7 @@ class NotificationService {
         '@mipmap/ic_launcher',
       );
       const iosSettings = DarwinInitializationSettings(
-        requestBadgePermission: true,
+        
       );
 
       const initializationSettings = InitializationSettings(

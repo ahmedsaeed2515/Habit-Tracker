@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../shared/themes/app_theme.dart';
+
 import '../../../shared/localization/app_localizations.dart';
-import '../../gym_tracker/screens/gym_tracker_screen.dart';
+import '../../../shared/themes/app_theme.dart';
 import '../../daily_habits/screens/daily_habits_screen.dart';
-import '../../smart_todo/screens/smart_todo_screen.dart';
+import '../../gym_tracker/screens/gym_tracker_screen.dart';
 import '../../morning_exercises/screens/morning_exercises_screen.dart';
+import '../../smart_todo/screens/smart_todo_screen.dart';
 
 /// ويدجت الإجراءات السريعة في لوحة التحكم
 class QuickActions extends StatelessWidget {

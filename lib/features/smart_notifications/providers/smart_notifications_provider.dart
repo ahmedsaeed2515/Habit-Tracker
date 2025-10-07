@@ -2,9 +2,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
+
 import '../models/smart_notification.dart';
-import '../services/notification_service.dart';
 import '../services/notification_database_service.dart';
+import '../services/notification_service.dart';
 
 final smartNotificationsProvider =
     StateNotifierProvider<SmartNotificationsNotifier, SmartNotificationsState>((

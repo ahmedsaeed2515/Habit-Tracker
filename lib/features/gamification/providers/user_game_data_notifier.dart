@@ -1,7 +1,8 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/foundation.dart';
-import '../services/unified_gamification_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../models/gamification_data.dart';
+import '../services/unified_gamification_service.dart';
 
 /// مدير حالة بيانات المستخدم في نظام التحفيز
 /// ملف منفصل لسهولة الصيانة (أقل من 150 سطر)

@@ -6,9 +6,9 @@ import '../providers/projects_providers.dart';
 import '../models/project_models.dart';
 
 class ProjectDetailScreen extends ConsumerStatefulWidget {
-  final String projectId;
 
   const ProjectDetailScreen({super.key, required this.projectId});
+  final String projectId;
 
   @override
   ConsumerState<ProjectDetailScreen> createState() =>
@@ -293,9 +293,9 @@ class _ProjectDetailScreenState extends ConsumerState<ProjectDetailScreen>
 }
 
 class _PhaseColumn extends ConsumerWidget {
-  final ProjectPhase phase;
 
   const _PhaseColumn({required this.phase});
+  final ProjectPhase phase;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -407,9 +407,9 @@ class _PhaseColumn extends ConsumerWidget {
 }
 
 class _TaskCard extends StatelessWidget {
-  final ProjectTask task;
 
   const _TaskCard({required this.task});
+  final ProjectTask task;
 
   @override
   Widget build(BuildContext context) {
@@ -448,9 +448,9 @@ class _TaskCard extends StatelessWidget {
 }
 
 class _TaskStatusIcon extends StatelessWidget {
-  final TaskStatus status;
 
   const _TaskStatusIcon({required this.status});
+  final TaskStatus status;
 
   @override
   Widget build(BuildContext context) {
@@ -485,10 +485,6 @@ class _TaskStatusIcon extends StatelessWidget {
 }
 
 class _StatCard extends StatelessWidget {
-  final String title;
-  final String value;
-  final IconData icon;
-  final Color color;
 
   const _StatCard({
     required this.title,
@@ -496,6 +492,10 @@ class _StatCard extends StatelessWidget {
     required this.icon,
     required this.color,
   });
+  final String title;
+  final String value;
+  final IconData icon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {

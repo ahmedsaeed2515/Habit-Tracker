@@ -7,13 +7,13 @@ import '../providers/pomodoro_providers.dart';
 class TaskItemWidget extends ConsumerWidget {
 
   const TaskItemWidget({
-    Key? key,
+    super.key,
     required this.task,
     this.isCompact = false,
     required this.onTap,
     required this.onComplete,
     required this.onStartPomodoro,
-  }) : super(key: key);
+  });
   final AdvancedTask task;
   final bool isCompact;
   final VoidCallback onTap;

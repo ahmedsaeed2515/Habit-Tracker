@@ -47,7 +47,6 @@ class DynamicTheme extends HiveObject {
       createdAt: now,
       updatedAt: now,
       isActive: true,
-      category: ThemeCategory.basic,
     );
   }
   @HiveField(0)

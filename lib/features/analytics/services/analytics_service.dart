@@ -1,9 +1,10 @@
 // lib/features/analytics/services/analytics_service.dart
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import '../models/analytics_data.dart';
+
 import '../../../core/models/habit.dart';
 import '../../../core/models/task.dart';
+import '../models/analytics_data.dart';
 
 class AnalyticsService {
   factory AnalyticsService() => _instance;

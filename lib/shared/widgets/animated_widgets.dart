@@ -291,7 +291,6 @@ class AnimatedListView extends StatelessWidget {
           case AnimationType.slideUp:
             return SlideInWidget(
               delay: delay,
-              direction: AxisDirection.up,
               child: child,
             );
           case AnimationType.slideLeft:

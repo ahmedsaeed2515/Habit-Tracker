@@ -119,7 +119,7 @@ class UserProfileNotifier extends StateNotifier<AsyncValue<UserProfile?>> {
       UserProfile(
         id: 'default_user',
         name: 'المستخدم الافتراضي',
-        birthDate: DateTime(1990, 1),
+        birthDate: DateTime(1990),
         gender: 'male',
         height: 175.0,
         weight: 75.0,

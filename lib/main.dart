@@ -2,25 +2,25 @@
 // نقطة الدخول الرئيسية للتطبيق
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'app.dart';
 import 'core/database/database_manager.dart';
 import 'core/providers/settings_provider.dart';
-import 'shared/themes/app_theme.dart';
-import 'shared/localization/app_localizations.dart';
-import 'features/smart_notifications/services/notification_service.dart';
-import 'features/smart_notifications/services/notification_database_service.dart';
+import 'features/accessibility/services/accessibility_service.dart';
 import 'features/analytics/services/analytics_service.dart';
 import 'features/gamification_system/services/gamification_service.dart';
-import 'features/smart_calendar/services/smart_calendar_service.dart';
-import 'features/widgets_system/services/widgets_system_service.dart';
-import 'features/intelligent_workout_planner/services/ai_workout_planner_service.dart';
 import 'features/health_integration/services/health_integration_service.dart';
-import 'features/accessibility/services/accessibility_service.dart';
+import 'features/intelligent_workout_planner/services/ai_workout_planner_service.dart';
 import 'features/offline_mode/services/offline_mode_service.dart';
 import 'features/onboarding/screens/onboarding_screen.dart';
-import 'app.dart';
+import 'features/smart_calendar/services/smart_calendar_service.dart';
+import 'features/smart_notifications/services/notification_database_service.dart';
+import 'features/smart_notifications/services/notification_service.dart';
+import 'features/widgets_system/services/widgets_system_service.dart';
+import 'shared/localization/app_localizations.dart';
+import 'shared/themes/app_theme.dart';
 
 Future<void> main() async {
   // التأكد من تهيئة Flutter

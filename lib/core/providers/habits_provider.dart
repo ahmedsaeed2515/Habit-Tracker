@@ -5,9 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../models/habit.dart';
-import '../../features/gamification_system/services/gamification_service.dart';
 import '../../features/gamification_system/models/points.dart';
+import '../../features/gamification_system/services/gamification_service.dart';
+import '../models/habit.dart';
 
 /// مزود حالة العادات اليومية
 final habitsProvider = StateNotifierProvider<HabitsNotifier, List<Habit>>((

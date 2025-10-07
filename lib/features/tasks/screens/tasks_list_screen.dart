@@ -53,7 +53,7 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
         ],
       ),
     );
-    if (confirmed == true) {
+    if (confirmed ?? false) {
       await ref.read(tasksListProvider.notifier).bulkDeleteSelected();
     }
   }
@@ -61,7 +61,7 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
   Future<void> _bulkComplete() async {
     await ref
         .read(tasksListProvider.notifier)
-        .bulkMarkCompleteSelected(complete: true);
+        .bulkMarkCompleteSelected();
   }
 
   @override
@@ -269,10 +269,11 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
                                           ],
                                         ),
                                       );
-                                      if (confirmed == true)
+                                      if (confirmed ?? false) {
                                         await ref
                                             .read(tasksListProvider.notifier)
                                             .remove(t.id);
+                                      }
                                     },
                                   ),
                                 ],
@@ -330,12 +331,12 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
                     Text('$selectedCount selected'),
                     const Spacer(),
                     TextButton(
-                      onPressed: () async => await _bulkComplete(),
+                      onPressed: () async => _bulkComplete(),
                       child: const Text('Complete'),
                     ),
                     const SizedBox(width: 8),
                     TextButton(
-                      onPressed: () async => await _bulkDelete(),
+                      onPressed: () async => _bulkDelete(),
                       child: const Text(
                         'Delete',
                         style: TextStyle(color: Colors.red),

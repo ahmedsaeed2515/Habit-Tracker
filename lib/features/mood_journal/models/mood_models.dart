@@ -7,6 +7,16 @@ part 'mood_models.g.dart';
 
 @HiveType(typeId: 255)
 class MoodEntry extends HiveObject {
+
+  MoodEntry({
+    required this.id,
+    required this.date,
+    required this.moodLevel,
+    this.tags = const [],
+    this.note,
+    this.relatedHabitIds = const [],
+    this.relatedTaskIds = const [],
+  });
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -21,20 +31,21 @@ class MoodEntry extends HiveObject {
   List<String> relatedHabitIds;
   @HiveField(6)
   List<String> relatedTaskIds;
-
-  MoodEntry({
-    required this.id,
-    required this.date,
-    required this.moodLevel,
-    this.tags = const [],
-    this.note,
-    this.relatedHabitIds = const [],
-    this.relatedTaskIds = const [],
-  });
 }
 
 @HiveType(typeId: 256)
 class JournalEntry extends HiveObject {
+
+  JournalEntry({
+    required this.id,
+    required this.date,
+    required this.content,
+    this.moodEntryId,
+    this.linkedNoteIds = const [],
+    this.linkedTaskIds = const [],
+    required this.createdAt,
+    required this.updatedAt,
+  });
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -51,21 +62,20 @@ class JournalEntry extends HiveObject {
   DateTime createdAt;
   @HiveField(7)
   DateTime updatedAt;
-
-  JournalEntry({
-    required this.id,
-    required this.date,
-    required this.content,
-    this.moodEntryId,
-    this.linkedNoteIds = const [],
-    this.linkedTaskIds = const [],
-    required this.createdAt,
-    required this.updatedAt,
-  });
 }
 
 @HiveType(typeId: 257)
-class MoodAnalytics extends HiveObject {
+class MoodAnalytics extends HiveObject { // taskId -> معامل ارتباط
+
+  MoodAnalytics({
+    required this.id,
+    required this.generatedAt,
+    this.tagFrequency = const {},
+    this.moodDistribution = const {},
+    this.improvementSuggestions = const [],
+    this.habitCorrelation = const {},
+    this.taskCorrelation = const {},
+  });
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -79,15 +89,5 @@ class MoodAnalytics extends HiveObject {
   @HiveField(5)
   Map<String, double> habitCorrelation; // habitId -> معامل ارتباط
   @HiveField(6)
-  Map<String, double> taskCorrelation; // taskId -> معامل ارتباط
-
-  MoodAnalytics({
-    required this.id,
-    required this.generatedAt,
-    this.tagFrequency = const {},
-    this.moodDistribution = const {},
-    this.improvementSuggestions = const [],
-    this.habitCorrelation = const {},
-    this.taskCorrelation = const {},
-  });
+  Map<String, double> taskCorrelation;
 }

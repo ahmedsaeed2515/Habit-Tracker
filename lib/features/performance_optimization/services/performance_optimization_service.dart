@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 
-import '../models/performance_metrics.dart';
 import '../../../core/database/database_helper.dart';
+import '../models/performance_metrics.dart';
 
 class PerformanceOptimizationService {
   factory PerformanceOptimizationService() => _instance;

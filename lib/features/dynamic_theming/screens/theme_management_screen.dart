@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../core/widgets/custom_app_bar.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_tab_bar.dart';
@@ -7,8 +8,8 @@ import '../../../core/widgets/custom_tab_bar.dart';
 // import '../../../core/widgets/error_widget.dart';
 import '../models/simple_theming_models.dart';
 import '../providers/simple_theming_providers.dart';
-import '../widgets/theme_widgets.dart';
 import '../widgets/advanced_theme_settings.dart';
+import '../widgets/theme_widgets.dart';
 
 /// شاشة إدارة الثيمات
 class ThemeManagementScreen extends ConsumerStatefulWidget {

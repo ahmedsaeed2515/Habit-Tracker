@@ -1,8 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../models/achievement.dart';
 import '../models/badge.dart';
-import '../models/points.dart';
 import '../models/challenge.dart';
+import '../models/points.dart';
 import '../models/reward.dart';
 import '../services/gamification_service.dart';
 

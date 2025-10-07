@@ -3,15 +3,16 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'managers/base_database_manager.dart';
-import 'managers/adapters_manager.dart';
-import 'managers/workout_manager.dart';
-import 'managers/habits_manager.dart';
-import '../models/workout.dart';
-import '../models/morning_exercise.dart';
+
 import '../models/habit.dart';
-import '../models/task.dart';
+import '../models/morning_exercise.dart';
 import '../models/settings.dart';
+import '../models/task.dart';
+import '../models/workout.dart';
+import 'managers/adapters_manager.dart';
+import 'managers/base_database_manager.dart';
+import 'managers/habits_manager.dart';
+import 'managers/workout_manager.dart';
 
 /// مدير قاعدة البيانات الرئيسي - تم إعادة تنظيمه إلى مديرين منفصلين
 class DatabaseManager extends BaseDatabaseManager {

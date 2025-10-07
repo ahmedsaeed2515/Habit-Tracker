@@ -9,9 +9,9 @@ import '../providers/pomodoro_providers.dart';
 class PomodoroTimerWidget extends ConsumerStatefulWidget {
 
   const PomodoroTimerWidget({
-    Key? key,
+    super.key,
     required this.session,
-  }) : super(key: key);
+  });
   final PomodoroSession session;
 
   @override
@@ -579,9 +579,9 @@ class TimerProgressPainter extends CustomPainter {
 class CompactTimerWidget extends ConsumerWidget {
 
   const CompactTimerWidget({
-    Key? key,
+    super.key,
     required this.session,
-  }) : super(key: key);
+  });
   final PomodoroSession session;
 
   @override

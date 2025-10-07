@@ -137,9 +137,9 @@ class ProjectsListScreen extends ConsumerWidget {
 }
 
 class _ProjectCard extends ConsumerWidget {
-  final Project project;
 
   const _ProjectCard({required this.project});
+  final Project project;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -227,9 +227,9 @@ class _ProjectCard extends ConsumerWidget {
 }
 
 class _StatusChip extends StatelessWidget {
-  final ProjectStatus status;
 
   const _StatusChip({required this.status});
+  final ProjectStatus status;
 
   @override
   Widget build(BuildContext context) {

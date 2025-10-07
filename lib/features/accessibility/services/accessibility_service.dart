@@ -1,9 +1,8 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import '../models/accessibility_settings.dart';
 import '../../../core/database/database_helper.dart';
+import '../models/accessibility_settings.dart';
 
 class AccessibilityService {
   factory AccessibilityService() => _instance;

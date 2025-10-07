@@ -1,10 +1,12 @@
 import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 import '../../../core/models/user_profile.dart';
-import '../models/workout_plan.dart';
-import '../models/exercise.dart';
 import '../models/ai_recommendation.dart';
+import '../models/exercise.dart';
+import '../models/workout_plan.dart';
 
 /// خدمة الذكاء الاصطناعي للتخطيط الرياضي الذكي
 class AIWorkoutPlannerService {

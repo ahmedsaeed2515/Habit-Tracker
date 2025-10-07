@@ -4,13 +4,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../shared/localization/app_localizations.dart';
+import '../../../common/widgets/custom_tab_switcher.dart';
 import '../../../common/widgets/empty_state_widget.dart';
 import '../../../common/widgets/stat_card.dart';
-import '../../../common/widgets/custom_tab_switcher.dart';
-import '../widgets/widgets.dart';
-import '../providers/tasks_provider.dart';
 import '../../../core/models/task.dart';
+import '../../../shared/localization/app_localizations.dart';
+import '../providers/tasks_provider.dart';
+import '../widgets/widgets.dart';
 
 /// شاشة المهام الذكية مع إدارة المهام المتقدمة
 class SmartTodoScreen extends ConsumerStatefulWidget {

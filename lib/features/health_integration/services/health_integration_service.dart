@@ -1,7 +1,9 @@
-import 'package:hive_flutter/hive_flutter.dart';
-import '../models/health_data.dart';
 import 'dart:async';
 import 'dart:math';
+
+import 'package:hive_flutter/hive_flutter.dart';
+
+import '../models/health_data.dart';
 
 class HealthIntegrationService {
   static const String _healthDataBoxName = 'health_data';

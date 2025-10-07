@@ -3,8 +3,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/widgets_providers.dart';
+
 import '../models/widget_config.dart';
+import '../providers/widgets_providers.dart';
 
 /// شاشة لوحة تحكم الودجت
 class WidgetsDashboardScreen extends ConsumerWidget {

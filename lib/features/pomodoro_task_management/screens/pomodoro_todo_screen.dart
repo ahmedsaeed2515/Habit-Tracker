@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+
 // import '../../../core/widgets/custom_card.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_text_field.dart';
 import '../models/pomodoro_models.dart';
 import '../providers/pomodoro_providers.dart';
-import '../widgets/pomodoro_timer_widget.dart';
-import '../widgets/task_item_widget.dart';
-import '../widgets/quick_stats_widget.dart';
 import '../widgets/pomodoro_fab.dart';
-import 'task_details_screen.dart';
-import 'pomodoro_settings_screen.dart';
+import '../widgets/pomodoro_timer_widget.dart';
+import '../widgets/quick_stats_widget.dart';
+import '../widgets/task_item_widget.dart';
 import 'analytics_screen.dart';
+import 'pomodoro_settings_screen.dart';
+import 'task_details_screen.dart';
 
 /// شاشة To-Do List الرئيسية مع نظام Pomodoro متكامل
 class PomodoroTodoScreen extends ConsumerStatefulWidget {

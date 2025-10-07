@@ -5,6 +5,22 @@ import 'package:hive/hive.dart';
 /// Idea model - typeId 271
 @HiveType(typeId: 271)
 class Idea extends HiveObject {
+
+  Idea({
+    required this.id,
+    required this.title,
+    this.content = '',
+    required this.createdAt,
+    required this.updatedAt,
+    this.status = IdeaStatus.inbox,
+    this.priority = IdeaPriority.normal,
+    this.categoryId,
+    this.tags = const [],
+    this.attachments = const [],
+    this.linkedItemId,
+    this.linkedItemType,
+    this.isFavorite = false,
+  });
   @HiveField(0)
   String id;
 
@@ -43,22 +59,6 @@ class Idea extends HiveObject {
 
   @HiveField(12)
   bool isFavorite;
-
-  Idea({
-    required this.id,
-    required this.title,
-    this.content = '',
-    required this.createdAt,
-    required this.updatedAt,
-    this.status = IdeaStatus.inbox,
-    this.priority = IdeaPriority.normal,
-    this.categoryId,
-    this.tags = const [],
-    this.attachments = const [],
-    this.linkedItemId,
-    this.linkedItemType,
-    this.isFavorite = false,
-  });
 
   /// Convert to a plain Map (used by Map-backed Hive boxes when adapters aren't generated)
   Map<String, dynamic> toMap() => {
@@ -188,6 +188,14 @@ enum LinkedItemType {
 /// IdeaCategory model - typeId 275
 @HiveType(typeId: 275)
 class IdeaCategory extends HiveObject {
+
+  IdeaCategory({
+    required this.id,
+    required this.name,
+    required this.icon,
+    required this.colorHex,
+    required this.orderIndex,
+  });
   @HiveField(0)
   String id;
 
@@ -202,14 +210,6 @@ class IdeaCategory extends HiveObject {
 
   @HiveField(4)
   int orderIndex;
-
-  IdeaCategory({
-    required this.id,
-    required this.name,
-    required this.icon,
-    required this.colorHex,
-    required this.orderIndex,
-  });
 
   IdeaCategory copyWith({
     String? id,
@@ -232,6 +232,16 @@ class IdeaCategory extends HiveObject {
 /// typeId 276
 @HiveType(typeId: 276)
 class InboxItem extends HiveObject {
+
+  InboxItem({
+    required this.id,
+    required this.content,
+    required this.createdAt,
+    this.type = InboxItemType.text,
+    this.isProcessed = false,
+    this.convertedToId,
+    this.convertedToType,
+  });
   @HiveField(0)
   String id;
 
@@ -252,16 +262,6 @@ class InboxItem extends HiveObject {
 
   @HiveField(6)
   ConvertedToType? convertedToType;
-
-  InboxItem({
-    required this.id,
-    required this.content,
-    required this.createdAt,
-    this.type = InboxItemType.text,
-    this.isProcessed = false,
-    this.convertedToId,
-    this.convertedToType,
-  });
 
   InboxItem copyWith({
     String? id,

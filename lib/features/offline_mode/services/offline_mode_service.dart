@@ -1,9 +1,10 @@
 ﻿import 'dart:async';
-import 'package:flutter/foundation.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 
-import '../models/offline_data.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/foundation.dart';
+
 import '../../../core/database/database_helper.dart';
+import '../models/offline_data.dart';
 
 class OfflineModeService {
   factory OfflineModeService() => _instance;

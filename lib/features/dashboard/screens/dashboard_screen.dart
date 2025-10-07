@@ -7,9 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../../../shared/localization/app_localizations.dart';
+import '../../daily_habits/screens/daily_habits_screen.dart';
 import '../../smart_notifications/screens/notifications_screen.dart';
 import '../../smart_todo/screens/smart_todo_screen.dart';
-import '../../daily_habits/screens/daily_habits_screen.dart';
 import '../widgets/widgets.dart';
 
 /// شاشة لوحة التحكم الرئيسية

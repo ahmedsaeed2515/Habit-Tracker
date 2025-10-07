@@ -1,10 +1,12 @@
 import 'dart:async';
+
 import 'package:hive/hive.dart';
+
 import '../models/achievement.dart';
 import '../models/badge.dart';
-import '../models/points.dart';
-import '../models/level.dart';
 import '../models/challenge.dart';
+import '../models/level.dart';
+import '../models/points.dart';
 import '../models/reward.dart';
 
 class GamificationService {

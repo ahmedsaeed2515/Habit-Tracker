@@ -438,7 +438,7 @@ class PerformanceStatsNotifier {
     _statsStream = Stream.periodic(
       const Duration(seconds: 5),
       (_) => _generateCurrentStats(),
-    ).asyncMap((statsFuture) async => await statsFuture);
+    ).asyncMap((statsFuture) async => statsFuture);
   }
   final PerformanceOptimizationService _service;
   late final Stream<PerformanceStats> _statsStream;

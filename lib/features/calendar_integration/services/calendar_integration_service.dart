@@ -1,7 +1,8 @@
-﻿import '../models/calendar_event.dart';
-import 'package:flutter/foundation.dart';
+﻿import 'package:flutter/foundation.dart';
+
 import '../../../core/database/database_helper.dart';
 import '../../habits/models/habit.dart';
+import '../models/calendar_event.dart';
 
 class CalendarIntegrationService {
   factory CalendarIntegrationService() => _instance;
