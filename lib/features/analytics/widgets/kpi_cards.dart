@@ -3,13 +3,6 @@ import 'package:flutter/material.dart';
 
 /// ويدجت بطاقة مؤشر أداء رئيسي
 class KpiCard extends StatelessWidget {
-  final String title;
-  final String value;
-  final String? subtitle;
-  final IconData icon;
-  final Color color;
-  final String? trend;
-  final bool showTrend;
 
   const KpiCard({
     super.key,
@@ -21,6 +14,13 @@ class KpiCard extends StatelessWidget {
     this.trend,
     this.showTrend = false,
   });
+  final String title;
+  final String value;
+  final String? subtitle;
+  final IconData icon;
+  final Color color;
+  final String? trend;
+  final bool showTrend;
 
   @override
   Widget build(BuildContext context) {
@@ -127,14 +127,14 @@ class KpiCard extends StatelessWidget {
 
 /// ويدجت مجموعة مؤشرات الأداء
 class KpiCardsGrid extends StatelessWidget {
-  final Map<String, dynamic> summaryStats;
-  final int crossAxisCount;
 
   const KpiCardsGrid({
     super.key,
     required this.summaryStats,
     this.crossAxisCount = 2,
   });
+  final Map<String, dynamic> summaryStats;
+  final int crossAxisCount;
 
   @override
   Widget build(BuildContext context) {
@@ -203,7 +203,7 @@ class KpiCardsGrid extends StatelessWidget {
     ];
   }
 
-  String? _calculateTrend(dynamic averageScore) {
+  String? _calculateTrend(averageScore) {
     if (averageScore == null) return null;
 
     final score = averageScore as double;
@@ -222,11 +222,6 @@ class KpiCardsGrid extends StatelessWidget {
 
 /// ويدجت مؤشر دائري للتقدم
 class CircularProgressKpi extends StatelessWidget {
-  final String title;
-  final double value;
-  final double maxValue;
-  final Color color;
-  final String unit;
 
   const CircularProgressKpi({
     super.key,
@@ -236,6 +231,11 @@ class CircularProgressKpi extends StatelessWidget {
     required this.color,
     this.unit = '%',
   });
+  final String title;
+  final double value;
+  final double maxValue;
+  final Color color;
+  final String unit;
 
   @override
   Widget build(BuildContext context) {

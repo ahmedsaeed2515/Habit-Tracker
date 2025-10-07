@@ -7,6 +7,17 @@ part 'task.g.dart';
 
 @HiveType(typeId: 8)
 class TaskSheet extends HiveObject {
+
+  TaskSheet({
+    required this.id,
+    required this.name,
+    this.description = '',
+    this.color = '#2196F3',
+    required this.tasks,
+    required this.createdAt,
+    required this.lastModified,
+    this.isActive = true,
+  });
   @HiveField(0)
   String id;
 
@@ -31,17 +42,6 @@ class TaskSheet extends HiveObject {
   @HiveField(7)
   bool isActive;
 
-  TaskSheet({
-    required this.id,
-    required this.name,
-    this.description = '',
-    this.color = '#2196F3',
-    required this.tasks,
-    required this.createdAt,
-    required this.lastModified,
-    this.isActive = true,
-  });
-
   // حساب إحصائيات الورقة
   int get totalTasks => tasks.length;
   int get completedTasks => tasks.where((task) => task.isCompleted).length;
@@ -51,7 +51,7 @@ class TaskSheet extends HiveObject {
 
   double get completionPercentage {
     if (totalTasks == 0) return 0.0;
-    return (completedTasks / totalTasks * 100);
+    return completedTasks / totalTasks * 100;
   }
 
   TaskSheet copyWith({
@@ -77,6 +77,24 @@ class TaskSheet extends HiveObject {
 
 @HiveType(typeId: 9)
 class Task extends HiveObject {
+
+  Task({
+    required this.id,
+    required this.sheetId,
+    required this.title,
+    this.description = '',
+    this.dueDate,
+    this.priority = TaskPriority.medium,
+    this.tags = const [],
+    this.status = TaskStatus.pending,
+    required this.createdAt,
+    required this.lastModified,
+    this.isCompleted = false,
+    this.completedAt,
+    this.notes,
+    this.subTasks = const [],
+    this.sortOrder = 0,
+  });
   @HiveField(0)
   String id;
 
@@ -122,24 +140,6 @@ class Task extends HiveObject {
   @HiveField(14)
   int sortOrder;
 
-  Task({
-    required this.id,
-    required this.sheetId,
-    required this.title,
-    this.description = '',
-    this.dueDate,
-    this.priority = TaskPriority.medium,
-    this.tags = const [],
-    this.status = TaskStatus.pending,
-    required this.createdAt,
-    required this.lastModified,
-    this.isCompleted = false,
-    this.completedAt,
-    this.notes,
-    this.subTasks = const [],
-    this.sortOrder = 0,
-  });
-
   // التحقق من انتهاء الموعد النهائي
   bool get isOverdue {
     if (dueDate == null || isCompleted) return false;
@@ -150,7 +150,7 @@ class Task extends HiveObject {
   double get subTaskProgress {
     if (subTasks.isEmpty) return 0.0;
     final completed = subTasks.where((sub) => sub.isCompleted).length;
-    return (completed / subTasks.length * 100);
+    return completed / subTasks.length * 100;
   }
 
   // حساب أيام متبقية للموعد النهائي
@@ -196,6 +196,15 @@ class Task extends HiveObject {
 
 @HiveType(typeId: 10)
 class SubTask extends HiveObject {
+
+  SubTask({
+    required this.id,
+    required this.taskId,
+    required this.title,
+    this.isCompleted = false,
+    required this.createdAt,
+    this.sortOrder = 0,
+  });
   @HiveField(0)
   String id;
 
@@ -213,15 +222,6 @@ class SubTask extends HiveObject {
 
   @HiveField(5)
   int sortOrder;
-
-  SubTask({
-    required this.id,
-    required this.taskId,
-    required this.title,
-    this.isCompleted = false,
-    required this.createdAt,
-    this.sortOrder = 0,
-  });
 
   SubTask copyWith({String? title, bool? isCompleted, int? sortOrder}) {
     return SubTask(

@@ -3,20 +3,15 @@ import '../models/gamification_data.dart';
 
 /// خدمة موحدة لإدارة نظام التحفيز والألعاب
 class UnifiedGamificationService {
-  static final UnifiedGamificationService _instance =
-      UnifiedGamificationService._internal();
 
   factory UnifiedGamificationService() => _instance;
 
   UnifiedGamificationService._internal();
+  static final UnifiedGamificationService _instance =
+      UnifiedGamificationService._internal();
 
   UserGameData _userData = UserGameData(
-    totalPoints: 0,
     currentLevel: 1,
-    currentStreak: 0,
-    longestStreak: 0,
-    weeklyPoints: 0,
-    monthlyPoints: 0,
   );
 
   /// الحصول على بيانات المستخدم الحالية
@@ -264,11 +259,10 @@ class UnifiedGamificationService {
         'targetValue': 500,
         'currentProgress': _userData.monthlyPoints,
         'pointsReward': 1000,
-        'startDate': DateTime(now.year, now.month, 1),
+        'startDate': DateTime(now.year, now.month),
         'endDate': DateTime(
           now.year,
           now.month + 1,
-          1,
         ).subtract(const Duration(days: 1)),
         'isActive': _userData.monthlyPoints < 500,
         'isCompleted': _userData.monthlyPoints >= 500,

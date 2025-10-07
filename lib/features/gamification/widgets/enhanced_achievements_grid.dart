@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// شبكة الإنجازات المحسنة
 /// TODO: تطوير هذا الويدجت مع البيانات الفعلية
 class EnhancedAchievementsGrid extends ConsumerWidget {
-  const EnhancedAchievementsGrid({Key? key}) : super(key: key);
+  const EnhancedAchievementsGrid({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -4,6 +4,48 @@ part 'backup_data.g.dart';
 
 @HiveType(typeId: 49)
 class BackupData extends HiveObject {
+
+  BackupData({
+    required this.id,
+    required this.userId,
+    required this.createdAt,
+    required this.version,
+    this.habitsData = const {},
+    this.analyticsData = const {},
+    this.settingsData = const {},
+    this.gamificationData = const {},
+    this.healthData = const {},
+    this.themingData = const {},
+    this.dataSize = 0,
+    this.type = BackupType.manual,
+    this.status = BackupStatus.pending,
+    this.cloudPath,
+    this.errorMessage,
+    this.lastSync,
+  });
+
+  // إنشاء من خريطة مستوردة
+  factory BackupData.fromImportMap(Map<String, dynamic> map) {
+    final metadata = map['metadata'] ?? {};
+    
+    return BackupData(
+      id: metadata['id'] ?? DateTime.now().millisecondsSinceEpoch.toString(),
+      userId: metadata['userId'] ?? 'imported',
+      createdAt: metadata['createdAt'] != null 
+          ? DateTime.parse(metadata['createdAt']) 
+          : DateTime.now(),
+      version: metadata['version'] ?? '1.0.0',
+      habitsData: Map<String, dynamic>.from(map['habits'] ?? {}),
+      analyticsData: Map<String, dynamic>.from(map['analytics'] ?? {}),
+      settingsData: Map<String, dynamic>.from(map['settings'] ?? {}),
+      gamificationData: Map<String, dynamic>.from(map['gamification'] ?? {}),
+      healthData: Map<String, dynamic>.from(map['health'] ?? {}),
+      themingData: Map<String, dynamic>.from(map['theming'] ?? {}),
+      dataSize: metadata['dataSize'] ?? 0,
+      type: BackupType.imported,
+      status: BackupStatus.completed,
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -51,25 +93,6 @@ class BackupData extends HiveObject {
 
   @HiveField(15)
   DateTime? lastSync;
-
-  BackupData({
-    required this.id,
-    required this.userId,
-    required this.createdAt,
-    required this.version,
-    this.habitsData = const {},
-    this.analyticsData = const {},
-    this.settingsData = const {},
-    this.gamificationData = const {},
-    this.healthData = const {},
-    this.themingData = const {},
-    this.dataSize = 0,
-    this.type = BackupType.manual,
-    this.status = BackupStatus.pending,
-    this.cloudPath,
-    this.errorMessage,
-    this.lastSync,
-  });
 
   // الحصول على حجم البيانات بصيغة مقروءة
   String get formattedSize {
@@ -184,29 +207,6 @@ class BackupData extends HiveObject {
       'theming': themingData,
     };
   }
-
-  // إنشاء من خريطة مستوردة
-  factory BackupData.fromImportMap(Map<String, dynamic> map) {
-    final metadata = map['metadata'] ?? {};
-    
-    return BackupData(
-      id: metadata['id'] ?? DateTime.now().millisecondsSinceEpoch.toString(),
-      userId: metadata['userId'] ?? 'imported',
-      createdAt: metadata['createdAt'] != null 
-          ? DateTime.parse(metadata['createdAt']) 
-          : DateTime.now(),
-      version: metadata['version'] ?? '1.0.0',
-      habitsData: Map<String, dynamic>.from(map['habits'] ?? {}),
-      analyticsData: Map<String, dynamic>.from(map['analytics'] ?? {}),
-      settingsData: Map<String, dynamic>.from(map['settings'] ?? {}),
-      gamificationData: Map<String, dynamic>.from(map['gamification'] ?? {}),
-      healthData: Map<String, dynamic>.from(map['health'] ?? {}),
-      themingData: Map<String, dynamic>.from(map['theming'] ?? {}),
-      dataSize: metadata['dataSize'] ?? 0,
-      type: BackupType.imported,
-      status: BackupStatus.completed,
-    );
-  }
 }
 
 @HiveType(typeId: 50)
@@ -244,6 +244,22 @@ enum BackupStatus {
 
 @HiveType(typeId: 52)
 class SyncSettings extends HiveObject {
+
+  SyncSettings({
+    this.enableAutoSync = true,
+    this.syncIntervalHours = 24,
+    this.syncOnWiFiOnly = true,
+    this.syncHabits = true,
+    this.syncAnalytics = true,
+    this.syncSettings = true,
+    this.syncGamification = true,
+    this.syncHealth = false,
+    this.syncTheming = true,
+    required this.lastAutoSync,
+    this.cloudProvider = 'google_drive',
+    this.maxBackups = 10,
+    this.deleteOldBackups = true,
+  });
   @HiveField(0)
   bool enableAutoSync;
 
@@ -283,22 +299,6 @@ class SyncSettings extends HiveObject {
   @HiveField(12)
   bool deleteOldBackups;
 
-  SyncSettings({
-    this.enableAutoSync = true,
-    this.syncIntervalHours = 24,
-    this.syncOnWiFiOnly = true,
-    this.syncHabits = true,
-    this.syncAnalytics = true,
-    this.syncSettings = true,
-    this.syncGamification = true,
-    this.syncHealth = false,
-    this.syncTheming = true,
-    required this.lastAutoSync,
-    this.cloudProvider = 'google_drive',
-    this.maxBackups = 10,
-    this.deleteOldBackups = true,
-  });
-
   // فحص ما إذا كان وقت المزامنة التلقائية
   bool get isTimeForAutoSync {
     if (!enableAutoSync) return false;
@@ -328,6 +328,16 @@ class SyncSettings extends HiveObject {
 
 @HiveType(typeId: 53)
 class ConflictResolution extends HiveObject {
+
+  ConflictResolution({
+    required this.id,
+    required this.dataType,
+    required this.localData,
+    required this.remoteData,
+    required this.conflictTime,
+    this.resolution,
+    this.isResolved = false,
+  });
   @HiveField(0)
   String id;
 
@@ -348,16 +358,6 @@ class ConflictResolution extends HiveObject {
 
   @HiveField(6)
   bool isResolved;
-
-  ConflictResolution({
-    required this.id,
-    required this.dataType,
-    required this.localData,
-    required this.remoteData,
-    required this.conflictTime,
-    this.resolution,
-    this.isResolved = false,
-  });
 
   // تطبيق الحل
   Map<String, dynamic> applyResolution() {

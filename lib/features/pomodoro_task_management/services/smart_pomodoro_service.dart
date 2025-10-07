@@ -521,7 +521,7 @@ class SmartPomodoroService {
   /// الحصول على إحصائيات الشهر
   PomodoroStats getMonthlyStats() {
     final now = DateTime.now();
-    final monthStart = DateTime(now.year, now.month, 1);
+    final monthStart = DateTime(now.year, now.month);
     final monthEnd = DateTime(now.year, now.month + 1, 0);
 
     // تجميع إحصائيات الشهر
@@ -564,7 +564,7 @@ class SmartPomodoroService {
   /// الحصول على إحصائيات السنة
   PomodoroStats getYearlyStats() {
     final now = DateTime.now();
-    final yearStart = DateTime(now.year, 1, 1);
+    final yearStart = DateTime(now.year, 1);
 
     // تجميع إحصائيات السنة
     int totalSessions = 0;

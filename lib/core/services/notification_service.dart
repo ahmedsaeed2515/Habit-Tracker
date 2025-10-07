@@ -6,9 +6,9 @@ import 'package:timezone/data/latest.dart' as tz;
 
 /// خدمة الإشعارات المحلية
 class NotificationService {
-  static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
   NotificationService._internal();
+  static final NotificationService _instance = NotificationService._internal();
 
   final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
@@ -27,9 +27,7 @@ class NotificationService {
         '@mipmap/ic_launcher',
       );
       const iosSettings = DarwinInitializationSettings(
-        requestSoundPermission: true,
         requestBadgePermission: true,
-        requestAlertPermission: true,
       );
 
       const initializationSettings = InitializationSettings(

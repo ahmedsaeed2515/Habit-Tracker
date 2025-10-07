@@ -41,9 +41,9 @@ class VoiceCommandsHistory extends ConsumerWidget {
 
 /// عنصر في سجل الأوامر الصوتية
 class VoiceCommandHistoryItem extends StatelessWidget {
-  final VoiceCommand command;
 
   const VoiceCommandHistoryItem({super.key, required this.command});
+  final VoiceCommand command;
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +137,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: theme.colorScheme.surfaceVariant.withOpacity(0.5),
+                color: theme.colorScheme.surfaceContainerHighest.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(

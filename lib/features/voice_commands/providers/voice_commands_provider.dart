@@ -21,13 +21,6 @@ final commandAnalyzerProvider = Provider<CommandAnalyzer>((ref) {
 
 // Voice Commands State
 class VoiceCommandsState {
-  final bool isListening;
-  final bool isProcessing;
-  final List<VoiceCommand> recentCommands;
-  final String? lastRecognizedText;
-  final String? lastResponse;
-  final bool isInitialized;
-  final String? error;
 
   const VoiceCommandsState({
     this.isListening = false,
@@ -38,6 +31,13 @@ class VoiceCommandsState {
     this.isInitialized = false,
     this.error,
   });
+  final bool isListening;
+  final bool isProcessing;
+  final List<VoiceCommand> recentCommands;
+  final String? lastRecognizedText;
+  final String? lastResponse;
+  final bool isInitialized;
+  final String? error;
 
   VoiceCommandsState copyWith({
     bool? isListening,
@@ -62,20 +62,20 @@ class VoiceCommandsState {
 
 // Voice Commands Notifier
 class VoiceCommandsNotifier extends StateNotifier<VoiceCommandsState> {
-  final VoiceService _voiceService;
-  final CommandProcessor _commandProcessor;
-  final CommandAnalyzer _commandAnalyzer;
 
   VoiceCommandsNotifier(
     this._voiceService,
     this._commandProcessor,
     this._commandAnalyzer,
   ) : super(const VoiceCommandsState());
+  final VoiceService _voiceService;
+  final CommandProcessor _commandProcessor;
+  final CommandAnalyzer _commandAnalyzer;
 
   // Initialize voice services
   Future<void> initialize() async {
     try {
-      state = state.copyWith(isProcessing: true, error: null);
+      state = state.copyWith(isProcessing: true);
 
       final initialized = await _voiceService.initialize();
 
@@ -95,12 +95,10 @@ class VoiceCommandsNotifier extends StateNotifier<VoiceCommandsState> {
     }
 
     try {
-      state = state.copyWith(isListening: true, error: null);
+      state = state.copyWith(isListening: true);
 
       // Set up callbacks
-      _voiceService.onRecognitionResult = (recognizedText) {
-        _processVoiceInput(recognizedText);
-      };
+      _voiceService.onRecognitionResult = _processVoiceInput;
 
       await _voiceService.startListening();
     } catch (e) {
@@ -130,7 +128,6 @@ class VoiceCommandsNotifier extends StateNotifier<VoiceCommandsState> {
       state = state.copyWith(
         isProcessing: true,
         lastRecognizedText: recognizedText,
-        error: null,
       );
 
       // Analyze the command first
@@ -180,7 +177,7 @@ class VoiceCommandsNotifier extends StateNotifier<VoiceCommandsState> {
 
   // Clear error
   void clearError() {
-    state = state.copyWith(error: null);
+    state = state.copyWith();
   }
 
   // Check if speech recognition is available

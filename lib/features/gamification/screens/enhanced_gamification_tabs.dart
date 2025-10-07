@@ -9,8 +9,10 @@ class EnhancedGamificationTabs {
   static Widget buildDashboardTab(
     BuildContext context,
     bool isArabic,
-    Future<void> Function() refresh,
-  ) {
+    Future<void> Function() refresh, {
+    VoidCallback? onViewAllAchievements,
+    VoidCallback? onViewAllChallenges,
+  }) {
     return RefreshIndicator(
       onRefresh: refresh,
       child: SingleChildScrollView(
@@ -35,6 +37,7 @@ class EnhancedGamificationTabs {
             EnhancedGamificationWidgets.buildRecentAchievementsSection(
               context,
               isArabic,
+              onViewAll: onViewAllAchievements,
             ),
             const SizedBox(height: 20),
 
@@ -42,6 +45,7 @@ class EnhancedGamificationTabs {
             EnhancedGamificationWidgets.buildActiveChallengesSection(
               context,
               isArabic,
+              onViewAll: onViewAllChallenges,
             ),
             const SizedBox(height: 20),
 
@@ -91,7 +95,7 @@ class EnhancedGamificationTabs {
             return statsAsync.when(
               data: (stats) =>
                   _buildStatsContent(context, isArabic, stats, advancedStats),
-              loading: () => _buildStatsLoading(),
+              loading: _buildStatsLoading,
               error: (error, stack) =>
                   _buildStatsError(context, isArabic, error),
             );
@@ -144,7 +148,7 @@ class EnhancedGamificationTabs {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Icon(Icons.person_rounded, size: 48, color: Colors.blue),
+            const Icon(Icons.person_rounded, size: 48, color: Colors.blue),
             const SizedBox(height: 8),
             Text(
               isArabic ? 'مستوى المستخدم' : 'User Level',
@@ -172,7 +176,7 @@ class EnhancedGamificationTabs {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Icon(Icons.star_rounded, size: 48, color: Colors.amber),
+            const Icon(Icons.star_rounded, size: 48, color: Colors.amber),
             const SizedBox(height: 8),
             Text(
               isArabic ? 'ملخص النقاط' : 'Points Summary',
@@ -200,7 +204,11 @@ class EnhancedGamificationTabs {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Icon(Icons.card_giftcard_rounded, size: 48, color: Colors.green),
+            const Icon(
+              Icons.card_giftcard_rounded,
+              size: 48,
+              color: Colors.green,
+            ),
             const SizedBox(height: 8),
             Text(
               isArabic ? 'المكافأة اليومية' : 'Daily Reward',
@@ -471,11 +479,7 @@ class EnhancedGamificationTabs {
     );
   }
 
-  static Widget _buildStatsError(
-    BuildContext context,
-    bool isArabic,
-    dynamic error,
-  ) {
+  static Widget _buildStatsError(BuildContext context, bool isArabic, error) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

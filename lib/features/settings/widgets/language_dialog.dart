@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../shared/localization/app_localizations.dart';
+
 import '../../../core/providers/settings_provider.dart';
+import '../../../shared/localization/app_localizations.dart';
 
 /// حوار اختيار اللغة
 class LanguageDialog extends ConsumerWidget {

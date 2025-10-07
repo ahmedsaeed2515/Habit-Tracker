@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// ملخص النقاط المحسن
 /// TODO: تطوير هذا الويدجت مع البيانات الفعلية
 class EnhancedPointsSummary extends ConsumerWidget {
-  const EnhancedPointsSummary({Key? key}) : super(key: key);
+  const EnhancedPointsSummary({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,7 +17,7 @@ class EnhancedPointsSummary extends ConsumerWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Icon(Icons.star_rounded, size: 48, color: Colors.amber),
+            const Icon(Icons.star_rounded, size: 48, color: Colors.amber),
             const SizedBox(height: 8),
             Text(
               isArabic ? 'ملخص النقاط المحسن' : 'Enhanced Points Summary',

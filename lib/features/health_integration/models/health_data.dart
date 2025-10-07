@@ -4,6 +4,39 @@ part 'health_data.g.dart';
 
 @HiveType(typeId: 38)
 class HealthData extends HiveObject {
+
+  HealthData({
+    required this.id,
+    required this.date,
+    this.steps = 0,
+    this.distance = 0.0,
+    this.calories = 0,
+    this.activeMinutes = 0,
+    this.heartRate = 0,
+    this.sleepHours = 0.0,
+    this.weight = 0.0,
+    this.dataSource = 'Manual',
+    required this.lastSync,
+    this.additionalMetrics = const {},
+  });
+
+  // إنشاء من خريطة
+  factory HealthData.fromMap(Map<String, dynamic> map) {
+    return HealthData(
+      id: map['id'],
+      date: DateTime.parse(map['date']),
+      steps: map['steps'] ?? 0,
+      distance: map['distance']?.toDouble() ?? 0.0,
+      calories: map['calories'] ?? 0,
+      activeMinutes: map['activeMinutes'] ?? 0,
+      heartRate: map['heartRate'] ?? 0,
+      sleepHours: map['sleepHours']?.toDouble() ?? 0.0,
+      weight: map['weight']?.toDouble() ?? 0.0,
+      dataSource: map['dataSource'] ?? 'Manual',
+      lastSync: DateTime.parse(map['lastSync']),
+      additionalMetrics: Map<String, dynamic>.from(map['additionalMetrics'] ?? {}),
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -39,21 +72,6 @@ class HealthData extends HiveObject {
 
   @HiveField(11)
   Map<String, dynamic> additionalMetrics;
-
-  HealthData({
-    required this.id,
-    required this.date,
-    this.steps = 0,
-    this.distance = 0.0,
-    this.calories = 0,
-    this.activeMinutes = 0,
-    this.heartRate = 0,
-    this.sleepHours = 0.0,
-    this.weight = 0.0,
-    this.dataSource = 'Manual',
-    required this.lastSync,
-    this.additionalMetrics = const {},
-  });
 
   // الحصول على مستوى النشاط
   ActivityLevel get activityLevel {
@@ -106,24 +124,6 @@ class HealthData extends HiveObject {
       'additionalMetrics': additionalMetrics,
     };
   }
-
-  // إنشاء من خريطة
-  factory HealthData.fromMap(Map<String, dynamic> map) {
-    return HealthData(
-      id: map['id'],
-      date: DateTime.parse(map['date']),
-      steps: map['steps'] ?? 0,
-      distance: map['distance']?.toDouble() ?? 0.0,
-      calories: map['calories'] ?? 0,
-      activeMinutes: map['activeMinutes'] ?? 0,
-      heartRate: map['heartRate'] ?? 0,
-      sleepHours: map['sleepHours']?.toDouble() ?? 0.0,
-      weight: map['weight']?.toDouble() ?? 0.0,
-      dataSource: map['dataSource'] ?? 'Manual',
-      lastSync: DateTime.parse(map['lastSync']),
-      additionalMetrics: Map<String, dynamic>.from(map['additionalMetrics'] ?? {}),
-    );
-  }
 }
 
 @HiveType(typeId: 39)
@@ -158,6 +158,18 @@ enum SleepQuality {
 
 @HiveType(typeId: 41)
 class HealthGoal extends HiveObject {
+
+  HealthGoal({
+    required this.id,
+    required this.nameEn,
+    required this.nameAr,
+    required this.type,
+    required this.targetValue,
+    required this.unit,
+    required this.createdAt,
+    this.isActive = true,
+    this.achievedAt,
+  });
   @HiveField(0)
   String id;
 
@@ -184,18 +196,6 @@ class HealthGoal extends HiveObject {
 
   @HiveField(8)
   DateTime? achievedAt;
-
-  HealthGoal({
-    required this.id,
-    required this.nameEn,
-    required this.nameAr,
-    required this.type,
-    required this.targetValue,
-    required this.unit,
-    required this.createdAt,
-    this.isActive = true,
-    this.achievedAt,
-  });
 
   // فحص ما إذا كان الهدف محقق
   bool isAchieved(HealthData healthData) {

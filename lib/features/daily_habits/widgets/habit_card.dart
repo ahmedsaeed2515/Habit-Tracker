@@ -7,6 +7,14 @@ import '../../../core/models/habit.dart';
 
 /// بطاقة لعرض العادة اليومية مع جميع المعلومات والخيارات
 class HabitCard extends StatelessWidget {
+
+  const HabitCard({
+    super.key,
+    required this.habit,
+    this.onCompleted,
+    this.onEdit,
+    this.onDelete,
+  });
   /// العادة اليومية المراد عرضها
   final Habit habit;
 
@@ -18,14 +26,6 @@ class HabitCard extends StatelessWidget {
 
   /// دالة استدعاء عند حذف العادة
   final VoidCallback? onDelete;
-
-  const HabitCard({
-    super.key,
-    required this.habit,
-    this.onCompleted,
-    this.onEdit,
-    this.onDelete,
-  });
 
   @override
   Widget build(BuildContext context) {

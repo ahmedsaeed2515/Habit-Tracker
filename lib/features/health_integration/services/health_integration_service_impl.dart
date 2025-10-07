@@ -8,6 +8,8 @@ import '../models/health_models.dart';
 
 // خدمة تكامل البيانات الصحية الشاملة - التنفيذ الكامل
 class HealthIntegrationServiceImpl {
+  factory HealthIntegrationServiceImpl() => _instance;
+  HealthIntegrationServiceImpl._internal();
   static const String _boxName = 'health_profiles';
   static const MethodChannel _healthChannel = MethodChannel(
     'health_integration',
@@ -27,8 +29,6 @@ class HealthIntegrationServiceImpl {
   // الحصول على الخدمة كـ Singleton
   static final HealthIntegrationServiceImpl _instance =
       HealthIntegrationServiceImpl._internal();
-  factory HealthIntegrationServiceImpl() => _instance;
-  HealthIntegrationServiceImpl._internal();
 
   // التهيئة
   Future<void> initialize() async {
@@ -381,7 +381,6 @@ class HealthIntegrationServiceImpl {
         value: value,
         unit: unit,
         timestamp: timestamp ?? DateTime.now(),
-        source: HealthDataSource.manual,
         metadata: metadata ?? {},
       );
 
@@ -628,7 +627,7 @@ class HealthIntegrationServiceImpl {
         final date = startDate.add(Duration(days: i));
 
         // قيمة العادة (1 إذا تمت، 0 إذا لم تتم)
-        final habitValue = habitData[date] == true ? 1.0 : 0.0;
+        final habitValue = habitData[date] ?? false ? 1.0 : 0.0;
 
         // متوسط قيمة الصحة في هذا اليوم
         final dayHealthData = healthData
@@ -1262,7 +1261,7 @@ class HealthReportService {
       final now = DateTime.now();
 
       // الشهر الحالي
-      final thisMonthStart = DateTime(now.year, now.month, 1);
+      final thisMonthStart = DateTime(now.year, now.month);
       final thisMonthData = await _healthService.getHealthDataForPeriod(
         userId: userId,
         startDate: thisMonthStart,
@@ -1270,7 +1269,7 @@ class HealthReportService {
       );
 
       // الشهر الماضي
-      final lastMonthStart = DateTime(now.year, now.month - 1, 1);
+      final lastMonthStart = DateTime(now.year, now.month - 1);
       final lastMonthEnd = DateTime(now.year, now.month, 0);
       final lastMonthData = await _healthService.getHealthDataForPeriod(
         userId: userId,

@@ -4,6 +4,30 @@ part 'ai_message.g.dart';
 
 @HiveType(typeId: 24)
 class AIMessage extends HiveObject {
+
+  AIMessage({
+    required this.id,
+    required this.content,
+    required this.isFromUser,
+    required this.timestamp,
+    this.type = AIMessageType.text,
+    this.metadata,
+    this.relatedHabitId,
+    this.confidence,
+  });
+
+  factory AIMessage.fromMap(Map<String, dynamic> map) {
+    return AIMessage(
+      id: map['id'] ?? '',
+      content: map['content'] ?? '',
+      isFromUser: map['isFromUser'] ?? false,
+      timestamp: DateTime.fromMillisecondsSinceEpoch(map['timestamp'] ?? 0),
+      type: AIMessageType.values[map['type'] ?? 0],
+      metadata: map['metadata'],
+      relatedHabitId: map['relatedHabitId'],
+      confidence: map['confidence']?.toDouble(),
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -28,17 +52,6 @@ class AIMessage extends HiveObject {
   @HiveField(7)
   double? confidence;
 
-  AIMessage({
-    required this.id,
-    required this.content,
-    required this.isFromUser,
-    required this.timestamp,
-    this.type = AIMessageType.text,
-    this.metadata,
-    this.relatedHabitId,
-    this.confidence,
-  });
-
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -50,19 +63,6 @@ class AIMessage extends HiveObject {
       'relatedHabitId': relatedHabitId,
       'confidence': confidence,
     };
-  }
-
-  factory AIMessage.fromMap(Map<String, dynamic> map) {
-    return AIMessage(
-      id: map['id'] ?? '',
-      content: map['content'] ?? '',
-      isFromUser: map['isFromUser'] ?? false,
-      timestamp: DateTime.fromMillisecondsSinceEpoch(map['timestamp'] ?? 0),
-      type: AIMessageType.values[map['type'] ?? 0],
-      metadata: map['metadata'],
-      relatedHabitId: map['relatedHabitId'],
-      confidence: map['confidence']?.toDouble(),
-    );
   }
 }
 
@@ -86,6 +86,34 @@ enum AIMessageType {
 
 @HiveType(typeId: 26)
 class AIPersonalityProfile extends HiveObject {
+
+  AIPersonalityProfile({
+    required this.id,
+    required this.name,
+    required this.personalityType,
+    required this.traits,
+    required this.preferredMotivationMethods,
+    required this.interests,
+    required this.communicationStyle,
+    required this.createdAt,
+    required this.lastUpdated,
+  });
+
+  factory AIPersonalityProfile.fromMap(Map<String, dynamic> map) {
+    return AIPersonalityProfile(
+      id: map['id'] ?? '',
+      name: map['name'] ?? '',
+      personalityType: PersonalityType.values[map['personalityType'] ?? 0],
+      traits: Map<String, double>.from(map['traits'] ?? {}),
+      preferredMotivationMethods: List<String>.from(
+        map['preferredMotivationMethods'] ?? [],
+      ),
+      interests: List<String>.from(map['interests'] ?? []),
+      communicationStyle: map['communicationStyle'] ?? '',
+      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] ?? 0),
+      lastUpdated: DateTime.fromMillisecondsSinceEpoch(map['lastUpdated'] ?? 0),
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -113,18 +141,6 @@ class AIPersonalityProfile extends HiveObject {
   @HiveField(8)
   DateTime lastUpdated;
 
-  AIPersonalityProfile({
-    required this.id,
-    required this.name,
-    required this.personalityType,
-    required this.traits,
-    required this.preferredMotivationMethods,
-    required this.interests,
-    required this.communicationStyle,
-    required this.createdAt,
-    required this.lastUpdated,
-  });
-
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -137,22 +153,6 @@ class AIPersonalityProfile extends HiveObject {
       'createdAt': createdAt.millisecondsSinceEpoch,
       'lastUpdated': lastUpdated.millisecondsSinceEpoch,
     };
-  }
-
-  factory AIPersonalityProfile.fromMap(Map<String, dynamic> map) {
-    return AIPersonalityProfile(
-      id: map['id'] ?? '',
-      name: map['name'] ?? '',
-      personalityType: PersonalityType.values[map['personalityType'] ?? 0],
-      traits: Map<String, double>.from(map['traits'] ?? {}),
-      preferredMotivationMethods: List<String>.from(
-        map['preferredMotivationMethods'] ?? [],
-      ),
-      interests: List<String>.from(map['interests'] ?? []),
-      communicationStyle: map['communicationStyle'] ?? '',
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] ?? 0),
-      lastUpdated: DateTime.fromMillisecondsSinceEpoch(map['lastUpdated'] ?? 0),
-    );
   }
 }
 

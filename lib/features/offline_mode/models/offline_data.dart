@@ -3,7 +3,36 @@ import 'package:hive/hive.dart';
 part 'offline_data.g.dart';
 
 @HiveType(typeId: 81)
-class OfflineData extends HiveObject {
+class OfflineData extends HiveObject { // بيانات إضافية
+
+  OfflineData({
+    required this.id,
+    required this.collection,
+    required this.documentId,
+    required this.data,
+    required this.action,
+    required this.timestamp,
+    this.status = OfflineStatus.pending,
+    this.retryCount = 0,
+    this.errorMessage,
+    this.metadata = const {},
+  });
+
+  // إنشاء من خريطة
+  factory OfflineData.fromMap(Map<String, dynamic> map) {
+    return OfflineData(
+      id: map['id'],
+      collection: map['collection'],
+      documentId: map['documentId'],
+      data: Map<String, dynamic>.from(map['data']),
+      action: OfflineAction.values.firstWhere((a) => a.name == map['action']),
+      timestamp: DateTime.parse(map['timestamp']),
+      status: OfflineStatus.values.firstWhere((s) => s.name == map['status']),
+      retryCount: map['retryCount'] ?? 0,
+      errorMessage: map['errorMessage'],
+      metadata: Map<String, dynamic>.from(map['metadata'] ?? {}),
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -32,20 +61,7 @@ class OfflineData extends HiveObject {
   String? errorMessage; // رسالة الخطأ إن وجدت
 
   @HiveField(9)
-  Map<String, dynamic> metadata; // بيانات إضافية
-
-  OfflineData({
-    required this.id,
-    required this.collection,
-    required this.documentId,
-    required this.data,
-    required this.action,
-    required this.timestamp,
-    this.status = OfflineStatus.pending,
-    this.retryCount = 0,
-    this.errorMessage,
-    this.metadata = const {},
-  });
+  Map<String, dynamic> metadata;
 
   // تحديث حالة العملية
   void updateStatus(OfflineStatus newStatus, {String? error}) {
@@ -67,7 +83,7 @@ class OfflineData extends HiveObject {
 
   // فحص ما إذا كانت العملية منتهية الصلاحية
   bool get isExpired {
-    final maxAge = const Duration(days: 7);
+    const maxAge = Duration(days: 7);
     return DateTime.now().difference(timestamp) > maxAge;
   }
 
@@ -97,22 +113,6 @@ class OfflineData extends HiveObject {
       'errorMessage': errorMessage,
       'metadata': metadata,
     };
-  }
-
-  // إنشاء من خريطة
-  factory OfflineData.fromMap(Map<String, dynamic> map) {
-    return OfflineData(
-      id: map['id'],
-      collection: map['collection'],
-      documentId: map['documentId'],
-      data: Map<String, dynamic>.from(map['data']),
-      action: OfflineAction.values.firstWhere((a) => a.name == map['action']),
-      timestamp: DateTime.parse(map['timestamp']),
-      status: OfflineStatus.values.firstWhere((s) => s.name == map['status']),
-      retryCount: map['retryCount'] ?? 0,
-      errorMessage: map['errorMessage'],
-      metadata: Map<String, dynamic>.from(map['metadata'] ?? {}),
-    );
   }
 }
 
@@ -147,7 +147,18 @@ enum OfflineStatus {
 }
 
 @HiveType(typeId: 84)
-class OfflineCache extends HiveObject {
+class OfflineCache extends HiveObject { // وسوم للتصنيف
+
+  OfflineCache({
+    required this.key,
+    required this.data,
+    required this.cachedAt,
+    this.validFor = const Duration(hours: 1),
+    this.accessCount = 0,
+    required this.lastAccessed,
+    this.tags = const {},
+  });
+  @override
   @HiveField(0)
   String key;
 
@@ -167,17 +178,7 @@ class OfflineCache extends HiveObject {
   DateTime lastAccessed;
 
   @HiveField(6)
-  Map<String, dynamic> tags; // وسوم للتصنيف
-
-  OfflineCache({
-    required this.key,
-    required this.data,
-    required this.cachedAt,
-    this.validFor = const Duration(hours: 1),
-    this.accessCount = 0,
-    required this.lastAccessed,
-    this.tags = const {},
-  });
+  Map<String, dynamic> tags;
 
   // فحص صلاحية البيانات
   bool get isValid {
@@ -202,7 +203,7 @@ class OfflineCache extends HiveObject {
   }
 
   // إضافة وسم
-  void addTag(String key, dynamic value) {
+  void addTag(String key, value) {
     final newTags = Map<String, dynamic>.from(tags);
     newTags[key] = value;
     tags = newTags;
@@ -224,7 +225,20 @@ class OfflineCache extends HiveObject {
 }
 
 @HiveType(typeId: 85)
-class SyncSession extends HiveObject {
+class SyncSession extends HiveObject { // ما الذي تسبب في المزامنة
+
+  SyncSession({
+    required this.id,
+    required this.startTime,
+    this.endTime,
+    this.status = SyncStatus.running,
+    this.totalOperations = 0,
+    this.successfulOperations = 0,
+    this.failedOperations = 0,
+    this.errors = const [],
+    this.statistics = const {},
+    this.trigger = SyncTrigger.manual,
+  });
   @HiveField(0)
   String id;
 
@@ -253,20 +267,7 @@ class SyncSession extends HiveObject {
   Map<String, dynamic> statistics;
 
   @HiveField(9)
-  SyncTrigger trigger; // ما الذي تسبب في المزامنة
-
-  SyncSession({
-    required this.id,
-    required this.startTime,
-    this.endTime,
-    this.status = SyncStatus.running,
-    this.totalOperations = 0,
-    this.successfulOperations = 0,
-    this.failedOperations = 0,
-    this.errors = const [],
-    this.statistics = const {},
-    this.trigger = SyncTrigger.manual,
-  });
+  SyncTrigger trigger;
 
   // إنهاء جلسة المزامنة
   void complete(SyncStatus finalStatus) {
@@ -352,6 +353,15 @@ enum SyncTrigger {
 
 @HiveType(typeId: 88)
 class NetworkStatus extends HiveObject {
+
+  NetworkStatus({
+    this.isConnected = false,
+    this.connectionType = ConnectionType.none,
+    required this.lastChecked,
+    this.signalStrength = 0,
+    this.isMetered = false,
+    this.additionalInfo = const {},
+  });
   @HiveField(0)
   bool isConnected;
 
@@ -369,15 +379,6 @@ class NetworkStatus extends HiveObject {
 
   @HiveField(5)
   Map<String, dynamic> additionalInfo;
-
-  NetworkStatus({
-    this.isConnected = false,
-    this.connectionType = ConnectionType.none,
-    required this.lastChecked,
-    this.signalStrength = 0,
-    this.isMetered = false,
-    this.additionalInfo = const {},
-  });
 
   // تحديث حالة الشبكة
   void updateStatus({
@@ -438,7 +439,21 @@ enum ConnectionType {
 }
 
 @HiveType(typeId: 90)
-class ConflictResolution extends HiveObject {
+class ConflictResolution extends HiveObject { // ملاحظة الحل
+
+  ConflictResolution({
+    required this.id,
+    required this.collection,
+    required this.documentId,
+    required this.localData,
+    required this.remoteData,
+    this.resolvedData,
+    this.strategy = ConflictResolutionStrategy.manual,
+    required this.createdAt,
+    this.resolvedAt,
+    this.isResolved = false,
+    this.resolutionNote,
+  });
   @HiveField(0)
   String id;
 
@@ -470,21 +485,7 @@ class ConflictResolution extends HiveObject {
   bool isResolved;
 
   @HiveField(10)
-  String? resolutionNote; // ملاحظة الحل
-
-  ConflictResolution({
-    required this.id,
-    required this.collection,
-    required this.documentId,
-    required this.localData,
-    required this.remoteData,
-    this.resolvedData,
-    this.strategy = ConflictResolutionStrategy.manual,
-    required this.createdAt,
-    this.resolvedAt,
-    this.isResolved = false,
-    this.resolutionNote,
-  });
+  String? resolutionNote;
 
   // حل التعارض
   void resolve(Map<String, dynamic> resolution, {String? note}) {

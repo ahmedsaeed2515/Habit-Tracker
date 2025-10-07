@@ -14,9 +14,9 @@ final challengesStateProvider =
 // مدير حالة بيانات التحديات في نظام الألعاب
 class ChallengesStateNotifier
     extends StateNotifier<List<Map<String, dynamic>>> {
-  final UnifiedGamificationService service;
 
   ChallengesStateNotifier(this.service) : super([]);
+  final UnifiedGamificationService service;
 
   // تحديث حالة التحديات
   Future<void> refresh() async {
@@ -24,7 +24,7 @@ class ChallengesStateNotifier
       // هذا مجرد حل مؤقت، يجب تعديله لاستخدام خدمة حقيقية
       state = await Future.delayed(
         const Duration(milliseconds: 500),
-        () => _getDefaultChallenges(),
+        _getDefaultChallenges,
       );
     } catch (e) {
       // التعامل مع الأخطاء

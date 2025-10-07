@@ -12,7 +12,7 @@ import '../widgets/advanced_theme_settings.dart';
 
 /// شاشة إدارة الثيمات
 class ThemeManagementScreen extends ConsumerStatefulWidget {
-  const ThemeManagementScreen({Key? key}) : super(key: key);
+  const ThemeManagementScreen({super.key});
 
   @override
   ConsumerState<ThemeManagementScreen> createState() => _ThemeManagementScreenState();
@@ -42,7 +42,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
             tooltip: 'معاينة الثيمات',
           ),
           IconButton(
-            onPressed: () => _refreshThemes(),
+            onPressed: _refreshThemes,
             icon: const Icon(Icons.refresh),
             tooltip: 'تحديث',
           ),
@@ -77,7 +77,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _createNewTheme(),
+        onPressed: _createNewTheme,
         icon: const Icon(Icons.add),
         label: const Text('ثيم جديد'),
       ),
@@ -222,7 +222,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
         children: [
           // إحصائيات سريعة
           customThemesAsync.when(
-            data: (customThemes) => _buildQuickStats(customThemes),
+            data: _buildQuickStats,
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (error, stack) => Text('خطأ: $error'),
           ),
@@ -406,7 +406,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
     );
   }
 
-  void _selectTheme(DynamicTheme theme) async {
+  Future<void> _selectTheme(DynamicTheme theme) async {
     try {
       await ref.read(dynamicThemingServiceProvider).setTheme(theme.id);
       

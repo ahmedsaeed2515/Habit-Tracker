@@ -5,10 +5,10 @@ import '../models/smart_notification.dart';
 import '../providers/smart_notifications_provider.dart';
 
 class NotificationCard extends ConsumerWidget {
-  final SmartNotification notification;
 
   const NotificationCard({Key? key, required this.notification})
     : super(key: key);
+  final SmartNotification notification;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -303,9 +303,6 @@ class NotificationCard extends ConsumerWidget {
 }
 
 class NotificationDetailsSheet extends StatelessWidget {
-  final SmartNotification notification;
-  final VoidCallback onEdit;
-  final VoidCallback onDelete;
 
   const NotificationDetailsSheet({
     Key? key,
@@ -313,12 +310,15 @@ class NotificationDetailsSheet extends StatelessWidget {
     required this.onEdit,
     required this.onDelete,
   }) : super(key: key);
+  final SmartNotification notification;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         borderRadius: const BorderRadius.only(

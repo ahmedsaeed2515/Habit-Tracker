@@ -53,14 +53,14 @@ extension ColorPaletteExtension on ColorPalette {
 
 /// Widget للبطاقة المخصصة
 class CustomCard extends StatelessWidget {
-  final Widget child;
-  final EdgeInsetsGeometry? padding;
   
   const CustomCard({
     Key? key,
     required this.child,
     this.padding = const EdgeInsets.all(16),
   }) : super(key: key);
+  final Widget child;
+  final EdgeInsetsGeometry? padding;
   
   @override
   Widget build(BuildContext context) {
@@ -79,10 +79,10 @@ class ThemeList extends ConsumerWidget {
   final ThemeCategory? filterCategory;
 
   const ThemeList({
-    Key? key,
+    super.key,
     this.showCustomOnly = false,
     this.filterCategory,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -153,12 +153,12 @@ class ThemeList extends ConsumerWidget {
 
 /// Widget لعرض بطاقة ثيم واحد
 class ThemeCard extends ConsumerWidget {
-  final DynamicTheme theme;
 
   const ThemeCard({
     Key? key,
     required this.theme,
   }) : super(key: key);
+  final DynamicTheme theme;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -355,10 +355,10 @@ class ThemeCategoryFilter extends ConsumerWidget {
   final ValueChanged<ThemeCategory?> onCategoryChanged;
 
   const ThemeCategoryFilter({
-    Key? key,
+    super.key,
     required this.selectedCategory,
     required this.onCategoryChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -418,9 +418,9 @@ class ThemeEditorSheet extends ConsumerStatefulWidget {
   final DynamicTheme? theme;
 
   const ThemeEditorSheet({
-    Key? key,
+    super.key,
     this.theme,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<ThemeEditorSheet> createState() => _ThemeEditorSheetState();
@@ -571,7 +571,7 @@ class _ThemeEditorSheetState extends ConsumerState<ThemeEditorSheet> {
           const SizedBox(height: 16),
           
           DropdownButtonFormField<ThemeCategory>(
-            value: _selectedCategory,
+            initialValue: _selectedCategory,
             decoration: const InputDecoration(
               labelText: 'الفئة',
               border: OutlineInputBorder(),
@@ -751,7 +751,7 @@ class _ThemeEditorSheetState extends ConsumerState<ThemeEditorSheet> {
     );
   }
 
-  void _saveTheme() async {
+  Future<void> _saveTheme() async {
     if (_nameController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('يرجى إدخال اسم الثيم')),

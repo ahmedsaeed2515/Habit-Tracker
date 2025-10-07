@@ -126,11 +126,9 @@ class HabitBuilderService {
         name: template.getName(language),
         description: template.getDescription(language),
         type: HabitType.boolean,
-        targetValue: 1,
         unit: 'مرة',
         entries: [],
         createdAt: startDate ?? DateTime.now(),
-        isActive: true,
       );
     } catch (e) {
       debugPrint('خطأ في إنشاء عادة من القالب: $e');

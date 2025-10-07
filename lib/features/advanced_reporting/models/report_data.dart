@@ -4,6 +4,23 @@ part 'report_data.g.dart';
 
 @HiveType(typeId: 55)
 class ReportData extends HiveObject {
+
+  ReportData({
+    required this.id,
+    required this.titleEn,
+    required this.titleAr,
+    required this.type,
+    required this.createdAt,
+    required this.startDate,
+    required this.endDate,
+    this.data = const {},
+    this.insights = const [],
+    this.recommendations = const [],
+    this.overallScore = 0.0,
+    this.categoryScores = const {},
+    this.status = ReportStatus.generating,
+    this.filePath,
+  });
   @HiveField(0)
   String id;
 
@@ -45,23 +62,6 @@ class ReportData extends HiveObject {
 
   @HiveField(13)
   String? filePath;
-
-  ReportData({
-    required this.id,
-    required this.titleEn,
-    required this.titleAr,
-    required this.type,
-    required this.createdAt,
-    required this.startDate,
-    required this.endDate,
-    this.data = const {},
-    this.insights = const [],
-    this.recommendations = const [],
-    this.overallScore = 0.0,
-    this.categoryScores = const {},
-    this.status = ReportStatus.generating,
-    this.filePath,
-  });
 
   // الحصول على مدة التقرير بالأيام
   int get durationInDays => endDate.difference(startDate).inDays + 1;
@@ -186,6 +186,20 @@ enum ReportStatus {
 
 @HiveType(typeId: 58)
 class ReportTemplate extends HiveObject {
+
+  ReportTemplate({
+    required this.id,
+    required this.nameEn,
+    required this.nameAr,
+    required this.descriptionEn,
+    required this.descriptionAr,
+    required this.type,
+    this.sections = const [],
+    this.charts = const [],
+    this.settings = const {},
+    this.isDefault = false,
+    required this.createdAt,
+  });
   @HiveField(0)
   String id;
 
@@ -218,20 +232,6 @@ class ReportTemplate extends HiveObject {
 
   @HiveField(10)
   DateTime createdAt;
-
-  ReportTemplate({
-    required this.id,
-    required this.nameEn,
-    required this.nameAr,
-    required this.descriptionEn,
-    required this.descriptionAr,
-    required this.type,
-    this.sections = const [],
-    this.charts = const [],
-    this.settings = const {},
-    this.isDefault = false,
-    required this.createdAt,
-  });
 
   // إضافة قسم جديد
   void addSection(String section) {
@@ -268,6 +268,21 @@ class ReportTemplate extends HiveObject {
 
 @HiveType(typeId: 59)
 class InsightData extends HiveObject {
+
+  InsightData({
+    required this.id,
+    required this.titleEn,
+    required this.titleAr,
+    required this.descriptionEn,
+    required this.descriptionAr,
+    required this.type,
+    this.priority = InsightPriority.medium,
+    required this.discoveredAt,
+    this.context = const {},
+    this.actionItems = const [],
+    this.isRead = false,
+    this.isActionTaken = false,
+  });
   @HiveField(0)
   String id;
 
@@ -303,21 +318,6 @@ class InsightData extends HiveObject {
 
   @HiveField(11)
   bool isActionTaken;
-
-  InsightData({
-    required this.id,
-    required this.titleEn,
-    required this.titleAr,
-    required this.descriptionEn,
-    required this.descriptionAr,
-    required this.type,
-    this.priority = InsightPriority.medium,
-    required this.discoveredAt,
-    this.context = const {},
-    this.actionItems = const [],
-    this.isRead = false,
-    this.isActionTaken = false,
-  });
 
   // تحديد كقروء
   void markAsRead() {
@@ -392,6 +392,17 @@ enum InsightPriority {
 
 @HiveType(typeId: 62)
 class MetricData extends HiveObject {
+
+  MetricData({
+    required this.id,
+    required this.name,
+    required this.value,
+    this.unit = '',
+    required this.timestamp,
+    this.metadata = const {},
+    this.previousValue,
+    this.category = 'general',
+  });
   @HiveField(0)
   String id;
 
@@ -415,17 +426,6 @@ class MetricData extends HiveObject {
 
   @HiveField(7)
   String category;
-
-  MetricData({
-    required this.id,
-    required this.name,
-    required this.value,
-    this.unit = '',
-    required this.timestamp,
-    this.metadata = const {},
-    this.previousValue,
-    this.category = 'general',
-  });
 
   // حساب التغيير المئوي
   double? get percentChange {

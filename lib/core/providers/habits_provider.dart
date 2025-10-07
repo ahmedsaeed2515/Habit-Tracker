@@ -6,6 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../models/habit.dart';
+import '../../features/gamification_system/services/gamification_service.dart';
+import '../../features/gamification_system/models/points.dart';
 
 /// مزود حالة العادات اليومية
 final habitsProvider = StateNotifierProvider<HabitsNotifier, List<Habit>>((
@@ -16,10 +18,18 @@ final habitsProvider = StateNotifierProvider<HabitsNotifier, List<Habit>>((
 
 /// مُدير حالة العادات اليومية
 class HabitsNotifier extends StateNotifier<List<Habit>> {
-  late final Box<Habit> _habitsBox;
 
   HabitsNotifier() : super([]) {
-    _initializeBox();
+    _initializeServices();
+  }
+  late final Box<Habit> _habitsBox;
+  late final GamificationService _gamificationService;
+
+  /// تهيئة الخدمات
+  Future<void> _initializeServices() async {
+    _gamificationService = GamificationService();
+    await _gamificationService.init();
+    await _initializeBox();
   }
 
   /// تهيئة صندوق البيانات
@@ -113,6 +123,9 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
       // حفظ التغييرات
       await _habitsBox.put(habitId, habit);
 
+      // منح النقاط وتحديث الإنجازات
+      await _awardHabitCompletionPoints(habit);
+
       // تحديث الحالة
       final newState = [...state];
       newState[habitIndex] = habit;
@@ -172,6 +185,11 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
       // حفظ التغييرات
       await _habitsBox.put(habitId, habit);
 
+      // منح النقاط إذا تم إكمال العادة
+      if (todayEntry.isCompleted) {
+        await _awardHabitCompletionPoints(habit);
+      }
+
       // تحديث الحالة
       final newState = [...state];
       newState[habitIndex] = habit;
@@ -212,10 +230,57 @@ class HabitsNotifier extends StateNotifier<List<Habit>> {
   double get todayCompletionRate {
     if (activeHabits.isEmpty) return 0.0;
     final completed = completedTodayHabits.length;
-    return (completed / activeHabits.length * 100);
+    return completed / activeHabits.length * 100;
   }
 
   /// الحصول على إجمالي السلاسل النشطة
   int get totalActiveStreaks =>
       activeHabits.fold<int>(0, (sum, habit) => sum + habit.currentStreak);
+
+  /// منح النقاط وتحديث الإنجازات عند إكمال العادة
+  Future<void> _awardHabitCompletionPoints(Habit habit) async {
+    try {
+      // منح نقاط إكمال العادة
+      await _gamificationService.addPoints(
+        10, // 10 نقاط لكل عادة مكتملة
+        'إكمال العادة: ${habit.name}',
+        PointsCategory.habitCompletion,
+        habit.id,
+      );
+
+      // منح نقاط إضافية للسلسلة
+      if (habit.currentStreak > 0) {
+        final streakBonus =
+            habit.currentStreak * 2; // 2 نقطة إضافية لكل يوم في السلسلة
+        await _gamificationService.addPoints(
+          streakBonus,
+          'مكافأة السلسلة: ${habit.currentStreak} أيام',
+          PointsCategory.streak,
+          habit.id,
+        );
+      }
+
+      // تحديث إنجازات إكمال العادات
+      await _gamificationService.updateAchievementProgress('first_habit', 1);
+
+      // تحديث إنجازات السلسلة
+      if (habit.currentStreak >= 7) {
+        await _gamificationService.updateAchievementProgress(
+          'week_streak',
+          habit.currentStreak,
+        );
+      }
+
+      // تحديث إنجازات المستوى
+      final points = await _gamificationService.getPoints();
+      if (points != null) {
+        await _gamificationService.updateAchievementProgress(
+          'level_5',
+          points.currentLevel,
+        );
+      }
+    } catch (e) {
+      debugPrint('خطأ في منح النقاط: $e');
+    }
+  }
 }

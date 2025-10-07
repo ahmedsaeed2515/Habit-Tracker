@@ -8,10 +8,6 @@ import '../providers/ai_smart_habits_providers.dart';
 
 /// بطاقة العادة الذكية
 class SmartHabitCard extends ConsumerWidget {
-  final SmartHabit habit;
-  final VoidCallback? onTap;
-  final VoidCallback? onAnalyze;
-  final VoidCallback? onAdapt;
 
   const SmartHabitCard({
     Key? key,
@@ -20,6 +16,10 @@ class SmartHabitCard extends ConsumerWidget {
     this.onAnalyze,
     this.onAdapt,
   }) : super(key: key);
+  final SmartHabit habit;
+  final VoidCallback? onTap;
+  final VoidCallback? onAnalyze;
+  final VoidCallback? onAdapt;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -237,12 +237,11 @@ class SmartHabitCard extends ConsumerWidget {
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: AppColors.primary.withOpacity(0.2),
-          width: 1,
         ),
       ),
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.lightbulb_outlined,
             color: AppColors.primary,
             size: 16,
@@ -250,14 +249,14 @@ class SmartHabitCard extends ConsumerWidget {
           const SizedBox(width: 8),
           Text(
             '$totalInsights رؤية متاحة',
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.primary,
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
           ),
           const Spacer(),
-          Icon(
+          const Icon(
             Icons.arrow_forward_ios,
             color: AppColors.primary,
             size: 12,
@@ -332,9 +331,6 @@ class SmartHabitCard extends ConsumerWidget {
 
 /// قائمة العادات الذكية
 class SmartHabitsList extends ConsumerWidget {
-  final String userId;
-  final SmartHabitCategory? filterCategory;
-  final bool showAIGeneratedOnly;
 
   const SmartHabitsList({
     Key? key,
@@ -342,6 +338,9 @@ class SmartHabitsList extends ConsumerWidget {
     this.filterCategory,
     this.showAIGeneratedOnly = false,
   }) : super(key: key);
+  final String userId;
+  final SmartHabitCategory? filterCategory;
+  final bool showAIGeneratedOnly;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -426,12 +425,12 @@ class SmartHabitsList extends ConsumerWidget {
 
 /// صفحة تفاصيل العادة الذكية
 class SmartHabitDetailsSheet extends ConsumerWidget {
-  final SmartHabit habit;
 
   const SmartHabitDetailsSheet({
     Key? key,
     required this.habit,
   }) : super(key: key);
+  final SmartHabit habit;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -601,7 +600,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
               ),
               child: Text(
                 '$totalInsights رؤية',
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.primary,
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
@@ -612,9 +611,9 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
         if (totalInsights > 0) ...[
-          ...habit.insights.behaviorInsights.take(3).map((insight) => _buildInsightCard(insight)),
-          ...habit.insights.performanceInsights.take(3).map((insight) => _buildInsightCard(insight)),
-          ...habit.insights.patternInsights.take(3).map((insight) => _buildInsightCard(insight)),
+          ...habit.insights.behaviorInsights.take(3).map(_buildInsightCard),
+          ...habit.insights.performanceInsights.take(3).map(_buildInsightCard),
+          ...habit.insights.patternInsights.take(3).map(_buildInsightCard),
         ] else
           CustomCard(
             child: Center(
@@ -801,7 +800,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
         if (habit.triggers.isNotEmpty)
-          ...habit.triggers.map((trigger) => _buildTriggerCard(trigger))
+          ...habit.triggers.map(_buildTriggerCard)
         else
           CustomCard(
             child: Center(
@@ -865,7 +864,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
               onChanged: (value) {
                 // تحديث حالة المحفز
               },
-              activeColor: AppColors.primary,
+              activeThumbColor: AppColors.primary,
             ),
           ],
         ),
@@ -885,7 +884,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
         if (habit.rewards.isNotEmpty)
-          ...habit.rewards.map((reward) => _buildRewardCard(reward))
+          ...habit.rewards.map(_buildRewardCard)
         else
           CustomCard(
             child: Center(
@@ -954,7 +953,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
               ),
               child: Text(
                 '${reward.value}',
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.accent,
                   fontWeight: FontWeight.bold,
                   fontSize: 12,

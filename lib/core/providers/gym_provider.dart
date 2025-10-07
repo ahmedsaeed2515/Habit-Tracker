@@ -64,7 +64,7 @@ class WorkoutsNotifier extends StateNotifier<List<Workout>> {
   /// الحصول على تمارين الشهر الحالي
   List<Workout> getThisMonthWorkouts() {
     final now = DateTime.now();
-    final startOfMonth = DateTime(now.year, now.month, 1);
+    final startOfMonth = DateTime(now.year, now.month);
     final endOfMonth = DateTime(now.year, now.month + 1, 0);
 
     return getWorkoutsInRange(startOfMonth, endOfMonth);
@@ -102,11 +102,11 @@ class WorkoutsNotifier extends StateNotifier<List<Workout>> {
 
 // إحصائيات التمارين
 class WorkoutStatsNotifier extends StateNotifier<WorkoutStats> {
-  final Ref ref;
 
   WorkoutStatsNotifier(this.ref) : super(const WorkoutStats()) {
     _calculateStats();
   }
+  final Ref ref;
 
   void _calculateStats() {
     final workouts = ref.read(workoutsProvider);
@@ -151,7 +151,7 @@ class WorkoutStatsNotifier extends StateNotifier<WorkoutStats> {
 
   List<Workout> _getThisMonthWorkouts(List<Workout> workouts) {
     final now = DateTime.now();
-    final startOfMonth = DateTime(now.year, now.month, 1);
+    final startOfMonth = DateTime(now.year, now.month);
     final endOfMonth = DateTime(now.year, now.month + 1, 0);
 
     return workouts
@@ -170,12 +170,6 @@ class WorkoutStatsNotifier extends StateNotifier<WorkoutStats> {
 
 // نموذج إحصائيات التمارين
 class WorkoutStats {
-  final int totalWorkouts;
-  final int completedWorkouts;
-  final double totalWeight;
-  final int totalReps;
-  final int thisWeekWorkouts;
-  final int thisMonthWorkouts;
 
   const WorkoutStats({
     this.totalWorkouts = 0,
@@ -185,10 +179,16 @@ class WorkoutStats {
     this.thisWeekWorkouts = 0,
     this.thisMonthWorkouts = 0,
   });
+  final int totalWorkouts;
+  final int completedWorkouts;
+  final double totalWeight;
+  final int totalReps;
+  final int thisWeekWorkouts;
+  final int thisMonthWorkouts;
 
   double get completionRate {
     if (totalWorkouts == 0) return 0.0;
-    return (completedWorkouts / totalWorkouts * 100);
+    return completedWorkouts / totalWorkouts * 100;
   }
 }
 

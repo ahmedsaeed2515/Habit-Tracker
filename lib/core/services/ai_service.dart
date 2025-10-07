@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 /// خدمة الذكاء الاصطناعي للتطبيق
 class AIService {
-  static final AIService _instance = AIService._internal();
   factory AIService() => _instance;
   AIService._internal();
+  static final AIService _instance = AIService._internal();
 
   bool _initialized = false;
   final math.Random _random = math.Random();
@@ -219,7 +219,7 @@ class AIService {
       // تشابه في الكلمات المفتاحية
       final titleWords = title.toLowerCase().split(' ');
       final taskTitleWords = task.title.toLowerCase().split(' ');
-      final commonWords = titleWords.where((word) => taskTitleWords.contains(word)).length;
+      final commonWords = titleWords.where(taskTitleWords.contains).length;
       
       return commonWords >= 2;
     }).toList();
@@ -368,10 +368,6 @@ class AIService {
 
 /// بيانات جلسة العمل
 class SessionData {
-  final DateTime startTime;
-  final Duration duration;
-  final bool isCompleted;
-  final String type;
 
   const SessionData({
     required this.startTime,
@@ -379,15 +375,14 @@ class SessionData {
     required this.isCompleted,
     required this.type,
   });
+  final DateTime startTime;
+  final Duration duration;
+  final bool isCompleted;
+  final String type;
 }
 
 /// بيانات المهمة
 class TaskData {
-  final String title;
-  final String? description;
-  final List<String> tags;
-  final Duration actualDuration;
-  final bool isCompleted;
 
   const TaskData({
     required this.title,
@@ -396,16 +391,15 @@ class TaskData {
     required this.actualDuration,
     required this.isCompleted,
   });
+  final String title;
+  final String? description;
+  final List<String> tags;
+  final Duration actualDuration;
+  final bool isCompleted;
 }
 
 /// رؤى الإنتاجية
 class ProductivityInsights {
-  final double productivityScore;
-  final double completionRate;
-  final double focusEfficiency;
-  final List<String> suggestions;
-  final List<String> strengths;
-  final List<String> improvements;
 
   const ProductivityInsights({
     required this.productivityScore,
@@ -415,16 +409,16 @@ class ProductivityInsights {
     required this.strengths,
     required this.improvements,
   });
+  final double productivityScore;
+  final double completionRate;
+  final double focusEfficiency;
+  final List<String> suggestions;
+  final List<String> strengths;
+  final List<String> improvements;
 }
 
 /// أنماط الإنتاجية
 class ProductivityPatterns {
-  final TimeOfDay bestTimeOfDay;
-  final List<String> mostProductiveDays;
-  final Duration optimalSessionLength;
-  final List<String> productiveTags;
-  final List<int> focusStreaks;
-  final Map<String, int> breakPatterns;
 
   const ProductivityPatterns({
     required this.bestTimeOfDay,
@@ -434,4 +428,10 @@ class ProductivityPatterns {
     required this.focusStreaks,
     required this.breakPatterns,
   });
+  final TimeOfDay bestTimeOfDay;
+  final List<String> mostProductiveDays;
+  final Duration optimalSessionLength;
+  final List<String> productiveTags;
+  final List<int> focusStreaks;
+  final Map<String, int> breakPatterns;
 }

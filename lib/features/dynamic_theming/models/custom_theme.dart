@@ -5,6 +5,43 @@ part 'custom_theme.g.dart';
 
 @HiveType(typeId: 43)
 class CustomTheme extends HiveObject {
+
+  CustomTheme({
+    required this.id,
+    required this.nameEn,
+    required this.nameAr,
+    required this.primaryColorValue,
+    required this.secondaryColorValue,
+    required this.backgroundColorValue,
+    required this.surfaceColorValue,
+    required this.errorColorValue,
+    this.isDark = false,
+    required this.createdAt,
+    this.isDefault = false,
+    this.isActive = false,
+    this.category = 'custom',
+    this.accentColors = const {},
+  });
+
+  // إنشاء من خريطة
+  factory CustomTheme.fromMap(Map<String, dynamic> map) {
+    return CustomTheme(
+      id: map['id'],
+      nameEn: map['nameEn'],
+      nameAr: map['nameAr'],
+      primaryColorValue: map['primaryColorValue'],
+      secondaryColorValue: map['secondaryColorValue'],
+      backgroundColorValue: map['backgroundColorValue'],
+      surfaceColorValue: map['surfaceColorValue'],
+      errorColorValue: map['errorColorValue'],
+      isDark: map['isDark'],
+      createdAt: DateTime.parse(map['createdAt']),
+      isDefault: map['isDefault'],
+      isActive: map['isActive'],
+      category: map['category'],
+      accentColors: Map<String, int>.from(map['accentColors'] ?? {}),
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -47,23 +84,6 @@ class CustomTheme extends HiveObject {
   @HiveField(13)
   Map<String, int> accentColors;
 
-  CustomTheme({
-    required this.id,
-    required this.nameEn,
-    required this.nameAr,
-    required this.primaryColorValue,
-    required this.secondaryColorValue,
-    required this.backgroundColorValue,
-    required this.surfaceColorValue,
-    required this.errorColorValue,
-    this.isDark = false,
-    required this.createdAt,
-    this.isDefault = false,
-    this.isActive = false,
-    this.category = 'custom',
-    this.accentColors = const {},
-  });
-
   // تحويل إلى ألوان Flutter
   Color get primaryColor => Color(primaryColorValue);
   Color get secondaryColor => Color(secondaryColorValue);
@@ -83,12 +103,10 @@ class CustomTheme extends HiveObject {
       return ColorScheme.dark(
         primary: primaryColor,
         secondary: secondaryColor,
-        background: backgroundColor,
         surface: surfaceColor,
         error: errorColor,
         onPrimary: _getContrastColor(primaryColor),
         onSecondary: _getContrastColor(secondaryColor),
-        onBackground: _getContrastColor(backgroundColor),
         onSurface: _getContrastColor(surfaceColor),
         onError: _getContrastColor(errorColor),
       );
@@ -96,12 +114,10 @@ class CustomTheme extends HiveObject {
       return ColorScheme.light(
         primary: primaryColor,
         secondary: secondaryColor,
-        background: backgroundColor,
         surface: surfaceColor,
         error: errorColor,
         onPrimary: _getContrastColor(primaryColor),
         onSecondary: _getContrastColor(secondaryColor),
-        onBackground: _getContrastColor(backgroundColor),
         onSurface: _getContrastColor(surfaceColor),
         onError: _getContrastColor(errorColor),
       );
@@ -193,11 +209,11 @@ class CustomTheme extends HiveObject {
       id: id ?? this.id,
       nameEn: nameEn ?? this.nameEn,
       nameAr: nameAr ?? this.nameAr,
-      primaryColorValue: primaryColor?.value ?? this.primaryColorValue,
-      secondaryColorValue: secondaryColor?.value ?? this.secondaryColorValue,
-      backgroundColorValue: backgroundColor?.value ?? this.backgroundColorValue,
-      surfaceColorValue: surfaceColor?.value ?? this.surfaceColorValue,
-      errorColorValue: errorColor?.value ?? this.errorColorValue,
+      primaryColorValue: primaryColor?.value ?? primaryColorValue,
+      secondaryColorValue: secondaryColor?.value ?? secondaryColorValue,
+      backgroundColorValue: backgroundColor?.value ?? backgroundColorValue,
+      surfaceColorValue: surfaceColor?.value ?? surfaceColorValue,
+      errorColorValue: errorColor?.value ?? errorColorValue,
       isDark: isDark ?? this.isDark,
       createdAt: createdAt ?? this.createdAt,
       isDefault: isDefault ?? this.isDefault,
@@ -226,30 +242,22 @@ class CustomTheme extends HiveObject {
       'accentColors': accentColors,
     };
   }
-
-  // إنشاء من خريطة
-  factory CustomTheme.fromMap(Map<String, dynamic> map) {
-    return CustomTheme(
-      id: map['id'],
-      nameEn: map['nameEn'],
-      nameAr: map['nameAr'],
-      primaryColorValue: map['primaryColorValue'],
-      secondaryColorValue: map['secondaryColorValue'],
-      backgroundColorValue: map['backgroundColorValue'],
-      surfaceColorValue: map['surfaceColorValue'],
-      errorColorValue: map['errorColorValue'],
-      isDark: map['isDark'],
-      createdAt: DateTime.parse(map['createdAt']),
-      isDefault: map['isDefault'],
-      isActive: map['isActive'],
-      category: map['category'],
-      accentColors: Map<String, int>.from(map['accentColors'] ?? {}),
-    );
-  }
 }
 
 @HiveType(typeId: 44)
 class ThemePreferences extends HiveObject {
+
+  ThemePreferences({
+    this.currentThemeId = 'default',
+    this.useSystemTheme = true,
+    this.adaptToWallpaper = false,
+    this.themeBrightness = 1.0,
+    this.enableAnimations = true,
+    this.fontFamily = 'Cairo',
+    this.fontSize = 14.0,
+    required this.lastModified,
+    this.customizations = const {},
+  });
   @HiveField(0)
   String currentThemeId;
 
@@ -276,18 +284,6 @@ class ThemePreferences extends HiveObject {
 
   @HiveField(8)
   Map<String, dynamic> customizations;
-
-  ThemePreferences({
-    this.currentThemeId = 'default',
-    this.useSystemTheme = true,
-    this.adaptToWallpaper = false,
-    this.themeBrightness = 1.0,
-    this.enableAnimations = true,
-    this.fontFamily = 'Cairo',
-    this.fontSize = 14.0,
-    required this.lastModified,
-    this.customizations = const {},
-  });
 
   // تحديث التفضيلات
   void updatePreferences({

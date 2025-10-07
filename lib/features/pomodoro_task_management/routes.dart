@@ -127,9 +127,6 @@ class PomodoroRoutes {
 
 /// ويدجت مخصص للتنقل السلس بين الشاشات
 class PomodoroPageTransition extends PageRouteBuilder {
-  final Widget child;
-  final String routeName;
-  final PomodoroTransitionType transitionType;
 
   PomodoroPageTransition({
     required this.child,
@@ -147,6 +144,9 @@ class PomodoroPageTransition extends PageRouteBuilder {
             );
           },
         );
+  final Widget child;
+  final String routeName;
+  final PomodoroTransitionType transitionType;
 
   static Widget _buildTransition(
     Animation<double> animation,
@@ -222,7 +222,7 @@ class PomodoroNavigationHelper {
   /// التنقل إلى شاشة جديدة دون سياق
   static Future<T?> pushNamed<T>(String routeName, {Object? arguments}) {
     final context = currentContext;
-    if (context == null) return Future.value(null);
+    if (context == null) return Future.value();
     
     return Navigator.pushNamed<T>(
       context,
@@ -238,7 +238,7 @@ class PomodoroNavigationHelper {
     T? result,
   }) {
     final context = currentContext;
-    if (context == null) return Future.value(null);
+    if (context == null) return Future.value();
     
     return Navigator.pushReplacementNamed<T, T>(
       context,
@@ -263,7 +263,7 @@ class PomodoroNavigationHelper {
     Object? arguments,
   }) {
     final context = currentContext;
-    if (context == null) return Future.value(null);
+    if (context == null) return Future.value();
     
     return Navigator.pushNamedAndRemoveUntil<T>(
       context,
@@ -310,12 +310,12 @@ class PomodoroNavigationHelper {
 
 /// ويدجت مخصص لإدارة التنقل في النظام
 class PomodoroNavigationWrapper extends StatefulWidget {
-  final Widget child;
 
   const PomodoroNavigationWrapper({
     Key? key,
     required this.child,
   }) : super(key: key);
+  final Widget child;
 
   @override
   State<PomodoroNavigationWrapper> createState() => 
@@ -328,7 +328,7 @@ class _PomodoroNavigationWrapperState
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (bool didPop, dynamic result) async {
+      onPopInvokedWithResult: (bool didPop, result) async {
         if (didPop) return;
         
         // التعامل مع زر العودة في Android

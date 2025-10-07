@@ -23,6 +23,28 @@ enum ThemeCategory {
 
 @HiveType(typeId: 201)
 class ColorPalette {
+
+  const ColorPalette({
+    required this.primary,
+    required this.onPrimary,
+    required this.secondary,
+    required this.onSecondary,
+    required this.tertiary,
+    required this.onTertiary,
+    required this.error,
+    required this.onError,
+    required this.surface,
+    required this.onSurface,
+    required this.onSurfaceVariant,
+    required this.outline,
+    required this.shadow,
+    required this.surfaceVariant,
+    required this.background,
+    required this.onBackground,
+    required this.success,
+    required this.warning,
+    required this.info,
+  });
   @HiveField(0)
   final int primary;
   @HiveField(1)
@@ -62,28 +84,6 @@ class ColorPalette {
   @HiveField(18)
   final int info;
 
-  const ColorPalette({
-    required this.primary,
-    required this.onPrimary,
-    required this.secondary,
-    required this.onSecondary,
-    required this.tertiary,
-    required this.onTertiary,
-    required this.error,
-    required this.onError,
-    required this.surface,
-    required this.onSurface,
-    required this.onSurfaceVariant,
-    required this.outline,
-    required this.shadow,
-    required this.surfaceVariant,
-    required this.background,
-    required this.onBackground,
-    required this.success,
-    required this.warning,
-    required this.info,
-  });
-
   static ColorPalette defaultDark() {
     return const ColorPalette(
       primary: 0xFF90CAF9,
@@ -111,6 +111,18 @@ class ColorPalette {
 
 @HiveType(typeId: 202)
 class DynamicTheme {
+
+  const DynamicTheme({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.category,
+    required this.lightColorPalette,
+    required this.darkColorPalette,
+    this.isCustom = false,
+    required this.createdAt,
+    required this.updatedAt,
+  });
   @HiveField(0)
   final String id;
   @HiveField(1)
@@ -129,18 +141,6 @@ class DynamicTheme {
   final DateTime createdAt;
   @HiveField(8)
   final DateTime updatedAt;
-
-  const DynamicTheme({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.category,
-    required this.lightColorPalette,
-    required this.darkColorPalette,
-    this.isCustom = false,
-    required this.createdAt,
-    required this.updatedAt,
-  });
 
   DynamicTheme copyWith({
     String? id,
@@ -169,13 +169,13 @@ class DynamicTheme {
 
 // Simple theme state for the current theme
 class ThemeState {
-  final String themeId;
-  final DynamicTheme? currentTheme;
 
   const ThemeState({
     required this.themeId,
     this.currentTheme,
   });
+  final String themeId;
+  final DynamicTheme? currentTheme;
 }
 
 // Simple service interface

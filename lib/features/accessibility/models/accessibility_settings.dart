@@ -4,6 +4,49 @@ part 'accessibility_settings.g.dart';
 
 @HiveType(typeId: 92)
 class AccessibilitySettings extends HiveObject {
+
+  AccessibilitySettings({
+    required this.id,
+    this.reduceAnimations = false,
+    this.highContrast = false,
+    this.fontSize = FontSize.medium,
+    this.boldText = false,
+    this.screenReaderSupport = false,
+    this.voiceCommands = false,
+    this.hapticFeedback = true,
+    this.soundFeedback = true,
+    this.colorBlindnessType = ColorBlindnessType.none,
+    required this.motorImpairment,
+    required this.cognitiveAccessibility,
+    this.customSettings = const {},
+    required this.lastUpdated,
+  });
+
+  // إنشاء من خريطة
+  factory AccessibilitySettings.fromMap(Map<String, dynamic> map) {
+    return AccessibilitySettings(
+      id: map['id'],
+      reduceAnimations: map['reduceAnimations'] ?? false,
+      highContrast: map['highContrast'] ?? false,
+      fontSize: FontSize.values.firstWhere(
+        (f) => f.name == map['fontSize'],
+        orElse: () => FontSize.medium,
+      ),
+      boldText: map['boldText'] ?? false,
+      screenReaderSupport: map['screenReaderSupport'] ?? false,
+      voiceCommands: map['voiceCommands'] ?? false,
+      hapticFeedback: map['hapticFeedback'] ?? true,
+      soundFeedback: map['soundFeedback'] ?? true,
+      colorBlindnessType: ColorBlindnessType.values.firstWhere(
+        (c) => c.name == map['colorBlindnessType'],
+        orElse: () => ColorBlindnessType.none,
+      ),
+      motorImpairment: MotorImpairmentSettings.fromMap(map['motorImpairment'] ?? {}),
+      cognitiveAccessibility: CognitiveAccessibilitySettings.fromMap(map['cognitiveAccessibility'] ?? {}),
+      customSettings: Map<String, dynamic>.from(map['customSettings'] ?? {}),
+      lastUpdated: DateTime.parse(map['lastUpdated']),
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -46,23 +89,6 @@ class AccessibilitySettings extends HiveObject {
   @HiveField(13)
   DateTime lastUpdated;
 
-  AccessibilitySettings({
-    required this.id,
-    this.reduceAnimations = false,
-    this.highContrast = false,
-    this.fontSize = FontSize.medium,
-    this.boldText = false,
-    this.screenReaderSupport = false,
-    this.voiceCommands = false,
-    this.hapticFeedback = true,
-    this.soundFeedback = true,
-    this.colorBlindnessType = ColorBlindnessType.none,
-    required this.motorImpairment,
-    required this.cognitiveAccessibility,
-    this.customSettings = const {},
-    required this.lastUpdated,
-  });
-
   // تحديث إعدادات إمكانية الوصول
   void updateSettings({
     bool? reduceAnimations,
@@ -94,7 +120,7 @@ class AccessibilitySettings extends HiveObject {
   }
 
   // تحديث إعداد مخصص
-  void updateCustomSetting(String key, dynamic value) {
+  void updateCustomSetting(String key, value) {
     final newSettings = Map<String, dynamic>.from(customSettings);
     newSettings[key] = value;
     customSettings = newSettings;
@@ -155,32 +181,6 @@ class AccessibilitySettings extends HiveObject {
       'lastUpdated': lastUpdated.toIso8601String(),
     };
   }
-
-  // إنشاء من خريطة
-  factory AccessibilitySettings.fromMap(Map<String, dynamic> map) {
-    return AccessibilitySettings(
-      id: map['id'],
-      reduceAnimations: map['reduceAnimations'] ?? false,
-      highContrast: map['highContrast'] ?? false,
-      fontSize: FontSize.values.firstWhere(
-        (f) => f.name == map['fontSize'],
-        orElse: () => FontSize.medium,
-      ),
-      boldText: map['boldText'] ?? false,
-      screenReaderSupport: map['screenReaderSupport'] ?? false,
-      voiceCommands: map['voiceCommands'] ?? false,
-      hapticFeedback: map['hapticFeedback'] ?? true,
-      soundFeedback: map['soundFeedback'] ?? true,
-      colorBlindnessType: ColorBlindnessType.values.firstWhere(
-        (c) => c.name == map['colorBlindnessType'],
-        orElse: () => ColorBlindnessType.none,
-      ),
-      motorImpairment: MotorImpairmentSettings.fromMap(map['motorImpairment'] ?? {}),
-      cognitiveAccessibility: CognitiveAccessibilitySettings.fromMap(map['cognitiveAccessibility'] ?? {}),
-      customSettings: Map<String, dynamic>.from(map['customSettings'] ?? {}),
-      lastUpdated: DateTime.parse(map['lastUpdated']),
-    );
-  }
 }
 
 @HiveType(typeId: 93)
@@ -220,7 +220,39 @@ enum ColorBlindnessType {
 }
 
 @HiveType(typeId: 95)
-class MotorImpairmentSettings extends HiveObject {
+class MotorImpairmentSettings extends HiveObject { // اتجاه السحب المفضل
+
+  MotorImpairmentSettings({
+    this.isEnabled = false,
+    this.largerTouchTargets = false,
+    this.stickyKeys = false,
+    this.slowKeys = false,
+    this.bounceKeys = false,
+    this.touchSensitivity = 1.0,
+    this.touchHoldDuration = 500,
+    this.oneHandedMode = false,
+    this.assistiveTouch = false,
+    this.preferredSwipeGesture = SwipeGesture.horizontal,
+  });
+
+  // إنشاء من خريطة
+  factory MotorImpairmentSettings.fromMap(Map<String, dynamic> map) {
+    return MotorImpairmentSettings(
+      isEnabled: map['isEnabled'] ?? false,
+      largerTouchTargets: map['largerTouchTargets'] ?? false,
+      stickyKeys: map['stickyKeys'] ?? false,
+      slowKeys: map['slowKeys'] ?? false,
+      bounceKeys: map['bounceKeys'] ?? false,
+      touchSensitivity: (map['touchSensitivity'] ?? 1.0).toDouble(),
+      touchHoldDuration: map['touchHoldDuration'] ?? 500,
+      oneHandedMode: map['oneHandedMode'] ?? false,
+      assistiveTouch: map['assistiveTouch'] ?? false,
+      preferredSwipeGesture: SwipeGesture.values.firstWhere(
+        (s) => s.name == map['preferredSwipeGesture'],
+        orElse: () => SwipeGesture.horizontal,
+      ),
+    );
+  }
   @HiveField(0)
   bool isEnabled;
 
@@ -249,20 +281,7 @@ class MotorImpairmentSettings extends HiveObject {
   bool assistiveTouch; // لمس مساعد
 
   @HiveField(9)
-  SwipeGesture preferredSwipeGesture; // اتجاه السحب المفضل
-
-  MotorImpairmentSettings({
-    this.isEnabled = false,
-    this.largerTouchTargets = false,
-    this.stickyKeys = false,
-    this.slowKeys = false,
-    this.bounceKeys = false,
-    this.touchSensitivity = 1.0,
-    this.touchHoldDuration = 500,
-    this.oneHandedMode = false,
-    this.assistiveTouch = false,
-    this.preferredSwipeGesture = SwipeGesture.horizontal,
-  });
+  SwipeGesture preferredSwipeGesture;
 
   // تحديث الإعدادات
   void updateSettings({
@@ -310,25 +329,6 @@ class MotorImpairmentSettings extends HiveObject {
       'preferredSwipeGesture': preferredSwipeGesture.name,
     };
   }
-
-  // إنشاء من خريطة
-  factory MotorImpairmentSettings.fromMap(Map<String, dynamic> map) {
-    return MotorImpairmentSettings(
-      isEnabled: map['isEnabled'] ?? false,
-      largerTouchTargets: map['largerTouchTargets'] ?? false,
-      stickyKeys: map['stickyKeys'] ?? false,
-      slowKeys: map['slowKeys'] ?? false,
-      bounceKeys: map['bounceKeys'] ?? false,
-      touchSensitivity: (map['touchSensitivity'] ?? 1.0).toDouble(),
-      touchHoldDuration: map['touchHoldDuration'] ?? 500,
-      oneHandedMode: map['oneHandedMode'] ?? false,
-      assistiveTouch: map['assistiveTouch'] ?? false,
-      preferredSwipeGesture: SwipeGesture.values.firstWhere(
-        (s) => s.name == map['preferredSwipeGesture'],
-        orElse: () => SwipeGesture.horizontal,
-      ),
-    );
-  }
 }
 
 @HiveType(typeId: 96)
@@ -344,7 +344,43 @@ enum SwipeGesture {
 }
 
 @HiveType(typeId: 97)
-class CognitiveAccessibilitySettings extends HiveObject {
+class CognitiveAccessibilitySettings extends HiveObject { // مستوى المساعدة في الذاكرة
+
+  CognitiveAccessibilitySettings({
+    this.isEnabled = false,
+    this.simplifiedInterface = false,
+    this.reducedClutter = false,
+    this.clearLabels = false,
+    this.consistentNavigation = false,
+    this.confirmationPrompts = false,
+    this.progressIndicators = false,
+    this.timeoutWarnings = false,
+    this.focusTimeout = 30,
+    this.audioDescriptions = false,
+    this.visualCues = false,
+    this.memoryAssistLevel = MemoryAssistLevel.none,
+  });
+
+  // إنشاء من خريطة
+  factory CognitiveAccessibilitySettings.fromMap(Map<String, dynamic> map) {
+    return CognitiveAccessibilitySettings(
+      isEnabled: map['isEnabled'] ?? false,
+      simplifiedInterface: map['simplifiedInterface'] ?? false,
+      reducedClutter: map['reducedClutter'] ?? false,
+      clearLabels: map['clearLabels'] ?? false,
+      consistentNavigation: map['consistentNavigation'] ?? false,
+      confirmationPrompts: map['confirmationPrompts'] ?? false,
+      progressIndicators: map['progressIndicators'] ?? false,
+      timeoutWarnings: map['timeoutWarnings'] ?? false,
+      focusTimeout: map['focusTimeout'] ?? 30,
+      audioDescriptions: map['audioDescriptions'] ?? false,
+      visualCues: map['visualCues'] ?? false,
+      memoryAssistLevel: MemoryAssistLevel.values.firstWhere(
+        (m) => m.name == map['memoryAssistLevel'],
+        orElse: () => MemoryAssistLevel.none,
+      ),
+    );
+  }
   @HiveField(0)
   bool isEnabled;
 
@@ -379,22 +415,7 @@ class CognitiveAccessibilitySettings extends HiveObject {
   bool visualCues; // إشارات بصرية
 
   @HiveField(11)
-  MemoryAssistLevel memoryAssistLevel; // مستوى المساعدة في الذاكرة
-
-  CognitiveAccessibilitySettings({
-    this.isEnabled = false,
-    this.simplifiedInterface = false,
-    this.reducedClutter = false,
-    this.clearLabels = false,
-    this.consistentNavigation = false,
-    this.confirmationPrompts = false,
-    this.progressIndicators = false,
-    this.timeoutWarnings = false,
-    this.focusTimeout = 30,
-    this.audioDescriptions = false,
-    this.visualCues = false,
-    this.memoryAssistLevel = MemoryAssistLevel.none,
-  });
+  MemoryAssistLevel memoryAssistLevel;
 
   // تحديث الإعدادات
   void updateSettings({
@@ -443,27 +464,6 @@ class CognitiveAccessibilitySettings extends HiveObject {
       'memoryAssistLevel': memoryAssistLevel.name,
     };
   }
-
-  // إنشاء من خريطة
-  factory CognitiveAccessibilitySettings.fromMap(Map<String, dynamic> map) {
-    return CognitiveAccessibilitySettings(
-      isEnabled: map['isEnabled'] ?? false,
-      simplifiedInterface: map['simplifiedInterface'] ?? false,
-      reducedClutter: map['reducedClutter'] ?? false,
-      clearLabels: map['clearLabels'] ?? false,
-      consistentNavigation: map['consistentNavigation'] ?? false,
-      confirmationPrompts: map['confirmationPrompts'] ?? false,
-      progressIndicators: map['progressIndicators'] ?? false,
-      timeoutWarnings: map['timeoutWarnings'] ?? false,
-      focusTimeout: map['focusTimeout'] ?? 30,
-      audioDescriptions: map['audioDescriptions'] ?? false,
-      visualCues: map['visualCues'] ?? false,
-      memoryAssistLevel: MemoryAssistLevel.values.firstWhere(
-        (m) => m.name == map['memoryAssistLevel'],
-        orElse: () => MemoryAssistLevel.none,
-      ),
-    );
-  }
 }
 
 @HiveType(typeId: 98)
@@ -483,6 +483,16 @@ enum MemoryAssistLevel {
 
 @HiveType(typeId: 99)
 class AccessibilityAudit extends HiveObject {
+
+  AccessibilityAudit({
+    required this.id,
+    required this.auditDate,
+    this.issues = const [],
+    this.recommendations = const [],
+    this.overallScore = 0.0,
+    this.categoryScores = const {},
+    this.auditData = const {},
+  });
   @HiveField(0)
   String id;
 
@@ -503,16 +513,6 @@ class AccessibilityAudit extends HiveObject {
 
   @HiveField(6)
   Map<String, dynamic> auditData;
-
-  AccessibilityAudit({
-    required this.id,
-    required this.auditDate,
-    this.issues = const [],
-    this.recommendations = const [],
-    this.overallScore = 0.0,
-    this.categoryScores = const {},
-    this.auditData = const {},
-  });
 
   // إضافة مشكلة
   void addIssue(AccessibilityIssue issue) {
@@ -545,6 +545,17 @@ class AccessibilityAudit extends HiveObject {
 
 @HiveType(typeId: 100)
 class AccessibilityIssue extends HiveObject {
+
+  AccessibilityIssue({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.severity,
+    required this.category,
+    required this.location,
+    this.isFixed = false,
+    this.fixedAt,
+  });
   @HiveField(0)
   String id;
 
@@ -568,17 +579,6 @@ class AccessibilityIssue extends HiveObject {
 
   @HiveField(7)
   DateTime? fixedAt;
-
-  AccessibilityIssue({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.severity,
-    required this.category,
-    required this.location,
-    this.isFixed = false,
-    this.fixedAt,
-  });
 
   // تعيين المشكلة كمحلولة
   void markAsFixed() {
@@ -626,6 +626,17 @@ enum IssueCategory {
 
 @HiveType(typeId: 103)
 class AccessibilityRecommendation extends HiveObject {
+
+  AccessibilityRecommendation({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.priority,
+    required this.category,
+    this.steps = const [],
+    this.isImplemented = false,
+    this.implementedAt,
+  });
   @HiveField(0)
   String id;
 
@@ -649,17 +660,6 @@ class AccessibilityRecommendation extends HiveObject {
 
   @HiveField(7)
   DateTime? implementedAt;
-
-  AccessibilityRecommendation({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.priority,
-    required this.category,
-    this.steps = const [],
-    this.isImplemented = false,
-    this.implementedAt,
-  });
 
   // تعيين التوصية كمنفذة
   void markAsImplemented() {

@@ -5,12 +5,12 @@ import '../providers/pomodoro_providers.dart';
 
 /// شاشة تفاصيل المهمة مع إمكانية التعديل
 class TaskDetailsScreen extends ConsumerStatefulWidget {
-  final String taskId;
 
   const TaskDetailsScreen({
     Key? key,
     required this.taskId,
   }) : super(key: key);
+  final String taskId;
 
   @override
   ConsumerState<TaskDetailsScreen> createState() => _TaskDetailsScreenState();
@@ -195,7 +195,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                 ],
                 
                 // Pomodoro Count
-                Icon(
+                const Icon(
                   Icons.local_fire_department,
                   size: 16,
                   color: Colors.orange,

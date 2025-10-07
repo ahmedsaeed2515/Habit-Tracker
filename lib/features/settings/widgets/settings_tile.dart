@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 
 /// ويدجت عنصر الإعداد
 class SettingsTile extends StatelessWidget {
-  final String title;
-  final String? subtitle;
-  final Widget leading;
-  final Widget? trailing;
-  final VoidCallback? onTap;
 
   const SettingsTile({
     super.key,
@@ -16,6 +11,11 @@ class SettingsTile extends StatelessWidget {
     this.trailing,
     this.onTap,
   });
+  final String title;
+  final String? subtitle;
+  final Widget leading;
+  final Widget? trailing;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

@@ -2,18 +2,37 @@
 // مدير تسجيل جميع محولات Hive
 
 import 'package:flutter/foundation.dart';
-import '../../../features/smart_notifications/models/smart_notification.dart';
-import '../../../features/voice_commands/models/voice_command.dart';
-import '../../../features/habit_builder/models/habit_template.dart';
+import 'package:hive/hive.dart';
+
 import '../../../features/ai_assistant/models/ai_message.dart';
-import '../../../features/widgets_system/models/widget_config.dart';
+import '../../../features/gamification_system/adapters/achievement_adapter.dart';
+import '../../../features/gamification_system/adapters/badge_adapter.dart';
+import '../../../features/gamification_system/adapters/challenge_adapter.dart';
+import '../../../features/gamification_system/adapters/level_adapter.dart';
+import '../../../features/gamification_system/adapters/points_adapter.dart';
+import '../../../features/gamification_system/adapters/reward_adapter.dart';
+import '../../../features/habit_builder/models/habit_template.dart' as hb;
+import '../../../features/health_integration/models/health_data.dart' as hd;
+import '../../../features/health_integration/models/health_models.dart' as hm;
+import '../../../features/intelligent_workout_planner/models/adapters.dart'
+    as iwp;
 import '../../../features/pomodoro_task_management/models/pomodoro_models.dart'
     as pomodoro;
-import '../../models/workout.dart';
-import '../../models/morning_exercise.dart';
+import '../../../features/smart_notifications/models/smart_notification.dart';
+import '../../../features/social/models/social_user.dart';
+import '../../../features/voice_commands/models/voice_command.dart';
+import '../../../features/widgets_system/models/widget_config.dart';
+// إضافات جديدة لنظام الملاحظات والمزاج والميزانية والمشاريع
+import '../../../features/notes/models/note_models.dart';
+import '../../../features/mood_journal/models/mood_models.dart';
+import '../../../features/budget/models/budget_models.dart';
+import '../../../features/projects/models/project_models.dart';
 import '../../models/habit.dart';
-import '../../models/task.dart';
+import '../../models/morning_exercise.dart';
 import '../../models/settings.dart';
+import '../../models/task.dart' as core_task;
+import '../../models/user_profile.dart' as up;
+import '../../models/workout.dart';
 import '../adapters/datetime_adapter.dart';
 import '../adapters/duration_adapter.dart';
 import 'base_database_manager.dart';
@@ -35,7 +54,15 @@ class AdaptersManager {
     _registerAIAssistantAdapters();
     _registerWidgetsSystemAdapters();
     _registerPomodoroAdapters();
-
+    _registerIntelligentWorkoutPlannerAdapters();
+    _registerGamificationAdapters();
+    _registerUserProfileAdapters();
+    _registerHealthAdapters();
+    _registerSocialAdapters();
+    _registerNotesAdapters();
+    _registerMoodJournalAdapters();
+    _registerBudgetAdapters();
+    _registerProjectsAdapters();
     debugPrint('✅ تم تسجيل جميع محولات Hive بنجاح');
   }
 
@@ -80,11 +107,11 @@ class AdaptersManager {
 
   /// تسجيل محولات المهام (IDs: 8-9, 13-15)
   static void _registerTaskAdapters() {
-    BaseDatabaseManager.registerAdapterSafe(TaskSheetAdapter(), 8);
-    BaseDatabaseManager.registerAdapterSafe(TaskAdapter(), 9);
-    BaseDatabaseManager.registerAdapterSafe(SubTaskAdapter(), 13);
-    BaseDatabaseManager.registerAdapterSafe(TaskPriorityAdapter(), 14);
-    BaseDatabaseManager.registerAdapterSafe(TaskStatusAdapter(), 15);
+    BaseDatabaseManager.registerAdapterSafe(core_task.TaskSheetAdapter(), 8);
+    BaseDatabaseManager.registerAdapterSafe(core_task.TaskAdapter(), 9);
+    BaseDatabaseManager.registerAdapterSafe(core_task.SubTaskAdapter(), 13);
+    BaseDatabaseManager.registerAdapterSafe(core_task.TaskPriorityAdapter(), 14);
+    BaseDatabaseManager.registerAdapterSafe(core_task.TaskStatusAdapter(), 15);
   }
 
   /// تسجيل محولات الإعدادات (IDs: 16-17)
@@ -102,9 +129,9 @@ class AdaptersManager {
 
   /// تسجيل محولات بناء العادات (IDs: 21-23)
   static void _registerHabitBuilderAdapters() {
-    BaseDatabaseManager.registerAdapterSafe(HabitTemplateAdapter(), 21);
-    BaseDatabaseManager.registerAdapterSafe(HabitCategoryAdapter(), 22);
-    BaseDatabaseManager.registerAdapterSafe(UserProfileAdapter(), 23);
+    BaseDatabaseManager.registerAdapterSafe(hb.HabitTemplateAdapter(), 21);
+    BaseDatabaseManager.registerAdapterSafe(hb.HabitCategoryAdapter(), 22);
+    BaseDatabaseManager.registerAdapterSafe(hb.UserProfileAdapter(), 23);
   }
 
   /// تسجيل محولات المساعد الذكي (IDs: 24-27)
@@ -200,5 +227,149 @@ class AdaptersManager {
       pomodoro.SuggestionTypeAdapter(),
       101,
     );
+  }
+
+  /// تسجيل محولات Intelligent Workout Planner (IDs: 21-24)
+  static void _registerIntelligentWorkoutPlannerAdapters() {
+    BaseDatabaseManager.registerAdapterSafe(iwp.WorkoutPlanAdapter(), 21);
+    BaseDatabaseManager.registerAdapterSafe(iwp.WorkoutDayAdapter(), 22);
+    BaseDatabaseManager.registerAdapterSafe(iwp.ExerciseAdapter(), 23);
+    BaseDatabaseManager.registerAdapterSafe(iwp.AIRecommendationAdapter(), 24);
+  }
+
+  /// تسجيل محولات Gamification System (IDs: 20-37)
+  static void _registerGamificationAdapters() {
+    BaseDatabaseManager.registerAdapterSafe(AchievementAdapter(), 20);
+    BaseDatabaseManager.registerAdapterSafe(BadgeAdapter(), 23);
+    BaseDatabaseManager.registerAdapterSafe(PointsAdapter(), 26);
+    BaseDatabaseManager.registerAdapterSafe(PointsTransactionAdapter(), 27);
+    BaseDatabaseManager.registerAdapterSafe(LevelAdapter(), 29);
+    BaseDatabaseManager.registerAdapterSafe(ChallengeAdapter(), 31);
+    BaseDatabaseManager.registerAdapterSafe(RewardAdapter(), 35);
+  }
+
+  /// تسجيل محولات User Profile (ID: 25)
+  static void _registerUserProfileAdapters() {
+    BaseDatabaseManager.registerAdapterSafe(up.UserProfileAdapter(), 25);
+  }
+
+  /// تسجيل محولات Health Integration (IDs: 38-42, 133-145)
+  static void _registerHealthAdapters() {
+    // Health Data models (IDs: 38-42)
+    BaseDatabaseManager.registerAdapterSafe(hd.HealthDataAdapter(), 38);
+    BaseDatabaseManager.registerAdapterSafe(hd.ActivityLevelAdapter(), 39);
+    BaseDatabaseManager.registerAdapterSafe(hd.SleepQualityAdapter(), 40);
+    BaseDatabaseManager.registerAdapterSafe(hd.HealthGoalAdapter(), 41);
+    BaseDatabaseManager.registerAdapterSafe(hd.HealthMetricTypeAdapter(), 42);
+
+    // Health Models (IDs: 133-145)
+    BaseDatabaseManager.registerAdapterSafe(hm.HealthProfileAdapter(), 133);
+    BaseDatabaseManager.registerAdapterSafe(hm.HealthMetricAdapter(), 134);
+    BaseDatabaseManager.registerAdapterSafe(hm.HealthDataPointAdapter(), 135);
+    BaseDatabaseManager.registerAdapterSafe(hm.HealthGoalAdapter(), 136);
+    BaseDatabaseManager.registerAdapterSafe(hm.HealthInsightAdapter(), 137);
+    BaseDatabaseManager.registerAdapterSafe(hm.HealthTrendAdapter(), 138);
+    BaseDatabaseManager.registerAdapterSafe(
+      hm.HealthPrivacySettingsAdapter(),
+      139,
+    );
+    BaseDatabaseManager.registerAdapterSafe(hm.HealthMetricTypeAdapter(), 140);
+    BaseDatabaseManager.registerAdapterSafe(hm.HealthDataSourceAdapter(), 141);
+    BaseDatabaseManager.registerAdapterSafe(
+      hm.HealthTrendDirectionAdapter(),
+      142,
+    );
+    BaseDatabaseManager.registerAdapterSafe(hm.HealthGoalTypeAdapter(), 143);
+    BaseDatabaseManager.registerAdapterSafe(hm.HealthInsightTypeAdapter(), 144);
+    BaseDatabaseManager.registerAdapterSafe(
+      hm.HealthInsightPriorityAdapter(),
+      145,
+    );
+  }
+
+  /// تسجيل محولات Social Features (IDs: 45-48)
+  static void _registerSocialAdapters() {
+    BaseDatabaseManager.registerAdapterSafe(SocialUserAdapter(), 45);
+    BaseDatabaseManager.registerAdapterSafe(SocialPostAdapter(), 46);
+    BaseDatabaseManager.registerAdapterSafe(SocialCommentAdapter(), 47);
+    BaseDatabaseManager.registerAdapterSafe(PostTypeAdapter(), 48);
+  }
+
+  static void _registerNotesAdapters() {
+    try {
+      if (!Hive.isAdapterRegistered(250)) Hive.registerAdapter(NoteAdapter());
+      if (!Hive.isAdapterRegistered(251)) {
+        Hive.registerAdapter(NoteAttachmentAdapter());
+      }
+      if (!Hive.isAdapterRegistered(252))
+        Hive.registerAdapter(NoteLinkAdapter());
+      if (!Hive.isAdapterRegistered(253)) {
+        Hive.registerAdapter(AttachmentTypeAdapter());
+      }
+      if (!Hive.isAdapterRegistered(254)) {
+        Hive.registerAdapter(LinkTargetTypeAdapter());
+      }
+    } catch (e) {
+      debugPrint('⚠️ فشل تسجيل محولات الملاحظات: $e');
+    }
+  }
+
+  static void _registerMoodJournalAdapters() {
+    try {
+      if (!Hive.isAdapterRegistered(255))
+        Hive.registerAdapter(MoodEntryAdapter());
+      if (!Hive.isAdapterRegistered(256)) {
+        Hive.registerAdapter(JournalEntryAdapter());
+      }
+      if (!Hive.isAdapterRegistered(257)) {
+        Hive.registerAdapter(MoodAnalyticsAdapter());
+      }
+    } catch (e) {
+      debugPrint('⚠️ فشل تسجيل محولات المزاج والمذكرات: $e');
+    }
+  }
+
+  /// Register all budget system adapters (IDs: 258-262)
+  static void _registerBudgetAdapters() {
+    try {
+      if (!Hive.isAdapterRegistered(258))
+        Hive.registerAdapter(ExpenseAdapter());
+      if (!Hive.isAdapterRegistered(259)) {
+        Hive.registerAdapter(IncomeAdapter());
+      }
+      if (!Hive.isAdapterRegistered(260)) {
+        Hive.registerAdapter(BudgetCategoryAdapter());
+      }
+      if (!Hive.isAdapterRegistered(261)) {
+        Hive.registerAdapter(FinancialReportAdapter());
+      }
+      if (!Hive.isAdapterRegistered(262)) {
+        Hive.registerAdapter(RecurrenceTypeAdapter());
+      }
+    } catch (e) {
+      debugPrint('⚠️ فشل تسجيل محولات الميزانية: $e');
+    }
+  }
+
+  /// Register all project system adapters (IDs: 263-267)
+  static void _registerProjectsAdapters() {
+    try {
+      if (!Hive.isAdapterRegistered(263))
+        Hive.registerAdapter(ProjectAdapter());
+      if (!Hive.isAdapterRegistered(264)) {
+        Hive.registerAdapter(ProjectTaskAdapter());
+      }
+      if (!Hive.isAdapterRegistered(265)) {
+        Hive.registerAdapter(ProjectStatusAdapter());
+      }
+      // if (!Hive.isAdapterRegistered(266)) {
+      //   Hive.registerAdapter(ProjectMemberAdapter());
+      // }
+      // if (!Hive.isAdapterRegistered(267)) {
+      //   Hive.registerAdapter(ProjectRoleAdapter());
+      // }
+    } catch (e) {
+      debugPrint('⚠️ فشل تسجيل محولات المشاريع: $e');
+    }
   }
 }

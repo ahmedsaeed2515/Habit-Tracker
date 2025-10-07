@@ -16,11 +16,11 @@ final activeSessionProvider = StateNotifierProvider<ActiveSessionNotifier, Pomod
 });
 
 class ActiveSessionNotifier extends StateNotifier<PomodoroSession?> {
-  final SmartPomodoroService _service;
 
   ActiveSessionNotifier(this._service) : super(null) {
     _listenToSessionStream();
   }
+  final SmartPomodoroService _service;
 
   void _listenToSessionStream() {
     _service.sessionStream.listen((session) {
@@ -82,11 +82,11 @@ final advancedTasksProvider = StateNotifierProvider<AdvancedTasksNotifier, List<
 });
 
 class AdvancedTasksNotifier extends StateNotifier<List<AdvancedTask>> {
-  final SmartPomodoroService _service;
 
   AdvancedTasksNotifier(this._service) : super([]) {
     _loadTasks();
   }
+  final SmartPomodoroService _service;
 
   void _loadTasks() {
     state = _service.filterAndSortTasks();
@@ -178,11 +178,11 @@ final pomodoroSettingsProvider = StateNotifierProvider<PomodoroSettingsNotifier,
 });
 
 class PomodoroSettingsNotifier extends StateNotifier<PomodoroSettings> {
-  final SmartPomodoroService _service;
 
   PomodoroSettingsNotifier(this._service) : super(const PomodoroSettings()) {
     state = _service.getSettings();
   }
+  final SmartPomodoroService _service;
 
   Future<void> updateSettings(PomodoroSettings settings) async {
     await _service.updateSettings(settings);
@@ -292,7 +292,6 @@ final pomodoroStatsProvider = StateNotifierProvider<PomodoroStatsNotifier, Pomod
 });
 
 class PomodoroStatsNotifier extends StateNotifier<PomodoroStats> {
-  final SmartPomodoroService _service;
 
   PomodoroStatsNotifier(this._service) : super(
     PomodoroStats(
@@ -303,6 +302,7 @@ class PomodoroStatsNotifier extends StateNotifier<PomodoroStats> {
     _loadTodayStats();
     _listenToStatsStream();
   }
+  final SmartPomodoroService _service;
 
   void _loadTodayStats() {
     state = _service.getTodayStats();
@@ -318,7 +318,7 @@ class PomodoroStatsNotifier extends StateNotifier<PomodoroStats> {
     return _service.getWeeklyStats();
   }
   
-  PomodoroStats getStatsForRange(dynamic range) {
+  PomodoroStats getStatsForRange(range) {
     // تحويل نطاق التواريخ إلى بيانات إحصائية
     switch (range.toString()) {
       case 'DateRange.day':
@@ -342,11 +342,11 @@ final achievementsProvider = StateNotifierProvider<AchievementsNotifier, List<Ac
 });
 
 class AchievementsNotifier extends StateNotifier<List<Achievement>> {
-  final SmartPomodoroService _service;
 
   AchievementsNotifier(this._service) : super([]) {
     state = _service.getAchievements();
   }
+  final SmartPomodoroService _service;
 
   List<Achievement> get unlockedAchievements {
     return state.where((a) => a.isUnlocked).toList();
@@ -367,9 +367,9 @@ final multiTimersProvider = StateNotifierProvider<MultiTimersNotifier, List<Mult
 });
 
 class MultiTimersNotifier extends StateNotifier<List<MultiTimer>> {
-  final SmartPomodoroService _service;
 
   MultiTimersNotifier(this._service) : super([]);
+  final SmartPomodoroService _service;
 
   Future<void> createMultiTimer({
     required String name,
@@ -401,7 +401,7 @@ class MultiTimersNotifier extends StateNotifier<List<MultiTimer>> {
 // مزود اقتراحات AI
 final aiSuggestionsProvider = FutureProvider.family<List<AITaskSuggestion>, String>((ref, taskId) async {
   final service = ref.watch(pomodoroServiceProvider);
-  return await service.getAITaskSuggestions(taskId);
+  return service.getAITaskSuggestions(taskId);
 });
 
 // مزود اقتراحات الاستراحة
@@ -527,7 +527,6 @@ class PomodoroThemesNotifier extends StateNotifier<List<PomodoroTheme>> {
       secondaryColor: Color(0xFF03DAC6),
       backgroundColor: Color(0xFFFAFAFA),
       surfaceColor: Color(0xFFFFFFFF),
-      isDark: false,
     ),
     PomodoroTheme(
       id: 'minimal_dark',
@@ -557,7 +556,6 @@ class PomodoroThemesNotifier extends StateNotifier<List<PomodoroTheme>> {
       secondaryColor: Color(0xFF8BC34A),
       backgroundColor: Color(0xFFF1F8E9),
       surfaceColor: Color(0xFFFFFFFF),
-      isDark: false,
     ),
   ];
 
@@ -600,12 +598,6 @@ final taskPomodoroCountProvider = Provider.family<int, String>((ref, taskId) {
 /// فئات مساعدة
 
 class TaskFilter {
-  final TaskStatus? status;
-  final TaskPriority? priority;
-  final List<String> tags;
-  final String? projectId;
-  final TaskSortBy sortBy;
-  final bool ascending;
 
   const TaskFilter({
     this.status,
@@ -615,6 +607,12 @@ class TaskFilter {
     this.sortBy = TaskSortBy.dueDate,
     this.ascending = true,
   });
+  final TaskStatus? status;
+  final TaskPriority? priority;
+  final List<String> tags;
+  final String? projectId;
+  final TaskSortBy sortBy;
+  final bool ascending;
 
   TaskFilter copyWith({
     TaskStatus? status,
@@ -636,12 +634,6 @@ class TaskFilter {
 }
 
 class TaskStats {
-  final int totalTasks;
-  final int completedTasks;
-  final int pendingTasks;
-  final int inProgressTasks;
-  final int overdueTasks;
-  final int highPriorityTasks;
 
   const TaskStats({
     required this.totalTasks,
@@ -651,6 +643,12 @@ class TaskStats {
     required this.overdueTasks,
     required this.highPriorityTasks,
   });
+  final int totalTasks;
+  final int completedTasks;
+  final int pendingTasks;
+  final int inProgressTasks;
+  final int overdueTasks;
+  final int highPriorityTasks;
 
   double get completionRate {
     if (totalTasks == 0) return 0.0;
@@ -684,13 +682,7 @@ final productivityAnalysisProvider = Provider<ProductivityAnalysis>((ref) {
   );
 });
 
-class ProductivityAnalysis {
-  final double todayScore;
-  final double weeklyAverage;
-  final int streak;
-  final Duration totalFocusTime;
-  final double sessionCompletionRate;
-  final double averageScore; // متوسط النقاط
+class ProductivityAnalysis { // متوسط النقاط
 
   const ProductivityAnalysis({
     required this.todayScore,
@@ -700,6 +692,12 @@ class ProductivityAnalysis {
     required this.sessionCompletionRate,
     required this.averageScore,
   });
+  final double todayScore;
+  final double weeklyAverage;
+  final int streak;
+  final Duration totalFocusTime;
+  final double sessionCompletionRate;
+  final double averageScore;
 
   bool get isImproving => todayScore > weeklyAverage;
   
@@ -752,11 +750,7 @@ final smartRecommendationsProvider = Provider<List<SmartRecommendation>>((ref) {
   return recommendations..sort((a, b) => b.priority.compareTo(a.priority));
 });
 
-class SmartRecommendation {
-  final String title;
-  final String description;
-  final RecommendationType type;
-  final int priority; // 1-5
+class SmartRecommendation { // 1-5
 
   const SmartRecommendation({
     required this.title,
@@ -764,6 +758,10 @@ class SmartRecommendation {
     required this.type,
     required this.priority,
   });
+  final String title;
+  final String description;
+  final RecommendationType type;
+  final int priority;
 }
 
 enum RecommendationType {

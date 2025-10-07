@@ -7,6 +7,27 @@ part 'health_models.g.dart';
 // نظام تكامل البيانات الصحية الشامل
 @HiveType(typeId: 133)
 class HealthProfile extends HiveObject {
+
+  HealthProfile({
+    required this.userId,
+    DateTime? lastSyncDate,
+    this.isHealthKitConnected = false,
+    this.isGoogleFitConnected = false,
+    List<HealthMetric>? healthMetrics,
+    Map<String, List<HealthDataPoint>>? dailyHealthData,
+    List<HealthGoal>? healthGoals,
+    List<HealthInsight>? healthInsights,
+    HealthPrivacySettings? privacySettings,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) : lastSyncDate = lastSyncDate ?? DateTime.now(),
+       healthMetrics = healthMetrics ?? [],
+       dailyHealthData = dailyHealthData ?? {},
+       healthGoals = healthGoals ?? [],
+       healthInsights = healthInsights ?? [],
+       privacySettings = privacySettings ?? HealthPrivacySettings(),
+       createdAt = createdAt ?? DateTime.now(),
+       updatedAt = updatedAt ?? DateTime.now();
   @HiveField(0)
   String userId;
 
@@ -39,27 +60,6 @@ class HealthProfile extends HiveObject {
 
   @HiveField(10)
   DateTime updatedAt;
-
-  HealthProfile({
-    required this.userId,
-    DateTime? lastSyncDate,
-    this.isHealthKitConnected = false,
-    this.isGoogleFitConnected = false,
-    List<HealthMetric>? healthMetrics,
-    Map<String, List<HealthDataPoint>>? dailyHealthData,
-    List<HealthGoal>? healthGoals,
-    List<HealthInsight>? healthInsights,
-    HealthPrivacySettings? privacySettings,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  }) : lastSyncDate = lastSyncDate ?? DateTime.now(),
-       healthMetrics = healthMetrics ?? [],
-       dailyHealthData = dailyHealthData ?? {},
-       healthGoals = healthGoals ?? [],
-       healthInsights = healthInsights ?? [],
-       privacySettings = privacySettings ?? HealthPrivacySettings(),
-       createdAt = createdAt ?? DateTime.now(),
-       updatedAt = updatedAt ?? DateTime.now();
 
   // إضافة نقطة بيانات صحية
   void addHealthDataPoint(HealthDataPoint dataPoint) {
@@ -246,6 +246,21 @@ class HealthProfile extends HiveObject {
 // المقاييس الصحية
 @HiveType(typeId: 134)
 class HealthMetric extends HiveObject {
+
+  HealthMetric({
+    required this.id,
+    required this.type,
+    required this.name,
+    required this.unit,
+    this.currentValue = 0.0,
+    this.targetValue = 0.0,
+    required this.minHealthyValue,
+    required this.maxHealthyValue,
+    DateTime? lastUpdated,
+    List<HealthTrend>? trends,
+    this.isActive = true,
+  }) : lastUpdated = lastUpdated ?? DateTime.now(),
+       trends = trends ?? [];
   @HiveField(0)
   String id;
 
@@ -278,21 +293,6 @@ class HealthMetric extends HiveObject {
 
   @HiveField(10)
   bool isActive;
-
-  HealthMetric({
-    required this.id,
-    required this.type,
-    required this.name,
-    required this.unit,
-    this.currentValue = 0.0,
-    this.targetValue = 0.0,
-    required this.minHealthyValue,
-    required this.maxHealthyValue,
-    DateTime? lastUpdated,
-    List<HealthTrend>? trends,
-    this.isActive = true,
-  }) : lastUpdated = lastUpdated ?? DateTime.now(),
-       trends = trends ?? [];
 
   // حساب نتيجة الصحة لهذا المقياس
   double get healthScore {
@@ -444,6 +444,16 @@ class HealthMetric extends HiveObject {
 // نقطة بيانات صحية
 @HiveType(typeId: 135)
 class HealthDataPoint extends HiveObject {
+
+  HealthDataPoint({
+    required this.id,
+    required this.type,
+    required this.value,
+    required this.unit,
+    required this.timestamp,
+    this.source = HealthDataSource.manual,
+    Map<String, dynamic>? metadata,
+  }) : metadata = metadata ?? {};
   @HiveField(0)
   String id;
 
@@ -465,16 +475,6 @@ class HealthDataPoint extends HiveObject {
   @HiveField(6)
   Map<String, dynamic> metadata;
 
-  HealthDataPoint({
-    required this.id,
-    required this.type,
-    required this.value,
-    required this.unit,
-    required this.timestamp,
-    this.source = HealthDataSource.manual,
-    Map<String, dynamic>? metadata,
-  }) : metadata = metadata ?? {};
-
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -491,6 +491,22 @@ class HealthDataPoint extends HiveObject {
 // الأهداف الصحية
 @HiveType(typeId: 136)
 class HealthGoal extends HiveObject {
+
+  HealthGoal({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.metricType,
+    required this.targetValue,
+    this.currentValue = 0.0,
+    required this.startDate,
+    required this.endDate,
+    this.isCompleted = false,
+    this.isActive = true,
+    this.goalType = HealthGoalType.target,
+    this.streakDays = 0,
+    DateTime? lastAchievedDate,
+  }) : lastAchievedDate = lastAchievedDate ?? DateTime.now();
   @HiveField(0)
   String id;
 
@@ -529,22 +545,6 @@ class HealthGoal extends HiveObject {
 
   @HiveField(12)
   DateTime lastAchievedDate;
-
-  HealthGoal({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.metricType,
-    required this.targetValue,
-    this.currentValue = 0.0,
-    required this.startDate,
-    required this.endDate,
-    this.isCompleted = false,
-    this.isActive = true,
-    this.goalType = HealthGoalType.target,
-    this.streakDays = 0,
-    DateTime? lastAchievedDate,
-  }) : lastAchievedDate = lastAchievedDate ?? DateTime.now();
 
   // تحديث التقدم
   void updateProgress(double newValue) {
@@ -650,6 +650,21 @@ class HealthGoal extends HiveObject {
 // الرؤى الصحية
 @HiveType(typeId: 137)
 class HealthInsight extends HiveObject {
+
+  HealthInsight({
+    required this.id,
+    required this.type,
+    required this.title,
+    required this.description,
+    required this.priority,
+    this.relatedMetric,
+    DateTime? createdAt,
+    this.isRead = false,
+    this.isActionable = true,
+    this.actionText,
+    Map<String, dynamic>? actionData,
+  }) : createdAt = createdAt ?? DateTime.now(),
+       actionData = actionData ?? {};
   @HiveField(0)
   String id;
 
@@ -683,21 +698,6 @@ class HealthInsight extends HiveObject {
   @HiveField(10)
   Map<String, dynamic> actionData;
 
-  HealthInsight({
-    required this.id,
-    required this.type,
-    required this.title,
-    required this.description,
-    required this.priority,
-    this.relatedMetric,
-    DateTime? createdAt,
-    this.isRead = false,
-    this.isActionable = true,
-    this.actionText,
-    Map<String, dynamic>? actionData,
-  }) : createdAt = createdAt ?? DateTime.now(),
-       actionData = actionData ?? {};
-
   // وضع علامة كمقروء
   void markAsRead() {
     isRead = true;
@@ -723,6 +723,13 @@ class HealthInsight extends HiveObject {
 // اتجاه صحي
 @HiveType(typeId: 138)
 class HealthTrend extends HiveObject {
+
+  HealthTrend({
+    required this.timestamp,
+    required this.value,
+    required this.direction,
+    required this.changePercentage,
+  });
   @HiveField(0)
   DateTime timestamp;
 
@@ -734,13 +741,6 @@ class HealthTrend extends HiveObject {
 
   @HiveField(3)
   double changePercentage;
-
-  HealthTrend({
-    required this.timestamp,
-    required this.value,
-    required this.direction,
-    required this.changePercentage,
-  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -755,6 +755,15 @@ class HealthTrend extends HiveObject {
 // إعدادات الخصوصية الصحية
 @HiveType(typeId: 139)
 class HealthPrivacySettings extends HiveObject {
+
+  HealthPrivacySettings({
+    this.allowDataSharing = false,
+    this.allowAnalytics = true,
+    this.allowInsights = true,
+    List<HealthMetricType>? sharedMetrics,
+    this.requirePermissionForNewMetrics = true,
+    this.dataRetentionDays = 365,
+  }) : sharedMetrics = sharedMetrics ?? [];
   @HiveField(0)
   bool allowDataSharing;
 
@@ -772,15 +781,6 @@ class HealthPrivacySettings extends HiveObject {
 
   @HiveField(5)
   int dataRetentionDays;
-
-  HealthPrivacySettings({
-    this.allowDataSharing = false,
-    this.allowAnalytics = true,
-    this.allowInsights = true,
-    List<HealthMetricType>? sharedMetrics,
-    this.requirePermissionForNewMetrics = true,
-    this.dataRetentionDays = 365,
-  }) : sharedMetrics = sharedMetrics ?? [];
 
   Map<String, dynamic> toMap() {
     return {

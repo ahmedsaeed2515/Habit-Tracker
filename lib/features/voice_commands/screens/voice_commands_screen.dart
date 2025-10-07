@@ -54,7 +54,7 @@ class _VoiceCommandsScreenState extends ConsumerState<VoiceCommandsScreen>
           // زر مسح السجل
           IconButton(
             onPressed: voiceState.recentCommands.isNotEmpty
-                ? () => _showClearHistoryDialog()
+                ? _showClearHistoryDialog
                 : null,
             icon: const Icon(Icons.clear_all),
             tooltip: 'مسح السجل',
@@ -241,17 +241,17 @@ class _VoiceCommandsScreenState extends ConsumerState<VoiceCommandsScreen>
         margin: const EdgeInsets.only(bottom: 16),
         child: ExpansionTile(
           leading: Icon(
-            category['icon'] as IconData,
-            color: category['color'] as Color,
+            category['icon']! as IconData,
+            color: category['color']! as Color,
           ),
           title: Text(
-            category['category'] as String,
+            category['category']! as String,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: category['color'] as Color,
+              color: category['color']! as Color,
             ),
           ),
-          children: (category['commands'] as List<String>)
+          children: (category['commands']! as List<String>)
               .map(
                 (command) => ListTile(
                   leading: const Icon(Icons.mic, size: 20),

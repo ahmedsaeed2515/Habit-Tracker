@@ -5,6 +5,14 @@ import 'package:flutter/material.dart';
 
 /// Widget لعرض صف واحد من الإحصائيات
 class StatRow extends StatelessWidget {
+
+  const StatRow({
+    super.key,
+    required this.label,
+    required this.value,
+    this.icon,
+    this.textColor,
+  });
   /// تسمية الإحصائية
   final String label;
 
@@ -16,14 +24,6 @@ class StatRow extends StatelessWidget {
 
   /// لون النص
   final Color? textColor;
-
-  const StatRow({
-    super.key,
-    required this.label,
-    required this.value,
-    this.icon,
-    this.textColor,
-  });
 
   @override
   Widget build(BuildContext context) {

@@ -39,7 +39,7 @@ abstract class BaseDatabaseManager {
     List<MapEntry<String, T>> defaultData,
   ) async {
     if (box.isEmpty && defaultData.isNotEmpty) {
-      for (var entry in defaultData) {
+      for (final entry in defaultData) {
         await box.put(entry.key, entry.value);
       }
       debugPrint('✅ تم إنشاء البيانات الافتراضية لـ $boxName');

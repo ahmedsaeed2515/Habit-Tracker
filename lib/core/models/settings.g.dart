@@ -31,13 +31,14 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       alarmDays: (fields[11] as List).cast<int>(),
       autoBackupEnabled: fields[12] as bool,
       lastBackupDate: fields[13] as DateTime?,
+      isFirstTime: fields[14] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, AppSettings obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(15)
       ..writeByte(0)
       ..write(obj.language)
       ..writeByte(1)
@@ -65,7 +66,9 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       ..writeByte(12)
       ..write(obj.autoBackupEnabled)
       ..writeByte(13)
-      ..write(obj.lastBackupDate);
+      ..write(obj.lastBackupDate)
+      ..writeByte(14)
+      ..write(obj.isFirstTime);
   }
 
   @override

@@ -9,10 +9,10 @@ import '../../../core/providers/morning_exercises_provider.dart';
 
 /// Dialog لإضافة تمرين صباحي جديد أو تعديل تمرين موجود
 class ExerciseDialog extends ConsumerStatefulWidget {
-  /// التمرين المراد تعديله (null للإضافة الجديدة)
-  final MorningExercise? exercise;
 
   const ExerciseDialog({super.key, this.exercise});
+  /// التمرين المراد تعديله (null للإضافة الجديدة)
+  final MorningExercise? exercise;
 
   @override
   ConsumerState<ExerciseDialog> createState() => _ExerciseDialogState();

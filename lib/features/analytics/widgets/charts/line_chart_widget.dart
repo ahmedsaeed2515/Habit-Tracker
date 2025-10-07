@@ -4,14 +4,6 @@ import 'package:flutter/material.dart';
 
 /// ويدجت الرسم البياني الخطي للتحليلات
 class AnalyticsLineChart extends StatelessWidget {
-  final List<double> data;
-  final List<String> labels;
-  final String title;
-  final Color lineColor;
-  final double minY;
-  final double maxY;
-  final bool showDots;
-  final bool showGrid;
 
   const AnalyticsLineChart({
     super.key,
@@ -24,6 +16,14 @@ class AnalyticsLineChart extends StatelessWidget {
     this.showDots = true,
     this.showGrid = true,
   });
+  final List<double> data;
+  final List<String> labels;
+  final String title;
+  final Color lineColor;
+  final double minY;
+  final double maxY;
+  final bool showDots;
+  final bool showGrid;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,6 @@ class AnalyticsLineChart extends StatelessWidget {
                 LineChartData(
                   gridData: FlGridData(
                     show: showGrid,
-                    drawVerticalLine: true,
                     horizontalInterval: (maxY - minY) / 5,
                     verticalInterval: 1,
                     getDrawingHorizontalLine: (value) => FlLine(
@@ -64,11 +63,11 @@ class AnalyticsLineChart extends StatelessWidget {
                     ),
                   ),
                   titlesData: FlTitlesData(
-                    rightTitles: AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
+                    rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(),
                     ),
-                    topTitles: AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
+                    topTitles: const AxisTitles(
+                      sideTitles: SideTitles(),
                     ),
                     bottomTitles: AxisTitles(
                       sideTitles: SideTitles(
@@ -138,7 +137,7 @@ class AnalyticsLineChart extends StatelessWidget {
                             fontSize: 14,
                           );
                           return LineTooltipItem(
-                            '${touchedSpot.y.toStringAsFixed(1)}',
+                            touchedSpot.y.toStringAsFixed(1),
                             textStyle,
                           );
                         }).toList();

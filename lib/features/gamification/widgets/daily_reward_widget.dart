@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// ويدجت المكافأة اليومية
 /// TODO: تطوير هذا الويدجت مع البيانات الفعلية
 class DailyRewardWidget extends ConsumerWidget {
-  const DailyRewardWidget({Key? key}) : super(key: key);
+  const DailyRewardWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,7 +17,7 @@ class DailyRewardWidget extends ConsumerWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Icon(Icons.card_giftcard_rounded, size: 48, color: Colors.green),
+            const Icon(Icons.card_giftcard_rounded, size: 48, color: Colors.green),
             const SizedBox(height: 8),
             Text(
               isArabic ? 'المكافأة اليومية' : 'Daily Reward',

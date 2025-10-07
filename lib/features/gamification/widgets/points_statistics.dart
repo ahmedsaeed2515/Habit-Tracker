@@ -43,7 +43,7 @@ class PointsStatistics extends ConsumerWidget {
 
   Widget _buildProgressSection(
     BuildContext context,
-    dynamic userDataState,
+    userDataState,
     bool isArabic,
   ) {
     final progress = userDataState.levelProgress;
@@ -59,7 +59,7 @@ class PointsStatistics extends ConsumerWidget {
         LinearProgressIndicator(
           value: progress,
           backgroundColor: Colors.grey[300],
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+          valueColor: const AlwaysStoppedAnimation<Color>(Colors.purple),
         ),
         const SizedBox(height: 4),
         Text(
@@ -72,7 +72,7 @@ class PointsStatistics extends ConsumerWidget {
 
   Widget _buildAdditionalStats(
     BuildContext context,
-    dynamic userDataState,
+    userDataState,
     bool isArabic,
   ) {
     return Column(

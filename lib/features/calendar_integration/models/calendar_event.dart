@@ -4,6 +4,24 @@ part 'calendar_event.g.dart';
 
 @HiveType(typeId: 63)
 class CalendarEvent extends HiveObject {
+
+  CalendarEvent({
+    required this.id,
+    required this.title,
+    this.description = '',
+    required this.startTime,
+    required this.endTime,
+    required this.type,
+    this.habitId,
+    this.isAllDay = false,
+    this.recurrence,
+    this.reminders = const [],
+    this.color = '#2196F3',
+    this.status = EventStatus.scheduled,
+    this.metadata = const {},
+    this.location,
+    this.attendees = const [],
+  });
   @HiveField(0)
   String id;
 
@@ -48,24 +66,6 @@ class CalendarEvent extends HiveObject {
 
   @HiveField(14)
   List<String> attendees;
-
-  CalendarEvent({
-    required this.id,
-    required this.title,
-    this.description = '',
-    required this.startTime,
-    required this.endTime,
-    required this.type,
-    this.habitId,
-    this.isAllDay = false,
-    this.recurrence,
-    this.reminders = const [],
-    this.color = '#2196F3',
-    this.status = EventStatus.scheduled,
-    this.metadata = const {},
-    this.location,
-    this.attendees = const [],
-  });
 
   // فحص ما إذا كان الحدث في تاريخ محدد
   bool isOnDate(DateTime date) {
@@ -157,7 +157,6 @@ class CalendarEvent extends HiveObject {
           habitId: habitId,
           isAllDay: isAllDay,
           color: color,
-          status: EventStatus.scheduled,
           location: location,
           attendees: attendees,
         ));
@@ -238,7 +237,28 @@ enum EventStatus {
 }
 
 @HiveType(typeId: 66)
-class EventRecurrence extends HiveObject {
+class EventRecurrence extends HiveObject { // عدد التكرارات
+
+  EventRecurrence({
+    required this.type,
+    this.interval = 1,
+    this.daysOfWeek = const [],
+    this.dayOfMonth,
+    this.endDate,
+    this.occurrences,
+  });
+
+  // إنشاء من خريطة
+  factory EventRecurrence.fromMap(Map<String, dynamic> map) {
+    return EventRecurrence(
+      type: RecurrenceType.values.firstWhere((t) => t.name == map['type']),
+      interval: map['interval'] ?? 1,
+      daysOfWeek: List<int>.from(map['daysOfWeek'] ?? []),
+      dayOfMonth: map['dayOfMonth'],
+      endDate: map['endDate'] != null ? DateTime.parse(map['endDate']) : null,
+      occurrences: map['occurrences'],
+    );
+  }
   @HiveField(0)
   RecurrenceType type;
 
@@ -255,16 +275,7 @@ class EventRecurrence extends HiveObject {
   DateTime? endDate; // تاريخ انتهاء التكرار
 
   @HiveField(5)
-  int? occurrences; // عدد التكرارات
-
-  EventRecurrence({
-    required this.type,
-    this.interval = 1,
-    this.daysOfWeek = const [],
-    this.dayOfMonth,
-    this.endDate,
-    this.occurrences,
-  });
+  int? occurrences;
 
   // فحص ما إذا كان التكرار ينتهي
   bool get hasEndCondition => endDate != null || occurrences != null;
@@ -279,18 +290,6 @@ class EventRecurrence extends HiveObject {
       'endDate': endDate?.toIso8601String(),
       'occurrences': occurrences,
     };
-  }
-
-  // إنشاء من خريطة
-  factory EventRecurrence.fromMap(Map<String, dynamic> map) {
-    return EventRecurrence(
-      type: RecurrenceType.values.firstWhere((t) => t.name == map['type']),
-      interval: map['interval'] ?? 1,
-      daysOfWeek: List<int>.from(map['daysOfWeek'] ?? []),
-      dayOfMonth: map['dayOfMonth'],
-      endDate: map['endDate'] != null ? DateTime.parse(map['endDate']) : null,
-      occurrences: map['occurrences'],
-    );
   }
 }
 
@@ -311,6 +310,25 @@ enum RecurrenceType {
 
 @HiveType(typeId: 68)
 class EventReminder extends HiveObject {
+
+  EventReminder({
+    required this.id,
+    this.type = ReminderType.notification,
+    this.minutesBefore = 15,
+    this.message = '',
+    this.isEnabled = true,
+  });
+
+  // إنشاء من خريطة
+  factory EventReminder.fromMap(Map<String, dynamic> map) {
+    return EventReminder(
+      id: map['id'],
+      type: ReminderType.values.firstWhere((t) => t.name == map['type']),
+      minutesBefore: map['minutesBefore'] ?? 15,
+      message: map['message'] ?? '',
+      isEnabled: map['isEnabled'] ?? true,
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -326,14 +344,6 @@ class EventReminder extends HiveObject {
   @HiveField(4)
   bool isEnabled;
 
-  EventReminder({
-    required this.id,
-    this.type = ReminderType.notification,
-    this.minutesBefore = 15,
-    this.message = '',
-    this.isEnabled = true,
-  });
-
   // الحصول على وقت التذكير
   DateTime getReminderTime(DateTime eventTime) {
     return eventTime.subtract(Duration(minutes: minutesBefore));
@@ -348,17 +358,6 @@ class EventReminder extends HiveObject {
       'message': message,
       'isEnabled': isEnabled,
     };
-  }
-
-  // إنشاء من خريطة
-  factory EventReminder.fromMap(Map<String, dynamic> map) {
-    return EventReminder(
-      id: map['id'],
-      type: ReminderType.values.firstWhere((t) => t.name == map['type']),
-      minutesBefore: map['minutesBefore'] ?? 15,
-      message: map['message'] ?? '',
-      isEnabled: map['isEnabled'] ?? true,
-    );
   }
 }
 
@@ -379,6 +378,18 @@ enum ReminderType {
 
 @HiveType(typeId: 70)
 class CalendarSync extends HiveObject {
+
+  CalendarSync({
+    required this.id,
+    required this.name,
+    required this.provider,
+    required this.calendarId,
+    this.isEnabled = true,
+    required this.lastSync,
+    this.direction = SyncDirection.bidirectional,
+    this.syncedTypes = const [],
+    this.settings = const {},
+  });
   @HiveField(0)
   String id;
 
@@ -405,18 +416,6 @@ class CalendarSync extends HiveObject {
 
   @HiveField(8)
   Map<String, dynamic> settings;
-
-  CalendarSync({
-    required this.id,
-    required this.name,
-    required this.provider,
-    required this.calendarId,
-    this.isEnabled = true,
-    required this.lastSync,
-    this.direction = SyncDirection.bidirectional,
-    this.syncedTypes = const [],
-    this.settings = const {},
-  });
 
   // تحديث وقت آخر مزامنة
   void updateLastSync() {

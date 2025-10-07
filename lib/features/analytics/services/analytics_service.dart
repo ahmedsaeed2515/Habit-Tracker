@@ -6,6 +6,8 @@ import '../../../core/models/habit.dart';
 import '../../../core/models/task.dart';
 
 class AnalyticsService {
+  factory AnalyticsService() => _instance;
+  AnalyticsService._internal();
   static const String _analyticsBoxName = 'analytics_data';
   static const String _summaryBoxName = 'analytics_summary';
 
@@ -13,8 +15,6 @@ class AnalyticsService {
   late Box<AnalyticsSummary> _summaryBox;
 
   static final AnalyticsService _instance = AnalyticsService._internal();
-  factory AnalyticsService() => _instance;
-  AnalyticsService._internal();
 
   Future<void> init() async {
     try {

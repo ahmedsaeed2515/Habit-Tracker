@@ -9,10 +9,10 @@ import '../../../core/providers/habits_provider.dart';
 
 /// Dialog لإضافة عادة يومية جديدة أو تعديل عادة موجودة
 class HabitDialog extends ConsumerStatefulWidget {
-  /// العادة المراد تعديلها (null للإضافة الجديدة)
-  final Habit? habit;
 
   const HabitDialog({super.key, this.habit});
+  /// العادة المراد تعديلها (null للإضافة الجديدة)
+  final Habit? habit;
 
   @override
   ConsumerState<HabitDialog> createState() => _HabitDialogState();
@@ -256,7 +256,7 @@ class _HabitDialogState extends ConsumerState<HabitDialog> {
                     _selectedIcon = icon;
                   });
                 },
-                child: Container(
+                child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: isSelected ? Colors.blue.withOpacity(0.3) : null,
                     borderRadius: BorderRadius.circular(6),

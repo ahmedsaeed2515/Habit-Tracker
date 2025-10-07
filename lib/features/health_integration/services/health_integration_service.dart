@@ -34,8 +34,8 @@ class HealthIntegrationService {
     DateTime endDate,
   ) {
     return _healthDataBox?.values.where((data) {
-          return data.date.isAfter(startDate.subtract(Duration(days: 1))) &&
-              data.date.isBefore(endDate.add(Duration(days: 1)));
+          return data.date.isAfter(startDate.subtract(const Duration(days: 1))) &&
+              data.date.isBefore(endDate.add(const Duration(days: 1)));
         }).toList() ??
         [];
   }
@@ -61,7 +61,7 @@ class HealthIntegrationService {
             id: _getDateKey(date),
             date: date,
             steps: 3000 + random.nextInt(10000),
-            distance: (2.0 + random.nextDouble() * 8.0),
+            distance: 2.0 + random.nextDouble() * 8.0,
             calories: 1500 + random.nextInt(1000),
             activeMinutes: 15 + random.nextInt(60),
             heartRate: 60 + random.nextInt(40),
@@ -88,7 +88,7 @@ class HealthIntegrationService {
   // الحصول على إحصائيات الأسبوع
   Map<String, dynamic> getWeeklyStats() {
     final endDate = DateTime.now();
-    final startDate = endDate.subtract(Duration(days: 7));
+    final startDate = endDate.subtract(const Duration(days: 7));
     final weekData = getHealthDataForPeriod(startDate, endDate);
 
     if (weekData.isEmpty) {
@@ -126,7 +126,7 @@ class HealthIntegrationService {
   // الحصول على إحصائيات الشهر
   Map<String, dynamic> getMonthlyStats() {
     final endDate = DateTime.now();
-    final startDate = endDate.subtract(Duration(days: 30));
+    final startDate = endDate.subtract(const Duration(days: 30));
     final monthData = getHealthDataForPeriod(startDate, endDate);
 
     if (monthData.isEmpty) {
@@ -199,7 +199,7 @@ class HealthIntegrationService {
   // الحصول على تحليلات متقدمة
   Map<String, dynamic> getAdvancedAnalytics() {
     final last30Days = getHealthDataForPeriod(
-      DateTime.now().subtract(Duration(days: 30)),
+      DateTime.now().subtract(const Duration(days: 30)),
       DateTime.now(),
     );
 
@@ -219,27 +219,27 @@ class HealthIntegrationService {
     final avgSteps =
         last30Days.map((d) => d.steps).reduce((a, b) => a + b) /
         last30Days.length;
-    if (avgSteps < 7000)
+    if (avgSteps < 7000) {
       improvements.add('زيادة المشي اليومي');
-    else if (avgSteps > 10000)
+    } else if (avgSteps > 10000)
       strengths.add('مستوى ممتاز في المشي');
 
     // تحليل النوم
     final avgSleep =
         last30Days.map((d) => d.sleepHours).reduce((a, b) => a + b) /
         last30Days.length;
-    if (avgSleep < 7)
+    if (avgSleep < 7) {
       improvements.add('تحسين جودة النوم');
-    else if (avgSleep >= 7.5)
+    } else if (avgSleep >= 7.5)
       strengths.add('نوم صحي منتظم');
 
     // تحليل النشاط
     final avgActiveMinutes =
         last30Days.map((d) => d.activeMinutes).reduce((a, b) => a + b) /
         last30Days.length;
-    if (avgActiveMinutes < 30)
+    if (avgActiveMinutes < 30) {
       improvements.add('زيادة النشاط البدني');
-    else if (avgActiveMinutes >= 45)
+    } else if (avgActiveMinutes >= 45)
       strengths.add('مستوى نشاط بدني ممتاز');
 
     // حساب النقاط الصحية (من 100)

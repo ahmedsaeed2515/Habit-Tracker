@@ -62,7 +62,7 @@ class _TypingIndicatorState extends State<TypingIndicator>
           const SizedBox(width: 8),
           Container(
             decoration: BoxDecoration(
-              color: theme.colorScheme.surfaceVariant,
+              color: theme.colorScheme.surfaceContainerHighest,
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(

@@ -9,10 +9,10 @@ import '../../../core/providers/gym_provider.dart';
 
 /// Dialog لإضافة تمرين جديد أو تعديل تمرين موجود
 class WorkoutDialog extends ConsumerStatefulWidget {
-  /// التمرين المراد تعديله (null للإضافة الجديدة)
-  final Workout? workout;
 
   const WorkoutDialog({super.key, this.workout});
+  /// التمرين المراد تعديله (null للإضافة الجديدة)
+  final Workout? workout;
 
   @override
   ConsumerState<WorkoutDialog> createState() => _WorkoutDialogState();
@@ -98,7 +98,7 @@ class _WorkoutDialogState extends ConsumerState<WorkoutDialog> {
   /// قائمة منسدلة لنوع التمرين
   Widget _buildTypeDropdown() {
     return DropdownButtonFormField<String>(
-      value: _selectedType,
+      initialValue: _selectedType,
       decoration: const InputDecoration(
         labelText: 'نوع التمرين',
         border: OutlineInputBorder(),

@@ -3,22 +3,6 @@ import 'package:flutter/material.dart';
 /// A custom app bar widget that provides consistent styling and behavior
 /// throughout the application with additional customization options
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String? title;
-  final Widget? titleWidget;
-  final List<Widget>? actions;
-  final Widget? leading;
-  final bool automaticallyImplyLeading;
-  final Color? backgroundColor;
-  final Color? foregroundColor;
-  final double? elevation;
-  final ShapeBorder? shape;
-  final bool centerTitle;
-  final double? titleSpacing;
-  final double toolbarHeight;
-  final PreferredSizeWidget? bottom;
-  final bool showBackButton;
-  final VoidCallback? onBackPressed;
-  final IconData? backButtonIcon;
 
   const CustomAppBar({
     super.key,
@@ -39,6 +23,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onBackPressed,
     this.backButtonIcon = Icons.arrow_back,
   });
+  final String? title;
+  final Widget? titleWidget;
+  final List<Widget>? actions;
+  final Widget? leading;
+  final bool automaticallyImplyLeading;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final double? elevation;
+  final ShapeBorder? shape;
+  final bool centerTitle;
+  final double? titleSpacing;
+  final double toolbarHeight;
+  final PreferredSizeWidget? bottom;
+  final bool showBackButton;
+  final VoidCallback? onBackPressed;
+  final IconData? backButtonIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -81,22 +81,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
 /// A sliver app bar with custom styling
 class CustomSliverAppBar extends StatelessWidget {
-  final String? title;
-  final Widget? titleWidget;
-  final List<Widget>? actions;
-  final Widget? leading;
-  final Widget? flexibleSpace;
-  final PreferredSizeWidget? bottom;
-  final bool pinned;
-  final bool floating;
-  final bool snap;
-  final double? expandedHeight;
-  final Color? backgroundColor;
-  final Color? foregroundColor;
-  final double? elevation;
-  final bool centerTitle;
-  final bool showBackButton;
-  final VoidCallback? onBackPressed;
 
   const CustomSliverAppBar({
     super.key,
@@ -117,6 +101,22 @@ class CustomSliverAppBar extends StatelessWidget {
     this.showBackButton = false,
     this.onBackPressed,
   });
+  final String? title;
+  final Widget? titleWidget;
+  final List<Widget>? actions;
+  final Widget? leading;
+  final Widget? flexibleSpace;
+  final PreferredSizeWidget? bottom;
+  final bool pinned;
+  final bool floating;
+  final bool snap;
+  final double? expandedHeight;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final double? elevation;
+  final bool centerTitle;
+  final bool showBackButton;
+  final VoidCallback? onBackPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -155,17 +155,6 @@ class CustomSliverAppBar extends StatelessWidget {
 
 /// An app bar with gradient background
 class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String? title;
-  final Widget? titleWidget;
-  final List<Widget>? actions;
-  final Widget? leading;
-  final Gradient gradient;
-  final bool centerTitle;
-  final double toolbarHeight;
-  final PreferredSizeWidget? bottom;
-  final bool showBackButton;
-  final VoidCallback? onBackPressed;
-  final Color? foregroundColor;
 
   const GradientAppBar({
     super.key,
@@ -181,12 +170,23 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onBackPressed,
     this.foregroundColor,
   });
+  final String? title;
+  final Widget? titleWidget;
+  final List<Widget>? actions;
+  final Widget? leading;
+  final Gradient gradient;
+  final bool centerTitle;
+  final double toolbarHeight;
+  final PreferredSizeWidget? bottom;
+  final bool showBackButton;
+  final VoidCallback? onBackPressed;
+  final Color? foregroundColor;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(gradient: gradient),
       child: AppBar(
         title: titleWidget ?? (title != null ? Text(title!) : null),
@@ -223,17 +223,6 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
 
 /// A collapsible app bar with custom animations
 class CollapsibleAppBar extends StatefulWidget {
-  final String? title;
-  final Widget? titleWidget;
-  final List<Widget>? actions;
-  final Widget? leading;
-  final Widget? backgroundWidget;
-  final Color? backgroundColor;
-  final Color? foregroundColor;
-  final double expandedHeight;
-  final bool pinned;
-  final bool floating;
-  final ScrollController? scrollController;
 
   const CollapsibleAppBar({
     super.key,
@@ -249,6 +238,17 @@ class CollapsibleAppBar extends StatefulWidget {
     this.floating = false,
     this.scrollController,
   });
+  final String? title;
+  final Widget? titleWidget;
+  final List<Widget>? actions;
+  final Widget? leading;
+  final Widget? backgroundWidget;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final double expandedHeight;
+  final bool pinned;
+  final bool floating;
+  final ScrollController? scrollController;
 
   @override
   State<CollapsibleAppBar> createState() => _CollapsibleAppBarState();
@@ -322,16 +322,6 @@ class _CollapsibleAppBarState extends State<CollapsibleAppBar>
 
 /// A search app bar with built-in search functionality
 class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
-  final String? title;
-  final String? hintText;
-  final List<Widget>? actions;
-  final Widget? leading;
-  final Color? backgroundColor;
-  final Color? foregroundColor;
-  final double toolbarHeight;
-  final void Function(String)? onSearchChanged;
-  final void Function(String)? onSearchSubmitted;
-  final TextEditingController? searchController;
 
   const SearchAppBar({
     super.key,
@@ -346,6 +336,16 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.onSearchSubmitted,
     this.searchController,
   });
+  final String? title;
+  final String? hintText;
+  final List<Widget>? actions;
+  final Widget? leading;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final double toolbarHeight;
+  final void Function(String)? onSearchChanged;
+  final void Function(String)? onSearchSubmitted;
+  final TextEditingController? searchController;
 
   @override
   State<SearchAppBar> createState() => _SearchAppBarState();

@@ -4,10 +4,10 @@ import '../../../core/models/habit.dart';
 import '../../../core/models/habit_extensions.dart';
 
 class SmartRecommendationService {
-  static final SmartRecommendationService _instance =
-      SmartRecommendationService._internal();
   factory SmartRecommendationService() => _instance;
   SmartRecommendationService._internal();
+  static final SmartRecommendationService _instance =
+      SmartRecommendationService._internal();
 
   // قوالب التوصيات المبنية على الأنماط
   final Map<String, List<String>> _categoryTemplates = {
@@ -44,7 +44,7 @@ class SmartRecommendationService {
   // تحليل الأنماط السلوكية
   List<UserBehaviorPattern> analyzeUserBehavior(List<Habit> habits) {
     final patterns = <UserBehaviorPattern>[];
-    final userId = 'current_user'; // يمكن تخصيصه حسب المستخدم
+    const userId = 'current_user'; // يمكن تخصيصه حسب المستخدم
 
     // تحليل نمط الوقت
     patterns.addAll(_analyzeTimingPatterns(habits, userId));
@@ -260,7 +260,6 @@ class SmartRecommendationService {
                 'stackingPotential': stackingPotential,
               },
               createdAt: DateTime.now(),
-              priority: 3,
             ),
           );
         }
@@ -290,7 +289,7 @@ class SmartRecommendationService {
       if (habitsInSlot.length >= 2) {
         final avgCompletion =
             habitsInSlot
-                .map((h) => _calculateHabitCompletionRate(h))
+                .map(_calculateHabitCompletionRate)
                 .reduce((a, b) => a + b) /
             habitsInSlot.length;
 

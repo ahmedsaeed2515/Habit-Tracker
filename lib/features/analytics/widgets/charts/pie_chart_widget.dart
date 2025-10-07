@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 
 /// ويدجت الرسم البياني الدائري للفئات
 class AnalyticsPieChart extends StatelessWidget {
-  final Map<String, double> data;
-  final String title;
-  final List<Color> colors;
 
   const AnalyticsPieChart({
     super.key,
@@ -23,6 +20,9 @@ class AnalyticsPieChart extends StatelessWidget {
       Colors.amber,
     ],
   });
+  final Map<String, double> data;
+  final String title;
+  final List<Color> colors;
 
   @override
   Widget build(BuildContext context) {

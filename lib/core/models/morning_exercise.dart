@@ -7,6 +7,21 @@ part 'morning_exercise.g.dart';
 
 @HiveType(typeId: 2)
 class MorningExercise extends HiveObject {
+
+  MorningExercise({
+    required this.id,
+    required this.type,
+    required this.date,
+    required this.reps,
+    this.isCompleted = false,
+    required this.name,
+    required this.targetReps,
+    required this.targetSets,
+    this.caloriesBurned = 0,
+    this.actualReps,
+    this.actualSets,
+    this.completedAt,
+  });
   @HiveField(0)
   String id;
 
@@ -42,21 +57,6 @@ class MorningExercise extends HiveObject {
 
   @HiveField(11)
   DateTime? completedAt;
-
-  MorningExercise({
-    required this.id,
-    required this.type,
-    required this.date,
-    required this.reps,
-    this.isCompleted = false,
-    required this.name,
-    required this.targetReps,
-    required this.targetSets,
-    this.caloriesBurned = 0,
-    this.actualReps,
-    this.actualSets,
-    this.completedAt,
-  });
 
   MorningExercise copyWith({
     ExerciseType? type,
@@ -106,6 +106,13 @@ enum ExerciseType {
 // إضافة هدف عالمي للتمارين
 @HiveType(typeId: 4)
 class ExerciseGoal extends HiveObject {
+
+  ExerciseGoal({
+    required this.type,
+    this.targetReps = 1000,
+    this.currentReps = 0,
+    required this.lastUpdated,
+  });
   @HiveField(0)
   ExerciseType type;
 
@@ -117,13 +124,6 @@ class ExerciseGoal extends HiveObject {
 
   @HiveField(3)
   DateTime lastUpdated;
-
-  ExerciseGoal({
-    required this.type,
-    this.targetReps = 1000,
-    this.currentReps = 0,
-    required this.lastUpdated,
-  });
 
   // حساب النسبة المئوية للإنجاز
   double get progressPercentage {

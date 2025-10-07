@@ -5,7 +5,7 @@ import '../providers/pomodoro_providers.dart';
 
 /// ويدجت التحكم السريع في إعدادات البومودورو
 class PomodoroQuickSettingsWidget extends ConsumerWidget {
-  const PomodoroQuickSettingsWidget({Key? key}) : super(key: key);
+  const PomodoroQuickSettingsWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -302,7 +302,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
               Switch(
                 value: value,
                 onChanged: onChanged,
-                activeColor: color,
+                activeThumbColor: color,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
             ],
@@ -339,15 +339,15 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.flag,
                 color: Colors.blue,
                 size: 18,
               ),
-              const SizedBox(width: 8),
-              const Text(
+              SizedBox(width: 8),
+              Text(
                 'الهدف اليومي',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
@@ -456,7 +456,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Material(
-                  color: (preset['color'] as Color).withOpacity(0.1),
+                  color: (preset['color']! as Color).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                   child: InkWell(
                     onTap: () => _applyPreset(ref, preset),
@@ -466,15 +466,15 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                       child: Column(
                         children: [
                           Icon(
-                            preset['icon'] as IconData,
-                            color: preset['color'] as Color,
+                            preset['icon']! as IconData,
+                            color: preset['color']! as Color,
                             size: 20,
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            preset['name'] as String,
+                            preset['name']! as String,
                             style: TextStyle(
-                              color: preset['color'] as Color,
+                              color: preset['color']! as Color,
                               fontSize: 11,
                               fontWeight: FontWeight.w500,
                             ),
@@ -482,7 +482,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                           Text(
                             '${preset['focus']}/${preset['short']}',
                             style: TextStyle(
-                              color: (preset['color'] as Color).withOpacity(0.7),
+                              color: (preset['color']! as Color).withOpacity(0.7),
                               fontSize: 9,
                             ),
                           ),
@@ -538,7 +538,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
 
 /// ويدجت التحكم السريع في الإشعارات
 class NotificationQuickControlWidget extends ConsumerWidget {
-  const NotificationQuickControlWidget({Key? key}) : super(key: key);
+  const NotificationQuickControlWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -701,7 +701,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: color,
+            activeThumbColor: color,
           ),
         ],
       ),
@@ -741,9 +741,9 @@ class NotificationQuickControlWidget extends ConsumerWidget {
               child: InkWell(
                 onTap: () {
                   ref.read(pomodoroSettingsProvider.notifier)
-                      .updateNotificationSound(sound['file'] as String);
+                      .updateNotificationSound(sound['file']! as String);
                   // تشغيل الصوت للمعاينة
-                  _playPreviewSound(sound['file'] as String);
+                  _playPreviewSound(sound['file']! as String);
                 },
                 borderRadius: BorderRadius.circular(8),
                 child: Container(
@@ -754,14 +754,14 @@ class NotificationQuickControlWidget extends ConsumerWidget {
                   child: Row(
                     children: [
                       Icon(
-                        sound['icon'] as IconData,
+                        sound['icon']! as IconData,
                         color: isSelected ? Colors.blue : Colors.grey,
                         size: 16,
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
-                          sound['name'] as String,
+                          sound['name']! as String,
                           style: TextStyle(
                             fontSize: 13,
                             color: isSelected ? Colors.blue : null,
@@ -780,7 +780,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
               ),
             ),
           );
-        }).toList(),
+        }),
       ],
     );
   }

@@ -16,7 +16,7 @@ import 'analytics_screen.dart';
 
 /// شاشة To-Do List الرئيسية مع نظام Pomodoro متكامل
 class PomodoroTodoScreen extends ConsumerStatefulWidget {
-  const PomodoroTodoScreen({Key? key}) : super(key: key);
+  const PomodoroTodoScreen({super.key});
 
   @override
   ConsumerState<PomodoroTodoScreen> createState() => _PomodoroTodoScreenState();
@@ -62,7 +62,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Column(
           children: [
@@ -143,9 +143,9 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
                       ),
                     ),
                     const SizedBox(height: 4),
-                    Text(
+                    const Text(
                       'لنبدأ يوماً منتجاً! 🚀',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -597,7 +597,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
 
 /// شاشة إضافة مهمة سريعة
 class AddTaskBottomSheet extends ConsumerStatefulWidget {
-  const AddTaskBottomSheet({Key? key}) : super(key: key);
+  const AddTaskBottomSheet({super.key});
 
   @override
   ConsumerState<AddTaskBottomSheet> createState() => _AddTaskBottomSheetState();
@@ -751,7 +751,7 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
     }
   }
 
-  void _selectDueDate() async {
+  Future<void> _selectDueDate() async {
     final date = await showDatePicker(
       context: context,
       initialDate: DateTime.now().add(const Duration(days: 1)),
@@ -763,7 +763,7 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
     }
   }
 
-  void _selectDuration() async {
+  Future<void> _selectDuration() async {
     final duration = await showDialog<Duration>(
       context: context,
       builder: (context) => const DurationPickerDialog(),
@@ -773,7 +773,7 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
     }
   }
 
-  void _addTask() async {
+  Future<void> _addTask() async {
     if (_titleController.text.isEmpty) return;
 
     await ref
@@ -799,7 +799,7 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
 
 /// حوار اختيار المدة
 class DurationPickerDialog extends StatefulWidget {
-  const DurationPickerDialog({Key? key}) : super(key: key);
+  const DurationPickerDialog({super.key});
 
   @override
   State<DurationPickerDialog> createState() => _DurationPickerDialogState();
@@ -881,7 +881,7 @@ class _DurationPickerDialogState extends State<DurationPickerDialog> {
 
 /// شاشة الإجراءات السريعة
 class QuickActionsBottomSheet extends ConsumerWidget {
-  const QuickActionsBottomSheet({Key? key}) : super(key: key);
+  const QuickActionsBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

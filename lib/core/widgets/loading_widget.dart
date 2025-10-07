@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 /// A reusable loading widget that can be used throughout the application
 /// Provides consistent loading UI with customizable options
 class LoadingWidget extends StatelessWidget {
-  final String? message;
-  final double? size;
-  final Color? color;
-  final bool showMessage;
-  final EdgeInsets? padding;
 
   const LoadingWidget({
     super.key,
@@ -17,6 +12,11 @@ class LoadingWidget extends StatelessWidget {
     this.showMessage = true,
     this.padding = const EdgeInsets.all(16.0),
   });
+  final String? message;
+  final double? size;
+  final Color? color;
+  final bool showMessage;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,6 @@ class LoadingWidget extends StatelessWidget {
       padding: padding!,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
@@ -57,9 +56,6 @@ class LoadingWidget extends StatelessWidget {
 
 /// A full-screen loading widget that covers the entire screen
 class FullScreenLoadingWidget extends StatelessWidget {
-  final String? message;
-  final Color? backgroundColor;
-  final Color? indicatorColor;
 
   const FullScreenLoadingWidget({
     super.key,
@@ -67,12 +63,15 @@ class FullScreenLoadingWidget extends StatelessWidget {
     this.backgroundColor,
     this.indicatorColor,
   });
+  final String? message;
+  final Color? backgroundColor;
+  final Color? indicatorColor;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     
-    return Container(
+    return ColoredBox(
       color: backgroundColor ?? theme.scaffoldBackgroundColor.withOpacity(0.8),
       child: Center(
         child: LoadingWidget(
@@ -87,10 +86,6 @@ class FullScreenLoadingWidget extends StatelessWidget {
 
 /// A loading overlay widget that can be placed on top of other widgets
 class LoadingOverlay extends StatelessWidget {
-  final bool isLoading;
-  final Widget child;
-  final String? loadingMessage;
-  final Color? overlayColor;
 
   const LoadingOverlay({
     super.key,
@@ -99,6 +94,10 @@ class LoadingOverlay extends StatelessWidget {
     this.loadingMessage,
     this.overlayColor,
   });
+  final bool isLoading;
+  final Widget child;
+  final String? loadingMessage;
+  final Color? overlayColor;
 
   @override
   Widget build(BuildContext context) {
@@ -107,11 +106,10 @@ class LoadingOverlay extends StatelessWidget {
         child,
         if (isLoading)
           Positioned.fill(
-            child: Container(
+            child: ColoredBox(
               color: overlayColor ?? Colors.black.withOpacity(0.3),
               child: LoadingWidget(
                 message: loadingMessage ?? 'Loading...',
-                showMessage: true,
               ),
             ),
           ),
@@ -122,10 +120,6 @@ class LoadingOverlay extends StatelessWidget {
 
 /// A shimmer loading effect widget for skeleton screens
 class ShimmerLoadingWidget extends StatefulWidget {
-  final Widget child;
-  final Color? baseColor;
-  final Color? highlightColor;
-  final Duration? period;
 
   const ShimmerLoadingWidget({
     super.key,
@@ -134,6 +128,10 @@ class ShimmerLoadingWidget extends StatefulWidget {
     this.highlightColor,
     this.period = const Duration(milliseconds: 1500),
   });
+  final Widget child;
+  final Color? baseColor;
+  final Color? highlightColor;
+  final Duration? period;
 
   @override
   State<ShimmerLoadingWidget> createState() => _ShimmerLoadingWidgetState();
@@ -199,9 +197,6 @@ class _ShimmerLoadingWidgetState extends State<ShimmerLoadingWidget>
 
 /// A simple skeleton loading widget for list items
 class SkeletonLoadingWidget extends StatelessWidget {
-  final double? width;
-  final double height;
-  final double borderRadius;
 
   const SkeletonLoadingWidget({
     super.key,
@@ -209,6 +204,9 @@ class SkeletonLoadingWidget extends StatelessWidget {
     this.height = 20.0,
     this.borderRadius = 4.0,
   });
+  final double? width;
+  final double height;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {

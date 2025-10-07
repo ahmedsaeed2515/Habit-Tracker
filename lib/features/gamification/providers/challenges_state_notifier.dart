@@ -4,9 +4,9 @@ import '../services/unified_gamification_service.dart';
 // مدير حالة بيانات التحديات في نظام الألعاب
 class ChallengesStateNotifier
     extends StateNotifier<List<Map<String, dynamic>>> {
-  final UnifiedGamificationService service;
 
   ChallengesStateNotifier(this.service) : super([]);
+  final UnifiedGamificationService service;
 
   // تحديث حالة التحديات
   Future<void> refresh() async {

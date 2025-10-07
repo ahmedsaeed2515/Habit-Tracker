@@ -43,9 +43,6 @@ class VoiceCommandButton extends ConsumerWidget {
 
 /// زر الأوامر الصوتية المضغوط
 class CompactVoiceCommandButton extends ConsumerWidget {
-  final double? size;
-  final Color? backgroundColor;
-  final Color? iconColor;
 
   const CompactVoiceCommandButton({
     super.key,
@@ -53,6 +50,9 @@ class CompactVoiceCommandButton extends ConsumerWidget {
     this.backgroundColor,
     this.iconColor,
   });
+  final double? size;
+  final Color? backgroundColor;
+  final Color? iconColor;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -180,7 +180,7 @@ class VoiceCommandBottomBar extends ConsumerWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surfaceVariant,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(

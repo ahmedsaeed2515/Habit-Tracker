@@ -6,9 +6,9 @@ import '../models/offline_data.dart';
 import '../../../core/database/database_helper.dart';
 
 class OfflineModeService {
-  static final OfflineModeService _instance = OfflineModeService._internal();
   factory OfflineModeService() => _instance;
   OfflineModeService._internal();
+  static final OfflineModeService _instance = OfflineModeService._internal();
 
   final DatabaseHelper _databaseHelper = DatabaseHelper.instance;
   final Connectivity _connectivity = Connectivity();
@@ -74,15 +74,11 @@ class OfflineModeService {
 
   // بدء مراقبة الشبكة
   void _startNetworkMonitoring() {
-    _connectivitySubscription = _connectivity.onConnectivityChanged.listen((
-      results,
-    ) {
-      _updateNetworkStatus(results);
-    });
+    _connectivitySubscription = _connectivity.onConnectivityChanged.listen(_updateNetworkStatus);
   }
 
   // تحديث حالة الشبكة
-  void _updateNetworkStatus(List<ConnectivityResult> results) async {
+  Future<void> _updateNetworkStatus(List<ConnectivityResult> results) async {
     try {
       final primaryResult = results.isNotEmpty
           ? results.first

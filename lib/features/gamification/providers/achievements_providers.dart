@@ -155,9 +155,9 @@ final achievementActionsProvider = Provider<AchievementActions>((ref) {
 });
 
 class AchievementActions {
-  final UnifiedGamificationService _service;
 
   AchievementActions(this._service);
+  final UnifiedGamificationService _service;
 
   // إلغاء قفل إنجاز يدوياً
   Future<bool> unlockAchievement(String achievementId) async {

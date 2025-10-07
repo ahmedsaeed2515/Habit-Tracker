@@ -4,6 +4,51 @@ part 'social_user.g.dart';
 
 @HiveType(typeId: 45)
 class SocialUser extends HiveObject {
+
+  SocialUser({
+    required this.id,
+    required this.username,
+    required this.displayName,
+    required this.email,
+    this.avatarUrl,
+    this.bio = '',
+    this.totalPoints = 0,
+    this.level = 1,
+    this.achievements = const [],
+    required this.joinDate,
+    required this.lastActive,
+    this.isPublic = true,
+    this.friends = const [],
+    this.followers = const [],
+    this.following = const [],
+    this.stats = const {},
+    this.country = '',
+    this.city,
+  });
+
+  // إنشاء من خريطة
+  factory SocialUser.fromMap(Map<String, dynamic> map) {
+    return SocialUser(
+      id: map['id'],
+      username: map['username'],
+      displayName: map['displayName'],
+      email: map['email'],
+      avatarUrl: map['avatarUrl'],
+      bio: map['bio'] ?? '',
+      totalPoints: map['totalPoints'] ?? 0,
+      level: map['level'] ?? 1,
+      achievements: List<String>.from(map['achievements'] ?? []),
+      joinDate: DateTime.parse(map['joinDate']),
+      lastActive: DateTime.parse(map['lastActive']),
+      isPublic: map['isPublic'] ?? true,
+      friends: List<String>.from(map['friends'] ?? []),
+      followers: List<String>.from(map['followers'] ?? []),
+      following: List<String>.from(map['following'] ?? []),
+      stats: Map<String, dynamic>.from(map['stats'] ?? {}),
+      country: map['country'] ?? '',
+      city: map['city'],
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -57,27 +102,6 @@ class SocialUser extends HiveObject {
 
   @HiveField(17)
   String? city;
-
-  SocialUser({
-    required this.id,
-    required this.username,
-    required this.displayName,
-    required this.email,
-    this.avatarUrl,
-    this.bio = '',
-    this.totalPoints = 0,
-    this.level = 1,
-    this.achievements = const [],
-    required this.joinDate,
-    required this.lastActive,
-    this.isPublic = true,
-    this.friends = const [],
-    this.followers = const [],
-    this.following = const [],
-    this.stats = const {},
-    this.country = '',
-    this.city,
-  });
 
   // الحصول على إحصائيات المستخدم
   int get totalHabits => stats['totalHabits'] ?? 0;
@@ -200,34 +224,24 @@ class SocialUser extends HiveObject {
       'city': city,
     };
   }
-
-  // إنشاء من خريطة
-  factory SocialUser.fromMap(Map<String, dynamic> map) {
-    return SocialUser(
-      id: map['id'],
-      username: map['username'],
-      displayName: map['displayName'],
-      email: map['email'],
-      avatarUrl: map['avatarUrl'],
-      bio: map['bio'] ?? '',
-      totalPoints: map['totalPoints'] ?? 0,
-      level: map['level'] ?? 1,
-      achievements: List<String>.from(map['achievements'] ?? []),
-      joinDate: DateTime.parse(map['joinDate']),
-      lastActive: DateTime.parse(map['lastActive']),
-      isPublic: map['isPublic'] ?? true,
-      friends: List<String>.from(map['friends'] ?? []),
-      followers: List<String>.from(map['followers'] ?? []),
-      following: List<String>.from(map['following'] ?? []),
-      stats: Map<String, dynamic>.from(map['stats'] ?? {}),
-      country: map['country'] ?? '',
-      city: map['city'],
-    );
-  }
 }
 
 @HiveType(typeId: 46)
 class SocialPost extends HiveObject {
+
+  SocialPost({
+    required this.id,
+    required this.authorId,
+    required this.content,
+    required this.type,
+    required this.createdAt,
+    this.likes = const [],
+    this.comments = const [],
+    this.metadata = const {},
+    this.isPublic = true,
+    this.tags = const [],
+    this.imageUrl,
+  });
   @HiveField(0)
   String id;
 
@@ -260,20 +274,6 @@ class SocialPost extends HiveObject {
 
   @HiveField(10)
   String? imageUrl;
-
-  SocialPost({
-    required this.id,
-    required this.authorId,
-    required this.content,
-    required this.type,
-    required this.createdAt,
-    this.likes = const [],
-    this.comments = const [],
-    this.metadata = const {},
-    this.isPublic = true,
-    this.tags = const [],
-    this.imageUrl,
-  });
 
   // إضافة إعجاب
   void addLike(String userId) {
@@ -334,6 +334,16 @@ enum PostType {
 
 @HiveType(typeId: 48)
 class SocialComment extends HiveObject {
+
+  SocialComment({
+    required this.id,
+    required this.postId,
+    required this.authorId,
+    required this.content,
+    required this.createdAt,
+    this.likes = const [],
+    this.replyToId,
+  });
   @HiveField(0)
   String id;
 
@@ -354,16 +364,6 @@ class SocialComment extends HiveObject {
 
   @HiveField(6)
   String? replyToId;
-
-  SocialComment({
-    required this.id,
-    required this.postId,
-    required this.authorId,
-    required this.content,
-    required this.createdAt,
-    this.likes = const [],
-    this.replyToId,
-  });
 
   // إضافة إعجاب
   void addLike(String userId) {

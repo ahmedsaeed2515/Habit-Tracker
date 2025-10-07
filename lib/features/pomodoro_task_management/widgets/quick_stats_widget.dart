@@ -6,14 +6,14 @@ import '../providers/pomodoro_providers.dart';
 
 /// ويدجت عرض الإحصائيات السريعة
 class QuickStatsWidget extends ConsumerWidget {
-  final PomodoroStats stats;
-  final ProductivityAnalysis analysis;
 
   const QuickStatsWidget({
     Key? key,
     required this.stats,
     required this.analysis,
   }) : super(key: key);
+  final PomodoroStats stats;
+  final ProductivityAnalysis analysis;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -192,7 +192,7 @@ class QuickStatsWidget extends ConsumerWidget {
   }
 
   Widget _buildProgressIndicator() {
-    final targetSessions = 8; // هدف يومي
+    const targetSessions = 8; // هدف يومي
     final progress = (stats.completedSessions / targetSessions).clamp(0.0, 1.0);
     final remaining = math.max(0, targetSessions - stats.completedSessions);
     
@@ -318,7 +318,7 @@ class QuickStatsWidget extends ConsumerWidget {
 
 /// ويدجت عرض الإحصائيات الأسبوعية المضغوطة
 class WeeklyStatsPreview extends ConsumerWidget {
-  const WeeklyStatsPreview({Key? key}) : super(key: key);
+  const WeeklyStatsPreview({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -491,7 +491,7 @@ class WeeklyStatsPreview extends ConsumerWidget {
 
 /// ويدجت عرض نصائح الإنتاجية
 class ProductivityTipsWidget extends ConsumerWidget {
-  const ProductivityTipsWidget({Key? key}) : super(key: key);
+  const ProductivityTipsWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

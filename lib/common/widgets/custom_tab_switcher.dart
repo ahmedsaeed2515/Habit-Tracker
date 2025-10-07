@@ -5,17 +5,26 @@ import 'package:flutter/material.dart';
 
 /// تمثل خيار واحد في التبويبات
 class TabOption {
+
+  const TabOption({required this.text, this.icon});
   /// النص المعروض
   final String text;
 
   /// الأيقونة الاختيارية
   final IconData? icon;
-
-  const TabOption({required this.text, this.icon});
 }
 
 /// Widget لعرض مجموعة تبويبات قابلة للتبديل
 class CustomTabSwitcher extends StatelessWidget {
+
+  const CustomTabSwitcher({
+    super.key,
+    required this.options,
+    required this.selectedIndex,
+    required this.onChanged,
+    this.backgroundColor,
+    this.selectedColor,
+  });
   /// قائمة الخيارات المتاحة
   final List<TabOption> options;
 
@@ -31,19 +40,10 @@ class CustomTabSwitcher extends StatelessWidget {
   /// لون التبويبة المحددة (اختياري)
   final Color? selectedColor;
 
-  const CustomTabSwitcher({
-    super.key,
-    required this.options,
-    required this.selectedIndex,
-    required this.onChanged,
-    this.backgroundColor,
-    this.selectedColor,
-  });
-
   @override
   Widget build(BuildContext context) {
     final bgColor =
-        backgroundColor ?? Theme.of(context).colorScheme.surfaceVariant;
+        backgroundColor ?? Theme.of(context).colorScheme.surfaceContainerHighest;
     final selColor = selectedColor ?? Theme.of(context).colorScheme.primary;
 
     return Container(

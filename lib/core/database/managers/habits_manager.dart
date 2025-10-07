@@ -45,7 +45,7 @@ class HabitsManager extends BaseDatabaseManager {
     final entries = _habitEntriesBox.values
         .where((entry) => entry.habitId == id)
         .toList();
-    for (var entry in entries) {
+    for (final entry in entries) {
       await _habitEntriesBox.delete(entry.key);
     }
 
@@ -129,7 +129,7 @@ class HabitsManager extends BaseDatabaseManager {
     final today = DateTime.now();
     int count = 0;
 
-    for (var habit in habits) {
+    for (final habit in habits) {
       final todayEntries = getHabitEntries(habit.id)
           .where(
             (entry) =>
@@ -152,7 +152,7 @@ class HabitsManager extends BaseDatabaseManager {
     if (habits.isEmpty) return 0.0;
 
     double totalCompletion = 0.0;
-    for (var habit in habits) {
+    for (final habit in habits) {
       // حساب معدل الإكمال بناءً على البيانات المتاحة
       final entries = getHabitEntries(habit.id);
       if (entries.isNotEmpty) {

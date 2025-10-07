@@ -7,6 +7,7 @@
 /// - achievements_providers.dart: مُقدِمات الإنجازات
 /// - challenges_providers.dart: مُقدِمات التحديات
 /// - advanced_stats_providers.dart: الإحصائيات المتقدمة
+library;
 
 // تصدير جميع المُقدِمات من الملفات المُقسَّمة
 export 'core_gamification_providers.dart';

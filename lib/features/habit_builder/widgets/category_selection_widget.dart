@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/habit_template.dart';
 
 class CategorySelectionWidget extends StatelessWidget {
-  final List<HabitCategory> selectedCategories;
-  final Function(List<HabitCategory>) onSelectionChanged;
-  final String language;
 
   const CategorySelectionWidget({
     super.key,
@@ -13,11 +10,14 @@ class CategorySelectionWidget extends StatelessWidget {
     required this.onSelectionChanged,
     this.language = 'ar',
   });
+  final List<HabitCategory> selectedCategories;
+  final Function(List<HabitCategory>) onSelectionChanged;
+  final String language;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final categories = HabitCategory.values;
+    const categories = HabitCategory.values;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +101,6 @@ class CategorySelectionWidget extends StatelessWidget {
         color: isSelected
             ? theme.colorScheme.primary
             : theme.colorScheme.outline,
-        width: 1,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     );

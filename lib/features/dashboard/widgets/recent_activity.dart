@@ -25,14 +25,15 @@ class RecentActivity extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                // TODO: عرض جميع النشاطات
+                // Navigate to the Daily screen to see all activities
+                Navigator.of(context).pushNamed('/daily');
               },
               child: const Text('عرض الكل'),
             ),
           ],
         ),
         const SizedBox(height: 16),
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             color: theme.cardColor,
             borderRadius: BorderRadius.circular(12),
@@ -70,11 +71,6 @@ class RecentActivity extends StatelessWidget {
 
 /// عنصر نشاط واحد
 class ActivityItem extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final IconData icon;
-  final Color color;
-
   const ActivityItem({
     super.key,
     required this.title,
@@ -82,6 +78,10 @@ class ActivityItem extends StatelessWidget {
     required this.icon,
     required this.color,
   });
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {

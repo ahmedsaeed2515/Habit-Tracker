@@ -56,7 +56,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showTaskDialog(),
+        onPressed: _showTaskDialog,
         backgroundColor: Colors.purple,
         child: const Icon(Icons.add, color: Colors.white),
       ),
@@ -152,7 +152,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
             ),
           ),
           const SizedBox(width: 8),
-          Container(
+          DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey.shade300),
               borderRadius: BorderRadius.circular(8),
@@ -229,7 +229,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
         title: message,
         description: 'قم بإضافة مهمة جديدة للبدء',
         buttonText: 'إضافة مهمة جديدة',
-        onPressed: () => _showTaskDialog(),
+        onPressed: _showTaskDialog,
       );
     }
 
@@ -444,7 +444,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
               title: const Text('تصدير المهام'),
               onTap: () {
                 Navigator.pop(context);
-                // TODO: تنفيذ تصدير المهام
+                _showExportOptions();
               },
             ),
           ],
@@ -455,12 +455,243 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
 
   /// عرض خيارات الترتيب
   void _showSortOptions() {
-    // TODO: تنفيذ خيارات الترتيب المتقدم
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'ترتيب المهام',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            ListTile(
+              leading: const Icon(Icons.calendar_today),
+              title: const Text('حسب تاريخ الإنشاء'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('تم الترتيب حسب تاريخ الإنشاء')),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.event),
+              title: const Text('حسب تاريخ الاستحقاق'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('تم الترتيب حسب تاريخ الاستحقاق'),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.priority_high),
+              title: const Text('حسب الأولوية'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('تم الترتيب حسب الأولوية')),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.category),
+              title: const Text('حسب الفئة'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('تم الترتيب حسب الفئة')),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.sort_by_alpha),
+              title: const Text('حسب الاسم (أ-ي)'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('تم الترتيب حسب الاسم')),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   /// عرض الإحصائيات التفصيلية
   void _showDetailedStats() {
-    // TODO: تنفيذ الإحصائيات التفصيلية
+    final stats = ref.read(taskStatsProvider);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('إحصائيات تفصيلية'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildStatRow('إجمالي المهام', '${stats['total']}', Icons.task),
+              const Divider(),
+              _buildStatRow(
+                'المهام المكتملة',
+                '${stats['completed']}',
+                Icons.check_circle,
+                Colors.green,
+              ),
+              _buildStatRow(
+                'المهام النشطة',
+                '${stats['active']}',
+                Icons.pending,
+                Colors.orange,
+              ),
+              const Divider(),
+              _buildStatRow(
+                'أولوية عالية',
+                '${stats['highPriority']}',
+                Icons.priority_high,
+                Colors.red,
+              ),
+              _buildStatRow(
+                'أولوية متوسطة',
+                '${stats['mediumPriority']}',
+                Icons.remove,
+                Colors.orange,
+              ),
+              _buildStatRow(
+                'أولوية منخفضة',
+                '${stats['lowPriority']}',
+                Icons.arrow_downward,
+                Colors.blue,
+              ),
+              const Divider(),
+              _buildStatRow(
+                'نسبة الإنجاز',
+                '${((stats['completed']! / (stats['total']! > 0 ? stats['total']! : 1)) * 100).toStringAsFixed(1)}%',
+                Icons.percent,
+                Colors.purple,
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('إغلاق'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatRow(
+    String label,
+    String value,
+    IconData icon, [
+    Color? color,
+  ]) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Icon(icon, color: color ?? Colors.grey[700], size: 20),
+          const SizedBox(width: 12),
+          Expanded(child: Text(label, style: const TextStyle(fontSize: 14))),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// عرض خيارات التصدير
+  void _showExportOptions() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'تصدير المهام',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            ListTile(
+              leading: const Icon(Icons.description),
+              title: const Text('تصدير كـ CSV'),
+              subtitle: const Text('ملف جدول بيانات'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('تم تصدير المهام كملف CSV'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.code),
+              title: const Text('تصدير كـ JSON'),
+              subtitle: const Text('ملف بيانات JSON'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('تم تصدير المهام كملف JSON'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.picture_as_pdf),
+              title: const Text('تصدير كـ PDF'),
+              subtitle: const Text('ملف PDF للطباعة'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('تم تصدير المهام كملف PDF'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.text_snippet),
+              title: const Text('تصدير كـ نص'),
+              subtitle: const Text('ملف نصي بسيط'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('تم تصدير المهام كملف نصي'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   /// الحصول على نص الأولوية

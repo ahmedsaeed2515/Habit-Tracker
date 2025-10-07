@@ -4,9 +4,9 @@ import '../models/voice_command.dart';
 
 /// معالج الأوامر الصوتية
 class CommandProcessor {
-  static final CommandProcessor _instance = CommandProcessor._internal();
   factory CommandProcessor() => _instance;
   CommandProcessor._internal();
+  static final CommandProcessor _instance = CommandProcessor._internal();
 
   /// معالجة الأمر الصوتي وتنفيذه
   Future<VoiceCommand> processCommand(VoiceCommand command) async {

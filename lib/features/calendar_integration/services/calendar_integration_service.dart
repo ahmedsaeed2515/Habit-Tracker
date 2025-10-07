@@ -4,9 +4,9 @@ import '../../../core/database/database_helper.dart';
 import '../../habits/models/habit.dart';
 
 class CalendarIntegrationService {
-  static final CalendarIntegrationService _instance = CalendarIntegrationService._internal();
   factory CalendarIntegrationService() => _instance;
   CalendarIntegrationService._internal();
+  static final CalendarIntegrationService _instance = CalendarIntegrationService._internal();
 
   final DatabaseHelper _databaseHelper = DatabaseHelper.instance;
 
@@ -16,7 +16,7 @@ class CalendarIntegrationService {
       final box = await _databaseHelper.openBoxDynamic('calendar_events');
       final events = <CalendarEvent>[];
       
-      for (var key in box.keys) {
+      for (final key in box.keys) {
         final eventData = box.get(key);
         if (eventData != null) {
           // إضافة منطق تحويل البيانات هنا
@@ -155,15 +155,12 @@ class CalendarIntegrationService {
             title: habit.name,
             description: habit.description,
             startTime: DateTime.now(),
-            endTime: DateTime.now().add(Duration(minutes: 30)), // مدة افتراضية
+            endTime: DateTime.now().add(const Duration(minutes: 30)), // مدة افتراضية
             type: EventType.habit,
             habitId: habit.id,
-            color: '#2196F3', // لون أزرق افتراضي
             reminders: [
               EventReminder(
                 id: 'habit_reminder_${habit.id}',
-                type: ReminderType.notification,
-                minutesBefore: 15, // تذكير افتراضي
                 message: 'حان وقت ${habit.name}',
               ),
             ],
@@ -426,7 +423,7 @@ class CalendarIntegrationService {
 
   // الحصول على أحداث اليوم
   Future<List<CalendarEvent>> getTodayEvents() async {
-    return await getEventsForDate(DateTime.now());
+    return getEventsForDate(DateTime.now());
   }
 
   // الحصول على أحداث الأسبوع الحالي
@@ -435,15 +432,15 @@ class CalendarIntegrationService {
     final startOfWeek = now.subtract(Duration(days: now.weekday - 1));
     final endOfWeek = startOfWeek.add(const Duration(days: 6));
     
-    return await getEventsForDateRange(startOfWeek, endOfWeek);
+    return getEventsForDateRange(startOfWeek, endOfWeek);
   }
 
   // الحصول على أحداث الشهر الحالي
   Future<List<CalendarEvent>> getThisMonthEvents() async {
     final now = DateTime.now();
-    final startOfMonth = DateTime(now.year, now.month, 1);
+    final startOfMonth = DateTime(now.year, now.month);
     final endOfMonth = DateTime(now.year, now.month + 1, 0);
     
-    return await getEventsForDateRange(startOfMonth, endOfMonth);
+    return getEventsForDateRange(startOfMonth, endOfMonth);
   }
 }

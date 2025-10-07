@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../shared/themes/app_theme.dart';
 import '../../../shared/localization/app_localizations.dart';
+import '../../gym_tracker/screens/gym_tracker_screen.dart';
+import '../../daily_habits/screens/daily_habits_screen.dart';
+import '../../smart_todo/screens/smart_todo_screen.dart';
+import '../../morning_exercises/screens/morning_exercises_screen.dart';
 
 /// ويدجت الإجراءات السريعة في لوحة التحكم
 class QuickActions extends StatelessWidget {
@@ -28,8 +32,12 @@ class QuickActions extends StatelessWidget {
                 icon: Icons.add_circle,
                 color: AppTheme.featureColors['gym']!,
                 onTap: () {
-                  // TODO: الانتقال لصفحة إضافة تمرين
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const GymTrackerScreen()),
+                  );
                 },
+                semanticLabel: 'Add gym exercise',
               ),
             ),
             const SizedBox(width: 12),
@@ -39,8 +47,14 @@ class QuickActions extends StatelessWidget {
                 icon: Icons.add_task,
                 color: AppTheme.featureColors['habits']!,
                 onTap: () {
-                  // TODO: الانتقال لصفحة إضافة عادة
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const DailyHabitsScreen(),
+                    ),
+                  );
                 },
+                semanticLabel: 'Add daily habit',
               ),
             ),
           ],
@@ -54,8 +68,12 @@ class QuickActions extends StatelessWidget {
                 icon: Icons.post_add,
                 color: AppTheme.featureColors['todo']!,
                 onTap: () {
-                  // TODO: الانتقال لصفحة إضافة مهمة
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const SmartTodoScreen()),
+                  );
                 },
+                semanticLabel: 'Add task',
               ),
             ),
             const SizedBox(width: 12),
@@ -65,8 +83,14 @@ class QuickActions extends StatelessWidget {
                 icon: Icons.wb_sunny,
                 color: AppTheme.featureColors['morning']!,
                 onTap: () {
-                  // TODO: الانتقال لتمارين الصباح
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const MorningExercisesScreen(),
+                    ),
+                  );
                 },
+                semanticLabel: 'Morning exercises',
               ),
             ),
           ],
@@ -78,10 +102,6 @@ class QuickActions extends StatelessWidget {
 
 /// زر إجراء سريع
 class ActionButton extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Color color;
-  final VoidCallback onTap;
 
   const ActionButton({
     super.key,
@@ -89,7 +109,13 @@ class ActionButton extends StatelessWidget {
     required this.icon,
     required this.color,
     required this.onTap,
+    this.semanticLabel,
   });
+  final String title;
+  final IconData icon;
+  final Color color;
+  final VoidCallback onTap;
+  final String? semanticLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +131,7 @@ class ActionButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: color.withOpacity(0.05),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: color.withOpacity(0.2), width: 1),
+            border: Border.all(color: color.withOpacity(0.2)),
           ),
           child: Column(
             children: [
@@ -115,7 +141,10 @@ class ActionButton extends StatelessWidget {
                   color: color.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(icon, color: color, size: 24),
+                child: Semantics(
+                  label: semanticLabel ?? title,
+                  child: Icon(icon, color: color, size: 24),
+                ),
               ),
               const SizedBox(height: 8),
               Text(

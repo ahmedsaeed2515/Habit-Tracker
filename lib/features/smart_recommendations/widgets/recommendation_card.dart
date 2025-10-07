@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import '../models/habit_recommendation.dart';
 
 class RecommendationCard extends StatelessWidget {
-  final HabitRecommendation recommendation;
-  final VoidCallback? onAccept;
-  final VoidCallback? onReject;
-  final VoidCallback? onView;
-  final VoidCallback? onDelete;
-  final bool isAccepted;
 
   const RecommendationCard({
     super.key,
@@ -18,6 +12,12 @@ class RecommendationCard extends StatelessWidget {
     this.onDelete,
     this.isAccepted = false,
   });
+  final HabitRecommendation recommendation;
+  final VoidCallback? onAccept;
+  final VoidCallback? onReject;
+  final VoidCallback? onView;
+  final VoidCallback? onDelete;
+  final bool isAccepted;
 
   @override
   Widget build(BuildContext context) {
@@ -256,7 +256,7 @@ class RecommendationCard extends StatelessWidget {
           width: 40,
           height: 6,
           decoration: BoxDecoration(
-            color: theme.colorScheme.surfaceVariant,
+            color: theme.colorScheme.surfaceContainerHighest,
             borderRadius: BorderRadius.circular(3),
           ),
           child: FractionallySizedBox(

@@ -9,23 +9,12 @@ import '../../../core/models/habit.dart';
 // خدمة بناء العادات
 final habitBuilderServiceProvider = Provider<HabitBuilderService>((ref) {
   final service = HabitBuilderService();
-  ref.onDispose(() => service.dispose());
+  ref.onDispose(service.dispose);
   return service;
 });
 
 // الحالة الحالية لمعالج بناء العادات
 class HabitBuilderState {
-  final int currentStep;
-  final UserProfile? userProfile;
-  final List<HabitCategory> selectedCategories;
-  final int selectedDifficulty;
-  final List<String> selectedTimes;
-  final int selectedMotivationStyle;
-  final List<String> selectedChallenges;
-  final List<HabitTemplate> recommendedTemplates;
-  final List<HabitTemplate> selectedTemplates;
-  final bool isLoading;
-  final String? error;
 
   const HabitBuilderState({
     this.currentStep = 0,
@@ -40,6 +29,17 @@ class HabitBuilderState {
     this.isLoading = false,
     this.error,
   });
+  final int currentStep;
+  final UserProfile? userProfile;
+  final List<HabitCategory> selectedCategories;
+  final int selectedDifficulty;
+  final List<String> selectedTimes;
+  final int selectedMotivationStyle;
+  final List<String> selectedChallenges;
+  final List<HabitTemplate> recommendedTemplates;
+  final List<HabitTemplate> selectedTemplates;
+  final bool isLoading;
+  final String? error;
 
   HabitBuilderState copyWith({
     int? currentStep,
@@ -73,14 +73,14 @@ class HabitBuilderState {
 
 // مزود معالج بناء العادات
 class HabitBuilderNotifier extends StateNotifier<HabitBuilderState> {
-  final HabitBuilderService _service;
 
   HabitBuilderNotifier(this._service) : super(const HabitBuilderState());
+  final HabitBuilderService _service;
 
   // تهيئة الخدمة
   Future<void> initialize() async {
     try {
-      state = state.copyWith(isLoading: true, error: null);
+      state = state.copyWith(isLoading: true);
       await _service.initialize();
 
       // محاولة تحميل ملف المستخدم الموجود
@@ -156,7 +156,7 @@ class HabitBuilderNotifier extends StateNotifier<HabitBuilderState> {
   // إنشاء ملف المستخدم والحصول على التوصيات
   Future<void> createProfileAndGetRecommendations() async {
     try {
-      state = state.copyWith(isLoading: true, error: null);
+      state = state.copyWith(isLoading: true);
 
       final profile = await _service.createUserProfile(
         userId: 'default_user',

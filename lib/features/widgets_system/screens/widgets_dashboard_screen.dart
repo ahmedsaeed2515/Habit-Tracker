@@ -254,7 +254,7 @@ class WidgetsDashboardScreen extends ConsumerWidget {
     );
   }
 
-  void _createWidget(
+  Future<void> _createWidget(
     BuildContext context,
     WidgetRef ref,
     WidgetType type,
@@ -287,7 +287,7 @@ class WidgetsDashboardScreen extends ConsumerWidget {
     }
   }
 
-  void _handleWidgetAction(
+  Future<void> _handleWidgetAction(
     BuildContext context,
     WidgetRef ref,
     WidgetConfig widget,

@@ -7,6 +7,14 @@ import '../../../core/models/morning_exercise.dart';
 
 /// Widget لعرض تمرين صباحي واحد في شكل بطاقة
 class ExerciseCard extends StatelessWidget {
+
+  const ExerciseCard({
+    super.key,
+    required this.exercise,
+    required this.onComplete,
+    required this.onEdit,
+    required this.onDelete,
+  });
   /// بيانات التمرين المراد عرضه
   final MorningExercise exercise;
 
@@ -18,14 +26,6 @@ class ExerciseCard extends StatelessWidget {
 
   /// دالة لحذف التمرين
   final VoidCallback onDelete;
-
-  const ExerciseCard({
-    super.key,
-    required this.exercise,
-    required this.onComplete,
-    required this.onEdit,
-    required this.onDelete,
-  });
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,46 @@ part 'gamification_data.g.dart';
 
 @HiveType(typeId: 20)
 class UserGameData extends HiveObject {
+
+  UserGameData({
+    this.totalPoints = 0,
+    this.currentLevel = 1,
+    this.currentStreak = 0,
+    this.longestStreak = 0,
+    DateTime? lastActive,
+    Map<String, int>? categoryPoints,
+    List<String>? completedChallenges,
+    this.weeklyPoints = 0,
+    this.monthlyPoints = 0,
+    this.lastStreakUpdate,
+    Map<String, int>? pointsHistory,
+    this.pointsInCurrentLevel = 0,
+  }) : lastActive = lastActive ?? DateTime.now(),
+       categoryPoints = categoryPoints ?? {},
+       completedChallenges = completedChallenges ?? [],
+       pointsHistory = pointsHistory ?? {};
+
+  // إنشاء من Map للاستيراد
+  factory UserGameData.fromMap(Map<String, dynamic> map) {
+    return UserGameData(
+      totalPoints: map['totalPoints'] ?? 0,
+      currentLevel: map['currentLevel'] ?? 1,
+      currentStreak: map['currentStreak'] ?? 0,
+      longestStreak: map['longestStreak'] ?? 0,
+      lastActive: map['lastActive'] != null
+          ? DateTime.parse(map['lastActive'])
+          : DateTime.now(),
+      categoryPoints: Map<String, int>.from(map['categoryPoints'] ?? {}),
+      completedChallenges: List<String>.from(map['completedChallenges'] ?? []),
+      weeklyPoints: map['weeklyPoints'] ?? 0,
+      monthlyPoints: map['monthlyPoints'] ?? 0,
+      lastStreakUpdate: map['lastStreakUpdate'] != null
+          ? DateTime.parse(map['lastStreakUpdate'])
+          : null,
+      pointsHistory: Map<String, int>.from(map['pointsHistory'] ?? {}),
+      pointsInCurrentLevel: map['pointsInCurrentLevel'] ?? 0,
+    );
+  }
   @HiveField(0)
   int totalPoints;
 
@@ -39,24 +79,6 @@ class UserGameData extends HiveObject {
 
   @HiveField(11)
   int pointsInCurrentLevel;
-
-  UserGameData({
-    this.totalPoints = 0,
-    this.currentLevel = 1,
-    this.currentStreak = 0,
-    this.longestStreak = 0,
-    DateTime? lastActive,
-    Map<String, int>? categoryPoints,
-    List<String>? completedChallenges,
-    this.weeklyPoints = 0,
-    this.monthlyPoints = 0,
-    this.lastStreakUpdate,
-    Map<String, int>? pointsHistory,
-    this.pointsInCurrentLevel = 0,
-  }) : lastActive = lastActive ?? DateTime.now(),
-       categoryPoints = categoryPoints ?? {},
-       completedChallenges = completedChallenges ?? [],
-       pointsHistory = pointsHistory ?? {};
 
   // حساب النقاط المطلوبة للمستوى التالي
   int get pointsForNextLevel => (currentLevel * 100) + (currentLevel * 50);
@@ -145,28 +167,6 @@ class UserGameData extends HiveObject {
       'pointsHistory': pointsHistory,
       'pointsInCurrentLevel': pointsInCurrentLevel,
     };
-  }
-
-  // إنشاء من Map للاستيراد
-  factory UserGameData.fromMap(Map<String, dynamic> map) {
-    return UserGameData(
-      totalPoints: map['totalPoints'] ?? 0,
-      currentLevel: map['currentLevel'] ?? 1,
-      currentStreak: map['currentStreak'] ?? 0,
-      longestStreak: map['longestStreak'] ?? 0,
-      lastActive: map['lastActive'] != null
-          ? DateTime.parse(map['lastActive'])
-          : DateTime.now(),
-      categoryPoints: Map<String, int>.from(map['categoryPoints'] ?? {}),
-      completedChallenges: List<String>.from(map['completedChallenges'] ?? []),
-      weeklyPoints: map['weeklyPoints'] ?? 0,
-      monthlyPoints: map['monthlyPoints'] ?? 0,
-      lastStreakUpdate: map['lastStreakUpdate'] != null
-          ? DateTime.parse(map['lastStreakUpdate'])
-          : null,
-      pointsHistory: Map<String, int>.from(map['pointsHistory'] ?? {}),
-      pointsInCurrentLevel: map['pointsInCurrentLevel'] ?? 0,
-    );
   }
 
   // دالة copyWith لإنشاء نسخة محدثة من البيانات

@@ -5,6 +5,26 @@ part 'settings.g.dart';
 
 @HiveType(typeId: 13)
 class AppSettings extends HiveObject {
+
+  AppSettings({
+    this.language = 'en',
+    this.isDarkMode = false,
+    this.notificationsEnabled = true,
+    AppTimeOfDay? dailyReminderTime,
+    this.alarmEnabled = false,
+    AppTimeOfDay? alarmTime,
+    this.customAlarmSoundPath,
+    this.alarmVolume = 0.8,
+    this.vibrationEnabled = true,
+    this.defaultAlarmSound = 'default_alarm',
+    this.weekendAlarmsEnabled = true,
+    this.alarmDays = const [0, 1, 2, 3, 4, 5, 6], // جميع أيام الأسبوع
+    this.autoBackupEnabled = false,
+    this.lastBackupDate,
+    this.isFirstTime = true,
+  }) : dailyReminderTime =
+           dailyReminderTime ?? AppTimeOfDay(hour: 9, minute: 0),
+       alarmTime = alarmTime ?? AppTimeOfDay(hour: 5, minute: 30);
   @HiveField(0)
   String language;
 
@@ -47,24 +67,8 @@ class AppSettings extends HiveObject {
   @HiveField(13)
   DateTime? lastBackupDate;
 
-  AppSettings({
-    this.language = 'en',
-    this.isDarkMode = false,
-    this.notificationsEnabled = true,
-    AppTimeOfDay? dailyReminderTime,
-    this.alarmEnabled = false,
-    AppTimeOfDay? alarmTime,
-    this.customAlarmSoundPath,
-    this.alarmVolume = 0.8,
-    this.vibrationEnabled = true,
-    this.defaultAlarmSound = 'default_alarm',
-    this.weekendAlarmsEnabled = true,
-    this.alarmDays = const [0, 1, 2, 3, 4, 5, 6], // جميع أيام الأسبوع
-    this.autoBackupEnabled = false,
-    this.lastBackupDate,
-  }) : dailyReminderTime =
-           dailyReminderTime ?? AppTimeOfDay(hour: 9, minute: 0),
-       alarmTime = alarmTime ?? AppTimeOfDay(hour: 5, minute: 30);
+  @HiveField(14)
+  bool isFirstTime;
 
   // التحقق من تفعيل المنبه لليوم المحدد
   bool isAlarmEnabledForDay(int dayOfWeek) {
@@ -92,6 +96,7 @@ class AppSettings extends HiveObject {
     List<int>? alarmDays,
     bool? autoBackupEnabled,
     DateTime? lastBackupDate,
+    bool? isFirstTime,
   }) {
     return AppSettings(
       language: language ?? this.language,
@@ -108,17 +113,13 @@ class AppSettings extends HiveObject {
       alarmDays: alarmDays ?? this.alarmDays,
       autoBackupEnabled: autoBackupEnabled ?? this.autoBackupEnabled,
       lastBackupDate: lastBackupDate ?? this.lastBackupDate,
+      isFirstTime: isFirstTime ?? this.isFirstTime,
     );
   }
 }
 
 @HiveType(typeId: 14)
 class AppTimeOfDay extends HiveObject {
-  @HiveField(0)
-  int hour;
-
-  @HiveField(1)
-  int minute;
 
   AppTimeOfDay({required this.hour, required this.minute});
 
@@ -126,6 +127,11 @@ class AppTimeOfDay extends HiveObject {
   factory AppTimeOfDay.fromTimeOfDay(material.TimeOfDay timeOfDay) {
     return AppTimeOfDay(hour: timeOfDay.hour, minute: timeOfDay.minute);
   }
+  @HiveField(0)
+  int hour;
+
+  @HiveField(1)
+  int minute;
 
   // تحويل إلى TimeOfDay
   material.TimeOfDay toTimeOfDay() {

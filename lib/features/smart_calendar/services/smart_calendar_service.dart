@@ -7,6 +7,8 @@ import '../models/calendar_models.dart';
 
 /// خدمة التقويم الذكي المبسطة
 class SmartCalendarService {
+  factory SmartCalendarService() => _instance;
+  SmartCalendarService._internal();
   static const String _eventsBoxName = 'calendar_events';
   static const String _syncBoxName = 'calendar_sync';
   static const String _calendarsBoxName = 'smart_calendars';
@@ -25,8 +27,6 @@ class SmartCalendarService {
 
   static final SmartCalendarService _instance =
       SmartCalendarService._internal();
-  factory SmartCalendarService() => _instance;
-  SmartCalendarService._internal();
 
   /// تهيئة الخدمة
   Future<void> initialize() async {
@@ -230,7 +230,7 @@ class SmartCalendarService {
       final oldEvent = _eventsBox.get(event.id);
 
       // إلغاء التذكير القديم
-      if (oldEvent?.reminder?.isEnabled == true) {
+      if (oldEvent?.reminder?.isEnabled ?? false) {
         await _cancelReminder(event.id);
       }
 
@@ -262,7 +262,7 @@ class SmartCalendarService {
       }
 
       // إلغاء التذكير
-      if (event.reminder?.isEnabled == true) {
+      if (event.reminder?.isEnabled ?? false) {
         await _cancelReminder(eventId);
       }
 
@@ -385,7 +385,7 @@ class SmartCalendarService {
   String _getReminderBody(CalendarEvent event) {
     final timeStr =
         '${event.startDateTime.hour.toString().padLeft(2, '0')}:${event.startDateTime.minute.toString().padLeft(2, '0')}';
-    final locationText = (event.location?.isNotEmpty == true)
+    final locationText = (event.location?.isNotEmpty ?? false)
         ? ' في ${event.location}'
         : '';
     return 'يبدأ الحدث في $timeStr$locationText';
@@ -436,7 +436,6 @@ class SmartCalendarService {
 
       final finalSync = updatedSync.copyWith(
         status: SyncStatus.success,
-        lastError: null,
       );
       await _syncBox.put(sync.id, finalSync);
 

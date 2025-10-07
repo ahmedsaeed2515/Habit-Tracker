@@ -5,14 +5,6 @@ import '../services/analytics_service.dart';
 
 /// حالة التحليلات
 class AnalyticsState {
-  final List<AnalyticsData> data;
-  final Map<DateTime, double> heatMapData;
-  final Map<String, int> streakInfo;
-  final Map<String, List<double>> categoryPerformance;
-  final Map<String, List<int>> completionTrends;
-  final List<String> insights;
-  final bool isLoading;
-  final String? error;
 
   const AnalyticsState({
     this.data = const [],
@@ -24,6 +16,14 @@ class AnalyticsState {
     this.isLoading = false,
     this.error,
   });
+  final List<AnalyticsData> data;
+  final Map<DateTime, double> heatMapData;
+  final Map<String, int> streakInfo;
+  final Map<String, List<double>> categoryPerformance;
+  final Map<String, List<int>> completionTrends;
+  final List<String> insights;
+  final bool isLoading;
+  final String? error;
 
   AnalyticsState copyWith({
     List<AnalyticsData>? data,
@@ -50,16 +50,16 @@ class AnalyticsState {
 
 /// مزود التحليلات
 class AnalyticsNotifier extends StateNotifier<AnalyticsState> {
-  final AnalyticsService _analyticsService;
 
   AnalyticsNotifier(this._analyticsService) : super(const AnalyticsState());
+  final AnalyticsService _analyticsService;
 
   /// تحميل جميع بيانات التحليلات
   Future<void> loadAnalyticsData({
     required String userId,
     int days = 30,
   }) async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = state.copyWith(isLoading: true);
 
     try {
       final endDate = DateTime.now();
@@ -221,7 +221,7 @@ class AnalyticsNotifier extends StateNotifier<AnalyticsState> {
 
   /// مسح الأخطاء
   void clearError() {
-    state = state.copyWith(error: null);
+    state = state.copyWith();
   }
 }
 

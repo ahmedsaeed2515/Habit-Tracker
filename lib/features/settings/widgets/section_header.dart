@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 /// ويدجت رأس قسم في الإعدادات
 class SectionHeader extends StatelessWidget {
-  final String title;
 
   const SectionHeader({super.key, required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {

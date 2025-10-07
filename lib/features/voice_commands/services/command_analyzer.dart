@@ -3,9 +3,9 @@ import '../models/voice_command.dart';
 
 /// محلل الأوامر الصوتية
 class CommandAnalyzer {
-  static final CommandAnalyzer _instance = CommandAnalyzer._internal();
   factory CommandAnalyzer() => _instance;
   CommandAnalyzer._internal();
+  static final CommandAnalyzer _instance = CommandAnalyzer._internal();
 
   /// كلمات مفتاحية للعادات
   final _habitKeywords = [
@@ -145,7 +145,7 @@ class CommandAnalyzer {
   /// حساب نقاط الكلمات المفتاحية
   int _calculateKeywordScore(String text, List<String> keywords) {
     int score = 0;
-    for (String keyword in keywords) {
+    for (final String keyword in keywords) {
       if (text.contains(keyword.toLowerCase())) {
         score++;
       }
@@ -247,10 +247,12 @@ class CommandAnalyzer {
   String? _extractNavigationDestination(String text) {
     if (text.contains('العادات') || text.contains('habits')) return 'habits';
     if (text.contains('المهام') || text.contains('tasks')) return 'tasks';
-    if (text.contains('الإعدادات') || text.contains('settings'))
+    if (text.contains('الإعدادات') || text.contains('settings')) {
       return 'settings';
-    if (text.contains('التحليلات') || text.contains('analytics'))
+    }
+    if (text.contains('التحليلات') || text.contains('analytics')) {
       return 'analytics';
+    }
     if (text.contains('الرئيسية') || text.contains('home')) return 'home';
     return null;
   }
@@ -285,10 +287,6 @@ class CommandAnalyzer {
 
 /// نتيجة تحليل الأمر
 class CommandAnalysisResult {
-  final VoiceCommandType type;
-  final double confidence;
-  final Map<String, dynamic> parameters;
-  final String processedText;
 
   CommandAnalysisResult({
     required this.type,
@@ -296,4 +294,8 @@ class CommandAnalysisResult {
     required this.parameters,
     required this.processedText,
   });
+  final VoiceCommandType type;
+  final double confidence;
+  final Map<String, dynamic> parameters;
+  final String processedText;
 }

@@ -7,10 +7,10 @@ import '../models/performance_metrics.dart';
 import '../../../core/database/database_helper.dart';
 
 class PerformanceOptimizationService {
-  static final PerformanceOptimizationService _instance =
-      PerformanceOptimizationService._internal();
   factory PerformanceOptimizationService() => _instance;
   PerformanceOptimizationService._internal();
+  static final PerformanceOptimizationService _instance =
+      PerformanceOptimizationService._internal();
 
   final DatabaseHelper _databaseHelper = DatabaseHelper.instance;
   final DeviceInfoPlugin _deviceInfoPlugin = DeviceInfoPlugin();
@@ -89,9 +89,6 @@ class PerformanceOptimizationService {
           osVersion: 'Android ${androidInfo.version.release}',
           cpuType: androidInfo.hardware,
           screenResolution: 'غير معروف',
-          screenDensity: 0.0,
-          ramSize: 0,
-          storageSize: 0,
         );
       } else if (Platform.isIOS) {
         final iosInfo = await _deviceInfoPlugin.iosInfo;
@@ -100,9 +97,6 @@ class PerformanceOptimizationService {
           osVersion: 'iOS ${iosInfo.systemVersion}',
           cpuType: iosInfo.utsname.machine,
           screenResolution: 'غير معروف',
-          screenDensity: 0.0,
-          ramSize: 0,
-          storageSize: 0,
         );
       } else {
         return DeviceInfo(

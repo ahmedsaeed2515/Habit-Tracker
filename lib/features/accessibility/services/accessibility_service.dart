@@ -6,9 +6,9 @@ import '../models/accessibility_settings.dart';
 import '../../../core/database/database_helper.dart';
 
 class AccessibilityService {
-  static final AccessibilityService _instance = AccessibilityService._internal();
   factory AccessibilityService() => _instance;
   AccessibilityService._internal();
+  static final AccessibilityService _instance = AccessibilityService._internal();
 
   final DatabaseHelper _databaseHelper = DatabaseHelper.instance;
   AccessibilitySettings? _currentSettings;

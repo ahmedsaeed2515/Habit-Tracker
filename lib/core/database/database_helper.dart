@@ -9,10 +9,10 @@ import '../../features/dynamic_theming/models/theming_models.dart';
 
 /// مساعد قاعدة البيانات الرئيسي
 class DatabaseHelper {
-  static DatabaseHelper? _instance;
-  static DatabaseHelper get instance => _instance ??= DatabaseHelper._();
   
   DatabaseHelper._();
+  static DatabaseHelper? _instance;
+  static DatabaseHelper get instance => _instance ??= DatabaseHelper._();
 
   // أسماء الصناديق
   static const String _habitsBoxName = 'habits';
@@ -275,37 +275,37 @@ class DatabaseHelper {
 
       // استعادة البيانات
       if (backup['habits'] != null) {
-        for (var habit in backup['habits']) {
+        for (final habit in backup['habits']) {
           await habitsBox.add(habit as Habit);
         }
       }
       
       if (backup['tasks'] != null) {
-        for (var task in backup['tasks']) {
+        for (final task in backup['tasks']) {
           await tasksBox.add(task as Task);
         }
       }
       
       if (backup['exercises'] != null) {
-        for (var exercise in backup['exercises']) {
+        for (final exercise in backup['exercises']) {
           await exercisesBox.add(exercise as MorningExercise);
         }
       }
       
       if (backup['workouts'] != null) {
-        for (var workout in backup['workouts']) {
+        for (final workout in backup['workouts']) {
           await workoutsBox.add(workout as Workout);
         }
       }
       
       if (backup['settings'] != null) {
-        for (var setting in backup['settings']) {
+        for (final setting in backup['settings']) {
           await settingsBox.add(setting as AppSettings);
         }
       }
       
       if (backup['themes'] != null) {
-        for (var theme in backup['themes']) {
+        for (final theme in backup['themes']) {
           await themingBox.add(theme as DynamicTheme);
         }
       }
@@ -402,7 +402,7 @@ class DatabaseHelper {
   @deprecated
   Future<Box<T>> openBox<T>(String boxName) async {
     if (!Hive.isBoxOpen(boxName)) {
-      return await Hive.openBox<T>(boxName);
+      return Hive.openBox<T>(boxName);
     }
     return Hive.box<T>(boxName);
   }
@@ -411,7 +411,7 @@ class DatabaseHelper {
   @deprecated
   Future<Box> openBoxDynamic(String boxName) async {
     if (!Hive.isBoxOpen(boxName)) {
-      return await Hive.openBox(boxName);
+      return Hive.openBox(boxName);
     }
     return Hive.box(boxName);
   }

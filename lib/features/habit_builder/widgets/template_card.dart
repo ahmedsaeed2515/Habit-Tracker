@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/habit_template.dart';
 
 class TemplateCard extends StatelessWidget {
-  final HabitTemplate template;
-  final bool isSelected;
-  final VoidCallback onTap;
-  final String language;
 
   const TemplateCard({
     super.key,
@@ -15,6 +11,10 @@ class TemplateCard extends StatelessWidget {
     required this.onTap,
     this.language = 'ar',
   });
+  final HabitTemplate template;
+  final bool isSelected;
+  final VoidCallback onTap;
+  final String language;
 
   @override
   Widget build(BuildContext context) {

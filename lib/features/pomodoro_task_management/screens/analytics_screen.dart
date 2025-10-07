@@ -16,7 +16,7 @@ enum DateRange {
 
 /// شاشة الإحصائيات والتحليلات المتقدمة
 class AnalyticsScreen extends ConsumerStatefulWidget {
-  const AnalyticsScreen({Key? key}) : super(key: key);
+  const AnalyticsScreen({super.key});
 
   @override
   ConsumerState<AnalyticsScreen> createState() => _AnalyticsScreenState();
@@ -61,7 +61,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
           _buildRangeSelector(),
           IconButton(
             icon: const Icon(Icons.share, color: Colors.white),
-            onPressed: () => _shareStats(),
+            onPressed: _shareStats,
           ),
         ],
         bottom: TabBar(
@@ -289,8 +289,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
           const SizedBox(height: 20),
           
           // Recommendations List
-          ...recommendations.map((recommendation) => 
-            _buildRecommendationCard(recommendation)).toList(),
+          ...recommendations.map(_buildRecommendationCard),
           
           if (recommendations.isEmpty)
             _buildEmptyRecommendations(),
@@ -323,7 +322,6 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
             child: LineChart(
               LineChartData(
                 gridData: FlGridData(
-                  show: true,
                   drawVerticalLine: false,
                   horizontalInterval: 2,
                   getDrawingHorizontalLine: (value) {
@@ -334,8 +332,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                   },
                 ),
                 titlesData: FlTitlesData(
-                  rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  rightTitles: const AxisTitles(),
+                  topTitles: const AxisTitles(),
                   bottomTitles: AxisTitles(
                     sideTitles: SideTitles(
                       showTitles: true,
@@ -377,7 +375,6 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                       color: Colors.blue.withOpacity(0.1),
                     ),
                     dotData: FlDotData(
-                      show: true,
                       getDotPainter: (spot, percent, barData, index) {
                         return FlDotCirclePainter(
                           radius: 4,

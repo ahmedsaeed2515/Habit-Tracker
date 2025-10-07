@@ -1,5 +1,5 @@
 ﻿// نظام إدارة مهام البومودورو - ملف الفهرسة الرئيسي
-library pomodoro_task_management;
+library;
 
 import 'package:flutter/foundation.dart';
 

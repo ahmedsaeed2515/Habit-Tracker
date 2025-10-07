@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 
 /// ويدجت الخريطة الحرارية لعرض نشاط المستخدم عبر الأيام
 class HeatMapWidget extends StatelessWidget {
-  final Map<DateTime, double> data;
-  final String title;
-  final double cellSize;
-  final int weeksToShow;
 
   const HeatMapWidget({
     super.key,
@@ -15,6 +11,10 @@ class HeatMapWidget extends StatelessWidget {
     this.cellSize = 12.0,
     this.weeksToShow = 20,
   });
+  final Map<DateTime, double> data;
+  final String title;
+  final double cellSize;
+  final int weeksToShow;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class HeatMapWidget extends StatelessWidget {
                 // أرقام الأشهر
                 _buildMonthLabels(weeks.first.first, weeks.last.last),
                 // الأسابيع
-                ...weeks.map((week) => _buildWeekColumn(week)).toList(),
+                ...weeks.map(_buildWeekColumn),
               ],
             ),
           ],
@@ -151,7 +151,7 @@ class HeatMapWidget extends StatelessWidget {
           margin: const EdgeInsets.all(1),
         ),
         // خلايا الأسبوع
-        ...week.map((day) => _buildDayCell(day)).toList(),
+        ...week.map(_buildDayCell),
         // إضافة خلايا فارغة إذا لم يكن الأسبوع مكتمل
         ...List.generate(
           7 - week.length,

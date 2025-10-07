@@ -3,17 +3,6 @@ import 'package:flutter/material.dart';
 /// A customizable switch widget that provides consistent styling
 /// throughout the application with additional features
 class CustomSwitch extends StatefulWidget {
-  final bool value;
-  final void Function(bool)? onChanged;
-  final String? title;
-  final String? subtitle;
-  final Color? activeColor;
-  final Color? inactiveColor;
-  final Color? thumbColor;
-  final EdgeInsets? padding;
-  final bool enabled;
-  final Widget? leading;
-  final Widget? trailing;
 
   const CustomSwitch({
     super.key,
@@ -29,6 +18,17 @@ class CustomSwitch extends StatefulWidget {
     this.leading,
     this.trailing,
   });
+  final bool value;
+  final void Function(bool)? onChanged;
+  final String? title;
+  final String? subtitle;
+  final Color? activeColor;
+  final Color? inactiveColor;
+  final Color? thumbColor;
+  final EdgeInsets? padding;
+  final bool enabled;
+  final Widget? leading;
+  final Widget? trailing;
 
   @override
   State<CustomSwitch> createState() => _CustomSwitchState();
@@ -95,7 +95,7 @@ class _CustomSwitchState extends State<CustomSwitch> {
     return Switch(
       value: widget.value,
       onChanged: widget.enabled ? widget.onChanged : null,
-      activeColor: widget.thumbColor ?? theme.colorScheme.onPrimary,
+      activeThumbColor: widget.thumbColor ?? theme.colorScheme.onPrimary,
       activeTrackColor: widget.activeColor ?? theme.colorScheme.primary,
       inactiveThumbColor: widget.thumbColor ?? theme.colorScheme.onSurface,
       inactiveTrackColor: widget.inactiveColor ?? theme.colorScheme.outline.withOpacity(0.3),
@@ -105,16 +105,6 @@ class _CustomSwitchState extends State<CustomSwitch> {
 
 /// A switch list tile with enhanced customization options
 class CustomSwitchListTile extends StatelessWidget {
-  final bool value;
-  final void Function(bool)? onChanged;
-  final String? title;
-  final String? subtitle;
-  final Widget? leading;
-  final Widget? secondary;
-  final EdgeInsets? padding;
-  final bool enabled;
-  final Color? activeColor;
-  final Color? inactiveColor;
 
   const CustomSwitchListTile({
     super.key,
@@ -129,6 +119,16 @@ class CustomSwitchListTile extends StatelessWidget {
     this.activeColor,
     this.inactiveColor,
   });
+  final bool value;
+  final void Function(bool)? onChanged;
+  final String? title;
+  final String? subtitle;
+  final Widget? leading;
+  final Widget? secondary;
+  final EdgeInsets? padding;
+  final bool enabled;
+  final Color? activeColor;
+  final Color? inactiveColor;
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +142,7 @@ class CustomSwitchListTile extends StatelessWidget {
         title: title != null ? Text(title!) : null,
         subtitle: subtitle != null ? Text(subtitle!) : null,
         secondary: leading,
-        activeColor: activeColor ?? theme.colorScheme.primary,
+        activeThumbColor: activeColor ?? theme.colorScheme.primary,
         inactiveTrackColor: inactiveColor ?? theme.colorScheme.outline.withOpacity(0.3),
         contentPadding: EdgeInsets.zero,
         dense: false,
@@ -153,16 +153,6 @@ class CustomSwitchListTile extends StatelessWidget {
 
 /// A toggle switch widget with custom styling
 class CustomToggleSwitch extends StatelessWidget {
-  final List<String> labels;
-  final int selectedIndex;
-  final void Function(int)? onChanged;
-  final Color? activeColor;
-  final Color? inactiveColor;
-  final Color? activeForegroundColor;
-  final Color? inactiveForegroundColor;
-  final double? borderRadius;
-  final EdgeInsets? padding;
-  final bool enabled;
 
   const CustomToggleSwitch({
     super.key,
@@ -177,6 +167,16 @@ class CustomToggleSwitch extends StatelessWidget {
     this.padding = const EdgeInsets.all(4.0),
     this.enabled = true,
   });
+  final List<String> labels;
+  final int selectedIndex;
+  final void Function(int)? onChanged;
+  final Color? activeColor;
+  final Color? inactiveColor;
+  final Color? activeForegroundColor;
+  final Color? inactiveForegroundColor;
+  final double? borderRadius;
+  final EdgeInsets? padding;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -232,16 +232,6 @@ class CustomToggleSwitch extends StatelessWidget {
 
 /// A switch with icon indicators
 class CustomIconSwitch extends StatelessWidget {
-  final bool value;
-  final void Function(bool)? onChanged;
-  final IconData? activeIcon;
-  final IconData? inactiveIcon;
-  final String? activeLabel;
-  final String? inactiveLabel;
-  final Color? activeColor;
-  final Color? inactiveColor;
-  final bool enabled;
-  final EdgeInsets? padding;
 
   const CustomIconSwitch({
     super.key,
@@ -256,6 +246,16 @@ class CustomIconSwitch extends StatelessWidget {
     this.enabled = true,
     this.padding,
   });
+  final bool value;
+  final void Function(bool)? onChanged;
+  final IconData? activeIcon;
+  final IconData? inactiveIcon;
+  final String? activeLabel;
+  final String? inactiveLabel;
+  final Color? activeColor;
+  final Color? inactiveColor;
+  final bool enabled;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {

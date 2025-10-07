@@ -15,7 +15,7 @@ final healthProfileProvider = FutureProvider.family<HealthProfile, String>((
   userId,
 ) async {
   final service = ref.watch(healthServiceProvider);
-  return await service.getOrCreateProfile(userId);
+  return service.getOrCreateProfile(userId);
 });
 
 // موفر تدفق الملف الصحي
@@ -42,7 +42,7 @@ final healthDataForPeriodProvider =
       request,
     ) async {
       final service = ref.watch(healthServiceProvider);
-      return await service.getHealthDataForPeriod(
+      return service.getHealthDataForPeriod(
         userId: request.userId,
         startDate: request.startDate,
         endDate: request.endDate,
@@ -57,7 +57,7 @@ final personalizedInsightsProvider =
       request,
     ) async {
       final service = ref.watch(healthServiceProvider);
-      return await service.getPersonalizedInsights(
+      return service.getPersonalizedInsights(
         userId: request.userId,
         days: request.days,
       );
@@ -423,13 +423,12 @@ class HealthGoalsNotifier extends StateNotifier<HealthGoalsState> {
       await _service.createHealthGoal(
         userId: _userId,
         title: _metricDisplayName(metricType),
-        description: description?.isNotEmpty == true
+        description: description?.isNotEmpty ?? false
             ? description!
             : _metricDisplayName(metricType),
         metricType: metricType,
         targetValue: targetValue,
         endDate: _computeEndDate(period),
-        goalType: HealthGoalType.target,
       );
 
       await _loadGoals();
@@ -705,7 +704,7 @@ final habitHealthCorrelationProvider =
       request,
     ) async {
       final service = ref.watch(healthServiceProvider);
-      return await service.analyzeHabitHealthCorrelation(
+      return service.analyzeHabitHealthCorrelation(
         userId: request.userId,
         habitId: request.habitId,
         healthMetric: request.healthMetric,
@@ -719,7 +718,7 @@ final healthReportProvider =
       ref,
       request,
     ) async {
-      return await HealthReportService.generateHealthReport(
+      return HealthReportService.generateHealthReport(
         userId: request.userId,
         days: request.days,
       );
@@ -728,7 +727,7 @@ final healthReportProvider =
 // موفر تقرير المقارنة الشهرية
 final monthlyComparisonProvider =
     FutureProvider.family<Map<String, dynamic>, String>((ref, userId) async {
-      return await HealthReportService.generateMonthlyComparison(
+      return HealthReportService.generateMonthlyComparison(
         userId: userId,
       );
     });
@@ -1007,10 +1006,6 @@ final lastSyncTimeProvider = FutureProvider.family<DateTime?, String>((
 
 // فئات البيانات المساعدة
 class HealthDataRequest {
-  final String userId;
-  final DateTime startDate;
-  final DateTime endDate;
-  final HealthMetricType? metricType;
 
   HealthDataRequest({
     required this.userId,
@@ -1018,6 +1013,10 @@ class HealthDataRequest {
     required this.endDate,
     this.metricType,
   });
+  final String userId;
+  final DateTime startDate;
+  final DateTime endDate;
+  final HealthMetricType? metricType;
 
   @override
   bool operator ==(Object other) {
@@ -1039,10 +1038,10 @@ class HealthDataRequest {
 }
 
 class InsightsRequest {
-  final String userId;
-  final int days;
 
   InsightsRequest({required this.userId, this.days = 7});
+  final String userId;
+  final int days;
 
   @override
   bool operator ==(Object other) {
@@ -1059,10 +1058,6 @@ class InsightsRequest {
 }
 
 class CorrelationRequest {
-  final String userId;
-  final String habitId;
-  final HealthMetricType healthMetric;
-  final int days;
 
   CorrelationRequest({
     required this.userId,
@@ -1070,6 +1065,10 @@ class CorrelationRequest {
     required this.healthMetric,
     this.days = 30,
   });
+  final String userId;
+  final String habitId;
+  final HealthMetricType healthMetric;
+  final int days;
 
   @override
   bool operator ==(Object other) {
@@ -1091,10 +1090,10 @@ class CorrelationRequest {
 }
 
 class ReportRequest {
-  final String userId;
-  final int days;
 
   ReportRequest({required this.userId, this.days = 30});
+  final String userId;
+  final int days;
 
   @override
   bool operator ==(Object other) {
@@ -1111,13 +1110,6 @@ class ReportRequest {
 }
 
 class GoalsStats {
-  final int total;
-  final int active;
-  final int completed;
-  final int expired;
-  final double completionRate;
-  final int longestStreak;
-  final int activeStreaks;
 
   GoalsStats({
     required this.total,
@@ -1128,15 +1120,16 @@ class GoalsStats {
     required this.longestStreak,
     required this.activeStreaks,
   });
+  final int total;
+  final int active;
+  final int completed;
+  final int expired;
+  final double completionRate;
+  final int longestStreak;
+  final int activeStreaks;
 }
 
 class HealthDataStats {
-  final int totalPoints;
-  final double averageValue;
-  final double minValue;
-  final double maxValue;
-  final double consistency;
-  final double coverage;
 
   HealthDataStats({
     required this.totalPoints,
@@ -1146,6 +1139,12 @@ class HealthDataStats {
     required this.consistency,
     required this.coverage,
   });
+  final int totalPoints;
+  final double averageValue;
+  final double minValue;
+  final double maxValue;
+  final double consistency;
+  final double coverage;
 }
 
 enum SyncStatus { idle, syncing, completed, error }

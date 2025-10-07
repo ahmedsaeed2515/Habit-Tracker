@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// ويدجت مستوى المستخدم المحسن
 /// TODO: تطوير هذا الويدجت مع البيانات الفعلية
 class EnhancedUserLevelWidget extends ConsumerWidget {
-  const EnhancedUserLevelWidget({Key? key}) : super(key: key);
+  const EnhancedUserLevelWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,7 +17,7 @@ class EnhancedUserLevelWidget extends ConsumerWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Icon(Icons.person_rounded, size: 48, color: Colors.blue),
+            const Icon(Icons.person_rounded, size: 48, color: Colors.blue),
             const SizedBox(height: 8),
             Text(
               isArabic ? 'مستوى المستخدم المحسن' : 'Enhanced User Level',

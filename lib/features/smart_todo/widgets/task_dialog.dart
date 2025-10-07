@@ -3,10 +3,10 @@ import '../../../core/models/task.dart';
 
 /// حوار إدارة المهام - إضافة أو تحرير
 class TaskDialog extends StatefulWidget {
-  final Task? task;
-  final Function(Task) onSave;
 
   const TaskDialog({super.key, this.task, required this.onSave});
+  final Task? task;
+  final Function(Task) onSave;
 
   @override
   State<TaskDialog> createState() => _TaskDialogState();

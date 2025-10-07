@@ -6,9 +6,9 @@ import 'package:permission_handler/permission_handler.dart';
 import '../models/smart_notification.dart';
 
 class NotificationService {
-  static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
   NotificationService._internal();
+  static final NotificationService _instance = NotificationService._internal();
 
   bool _isInitialized = false;
 
@@ -120,7 +120,7 @@ class NotificationService {
         .isNotificationAllowed()
         .then((isAllowed) async {
           if (!isAllowed) {
-            return await AwesomeNotifications()
+            return AwesomeNotifications()
                 .requestPermissionToSendNotifications();
           }
           return true;
@@ -230,14 +230,11 @@ class NotificationService {
           channelKey: _getChannelKey(notification.type),
           title: '${notification.type.icon} ${notification.title}',
           body: notification.body,
-          bigPicture: null,
-          largeIcon: null,
-          notificationLayout: NotificationLayout.Default,
           payload: {
             'notificationId': notification.id,
             'type': notification.type.name,
-            if (notification.habitId != null) 'habitId': notification.habitId!,
-            if (notification.taskId != null) 'taskId': notification.taskId!,
+            if (notification.habitId != null) 'habitId': notification.habitId,
+            if (notification.taskId != null) 'taskId': notification.taskId,
             ...notification.customData,
           },
           category: _getNotificationCategory(notification.type),
@@ -299,8 +296,8 @@ class NotificationService {
           payload: {
             'notificationId': notification.id,
             'type': notification.type.name,
-            if (notification.habitId != null) 'habitId': notification.habitId!,
-            if (notification.taskId != null) 'taskId': notification.taskId!,
+            if (notification.habitId != null) 'habitId': notification.habitId,
+            if (notification.taskId != null) 'taskId': notification.taskId,
             ...notification.customData,
           },
           category: _getNotificationCategory(notification.type),
@@ -398,13 +395,11 @@ class NotificationService {
             key: 'MARK_DONE',
             label: 'تم ✅',
             actionType: ActionType.SilentAction,
-            isDangerousOption: false,
           ),
           NotificationActionButton(
             key: 'REMIND_LATER',
             label: 'تذكير لاحقاً ⏰',
             actionType: ActionType.SilentAction,
-            isDangerousOption: false,
           ),
         ];
 
@@ -414,13 +409,11 @@ class NotificationService {
             key: 'COMPLETE_TASK',
             label: 'إكمال ✅',
             actionType: ActionType.SilentAction,
-            isDangerousOption: false,
           ),
           NotificationActionButton(
             key: 'SNOOZE',
             label: 'غفوة 🔕',
             actionType: ActionType.SilentAction,
-            isDangerousOption: false,
           ),
         ];
 
@@ -431,7 +424,7 @@ class NotificationService {
 
   // التحقق من حالة الإشعارات
   Future<bool> areNotificationsEnabled() async {
-    return await AwesomeNotifications().isNotificationAllowed();
+    return AwesomeNotifications().isNotificationAllowed();
   }
 
   // فتح إعدادات الإشعارات

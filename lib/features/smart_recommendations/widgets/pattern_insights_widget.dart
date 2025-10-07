@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../models/habit_recommendation.dart';
 
 class PatternInsightsWidget extends StatelessWidget {
-  final List<UserBehaviorPattern> patterns;
 
   const PatternInsightsWidget({super.key, required this.patterns});
+  final List<UserBehaviorPattern> patterns;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class PatternInsightsWidget extends StatelessWidget {
           width: 40,
           height: 4,
           decoration: BoxDecoration(
-            color: theme.colorScheme.surfaceVariant,
+            color: theme.colorScheme.surfaceContainerHighest,
             borderRadius: BorderRadius.circular(2),
           ),
           child: FractionallySizedBox(

@@ -25,7 +25,7 @@ final currentThemeProvider = StateNotifierProvider<ThemeNotifier, ThemeState>((
 /// موفر جميع الثيمات المتاحة
 final availableThemesProvider = FutureProvider<List<DynamicTheme>>((ref) async {
   final service = ref.read(dynamicThemingServiceProvider);
-  return await service.getAllThemes();
+  return service.getAllThemes();
 });
 
 /// موفر الثيمات المخصصة
@@ -54,11 +54,11 @@ final themeLoadingProvider = Provider<bool>((ref) {
 // === مُدير حالة الثيم ===
 
 class ThemeNotifier extends StateNotifier<ThemeState> {
-  final DynamicThemingService _service;
 
   ThemeNotifier(this._service) : super(ThemeState.loading()) {
     _loadCurrentTheme();
   }
+  final DynamicThemingService _service;
 
   Future<void> _loadCurrentTheme() async {
     try {
@@ -129,17 +129,17 @@ class ThemeLoading extends ThemeState {
 }
 
 class ThemeLoaded extends ThemeState {
-  final DynamicTheme theme;
   const ThemeLoaded(this.theme);
+  final DynamicTheme theme;
 }
 
 class ThemeChanging extends ThemeState {
+  const ThemeChanging(this.currentTheme, this.newThemeId);
   final DynamicTheme currentTheme;
   final String newThemeId;
-  const ThemeChanging(this.currentTheme, this.newThemeId);
 }
 
 class ThemeError extends ThemeState {
-  final String message;
   const ThemeError(this.message);
+  final String message;
 }

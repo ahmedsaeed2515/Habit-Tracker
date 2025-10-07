@@ -25,13 +25,13 @@ final gamificationStatsProvider = FutureProvider<Map<String, dynamic>>((
   ref,
 ) async {
   final service = ref.watch(unifiedGamificationServiceProvider);
-  return await service.getGamificationStats();
+  return service.getGamificationStats();
 });
 
 // مقدم المكافآت اليومية
 final dailyRewardProvider = FutureProvider<Map<String, dynamic>?>((ref) async {
   final service = ref.watch(unifiedGamificationServiceProvider);
-  return await service.getDailyReward();
+  return service.getDailyReward();
 });
 
 // مقدم إحصائيات المستوى

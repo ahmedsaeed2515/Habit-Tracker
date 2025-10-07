@@ -7,6 +7,13 @@ import '../../../core/models/workout.dart';
 
 /// Widget لعرض تمرين واحد في شكل بطاقة
 class WorkoutCard extends StatelessWidget {
+
+  const WorkoutCard({
+    super.key,
+    required this.workout,
+    required this.onEdit,
+    required this.onDelete,
+  });
   /// بيانات التمرين المراد عرضه
   final Workout workout;
 
@@ -15,13 +22,6 @@ class WorkoutCard extends StatelessWidget {
 
   /// دالة لحذف التمرين
   final VoidCallback onDelete;
-
-  const WorkoutCard({
-    super.key,
-    required this.workout,
-    required this.onEdit,
-    required this.onDelete,
-  });
 
   @override
   Widget build(BuildContext context) {

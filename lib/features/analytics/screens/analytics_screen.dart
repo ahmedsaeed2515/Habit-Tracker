@@ -188,19 +188,17 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
       child: Column(
         children: [
           // مخطط النقاط الأسبوعي
-          if (weeklyTrends['scores']?.isNotEmpty == true)
+          if (weeklyTrends['scores']?.isNotEmpty ?? false)
             AnalyticsLineChart(
               data: weeklyTrends['scores']!,
               labels: _generateWeekLabels(),
               title: 'تطور النقاط الأسبوعية',
-              lineColor: Colors.blue,
-              maxY: 100,
             ),
 
           const SizedBox(height: 16),
 
           // مخطط العادات والمهام
-          if (weeklyTrends['habits']?.isNotEmpty == true)
+          if (weeklyTrends['habits']?.isNotEmpty ?? false)
             AnalyticsLineChart(
               data: weeklyTrends['habits']!,
               labels: _generateWeekLabels(),

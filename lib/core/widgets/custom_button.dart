@@ -2,19 +2,6 @@ import 'package:flutter/material.dart';
 
 /// زر مخصص قابل لإعادة الاستخدام
 class CustomButton extends StatelessWidget {
-  final String text;
-  final VoidCallback? onPressed;
-  final ButtonStyle? style;
-  final Color? backgroundColor;
-  final Color? foregroundColor;
-  final double? borderRadius;
-  final EdgeInsetsGeometry? padding;
-  final Size? minimumSize;
-  final bool isLoading;
-  final bool isDisabled;
-  final IconData? icon;
-  final bool iconOnRight;
-  final double? elevation;
 
   const CustomButton({
     Key? key,
@@ -32,6 +19,19 @@ class CustomButton extends StatelessWidget {
     this.iconOnRight = false,
     this.elevation,
   }) : super(key: key);
+  final String text;
+  final VoidCallback? onPressed;
+  final ButtonStyle? style;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final double? borderRadius;
+  final EdgeInsetsGeometry? padding;
+  final Size? minimumSize;
+  final bool isLoading;
+  final bool isDisabled;
+  final IconData? icon;
+  final bool iconOnRight;
+  final double? elevation;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class CustomButton extends StatelessWidget {
       );
     }
 
-    return Icon(icon!, size: 18);
+    return Icon(icon, size: 18);
   }
 
   Widget _buildLabel() {
@@ -127,9 +127,9 @@ class CustomButton extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          Icon(icon!, size: 18),
+          Icon(icon, size: 18),
         ] : [
-          Icon(icon!, size: 18),
+          Icon(icon, size: 18),
           const SizedBox(width: 8),
           Text(
             text,
@@ -154,16 +154,6 @@ class CustomButton extends StatelessWidget {
 
 /// زر مخطط (Outlined)
 class CustomOutlinedButton extends StatelessWidget {
-  final String text;
-  final VoidCallback? onPressed;
-  final Color? borderColor;
-  final Color? textColor;
-  final double? borderRadius;
-  final EdgeInsetsGeometry? padding;
-  final Size? minimumSize;
-  final bool isLoading;
-  final IconData? icon;
-  final bool iconOnRight;
 
   const CustomOutlinedButton({
     Key? key,
@@ -178,6 +168,16 @@ class CustomOutlinedButton extends StatelessWidget {
     this.icon,
     this.iconOnRight = false,
   }) : super(key: key);
+  final String text;
+  final VoidCallback? onPressed;
+  final Color? borderColor;
+  final Color? textColor;
+  final double? borderRadius;
+  final EdgeInsetsGeometry? padding;
+  final Size? minimumSize;
+  final bool isLoading;
+  final IconData? icon;
+  final bool iconOnRight;
 
   @override
   Widget build(BuildContext context) {
@@ -222,9 +222,9 @@ class CustomOutlinedButton extends StatelessWidget {
         children: iconOnRight ? [
           Text(text),
           const SizedBox(width: 8),
-          Icon(icon!, size: 18),
+          Icon(icon, size: 18),
         ] : [
-          Icon(icon!, size: 18),
+          Icon(icon, size: 18),
           const SizedBox(width: 8),
           Text(text),
         ],
@@ -243,14 +243,6 @@ class CustomOutlinedButton extends StatelessWidget {
 
 /// زر نص بسيط
 class CustomTextButton extends StatelessWidget {
-  final String text;
-  final VoidCallback? onPressed;
-  final Color? textColor;
-  final EdgeInsetsGeometry? padding;
-  final Size? minimumSize;
-  final bool isLoading;
-  final IconData? icon;
-  final bool iconOnRight;
 
   const CustomTextButton({
     Key? key,
@@ -263,6 +255,14 @@ class CustomTextButton extends StatelessWidget {
     this.icon,
     this.iconOnRight = false,
   }) : super(key: key);
+  final String text;
+  final VoidCallback? onPressed;
+  final Color? textColor;
+  final EdgeInsetsGeometry? padding;
+  final Size? minimumSize;
+  final bool isLoading;
+  final IconData? icon;
+  final bool iconOnRight;
 
   @override
   Widget build(BuildContext context) {
@@ -300,9 +300,9 @@ class CustomTextButton extends StatelessWidget {
         children: iconOnRight ? [
           Text(text),
           const SizedBox(width: 4),
-          Icon(icon!, size: 16),
+          Icon(icon, size: 16),
         ] : [
-          Icon(icon!, size: 16),
+          Icon(icon, size: 16),
           const SizedBox(width: 4),
           Text(text),
         ],
@@ -321,13 +321,6 @@ class CustomTextButton extends StatelessWidget {
 
 /// زر عائم مخصص
 class CustomFloatingActionButton extends StatelessWidget {
-  final VoidCallback? onPressed;
-  final IconData icon;
-  final Color? backgroundColor;
-  final Color? foregroundColor;
-  final String? tooltip;
-  final bool mini;
-  final Object? heroTag;
 
   const CustomFloatingActionButton({
     Key? key,
@@ -339,6 +332,13 @@ class CustomFloatingActionButton extends StatelessWidget {
     this.mini = false,
     this.heroTag,
   }) : super(key: key);
+  final VoidCallback? onPressed;
+  final IconData icon;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final String? tooltip;
+  final bool mini;
+  final Object? heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -358,12 +358,6 @@ class CustomFloatingActionButton extends StatelessWidget {
 
 /// مجموعة أزرار (Button Group)
 class CustomButtonGroup extends StatelessWidget {
-  final List<CustomButtonGroupItem> buttons;
-  final Axis direction;
-  final MainAxisAlignment mainAxisAlignment;
-  final CrossAxisAlignment crossAxisAlignment;
-  final EdgeInsetsGeometry? padding;
-  final double? spacing;
 
   const CustomButtonGroup({
     Key? key,
@@ -374,6 +368,12 @@ class CustomButtonGroup extends StatelessWidget {
     this.padding,
     this.spacing,
   }) : super(key: key);
+  final List<CustomButtonGroupItem> buttons;
+  final Axis direction;
+  final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
+  final EdgeInsetsGeometry? padding;
+  final double? spacing;
 
   @override
   Widget build(BuildContext context) {
@@ -457,12 +457,6 @@ class CustomButtonGroup extends StatelessWidget {
 
 /// عنصر في مجموعة الأزرار
 class CustomButtonGroupItem {
-  final String text;
-  final VoidCallback? onPressed;
-  final ButtonType type;
-  final Color? color;
-  final IconData? icon;
-  final bool isLoading;
 
   const CustomButtonGroupItem({
     required this.text,
@@ -472,6 +466,12 @@ class CustomButtonGroupItem {
     this.icon,
     this.isLoading = false,
   });
+  final String text;
+  final VoidCallback? onPressed;
+  final ButtonType type;
+  final Color? color;
+  final IconData? icon;
+  final bool isLoading;
 }
 
 /// نوع الزر
@@ -483,12 +483,6 @@ enum ButtonType {
 
 /// زر مع أيقونة كبيرة (Action Button)
 class CustomActionButton extends StatelessWidget {
-  final String title;
-  final String? subtitle;
-  final IconData icon;
-  final VoidCallback? onPressed;
-  final Color? color;
-  final bool isLoading;
 
   const CustomActionButton({
     Key? key,
@@ -499,6 +493,12 @@ class CustomActionButton extends StatelessWidget {
     this.color,
     this.isLoading = false,
   }) : super(key: key);
+  final String title;
+  final String? subtitle;
+  final IconData icon;
+  final VoidCallback? onPressed;
+  final Color? color;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {

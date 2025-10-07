@@ -12,11 +12,6 @@ final aiPersonalAssistantProvider =
     });
 
 class AIPersonalAssistantState {
-  final List<AIMessage> messages;
-  final AIPersonalityProfile? userProfile;
-  final bool isTyping;
-  final bool isLoading;
-  final String? error;
 
   const AIPersonalAssistantState({
     this.messages = const [],
@@ -25,6 +20,11 @@ class AIPersonalAssistantState {
     this.isLoading = false,
     this.error,
   });
+  final List<AIMessage> messages;
+  final AIPersonalityProfile? userProfile;
+  final bool isTyping;
+  final bool isLoading;
+  final String? error;
 
   AIPersonalAssistantState copyWith({
     List<AIMessage>? messages,
@@ -103,7 +103,6 @@ class AIPersonalAssistantNotifier
           '👋 مرحباً! أنا مساعدك الذكي لتتبع العادات. أنا هنا لمساعدتك في تحقيق أهدافك وتقديم النصائح المخصصة لك. كيف يمكنني مساعدتك اليوم؟',
       isFromUser: false,
       timestamp: DateTime.now(),
-      type: AIMessageType.text,
       confidence: 1.0,
     );
 
@@ -120,7 +119,6 @@ class AIPersonalAssistantNotifier
       content: content,
       isFromUser: true,
       timestamp: DateTime.now(),
-      type: AIMessageType.text,
     );
 
     state = state.copyWith(
@@ -246,6 +244,6 @@ class AIPersonalAssistantNotifier
 
   // إزالة رسائل الخطأ
   void clearError() {
-    state = state.copyWith(error: null);
+    state = state.copyWith();
   }
 }

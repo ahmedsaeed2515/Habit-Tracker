@@ -5,7 +5,7 @@ import '../providers/dynamic_theming_providers.dart';
 
 /// إعدادات الثيمات المتقدمة
 class AdvancedThemeSettings extends ConsumerWidget {
-  const AdvancedThemeSettings({Key? key}) : super(key: key);
+  const AdvancedThemeSettings({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

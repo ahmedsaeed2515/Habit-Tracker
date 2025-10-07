@@ -61,7 +61,7 @@ class WeeklyStats extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.trending_up,
                       color: AppTheme.successColor,
                       size: 20,
@@ -87,9 +87,6 @@ class WeeklyStats extends StatelessWidget {
 
 /// عنصر إحصائية أسبوعية واحد
 class WeeklyStatItem extends StatelessWidget {
-  final String title;
-  final String value;
-  final Color color;
 
   const WeeklyStatItem({
     super.key,
@@ -97,6 +94,9 @@ class WeeklyStatItem extends StatelessWidget {
     required this.value,
     required this.color,
   });
+  final String title;
+  final String value;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {

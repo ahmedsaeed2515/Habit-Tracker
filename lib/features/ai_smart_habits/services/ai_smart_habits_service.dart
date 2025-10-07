@@ -346,8 +346,7 @@ class AISmartHabitsService extends ChangeNotifier {
       currentPattern: SchedulePattern(
         type: PatternType.daily,
         frequency: 1,
-        interval: Duration(days: 1),
-        isFlexible: true,
+        interval: const Duration(days: 1),
       ),
       lastAdaptation: DateTime.now(),
     );
@@ -432,7 +431,7 @@ class AISmartHabitsService extends ChangeNotifier {
     int index,
   ) async {
     // توليد بيانات العادة بناءً على التفضيلات والذكاء الاصطناعي
-    final categories = SmartHabitCategory.values;
+    const categories = SmartHabitCategory.values;
     final preferredCategory = categories[index % categories.length];
 
     return {
@@ -662,7 +661,6 @@ class AISmartHabitsService extends ChangeNotifier {
           description: 'يبدو أن العادة صعبة جداً. جرب تقليل مستوى الصعوبة.',
           actionSteps: ['تقليل التكرار', 'تبسيط المهمة', 'تقليل المدة'],
           expectedImpact: 0.8,
-          priority: 1,
           generatedAt: DateTime.now(),
         ),
       );
@@ -800,7 +798,7 @@ class AISmartHabitsService extends ChangeNotifier {
     ChallengeDifficulty difficulty,
   ) async {
     // توليد تحدي ذكي
-    return await createSmartHabit(
+    return createSmartHabit(
       userId: userId,
       name: 'تحدي ذكي',
       description: 'تحدي مخصص بناءً على أدائك',
@@ -883,7 +881,6 @@ class AISmartHabitsService extends ChangeNotifier {
         type: RecommendationType.scheduling,
         title: 'توصية عامة',
         description: 'توصية مبنية على الرؤى',
-        priority: 1,
         generatedAt: DateTime.now(),
       ),
     ];
@@ -896,7 +893,7 @@ class AISmartHabitsService extends ChangeNotifier {
     return [
       Milestone(
         name: 'أسبوع متواصل',
-        predictedDate: DateTime.now().add(Duration(days: 7)),
+        predictedDate: DateTime.now().add(const Duration(days: 7)),
         probability: 0.8,
         description: 'إتمام العادة لأسبوع متواصل',
       ),

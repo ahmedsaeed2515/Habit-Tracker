@@ -5,10 +5,10 @@ import '../../../core/database/database_helper.dart';
 import '../../../core/models/habit.dart';
 
 class WidgetsSystemService {
-  static final WidgetsSystemService _instance =
-      WidgetsSystemService._internal();
   factory WidgetsSystemService() => _instance;
   WidgetsSystemService._internal();
+  static final WidgetsSystemService _instance =
+      WidgetsSystemService._internal();
 
   final DatabaseHelper _databaseHelper = DatabaseHelper.instance;
 
@@ -35,7 +35,7 @@ class WidgetsSystemService {
       }
       final habitsBox = Hive.box<Habit>('habits');
       return habitIds
-          .map((id) => habitsBox.get(id))
+          .map(habitsBox.get)
           .where((habit) => habit != null)
           .cast<Habit>()
           .toList();
@@ -435,21 +435,21 @@ class WidgetsSystemService {
   Future<Map<String, dynamic>> _generateWidgetData(WidgetConfig widget) async {
     switch (widget.type) {
       case WidgetType.habitProgress:
-        return await _generateHabitProgressData(widget);
+        return _generateHabitProgressData(widget);
       case WidgetType.todayTasks:
-        return await _generateTodayTasksData(widget);
+        return _generateTodayTasksData(widget);
       case WidgetType.weeklyProgress:
-        return await _generateWeeklyProgressData(widget);
+        return _generateWeeklyProgressData(widget);
       case WidgetType.motivationalQuote:
-        return await _generateMotivationalQuoteData(widget);
+        return _generateMotivationalQuoteData(widget);
       case WidgetType.streakCounter:
-        return await _generateStreakCounterData(widget);
+        return _generateStreakCounterData(widget);
       case WidgetType.statisticsOverview:
-        return await _generateStatisticsOverviewData(widget);
+        return _generateStatisticsOverviewData(widget);
       case WidgetType.upcomingReminders:
-        return await _generateUpcomingRemindersData(widget);
+        return _generateUpcomingRemindersData(widget);
       case WidgetType.achievementsBadges:
-        return await _generateAchievementsBadgesData(widget);
+        return _generateAchievementsBadgesData(widget);
     }
   }
 
@@ -700,8 +700,8 @@ class WidgetsSystemService {
   ) async {
     try {
       final today = DateTime.now();
-      final thisWeek = today.subtract(Duration(days: 7));
-      final thisMonth = today.subtract(Duration(days: 30));
+      final thisWeek = today.subtract(const Duration(days: 7));
+      final thisMonth = today.subtract(const Duration(days: 30));
 
       final todayHabits = await _getHabitsForDay(today);
       final todayCompleted = await _getTotalCompletedHabits(todayHabits, today);
@@ -787,7 +787,7 @@ class WidgetsSystemService {
           'icon': '🌟',
           'isUnlocked': true,
           'unlockedAt': DateTime.now()
-              .subtract(Duration(days: 10))
+              .subtract(const Duration(days: 10))
               .toIso8601String(),
         },
         {
@@ -797,7 +797,7 @@ class WidgetsSystemService {
           'icon': '🔥',
           'isUnlocked': true,
           'unlockedAt': DateTime.now()
-              .subtract(Duration(days: 3))
+              .subtract(const Duration(days: 3))
               .toIso8601String(),
         },
         {
@@ -817,7 +817,7 @@ class WidgetsSystemService {
           .where(
             (a) => DateTime.parse(
               a['unlockedAt'],
-            ).isAfter(DateTime.now().subtract(Duration(days: 7))),
+            ).isAfter(DateTime.now().subtract(const Duration(days: 7))),
           )
           .toList();
 

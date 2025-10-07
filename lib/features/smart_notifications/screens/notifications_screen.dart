@@ -7,7 +7,7 @@ import '../widgets/notification_card.dart';
 import '../../../common/widgets/empty_state_widget.dart';
 
 class NotificationsScreen extends ConsumerStatefulWidget {
-  const NotificationsScreen({Key? key}) : super(key: key);
+  const NotificationsScreen({super.key});
 
   @override
   ConsumerState<NotificationsScreen> createState() =>
@@ -255,7 +255,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
                     'متوسط الإرسال',
                     notifications.isEmpty
                         ? '0'
-                        : '${(totalSent / notifications.length).toStringAsFixed(1)}',
+                        : (totalSent / notifications.length).toStringAsFixed(1),
                     Icons.analytics,
                   ),
                 ],
@@ -375,7 +375,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
     final theme = Theme.of(context);
     final notifier = ref.read(smartNotificationsProvider.notifier);
 
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         borderRadius: const BorderRadius.only(
@@ -473,7 +473,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
                 children: [
                   Expanded(
                     child: OutlinedButton.icon(
-                      onPressed: () => notifier.openSystemSettings(),
+                      onPressed: notifier.openSystemSettings,
                       icon: const Icon(Icons.settings),
                       label: const Text('إعدادات النظام'),
                     ),

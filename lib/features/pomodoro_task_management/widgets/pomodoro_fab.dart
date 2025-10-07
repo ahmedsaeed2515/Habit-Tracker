@@ -5,7 +5,7 @@ import '../providers/pomodoro_providers.dart';
 
 /// زر العمل العائم لنظام Pomodoro مع قائمة سريعة
 class PomodoroFAB extends ConsumerWidget {
-  const PomodoroFAB({Key? key}) : super(key: key);
+  const PomodoroFAB({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -14,10 +14,6 @@ final smartNotificationsProvider =
     });
 
 class SmartNotificationsState {
-  final List<SmartNotification> notifications;
-  final bool isLoading;
-  final String? errorMessage;
-  final Map<String, bool> notificationSettings;
 
   const SmartNotificationsState({
     this.notifications = const [],
@@ -25,6 +21,10 @@ class SmartNotificationsState {
     this.errorMessage,
     this.notificationSettings = const {},
   });
+  final List<SmartNotification> notifications;
+  final bool isLoading;
+  final String? errorMessage;
+  final Map<String, bool> notificationSettings;
 
   SmartNotificationsState copyWith({
     List<SmartNotification>? notifications,
@@ -202,7 +202,6 @@ class SmartNotificationsNotifier
         scheduledTime: time,
         habitId: habitId,
         repeatDays: [1, 2, 3, 4, 5, 6, 7], // كل يوم
-        priority: NotificationPriority.normal,
         isSmartTiming: true,
       );
     }
@@ -230,11 +229,11 @@ class SmartNotificationsNotifier
     ];
 
     for (final notif in notifications) {
-      final time = notif['time'] as DateTime;
+      final time = notif['time']! as DateTime;
       if (time.isAfter(DateTime.now())) {
         await createNotification(
-          title: notif['title'] as String,
-          body: notif['body'] as String,
+          title: notif['title']! as String,
+          body: notif['body']! as String,
           type: NotificationType.task,
           scheduledTime: time,
           taskId: taskId,
@@ -249,7 +248,7 @@ class SmartNotificationsNotifier
     final now = DateTime.now();
 
     // رسالة صباحية (7:00 ص)
-    final morningTime = DateTime(now.year, now.month, now.day, 7, 0);
+    final morningTime = DateTime(now.year, now.month, now.day, 7);
     if (morningTime.isAfter(now)) {
       final message =
           _morningMotivationalMessages[now.day %
@@ -260,13 +259,12 @@ class SmartNotificationsNotifier
         type: NotificationType.motivational,
         scheduledTime: morningTime,
         repeatDays: [1, 2, 3, 4, 5, 6, 7], // كل يوم
-        priority: NotificationPriority.normal,
         isSmartTiming: true,
       );
     }
 
     // رسالة مسائية (9:00 م)
-    final eveningTime = DateTime(now.year, now.month, now.day, 21, 0);
+    final eveningTime = DateTime(now.year, now.month, now.day, 21);
     if (eveningTime.isAfter(now)) {
       final message =
           _eveningMotivationalMessages[now.day %
@@ -277,7 +275,6 @@ class SmartNotificationsNotifier
         type: NotificationType.motivational,
         scheduledTime: eveningTime,
         repeatDays: [1, 2, 3, 4, 5, 6, 7], // كل يوم
-        priority: NotificationPriority.normal,
         isSmartTiming: true,
       );
     }
@@ -433,12 +430,12 @@ class SmartNotificationsNotifier
 
   // التحقق من حالة الإشعارات
   Future<bool> checkPermissions() async {
-    return await _notificationService.areNotificationsEnabled();
+    return _notificationService.areNotificationsEnabled();
   }
 
   // مسح رسالة الخطأ
   void clearError() {
-    state = state.copyWith(errorMessage: null);
+    state = state.copyWith();
   }
 
   @override

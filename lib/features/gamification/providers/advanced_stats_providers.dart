@@ -159,7 +159,7 @@ double _getProgressToNextRank(int totalPoints) {
   return 1.0;
 }
 
-Map<String, dynamic> _calculateDailyStats(dynamic userData) {
+Map<String, dynamic> _calculateDailyStats(userData) {
   return {
     'pointsToday': userData.totalPoints, // مؤقت - سنحتاج لتتبع النقاط اليومية
     'habitsCompleted': 0, // سيتم حسابها من البيانات الفعلية
@@ -167,7 +167,7 @@ Map<String, dynamic> _calculateDailyStats(dynamic userData) {
   };
 }
 
-Map<String, dynamic> _calculateWeeklyStats(dynamic userData) {
+Map<String, dynamic> _calculateWeeklyStats(userData) {
   return {
     'weeklyPoints': userData.weeklyPoints,
     'averageDaily': userData.weeklyPoints / 7,
@@ -175,7 +175,7 @@ Map<String, dynamic> _calculateWeeklyStats(dynamic userData) {
   };
 }
 
-Map<String, dynamic> _calculateMonthlyStats(dynamic userData) {
+Map<String, dynamic> _calculateMonthlyStats(userData) {
   return {
     'monthlyPoints': userData.monthlyPoints,
     'averageDaily': userData.monthlyPoints / 30,
@@ -194,17 +194,17 @@ Map<String, dynamic> _calculateTrends(
   };
 }
 
-double _calculateEfficiency(dynamic userData) {
+double _calculateEfficiency(userData) {
   // حساب الكفاءة بناءً على النقاط مقابل الوقت
   return userData.totalPoints / (userData.currentLevel * 100);
 }
 
-double _calculateConsistency(dynamic userData) {
+double _calculateConsistency(userData) {
   // حساب الاستمرارية بناءً على الخطوط
   return userData.currentStreak / (userData.longestStreak + 1);
 }
 
-double _calculateGrowth(dynamic userData) {
+double _calculateGrowth(userData) {
   // حساب النمو (سيحتاج لبيانات تاريخية)
   return 1.2; // مؤقت
 }

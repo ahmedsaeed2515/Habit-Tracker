@@ -7,6 +7,21 @@ part 'habit.g.dart';
 
 @HiveType(typeId: 5)
 class Habit extends HiveObject {
+
+  Habit({
+    required this.id,
+    required this.name,
+    this.description = '',
+    this.icon = '⭐',
+    required this.type,
+    this.targetValue = 1,
+    this.unit = '',
+    required this.entries,
+    required this.createdAt,
+    this.isActive = true,
+    this.currentStreak = 0,
+    this.longestStreak = 0,
+  });
   @HiveField(0)
   String id;
 
@@ -43,21 +58,6 @@ class Habit extends HiveObject {
   @HiveField(11)
   int longestStreak;
 
-  Habit({
-    required this.id,
-    required this.name,
-    this.description = '',
-    this.icon = '⭐',
-    required this.type,
-    this.targetValue = 1,
-    this.unit = '',
-    required this.entries,
-    required this.createdAt,
-    this.isActive = true,
-    this.currentStreak = 0,
-    this.longestStreak = 0,
-  });
-
   // حساب نسبة الإنجاز لليوم
   double getTodayProgress() {
     final today = DateTime.now();
@@ -91,7 +91,7 @@ class Habit extends HiveObject {
     int streak = 0;
     DateTime checkDate = DateTime.now();
 
-    for (var entry in entries) {
+    for (final entry in entries) {
       final entryDate = DateTime(
         entry.date.year,
         entry.date.month,
@@ -120,7 +120,7 @@ class Habit extends HiveObject {
   // حساب معدل الإنجاز الأسبوعي
   double getWeeklyCompletionRate() {
     final now = DateTime.now();
-    final weekStart = now.subtract(Duration(days: 7));
+    final weekStart = now.subtract(const Duration(days: 7));
 
     final weekEntries = entries
         .where((entry) => entry.date.isAfter(weekStart) && entry.isCompleted)
@@ -160,6 +160,15 @@ class Habit extends HiveObject {
 
 @HiveType(typeId: 6)
 class HabitEntry extends HiveObject {
+
+  HabitEntry({
+    required this.id,
+    required this.habitId,
+    required this.date,
+    this.value = 0.0,
+    this.isCompleted = false,
+    this.notes,
+  });
   @HiveField(0)
   String id;
 
@@ -177,15 +186,6 @@ class HabitEntry extends HiveObject {
 
   @HiveField(5)
   String? notes;
-
-  HabitEntry({
-    required this.id,
-    required this.habitId,
-    required this.date,
-    this.value = 0.0,
-    this.isCompleted = false,
-    this.notes,
-  });
 
   HabitEntry copyWith({
     DateTime? date,

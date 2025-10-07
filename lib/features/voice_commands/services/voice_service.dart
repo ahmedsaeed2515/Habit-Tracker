@@ -7,9 +7,9 @@ import '../models/voice_command.dart';
 
 /// خدمة الأوامر الصوتية المتقدمة
 class VoiceService {
-  static final VoiceService _instance = VoiceService._internal();
   factory VoiceService() => _instance;
   VoiceService._internal();
+  static final VoiceService _instance = VoiceService._internal();
 
   late SpeechToText _speechToText;
   late FlutterTts _flutterTts;
@@ -109,7 +109,6 @@ class VoiceService {
         },
         listenFor: const Duration(seconds: 30),
         pauseFor: const Duration(seconds: 3),
-        partialResults: true,
         localeId: 'ar_SA', // العربية السعودية
       );
 
@@ -168,7 +167,6 @@ class VoiceService {
       processedText: _cleanText(recognizedText),
       type: _determineCommandType(recognizedText),
       createdAt: DateTime.now(),
-      confidence: 0.0, // سيتم تحديثها بناءً على نتيجة المعالجة
     );
 
     return _enrichCommand(command);
@@ -310,8 +308,9 @@ class VoiceService {
     // استخراج نوع التمرين
     if (text.contains('جري')) parameters['exerciseType'] = 'running';
     if (text.contains('مشي')) parameters['exerciseType'] = 'walking';
-    if (text.contains('رفع أثقال'))
+    if (text.contains('رفع أثقال')) {
       parameters['exerciseType'] = 'weightlifting';
+    }
 
     return parameters;
   }
@@ -389,7 +388,7 @@ class VoiceService {
   /// الحصول على قائمة اللغات المدعومة
   Future<List<LocaleName>> getSupportedLocales() async {
     if (!_isInitialized) return [];
-    return await _speechToText.locales();
+    return _speechToText.locales();
   }
 
   /// الحصول على قائمة أصوات TTS المدعومة

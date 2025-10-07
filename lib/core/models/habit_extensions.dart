@@ -48,7 +48,7 @@ extension HabitExtensions on Habit {
   DateTime get reminderTime {
     // وقت افتراضي: 9:00 صباحاً
     final now = DateTime.now();
-    return DateTime(now.year, now.month, now.day, 9, 0);
+    return DateTime(now.year, now.month, now.day, 9);
   }
 
   // تكرار العادة (يومي افتراضياً)

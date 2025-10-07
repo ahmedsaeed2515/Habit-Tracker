@@ -6,6 +6,50 @@ part 'theming_models.g.dart';
 /// نموذج السمة الديناميكية الشاملة
 @HiveType(typeId: 144)
 class DynamicTheme extends HiveObject {
+
+  DynamicTheme({
+    required this.id,
+    required this.userId,
+    required this.name,
+    this.description = '',
+    this.mode = ThemeMode.system,
+    required this.lightColorPalette,
+    required this.darkColorPalette,
+    required this.typography,
+    required this.components,
+    required this.animations,
+    required this.layout,
+    required this.accessibility,
+    required this.createdAt,
+    required this.updatedAt,
+    this.isCustom = false,
+    this.isActive = false,
+    this.usageCount = 0,
+    this.metadata = const {},
+    this.category = ThemeCategory.basic,
+  });
+
+  /// إنشاء سمة افتراضية
+  factory DynamicTheme.createDefault(String userId) {
+    final now = DateTime.now();
+    return DynamicTheme(
+      id: now.millisecondsSinceEpoch.toString(),
+      userId: userId,
+      name: 'الافتراضية',
+      description: 'السمة الافتراضية للتطبيق',
+      lightColorPalette: ColorPalette.defaultLight(),
+      darkColorPalette: ColorPalette.defaultDark(),
+      typography: TypographySettings.defaultSettings(),
+      components: ComponentsStyle.defaultStyle(),
+      animations: AnimationSettings.defaultSettings(),
+      layout: LayoutSettings.defaultSettings(),
+      accessibility: AccessibilitySettings.defaultSettings(),
+      createdAt: now,
+      updatedAt: now,
+      isActive: true,
+      category: ThemeCategory.basic,
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -62,50 +106,6 @@ class DynamicTheme extends HiveObject {
 
   @HiveField(18)
   ThemeCategory category;
-
-  DynamicTheme({
-    required this.id,
-    required this.userId,
-    required this.name,
-    this.description = '',
-    this.mode = ThemeMode.system,
-    required this.lightColorPalette,
-    required this.darkColorPalette,
-    required this.typography,
-    required this.components,
-    required this.animations,
-    required this.layout,
-    required this.accessibility,
-    required this.createdAt,
-    required this.updatedAt,
-    this.isCustom = false,
-    this.isActive = false,
-    this.usageCount = 0,
-    this.metadata = const {},
-    this.category = ThemeCategory.basic,
-  });
-
-  /// إنشاء سمة افتراضية
-  factory DynamicTheme.createDefault(String userId) {
-    final now = DateTime.now();
-    return DynamicTheme(
-      id: now.millisecondsSinceEpoch.toString(),
-      userId: userId,
-      name: 'الافتراضية',
-      description: 'السمة الافتراضية للتطبيق',
-      lightColorPalette: ColorPalette.defaultLight(),
-      darkColorPalette: ColorPalette.defaultDark(),
-      typography: TypographySettings.defaultSettings(),
-      components: ComponentsStyle.defaultStyle(),
-      animations: AnimationSettings.defaultSettings(),
-      layout: LayoutSettings.defaultSettings(),
-      accessibility: AccessibilitySettings.defaultSettings(),
-      createdAt: now,
-      updatedAt: now,
-      isActive: true,
-      category: ThemeCategory.basic,
-    );
-  }
 
   /// تحديث وقت آخر تعديل
   void updateTimestamp() {
@@ -204,8 +204,6 @@ class DynamicTheme extends HiveObject {
       onSurface: Color(palette.onSurface),
       surfaceContainerHighest: Color(palette.surfaceVariant),
       onSurfaceVariant: Color(palette.onSurfaceVariant),
-      background: Color(palette.background),
-      onBackground: Color(palette.onBackground),
       error: Color(palette.error),
       onError: Color(palette.onError),
       outline: Color(palette.outline),
@@ -217,65 +215,6 @@ class DynamicTheme extends HiveObject {
 /// لوحة الألوان
 @HiveType(typeId: 145)
 class ColorPalette extends HiveObject {
-  @HiveField(0)
-  int primary;
-
-  @HiveField(1)
-  int onPrimary;
-
-  @HiveField(2)
-  int secondary;
-
-  @HiveField(3)
-  int onSecondary;
-
-  @HiveField(4)
-  int tertiary;
-
-  @HiveField(5)
-  int onTertiary;
-
-  @HiveField(6)
-  int surface;
-
-  @HiveField(7)
-  int onSurface;
-
-  @HiveField(8)
-  int surfaceVariant;
-
-  @HiveField(9)
-  int onSurfaceVariant;
-
-  @HiveField(10)
-  int background;
-
-  @HiveField(11)
-  int onBackground;
-
-  @HiveField(12)
-  int error;
-
-  @HiveField(13)
-  int onError;
-
-  @HiveField(14)
-  int outline;
-
-  @HiveField(15)
-  int shadow;
-
-  @HiveField(16)
-  int success;
-
-  @HiveField(17)
-  int warning;
-
-  @HiveField(18)
-  int info;
-
-  @HiveField(19)
-  Map<String, int> customColors;
 
   ColorPalette({
     required this.primary,
@@ -396,6 +335,65 @@ class ColorPalette extends HiveObject {
       );
     }
   }
+  @HiveField(0)
+  int primary;
+
+  @HiveField(1)
+  int onPrimary;
+
+  @HiveField(2)
+  int secondary;
+
+  @HiveField(3)
+  int onSecondary;
+
+  @HiveField(4)
+  int tertiary;
+
+  @HiveField(5)
+  int onTertiary;
+
+  @HiveField(6)
+  int surface;
+
+  @HiveField(7)
+  int onSurface;
+
+  @HiveField(8)
+  int surfaceVariant;
+
+  @HiveField(9)
+  int onSurfaceVariant;
+
+  @HiveField(10)
+  int background;
+
+  @HiveField(11)
+  int onBackground;
+
+  @HiveField(12)
+  int error;
+
+  @HiveField(13)
+  int onError;
+
+  @HiveField(14)
+  int outline;
+
+  @HiveField(15)
+  int shadow;
+
+  @HiveField(16)
+  int success;
+
+  @HiveField(17)
+  int warning;
+
+  @HiveField(18)
+  int info;
+
+  @HiveField(19)
+  Map<String, int> customColors;
 
   static int _generateVariation(int baseColor, double factor) {
     final color = Color(baseColor);
@@ -413,6 +411,21 @@ class ColorPalette extends HiveObject {
 /// إعدادات الطباعة
 @HiveType(typeId: 146)
 class TypographySettings extends HiveObject {
+
+  TypographySettings({
+    this.fontFamily = 'Cairo',
+    this.scaleFactory = 1.0,
+    this.headlineWeight = FontWeight.bold,
+    this.bodyWeight = FontWeight.normal,
+    this.letterSpacing = 0.0,
+    this.lineHeight = 1.4,
+    this.useCustomFonts = false,
+    this.customFontSettings = const {},
+  });
+
+  factory TypographySettings.defaultSettings() {
+    return TypographySettings();
+  }
   @HiveField(0)
   String fontFamily;
 
@@ -436,21 +449,6 @@ class TypographySettings extends HiveObject {
 
   @HiveField(7)
   Map<TextStyle, FontSettings> customFontSettings;
-
-  TypographySettings({
-    this.fontFamily = 'Cairo',
-    this.scaleFactory = 1.0,
-    this.headlineWeight = FontWeight.bold,
-    this.bodyWeight = FontWeight.normal,
-    this.letterSpacing = 0.0,
-    this.lineHeight = 1.4,
-    this.useCustomFonts = false,
-    this.customFontSettings = const {},
-  });
-
-  factory TypographySettings.defaultSettings() {
-    return TypographySettings();
-  }
 
   TextTheme toTextTheme() {
     return TextTheme(
@@ -489,6 +487,28 @@ class TypographySettings extends HiveObject {
 /// إعدادات المكونات
 @HiveType(typeId: 147)
 class ComponentsStyle extends HiveObject {
+
+  ComponentsStyle({
+    this.borderRadius = 8.0,
+    this.elevation = 2.0,
+    this.padding = const EdgeInsets.all(16.0),
+    this.margin = const EdgeInsets.all(8.0),
+    this.iconSize = 24.0,
+    required this.buttonStyle,
+    required this.cardStyle,
+    required this.inputStyle,
+    required this.appBarStyle,
+    this.customStyles = const {},
+  });
+
+  factory ComponentsStyle.defaultStyle() {
+    return ComponentsStyle(
+      buttonStyle: ButtonStyle.defaultStyle(),
+      cardStyle: CardStyle.defaultStyle(),
+      inputStyle: InputStyle.defaultStyle(),
+      appBarStyle: AppBarStyle.defaultStyle(),
+    );
+  }
   @HiveField(0)
   double borderRadius;
 
@@ -518,28 +538,6 @@ class ComponentsStyle extends HiveObject {
 
   @HiveField(9)
   Map<String, dynamic> customStyles;
-
-  ComponentsStyle({
-    this.borderRadius = 8.0,
-    this.elevation = 2.0,
-    this.padding = const EdgeInsets.all(16.0),
-    this.margin = const EdgeInsets.all(8.0),
-    this.iconSize = 24.0,
-    required this.buttonStyle,
-    required this.cardStyle,
-    required this.inputStyle,
-    required this.appBarStyle,
-    this.customStyles = const {},
-  });
-
-  factory ComponentsStyle.defaultStyle() {
-    return ComponentsStyle(
-      buttonStyle: ButtonStyle.defaultStyle(),
-      cardStyle: CardStyle.defaultStyle(),
-      inputStyle: InputStyle.defaultStyle(),
-      appBarStyle: AppBarStyle.defaultStyle(),
-    );
-  }
 
   AppBarTheme createAppBarTheme(ColorPalette palette) {
     return AppBarTheme(
@@ -690,20 +688,6 @@ class ComponentsStyle extends HiveObject {
 /// أنماط الأزرار
 @HiveType(typeId: 148)
 class ButtonStyle extends HiveObject {
-  @HiveField(0)
-  double borderRadius;
-
-  @HiveField(1)
-  double elevation;
-
-  @HiveField(2)
-  EdgeInsetsGeometry padding;
-
-  @HiveField(3)
-  TextStyle textStyle;
-
-  @HiveField(4)
-  Size minimumSize;
 
   ButtonStyle({
     this.borderRadius = 8.0,
@@ -721,11 +705,6 @@ class ButtonStyle extends HiveObject {
       ),
     );
   }
-}
-
-/// أنماط البطاقات
-@HiveType(typeId: 149)
-class CardStyle extends HiveObject {
   @HiveField(0)
   double borderRadius;
 
@@ -733,10 +712,18 @@ class CardStyle extends HiveObject {
   double elevation;
 
   @HiveField(2)
-  EdgeInsetsGeometry margin;
+  EdgeInsetsGeometry padding;
 
   @HiveField(3)
-  EdgeInsetsGeometry padding;
+  TextStyle textStyle;
+
+  @HiveField(4)
+  Size minimumSize;
+}
+
+/// أنماط البطاقات
+@HiveType(typeId: 149)
+class CardStyle extends HiveObject {
 
   CardStyle({
     this.borderRadius = 12.0,
@@ -748,22 +735,22 @@ class CardStyle extends HiveObject {
   factory CardStyle.defaultStyle() {
     return CardStyle();
   }
+  @HiveField(0)
+  double borderRadius;
+
+  @HiveField(1)
+  double elevation;
+
+  @HiveField(2)
+  EdgeInsetsGeometry margin;
+
+  @HiveField(3)
+  EdgeInsetsGeometry padding;
 }
 
 /// أنماط حقول الإدخال
 @HiveType(typeId: 150)
 class InputStyle extends HiveObject {
-  @HiveField(0)
-  double borderRadius;
-
-  @HiveField(1)
-  EdgeInsetsGeometry padding;
-
-  @HiveField(2)
-  bool filled;
-
-  @HiveField(3)
-  double borderWidth;
 
   InputStyle({
     this.borderRadius = 8.0,
@@ -775,22 +762,22 @@ class InputStyle extends HiveObject {
   factory InputStyle.defaultStyle() {
     return InputStyle();
   }
+  @HiveField(0)
+  double borderRadius;
+
+  @HiveField(1)
+  EdgeInsetsGeometry padding;
+
+  @HiveField(2)
+  bool filled;
+
+  @HiveField(3)
+  double borderWidth;
 }
 
 /// أنماط شريط التطبيق
 @HiveType(typeId: 151)
 class AppBarStyle extends HiveObject {
-  @HiveField(0)
-  double elevation;
-
-  @HiveField(1)
-  bool centerTitle;
-
-  @HiveField(2)
-  double titleSpacing;
-
-  @HiveField(3)
-  ShapeBorder? shape;
 
   AppBarStyle({
     this.elevation = 0.0,
@@ -802,11 +789,35 @@ class AppBarStyle extends HiveObject {
   factory AppBarStyle.defaultStyle() {
     return AppBarStyle();
   }
+  @HiveField(0)
+  double elevation;
+
+  @HiveField(1)
+  bool centerTitle;
+
+  @HiveField(2)
+  double titleSpacing;
+
+  @HiveField(3)
+  ShapeBorder? shape;
 }
 
 /// إعدادات الرسوم المتحركة
 @HiveType(typeId: 152)
 class AnimationSettings extends HiveObject {
+
+  AnimationSettings({
+    this.transitionDuration = const Duration(milliseconds: 300),
+    this.transitionCurve = Curves.easeInOut,
+    this.enablePageTransitions = true,
+    this.enableMicroInteractions = true,
+    this.enableSharedElementTransitions = true,
+    this.animationScale = 1.0,
+  });
+
+  factory AnimationSettings.defaultSettings() {
+    return AnimationSettings();
+  }
   @HiveField(0)
   Duration transitionDuration;
 
@@ -824,19 +835,6 @@ class AnimationSettings extends HiveObject {
 
   @HiveField(5)
   double animationScale;
-
-  AnimationSettings({
-    this.transitionDuration = const Duration(milliseconds: 300),
-    this.transitionCurve = Curves.easeInOut,
-    this.enablePageTransitions = true,
-    this.enableMicroInteractions = true,
-    this.enableSharedElementTransitions = true,
-    this.animationScale = 1.0,
-  });
-
-  factory AnimationSettings.defaultSettings() {
-    return AnimationSettings();
-  }
 
   PageTransitionsTheme createPageTransitions() {
     if (!enablePageTransitions) {
@@ -860,6 +858,18 @@ class AnimationSettings extends HiveObject {
 /// إعدادات التخطيط
 @HiveType(typeId: 153)
 class LayoutSettings extends HiveObject {
+
+  LayoutSettings({
+    this.visualDensity = VisualDensity.standard,
+    this.spacing = 16.0,
+    this.compactLayout = false,
+    this.defaultPadding = const EdgeInsets.all(16.0),
+    this.defaultMargin = const EdgeInsets.all(8.0),
+  });
+
+  factory LayoutSettings.defaultSettings() {
+    return LayoutSettings();
+  }
   @HiveField(0)
   VisualDensity visualDensity;
 
@@ -874,23 +884,23 @@ class LayoutSettings extends HiveObject {
 
   @HiveField(4)
   EdgeInsetsGeometry defaultMargin;
-
-  LayoutSettings({
-    this.visualDensity = VisualDensity.standard,
-    this.spacing = 16.0,
-    this.compactLayout = false,
-    this.defaultPadding = const EdgeInsets.all(16.0),
-    this.defaultMargin = const EdgeInsets.all(8.0),
-  });
-
-  factory LayoutSettings.defaultSettings() {
-    return LayoutSettings();
-  }
 }
 
 /// إعدادات إمكانية الوصول
 @HiveType(typeId: 154)
 class AccessibilitySettings extends HiveObject {
+
+  AccessibilitySettings({
+    this.highContrast = false,
+    this.reducedMotion = false,
+    this.textScale = 1.0,
+    this.boldText = false,
+    this.screenReader = false,
+  });
+
+  factory AccessibilitySettings.defaultSettings() {
+    return AccessibilitySettings();
+  }
   @HiveField(0)
   bool highContrast;
 
@@ -905,23 +915,19 @@ class AccessibilitySettings extends HiveObject {
 
   @HiveField(4)
   bool screenReader;
-
-  AccessibilitySettings({
-    this.highContrast = false,
-    this.reducedMotion = false,
-    this.textScale = 1.0,
-    this.boldText = false,
-    this.screenReader = false,
-  });
-
-  factory AccessibilitySettings.defaultSettings() {
-    return AccessibilitySettings();
-  }
 }
 
 /// إعدادات الخط المخصص
 @HiveType(typeId: 155)
 class FontSettings extends HiveObject {
+
+  FontSettings({
+    required this.fontFamily,
+    required this.fontWeight,
+    required this.fontSize,
+    this.letterSpacing = 0.0,
+    this.lineHeight = 1.4,
+  });
   @HiveField(0)
   String fontFamily;
 
@@ -936,19 +942,25 @@ class FontSettings extends HiveObject {
 
   @HiveField(4)
   double lineHeight;
-
-  FontSettings({
-    required this.fontFamily,
-    required this.fontWeight,
-    required this.fontSize,
-    this.letterSpacing = 0.0,
-    this.lineHeight = 1.4,
-  });
 }
 
 /// سمة مُعرّفة مسبقاً
 @HiveType(typeId: 156)
 class PresetTheme extends HiveObject {
+
+  PresetTheme({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.category,
+    required this.lightTheme,
+    required this.darkTheme,
+    this.previewImageUrl = '',
+    this.tags = const [],
+    this.isPremium = false,
+    this.downloadCount = 0,
+    this.rating = 0.0,
+  });
   @HiveField(0)
   String id;
 
@@ -981,20 +993,6 @@ class PresetTheme extends HiveObject {
 
   @HiveField(10)
   double rating;
-
-  PresetTheme({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.category,
-    required this.lightTheme,
-    required this.darkTheme,
-    this.previewImageUrl = '',
-    this.tags = const [],
-    this.isPremium = false,
-    this.downloadCount = 0,
-    this.rating = 0.0,
-  });
 }
 
 /// فئات السمات
@@ -1026,6 +1024,17 @@ enum ThemeStatus {
 /// إعدادات السمة
 @HiveType(typeId: 150)
 class ThemeSettings extends HiveObject {
+
+  ThemeSettings({
+    this.enableAdaptiveTheme = false,
+    this.enableTimeBasedTheme = false,
+    this.followSystemTheme = true,
+    this.dayStartTime,
+    this.nightStartTime,
+    this.enableAnimations = true,
+    this.enableSounds = false,
+    this.animationSpeed = 1.0,
+  });
   @HiveField(0)
   final bool enableAdaptiveTheme;
 
@@ -1049,17 +1058,6 @@ class ThemeSettings extends HiveObject {
 
   @HiveField(7)
   final double animationSpeed;
-
-  ThemeSettings({
-    this.enableAdaptiveTheme = false,
-    this.enableTimeBasedTheme = false,
-    this.followSystemTheme = true,
-    this.dayStartTime,
-    this.nightStartTime,
-    this.enableAnimations = true,
-    this.enableSounds = false,
-    this.animationSpeed = 1.0,
-  });
 
   /// نسخ مع تعديل
   ThemeSettings copyWith({
@@ -1088,6 +1086,15 @@ class ThemeSettings extends HiveObject {
 /// تفضيلات السمة
 @HiveType(typeId: 151)
 class ThemePreferences extends HiveObject {
+
+  ThemePreferences({
+    this.currentThemeId = 'default_light',
+    this.dayThemeId,
+    this.nightThemeId,
+    this.favoriteThemeIds = const [],
+    DateTime? lastChanged,
+    this.customSettings = const {},
+  }) : lastChanged = lastChanged ?? DateTime.now();
   @HiveField(0)
   String currentThemeId;
 
@@ -1105,15 +1112,6 @@ class ThemePreferences extends HiveObject {
 
   @HiveField(5)
   Map<String, dynamic> customSettings;
-
-  ThemePreferences({
-    this.currentThemeId = 'default_light',
-    this.dayThemeId,
-    this.nightThemeId,
-    this.favoriteThemeIds = const [],
-    DateTime? lastChanged,
-    this.customSettings = const {},
-  }) : lastChanged = lastChanged ?? DateTime.now();
 
   /// تحديث التفضيلات
   void updatePreferences({

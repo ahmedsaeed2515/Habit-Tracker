@@ -4,7 +4,26 @@ import 'package:hive/hive.dart';
 part 'smart_notification.g.dart';
 
 @HiveType(typeId: 10)
-class SmartNotification extends HiveObject {
+class SmartNotification extends HiveObject { // رسالة تحفيزية مخصصة
+
+  SmartNotification({
+    required this.id,
+    required this.title,
+    required this.body,
+    required this.type,
+    required this.scheduledTime,
+    this.habitId,
+    this.taskId,
+    this.isActive = true,
+    this.repeatDays = const [],
+    this.priority = NotificationPriority.normal,
+    this.customData = const {},
+    required this.createdAt,
+    this.lastSent,
+    this.sentCount = 0,
+    this.isSmartTiming = false,
+    this.motivationalMessage,
+  });
   @HiveField(0)
   String id;
 
@@ -51,26 +70,7 @@ class SmartNotification extends HiveObject {
   bool isSmartTiming; // هل يستخدم التوقيت الذكي؟
 
   @HiveField(15)
-  String? motivationalMessage; // رسالة تحفيزية مخصصة
-
-  SmartNotification({
-    required this.id,
-    required this.title,
-    required this.body,
-    required this.type,
-    required this.scheduledTime,
-    this.habitId,
-    this.taskId,
-    this.isActive = true,
-    this.repeatDays = const [],
-    this.priority = NotificationPriority.normal,
-    this.customData = const {},
-    required this.createdAt,
-    this.lastSent,
-    this.sentCount = 0,
-    this.isSmartTiming = false,
-    this.motivationalMessage,
-  });
+  String? motivationalMessage;
 
   // تحديث وقت الإرسال الأخير
   void markAsSent() {

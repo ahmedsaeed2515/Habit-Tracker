@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 
 /// خدمة تتبع الصحة والراحة أثناء العمل
 class HealthService {
-  static final HealthService _instance = HealthService._internal();
   factory HealthService() => _instance;
   HealthService._internal();
+  static final HealthService _instance = HealthService._internal();
 
   bool _initialized = false;
   Timer? _reminderTimer;
@@ -288,12 +288,6 @@ enum PostureQuality {
 
 /// إحصائيات الصحة اليومية
 class HealthStats {
-  final int eyeRestReminders;
-  final int hydrationReminders;
-  final int stretchingReminders;
-  final DateTime? lastBreakTime;
-  final Duration totalWorkTime;
-  final int recommendedBreaks;
 
   const HealthStats({
     required this.eyeRestReminders,
@@ -303,6 +297,12 @@ class HealthStats {
     required this.totalWorkTime,
     required this.recommendedBreaks,
   });
+  final int eyeRestReminders;
+  final int hydrationReminders;
+  final int stretchingReminders;
+  final DateTime? lastBreakTime;
+  final Duration totalWorkTime;
+  final int recommendedBreaks;
 
   int get totalReminders => eyeRestReminders + hydrationReminders + stretchingReminders;
   
@@ -314,11 +314,6 @@ class HealthStats {
 
 /// اقتراح صحي
 class HealthSuggestion {
-  final HealthReminderType type;
-  final String title;
-  final String description;
-  final List<String> instructions;
-  final HealthPriority priority;
 
   const HealthSuggestion({
     required this.type,
@@ -327,16 +322,15 @@ class HealthSuggestion {
     required this.instructions,
     required this.priority,
   });
+  final HealthReminderType type;
+  final String title;
+  final String description;
+  final List<String> instructions;
+  final HealthPriority priority;
 }
 
 /// تقييم الوضعية
 class PostureAssessment {
-  final double overallScore; // من 0-100
-  final PostureQuality neckPosition;
-  final PostureQuality shoulderAlignment;
-  final PostureQuality backSupport;
-  final PostureQuality screenDistance;
-  final List<String> suggestions;
 
   const PostureAssessment({
     required this.overallScore,
@@ -346,6 +340,12 @@ class PostureAssessment {
     required this.screenDistance,
     required this.suggestions,
   });
+  final double overallScore; // من 0-100
+  final PostureQuality neckPosition;
+  final PostureQuality shoulderAlignment;
+  final PostureQuality backSupport;
+  final PostureQuality screenDistance;
+  final List<String> suggestions;
 
   String get overallGrade {
     if (overallScore >= 90) return 'ممتاز';

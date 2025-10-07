@@ -22,11 +22,11 @@ final smartCalendarServiceProvider = Provider<SmartCalendarService>((ref) {
 
 /// مقدم حالة التقاويم
 class CalendarsNotifier extends StateNotifier<AsyncValue<List<SmartCalendar>>> {
-  final SmartCalendarService _service;
 
   CalendarsNotifier(this._service) : super(const AsyncValue.loading()) {
     _loadCalendars();
   }
+  final SmartCalendarService _service;
 
   Future<void> _loadCalendars() async {
     try {
@@ -112,11 +112,11 @@ final visibleCalendarsProvider = Provider<List<SmartCalendar>>((ref) {
 
 /// مقدم حالة الأحداث
 class EventsNotifier extends StateNotifier<AsyncValue<List<CalendarEvent>>> {
-  final SmartCalendarService _service;
 
   EventsNotifier(this._service) : super(const AsyncValue.loading()) {
     _loadEvents();
   }
+  final SmartCalendarService _service;
 
   Future<void> _loadEvents() async {
     try {
@@ -155,7 +155,6 @@ class EventsNotifier extends StateNotifier<AsyncValue<List<CalendarEvent>>> {
         location: location,
         participants: participants,
         reminder: reminder,
-        isCompleted: false,
         metadata: {
           ...metadata,
           if (calendarId != null) 'calendarId': calendarId,
@@ -311,7 +310,6 @@ class CalendarViewNotifier extends StateNotifier<CalendarView> {
         newDate = DateTime(
           state.currentDate.year,
           state.currentDate.month - 1,
-          1,
         );
         break;
       default:
@@ -334,7 +332,6 @@ class CalendarViewNotifier extends StateNotifier<CalendarView> {
         newDate = DateTime(
           state.currentDate.year,
           state.currentDate.month + 1,
-          1,
         );
         break;
       default:
@@ -372,7 +369,6 @@ final currentViewEventsProvider = Provider<List<CalendarEvent>>((ref) {
       final startOfMonth = DateTime(
         view.currentDate.year,
         view.currentDate.month,
-        1,
       );
       final endOfMonth = DateTime(
         view.currentDate.year,
@@ -412,9 +408,9 @@ final filteredEventsProvider = Provider<List<CalendarEvent>>((ref) {
 /// مقدم اقتراحات الجدولة
 class ScheduleSuggestionsNotifier
     extends StateNotifier<AsyncValue<List<SmartScheduleSuggestion>>> {
-  final SmartCalendarService _service;
 
   ScheduleSuggestionsNotifier(this._service) : super(const AsyncValue.data([]));
+  final SmartCalendarService _service;
 
   Future<void> generateSuggestions({
     required Duration duration,
@@ -622,9 +618,9 @@ final dateTimeUtilsProvider = Provider<DateTimeUtils>((ref) {
 
 /// فئة أدوات التاريخ والوقت
 class DateTimeUtils {
-  final int firstDayOfWeek;
 
   const DateTimeUtils({this.firstDayOfWeek = 1});
+  final int firstDayOfWeek;
 
   DateTime getStartOfWeek(DateTime date) {
     final daysFromFirstDayOfWeek = (date.weekday - firstDayOfWeek) % 7;
@@ -636,7 +632,7 @@ class DateTimeUtils {
   }
 
   DateTime getStartOfMonth(DateTime date) {
-    return DateTime(date.year, date.month, 1);
+    return DateTime(date.year, date.month);
   }
 
   DateTime getEndOfMonth(DateTime date) {

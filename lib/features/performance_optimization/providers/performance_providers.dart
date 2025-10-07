@@ -17,7 +17,7 @@ final latestPerformanceMetricsProvider = FutureProvider<PerformanceMetrics?>((
   ref,
 ) async {
   final service = ref.read(performanceOptimizationServiceProvider);
-  return await service.getLatestMetrics();
+  return service.getLatestMetrics();
 });
 
 // مزود جميع مقاييس الأداء
@@ -25,7 +25,7 @@ final allPerformanceMetricsProvider = FutureProvider<List<PerformanceMetrics>>((
   ref,
 ) async {
   final service = ref.read(performanceOptimizationServiceProvider);
-  return await service.getAllMetrics();
+  return service.getAllMetrics();
 });
 
 // مزود مقاييس الأداء لفترة معينة
@@ -35,7 +35,7 @@ final performanceMetricsForPeriodProvider =
       dateRange,
     ) async {
       final service = ref.read(performanceOptimizationServiceProvider);
-      return await service.getMetricsForPeriod(
+      return service.getMetricsForPeriod(
         dateRange.startDate,
         dateRange.endDate,
       );
@@ -46,7 +46,7 @@ final performanceReportProvider = FutureProvider<Map<String, dynamic>>((
   ref,
 ) async {
   final service = ref.read(performanceOptimizationServiceProvider);
-  return await service.generatePerformanceReport();
+  return service.generatePerformanceReport();
 });
 
 // مزود حالة مراقبة الأداء
@@ -75,10 +75,10 @@ final livePerformanceStatsProvider = StreamProvider<PerformanceStats>((ref) {
 
 // فئة نطاق التاريخ
 class DateRange {
-  final DateTime startDate;
-  final DateTime endDate;
 
   const DateRange({required this.startDate, required this.endDate});
+  final DateTime startDate;
+  final DateTime endDate;
 
   @override
   bool operator ==(Object other) =>
@@ -94,11 +94,6 @@ class DateRange {
 
 // حالة مراقبة الأداء
 class PerformanceMonitoringState {
-  final bool isMonitoring;
-  final bool isInitialized;
-  final String? error;
-  final DateTime? lastUpdate;
-  final PerformanceMetrics? currentMetrics;
 
   const PerformanceMonitoringState({
     this.isMonitoring = false,
@@ -107,6 +102,11 @@ class PerformanceMonitoringState {
     this.lastUpdate,
     this.currentMetrics,
   });
+  final bool isMonitoring;
+  final bool isInitialized;
+  final String? error;
+  final DateTime? lastUpdate;
+  final PerformanceMetrics? currentMetrics;
 
   PerformanceMonitoringState copyWith({
     bool? isMonitoring,
@@ -128,13 +128,13 @@ class PerformanceMonitoringState {
 // مدير حالة مراقبة الأداء
 class PerformanceMonitoringNotifier
     extends StateNotifier<PerformanceMonitoringState> {
-  final PerformanceOptimizationService _service;
-  StreamSubscription<int>? _updateSubscription;
 
   PerformanceMonitoringNotifier(this._service)
     : super(const PerformanceMonitoringState()) {
     _initialize();
   }
+  final PerformanceOptimizationService _service;
+  StreamSubscription<int>? _updateSubscription;
 
   // تهيئة المراقبة
   Future<void> _initialize() async {
@@ -244,7 +244,7 @@ class PerformanceMonitoringNotifier
 
   // مسح الأخطاء
   void clearError() {
-    state = state.copyWith(error: null);
+    state = state.copyWith();
   }
 
   @override
@@ -255,17 +255,7 @@ class PerformanceMonitoringNotifier
 }
 
 // إعدادات مراقبة الأداء
-class PerformanceSettings {
-  final bool enableMonitoring;
-  final bool enableAutomaticOptimization;
-  final int monitoringInterval; // بالثواني
-  final int dataRetentionDays;
-  final bool enableCrashReporting;
-  final bool enableMemoryMonitoring;
-  final bool enableNetworkMonitoring;
-  final bool enableUIMonitoring;
-  final double criticalMemoryThreshold; // بالنسبة المئوية
-  final double slowQueryThreshold; // بالميللي ثانية
+class PerformanceSettings { // بالميللي ثانية
 
   const PerformanceSettings({
     this.enableMonitoring = true,
@@ -279,6 +269,16 @@ class PerformanceSettings {
     this.criticalMemoryThreshold = 85.0,
     this.slowQueryThreshold = 100.0,
   });
+  final bool enableMonitoring;
+  final bool enableAutomaticOptimization;
+  final int monitoringInterval; // بالثواني
+  final int dataRetentionDays;
+  final bool enableCrashReporting;
+  final bool enableMemoryMonitoring;
+  final bool enableNetworkMonitoring;
+  final bool enableUIMonitoring;
+  final double criticalMemoryThreshold; // بالنسبة المئوية
+  final double slowQueryThreshold;
 
   PerformanceSettings copyWith({
     bool? enableMonitoring,
@@ -403,12 +403,6 @@ class PerformanceSettingsNotifier extends StateNotifier<PerformanceSettings> {
 
 // إحصائيات الأداء المباشرة
 class PerformanceStats {
-  final double cpuUsage;
-  final double memoryUsage;
-  final double networkLatency;
-  final double frameTime;
-  final int activeConnections;
-  final DateTime timestamp;
 
   const PerformanceStats({
     required this.cpuUsage,
@@ -418,6 +412,12 @@ class PerformanceStats {
     required this.activeConnections,
     required this.timestamp,
   });
+  final double cpuUsage;
+  final double memoryUsage;
+  final double networkLatency;
+  final double frameTime;
+  final int activeConnections;
+  final DateTime timestamp;
 
   Map<String, dynamic> toMap() {
     return {
@@ -433,8 +433,6 @@ class PerformanceStats {
 
 // مولد إحصائيات الأداء المباشرة
 class PerformanceStatsNotifier {
-  final PerformanceOptimizationService _service;
-  late final Stream<PerformanceStats> _statsStream;
 
   PerformanceStatsNotifier(this._service) {
     _statsStream = Stream.periodic(
@@ -442,6 +440,8 @@ class PerformanceStatsNotifier {
       (_) => _generateCurrentStats(),
     ).asyncMap((statsFuture) async => await statsFuture);
   }
+  final PerformanceOptimizationService _service;
+  late final Stream<PerformanceStats> _statsStream;
 
   Stream<PerformanceStats> get statsStream => _statsStream;
 

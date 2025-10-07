@@ -2,17 +2,6 @@ import 'package:flutter/material.dart';
 
 /// كارت مخصص قابل لإعادة الاستخدام
 class CustomCard extends StatelessWidget {
-  final Widget child;
-  final EdgeInsetsGeometry? margin;
-  final EdgeInsetsGeometry? padding;
-  final double? borderRadius;
-  final double? elevation;
-  final Color? color;
-  final Color? shadowColor;
-  final Border? border;
-  final Gradient? gradient;
-  final VoidCallback? onTap;
-  final bool isClickable;
 
   const CustomCard({
     Key? key,
@@ -28,6 +17,17 @@ class CustomCard extends StatelessWidget {
     this.onTap,
     this.isClickable = false,
   }) : super(key: key);
+  final Widget child;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
+  final double? borderRadius;
+  final double? elevation;
+  final Color? color;
+  final Color? shadowColor;
+  final Border? border;
+  final Gradient? gradient;
+  final VoidCallback? onTap;
+  final bool isClickable;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,6 @@ class CustomCard extends StatelessWidget {
             color: shadowColor ?? theme.shadowColor.withOpacity(0.1),
             blurRadius: elevation! * 2,
             offset: Offset(0, elevation! / 2),
-            spreadRadius: 0,
           ),
         ] : null,
       ),
@@ -73,17 +72,6 @@ class CustomCard extends StatelessWidget {
 
 /// كارت مخصص مع header وbody
 class CustomCardWithHeader extends StatelessWidget {
-  final String title;
-  final Widget? subtitle;
-  final Widget body;
-  final Widget? trailing;
-  final IconData? leadingIcon;
-  final Color? headerColor;
-  final EdgeInsetsGeometry? margin;
-  final EdgeInsetsGeometry? padding;
-  final double? borderRadius;
-  final double? elevation;
-  final VoidCallback? onTap;
 
   const CustomCardWithHeader({
     Key? key,
@@ -99,6 +87,17 @@ class CustomCardWithHeader extends StatelessWidget {
     this.elevation,
     this.onTap,
   }) : super(key: key);
+  final String title;
+  final Widget? subtitle;
+  final Widget body;
+  final Widget? trailing;
+  final IconData? leadingIcon;
+  final Color? headerColor;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
+  final double? borderRadius;
+  final double? elevation;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -176,12 +175,6 @@ class CustomCardWithHeader extends StatelessWidget {
 
 /// كارت احصائيات بسيط
 class StatCard extends StatelessWidget {
-  final String title;
-  final String value;
-  final IconData icon;
-  final Color? color;
-  final String? subtitle;
-  final VoidCallback? onTap;
 
   const StatCard({
     Key? key,
@@ -192,6 +185,12 @@ class StatCard extends StatelessWidget {
     this.subtitle,
     this.onTap,
   }) : super(key: key);
+  final String title;
+  final String value;
+  final IconData icon;
+  final Color? color;
+  final String? subtitle;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -264,12 +263,6 @@ class StatCard extends StatelessWidget {
 
 /// كارت بقائمة عناصر
 class ListCard extends StatelessWidget {
-  final String title;
-  final List<Widget> items;
-  final int? maxItems;
-  final Widget? trailing;
-  final VoidCallback? onSeeMore;
-  final EdgeInsetsGeometry? margin;
 
   const ListCard({
     Key? key,
@@ -280,6 +273,12 @@ class ListCard extends StatelessWidget {
     this.onSeeMore,
     this.margin,
   }) : super(key: key);
+  final String title;
+  final List<Widget> items;
+  final int? maxItems;
+  final Widget? trailing;
+  final VoidCallback? onSeeMore;
+  final EdgeInsetsGeometry? margin;
 
   @override
   Widget build(BuildContext context) {
@@ -372,14 +371,14 @@ class ListCard extends StatelessWidget {
 
 /// كارت تحميل
 class LoadingCard extends StatelessWidget {
-  final String? message;
-  final double? height;
 
   const LoadingCard({
     Key? key,
     this.message,
     this.height,
   }) : super(key: key);
+  final String? message;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -414,10 +413,6 @@ class LoadingCard extends StatelessWidget {
 
 /// كارت فارغ (عدم وجود بيانات)
 class EmptyCard extends StatelessWidget {
-  final String title;
-  final String? subtitle;
-  final IconData? icon;
-  final Widget? action;
 
   const EmptyCard({
     Key? key,
@@ -426,6 +421,10 @@ class EmptyCard extends StatelessWidget {
     this.icon,
     this.action,
   }) : super(key: key);
+  final String title;
+  final String? subtitle;
+  final IconData? icon;
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {

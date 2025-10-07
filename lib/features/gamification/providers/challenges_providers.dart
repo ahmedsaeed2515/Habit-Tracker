@@ -156,9 +156,9 @@ final challengeActionsProvider = Provider<ChallengeActions>((ref) {
 });
 
 class ChallengeActions {
-  final UnifiedGamificationService _service;
 
   ChallengeActions(this._service);
+  final UnifiedGamificationService _service;
 
   // إنشاء تحدي مخصص
   Future<Map<String, dynamic>?> createCustomChallenge({

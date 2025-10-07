@@ -5,21 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'shared/localization/app_localizations.dart';
-import 'features/gym_tracker/screens/gym_tracker_screen.dart';
-import 'features/morning_exercises/screens/morning_exercises_screen.dart';
-import 'features/daily_habits/screens/daily_habits_screen.dart';
-import 'features/smart_todo/screens/smart_todo_screen.dart';
-import 'features/gamification/screens/enhanced_gamification_screen.dart';
 import 'features/dashboard/screens/dashboard_screen.dart';
 import 'features/settings/screens/settings_screen.dart';
-// الميزات الجديدة
 import 'features/smart_calendar/screens/smart_calendar_screen.dart';
-import 'features/widgets_system/screens/widgets_dashboard_screen.dart';
-import 'features/pomodoro_task_management/screens/pomodoro_todo_screen.dart';
+import 'features/main_tabs/daily_screen.dart';
+import 'features/main_tabs/productivity_screen.dart';
+import 'features/gamification_system/screens/gamification_screen.dart';
+import 'features/social/screens/social_screen.dart';
 
 /// مقدم حالة مؤشر التبويب المحدد
 final selectedTabIndexProvider = StateProvider<int>(
-  (ref) => 5,
+  (ref) => 0,
 ); // البداية من لوحة التحكم
 
 class MainAppScreen extends ConsumerWidget {
@@ -31,67 +27,48 @@ class MainAppScreen extends ConsumerWidget {
     final localizations = AppLocalizations.of(context)!;
     final isArabic = Localizations.localeOf(context).languageCode == 'ar';
 
-    // قائمة الشاشات
+    // ست تبويبات رئيسية: لوحة التحكم، اليومي، التقويم، الإنتاجية، الألعاب، التواصل الاجتماعي، الإعدادات
     final screens = [
-      const GymTrackerScreen(),
-      const MorningExercisesScreen(),
-      const DailyHabitsScreen(),
-      const SmartTodoScreen(),
-      const EnhancedGamificationScreen(),
       const DashboardScreen(),
-      const SmartCalendarScreen(), // التقويم الذكي
-      const WidgetsDashboardScreen(), // نظام الودجت
-      const PomodoroTodoScreen(), // إدارة المهام مع تقنية Pomodoro
+      const DailyScreen(),
+      const SmartCalendarScreen(),
+      const ProductivityScreen(),
+      const GamificationScreen(),
+      const SocialScreen(),
       const SettingsScreen(),
     ];
 
-    // قائمة عناصر شريط التنقل
+    // قائمة عناصر شريط التنقل (5 عناصر)
     final navItems = [
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.fitness_center),
-        activeIcon: const Icon(Icons.fitness_center),
-        label: localizations.gymTracker,
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.wb_sunny),
-        activeIcon: const Icon(Icons.wb_sunny),
-        label: localizations.morningExercises,
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.track_changes),
-        activeIcon: const Icon(Icons.track_changes),
-        label: localizations.dailyHabits,
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.checklist),
-        activeIcon: const Icon(Icons.checklist),
-        label: localizations.smartTodo,
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.videogame_asset),
-        activeIcon: const Icon(Icons.videogame_asset),
-        label: isArabic ? 'الألعاب' : 'Gamification',
-      ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.dashboard),
         activeIcon: const Icon(Icons.dashboard),
         label: localizations.dashboard,
       ),
-      // الميزات الجديدة
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.today),
+        activeIcon: const Icon(Icons.today),
+        label: isArabic ? 'اليومي' : 'Daily',
+      ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.calendar_month),
         activeIcon: const Icon(Icons.calendar_month),
         label: isArabic ? 'التقويم' : 'Calendar',
       ),
       BottomNavigationBarItem(
-        icon: const Icon(Icons.widgets),
-        activeIcon: const Icon(Icons.widgets),
-        label: isArabic ? 'الودجت' : 'Widgets',
+        icon: const Icon(Icons.work_outline),
+        activeIcon: const Icon(Icons.work_outline),
+        label: isArabic ? 'الإنتاجية' : 'Productivity',
       ),
       BottomNavigationBarItem(
-        icon: const Icon(Icons.timer),
-        activeIcon: const Icon(Icons.timer),
-        label: isArabic ? 'بومودورو' : 'Pomodoro',
+        icon: const Icon(Icons.emoji_events),
+        activeIcon: const Icon(Icons.emoji_events),
+        label: isArabic ? 'الألعاب' : 'Gamification',
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.people),
+        activeIcon: const Icon(Icons.people),
+        label: isArabic ? 'التواصل' : 'Social',
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.settings),
@@ -116,7 +93,7 @@ class MainAppScreen extends ConsumerWidget {
   ) {
     final theme = Theme.of(context);
 
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -153,7 +130,7 @@ class MainAppScreen extends ConsumerWidget {
     final theme = Theme.of(context);
 
     return Container(
-      height: 65,
+      height: MediaQuery.of(context).size.height * 0.08, // مرن بدلاً من ثابت 65
       decoration: BoxDecoration(
         color: theme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
         boxShadow: [
@@ -177,7 +154,9 @@ class MainAppScreen extends ConsumerWidget {
               ref.read(selectedTabIndexProvider.notifier).state = index;
             },
             child: Container(
-              width: 80,
+              width:
+                  MediaQuery.of(context).size.width *
+                  0.2, // مرن بدلاً من ثابت 80
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -191,7 +170,10 @@ class MainAppScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     padding: const EdgeInsets.all(4),
-                    child: item.icon,
+                    child: Semantics(
+                      label: item.label ?? 'Navigation item',
+                      child: item.icon,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(

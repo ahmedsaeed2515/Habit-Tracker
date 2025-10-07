@@ -5,6 +5,24 @@ part 'analytics_data.g.dart';
 
 @HiveType(typeId: 13)
 class AnalyticsData extends HiveObject {
+
+  AnalyticsData({
+    required this.id,
+    required this.userId,
+    required this.date,
+    this.habitCompletions = const {},
+    this.taskCompletions = const {},
+    this.totalHabitsCompleted = 0,
+    this.totalTasksCompleted = 0,
+    this.categoryScores = const {},
+    this.overallScore = 0.0,
+    this.streakCount = 0,
+    this.exerciseMinutes = 0,
+    this.focusMinutes = 0,
+    this.customMetrics = const {},
+    required this.createdAt,
+    required this.updatedAt,
+  });
   @HiveField(0)
   String id;
 
@@ -49,24 +67,6 @@ class AnalyticsData extends HiveObject {
 
   @HiveField(14)
   DateTime updatedAt;
-
-  AnalyticsData({
-    required this.id,
-    required this.userId,
-    required this.date,
-    this.habitCompletions = const {},
-    this.taskCompletions = const {},
-    this.totalHabitsCompleted = 0,
-    this.totalTasksCompleted = 0,
-    this.categoryScores = const {},
-    this.overallScore = 0.0,
-    this.streakCount = 0,
-    this.exerciseMinutes = 0,
-    this.focusMinutes = 0,
-    this.customMetrics = const {},
-    required this.createdAt,
-    required this.updatedAt,
-  });
 
   // Helper methods for analytics calculations
   double get completionRate {
@@ -128,6 +128,22 @@ enum AnalyticsPeriod {
 
 @HiveType(typeId: 15)
 class AnalyticsSummary extends HiveObject {
+
+  AnalyticsSummary({
+    required this.id,
+    required this.period,
+    required this.startDate,
+    required this.endDate,
+    this.averageScore = 0.0,
+    this.totalHabitsCompleted = 0,
+    this.totalTasksCompleted = 0,
+    this.longestStreak = 0,
+    this.currentStreak = 0,
+    this.categoryAverages = const {},
+    this.topPerformingHabits = const [],
+    this.improvementAreas = const [],
+    required this.generatedAt,
+  });
   @HiveField(0)
   String id;
 
@@ -166,20 +182,4 @@ class AnalyticsSummary extends HiveObject {
 
   @HiveField(12)
   DateTime generatedAt;
-
-  AnalyticsSummary({
-    required this.id,
-    required this.period,
-    required this.startDate,
-    required this.endDate,
-    this.averageScore = 0.0,
-    this.totalHabitsCompleted = 0,
-    this.totalTasksCompleted = 0,
-    this.longestStreak = 0,
-    this.currentStreak = 0,
-    this.categoryAverages = const {},
-    this.topPerformingHabits = const [],
-    this.improvementAreas = const [],
-    required this.generatedAt,
-  });
 }

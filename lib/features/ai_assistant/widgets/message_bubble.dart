@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import '../models/ai_message.dart';
 
 class MessageBubble extends StatelessWidget {
-  final AIMessage message;
-  final VoidCallback? onDelete;
 
   const MessageBubble({super.key, required this.message, this.onDelete});
+  final AIMessage message;
+  final VoidCallback? onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class MessageBubble extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: isUser
                       ? theme.colorScheme.primary
-                      : theme.colorScheme.surfaceVariant,
+                      : theme.colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(

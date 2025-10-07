@@ -37,7 +37,7 @@ class PointsSummary extends ConsumerWidget {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.stars, color: Colors.amber, size: 24),
+                  const Icon(Icons.stars, color: Colors.amber, size: 24),
                   const SizedBox(width: 12),
                   Text(
                     isArabic ? 'إجمالي النقاط: ' : 'Total Points: ',

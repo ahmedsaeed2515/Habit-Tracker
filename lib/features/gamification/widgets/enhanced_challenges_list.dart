@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// قائمة التحديات المحسنة
 /// TODO: تطوير هذا الويدجت مع البيانات الفعلية
 class EnhancedChallengesList extends ConsumerWidget {
-  const EnhancedChallengesList({Key? key}) : super(key: key);
+  const EnhancedChallengesList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

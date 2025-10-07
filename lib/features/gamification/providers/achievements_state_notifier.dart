@@ -5,9 +5,9 @@ import 'core_gamification_providers.dart';
 // مدير حالة بيانات المستخدم في نظام الألعاب
 class AchievementsStateNotifier
     extends StateNotifier<List<Map<String, dynamic>>> {
-  final UnifiedGamificationService service;
 
   AchievementsStateNotifier(this.service) : super([]);
+  final UnifiedGamificationService service;
 
   // تحديث حالة الإنجازات
   Future<void> refresh() async {

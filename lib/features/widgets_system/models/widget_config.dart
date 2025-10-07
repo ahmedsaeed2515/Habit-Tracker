@@ -4,6 +4,41 @@ part 'widget_config.g.dart';
 
 @HiveType(typeId: 73)
 class WidgetConfig extends HiveObject {
+
+  WidgetConfig({
+    required this.id,
+    required this.type,
+    required this.title,
+    required this.size,
+    this.settings = const {},
+    this.isEnabled = true,
+    required this.createdAt,
+    required this.updatedAt,
+    this.priority = 0,
+    this.habitIds = const [],
+    this.theme = WidgetTheme.system,
+    this.displayOptions = const {},
+    this.refreshInterval = RefreshInterval.minutes15,
+  });
+
+  // إنشاء من خريطة
+  factory WidgetConfig.fromMap(Map<String, dynamic> map) {
+    return WidgetConfig(
+      id: map['id'],
+      type: WidgetType.values.firstWhere((t) => t.name == map['type']),
+      title: map['title'],
+      size: WidgetSize.values.firstWhere((s) => s.name == map['size']),
+      settings: Map<String, dynamic>.from(map['settings'] ?? {}),
+      isEnabled: map['isEnabled'] ?? true,
+      createdAt: DateTime.parse(map['createdAt']),
+      updatedAt: DateTime.parse(map['updatedAt']),
+      priority: map['priority'] ?? 0,
+      habitIds: List<String>.from(map['habitIds'] ?? []),
+      theme: WidgetTheme.values.firstWhere((t) => t.name == map['theme'], orElse: () => WidgetTheme.system),
+      displayOptions: Map<String, dynamic>.from(map['displayOptions'] ?? {}),
+      refreshInterval: RefreshInterval.values.firstWhere((r) => r.name == map['refreshInterval'], orElse: () => RefreshInterval.minutes15),
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -42,22 +77,6 @@ class WidgetConfig extends HiveObject {
 
   @HiveField(12)
   RefreshInterval refreshInterval;
-
-  WidgetConfig({
-    required this.id,
-    required this.type,
-    required this.title,
-    required this.size,
-    this.settings = const {},
-    this.isEnabled = true,
-    required this.createdAt,
-    required this.updatedAt,
-    this.priority = 0,
-    this.habitIds = const [],
-    this.theme = WidgetTheme.system,
-    this.displayOptions = const {},
-    this.refreshInterval = RefreshInterval.minutes15,
-  });
 
   // تحديث الإعدادات
   void updateSettings(Map<String, dynamic> newSettings) {
@@ -106,7 +125,7 @@ class WidgetConfig extends HiveObject {
   }
 
   // تحديد إعداد معين
-  void setSetting(String key, dynamic value) {
+  void setSetting(String key, value) {
     final newSettings = Map<String, dynamic>.from(settings);
     newSettings[key] = value;
     settings = newSettings;
@@ -171,25 +190,6 @@ class WidgetConfig extends HiveObject {
       'displayOptions': displayOptions,
       'refreshInterval': refreshInterval.name,
     };
-  }
-
-  // إنشاء من خريطة
-  factory WidgetConfig.fromMap(Map<String, dynamic> map) {
-    return WidgetConfig(
-      id: map['id'],
-      type: WidgetType.values.firstWhere((t) => t.name == map['type']),
-      title: map['title'],
-      size: WidgetSize.values.firstWhere((s) => s.name == map['size']),
-      settings: Map<String, dynamic>.from(map['settings'] ?? {}),
-      isEnabled: map['isEnabled'] ?? true,
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
-      priority: map['priority'] ?? 0,
-      habitIds: List<String>.from(map['habitIds'] ?? []),
-      theme: WidgetTheme.values.firstWhere((t) => t.name == map['theme'], orElse: () => WidgetTheme.system),
-      displayOptions: Map<String, dynamic>.from(map['displayOptions'] ?? {}),
-      refreshInterval: RefreshInterval.values.firstWhere((r) => r.name == map['refreshInterval'], orElse: () => RefreshInterval.minutes15),
-    );
   }
 }
 
@@ -270,6 +270,14 @@ enum RefreshInterval {
 
 @HiveType(typeId: 78)
 class WidgetData extends HiveObject {
+
+  WidgetData({
+    required this.widgetId,
+    this.data = const {},
+    required this.lastUpdate,
+    this.isValid = true,
+    this.errorMessage,
+  });
   @HiveField(0)
   String widgetId;
 
@@ -284,14 +292,6 @@ class WidgetData extends HiveObject {
 
   @HiveField(4)
   String? errorMessage;
-
-  WidgetData({
-    required this.widgetId,
-    this.data = const {},
-    required this.lastUpdate,
-    this.isValid = true,
-    this.errorMessage,
-  });
 
   // تحديث البيانات
   void updateData(Map<String, dynamic> newData) {
@@ -321,7 +321,7 @@ class WidgetData extends HiveObject {
   }
 
   // تحديد قيمة معينة في البيانات
-  void setValue(String key, dynamic value) {
+  void setValue(String key, value) {
     final newData = Map<String, dynamic>.from(data);
     newData[key] = value;
     data = newData;
@@ -332,6 +332,15 @@ class WidgetData extends HiveObject {
 
 @HiveType(typeId: 79)
 class WidgetLayout extends HiveObject {
+
+  WidgetLayout({
+    required this.id,
+    required this.name,
+    this.positions = const [],
+    this.isDefault = false,
+    required this.createdAt,
+    required this.updatedAt,
+  });
   @HiveField(0)
   String id;
 
@@ -349,15 +358,6 @@ class WidgetLayout extends HiveObject {
 
   @HiveField(5)
   DateTime updatedAt;
-
-  WidgetLayout({
-    required this.id,
-    required this.name,
-    this.positions = const [],
-    this.isDefault = false,
-    required this.createdAt,
-    required this.updatedAt,
-  });
 
   // إضافة موقع ودجت
   void addWidgetPosition(WidgetPosition position) {
@@ -401,6 +401,14 @@ class WidgetLayout extends HiveObject {
 
 @HiveType(typeId: 80)
 class WidgetPosition extends HiveObject {
+
+  WidgetPosition({
+    required this.widgetId,
+    required this.x,
+    required this.y,
+    required this.width,
+    required this.height,
+  });
   @HiveField(0)
   String widgetId;
 
@@ -415,14 +423,6 @@ class WidgetPosition extends HiveObject {
 
   @HiveField(4)
   int height;
-
-  WidgetPosition({
-    required this.widgetId,
-    required this.x,
-    required this.y,
-    required this.width,
-    required this.height,
-  });
 
   // إنشاء نسخة مع تعديل بعض القيم
   WidgetPosition copyWith({

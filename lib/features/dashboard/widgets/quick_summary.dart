@@ -60,11 +60,6 @@ class QuickSummary extends StatelessWidget {
 
 /// بطاقة ملخص للإحصائيات
 class SummaryCard extends StatelessWidget {
-  final String title;
-  final String value;
-  final String subtitle;
-  final IconData icon;
-  final Color color;
 
   const SummaryCard({
     super.key,
@@ -74,6 +69,11 @@ class SummaryCard extends StatelessWidget {
     required this.icon,
     required this.color,
   });
+  final String title;
+  final String value;
+  final String subtitle;
+  final IconData icon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class SummaryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme.cardColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withOpacity(0.2), width: 1),
+        border: Border.all(color: color.withOpacity(0.2)),
         boxShadow: AppTheme.lightShadow,
       ),
       child: Column(

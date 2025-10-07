@@ -5,6 +5,28 @@ part 'ai_models.g.dart';
 /// نموذج العادة الذكية المدعومة بالذكاء الاصطناعي
 @HiveType(typeId: 157)
 class SmartHabit extends HiveObject {
+
+  SmartHabit({
+    required this.id,
+    required this.userId,
+    required this.name,
+    required this.description,
+    required this.category,
+    this.difficultyLevel = 5,
+    this.triggers = const [],
+    this.rewards = const [],
+    required this.schedule,
+    required this.personalization,
+    required this.insights,
+    required this.prediction,
+    this.smartReminders = const [],
+    required this.contextualData,
+    required this.createdAt,
+    required this.updatedAt,
+    this.isAIGenerated = false,
+    this.successProbability = 0.5,
+    this.aiMetadata = const {},
+  });
   @HiveField(0)
   String id;
 
@@ -61,28 +83,6 @@ class SmartHabit extends HiveObject {
 
   @HiveField(18)
   Map<String, dynamic> aiMetadata;
-
-  SmartHabit({
-    required this.id,
-    required this.userId,
-    required this.name,
-    required this.description,
-    required this.category,
-    this.difficultyLevel = 5,
-    this.triggers = const [],
-    this.rewards = const [],
-    required this.schedule,
-    required this.personalization,
-    required this.insights,
-    required this.prediction,
-    this.smartReminders = const [],
-    required this.contextualData,
-    required this.createdAt,
-    required this.updatedAt,
-    this.isAIGenerated = false,
-    this.successProbability = 0.5,
-    this.aiMetadata = const {},
-  });
 
   /// تحديث بيانات الذكاء الاصطناعي
   void updateAIData({
@@ -155,6 +155,17 @@ enum SmartHabitCategory {
 /// المحفزات الذكية
 @HiveType(typeId: 159)
 class SmartTrigger extends HiveObject {
+
+  SmartTrigger({
+    required this.id,
+    required this.type,
+    required this.description,
+    this.conditions = const {},
+    this.effectiveness = 0.5,
+    this.isActive = true,
+    required this.lastTriggered,
+    this.triggerCount = 0,
+  });
   @HiveField(0)
   String id;
 
@@ -178,17 +189,6 @@ class SmartTrigger extends HiveObject {
 
   @HiveField(7)
   int triggerCount;
-
-  SmartTrigger({
-    required this.id,
-    required this.type,
-    required this.description,
-    this.conditions = const {},
-    this.effectiveness = 0.5,
-    this.isActive = true,
-    required this.lastTriggered,
-    this.triggerCount = 0,
-  });
 
   /// تفعيل المحفز
   void trigger() {
@@ -240,7 +240,19 @@ enum TriggerType {
 
 /// المكافآت الذكية
 @HiveType(typeId: 161)
-class SmartReward extends HiveObject {
+class SmartReward extends HiveObject { // تأثير على الدافعية
+
+  SmartReward({
+    required this.id,
+    required this.type,
+    required this.title,
+    required this.description,
+    required this.value,
+    this.criteria = const {},
+    this.isUnlocked = false,
+    this.unlockedAt,
+    this.motivationImpact = 0.5,
+  });
   @HiveField(0)
   String id;
 
@@ -266,19 +278,7 @@ class SmartReward extends HiveObject {
   DateTime? unlockedAt;
 
   @HiveField(8)
-  double motivationImpact; // تأثير على الدافعية
-
-  SmartReward({
-    required this.id,
-    required this.type,
-    required this.title,
-    required this.description,
-    required this.value,
-    this.criteria = const {},
-    this.isUnlocked = false,
-    this.unlockedAt,
-    this.motivationImpact = 0.5,
-  });
+  double motivationImpact;
 
   /// إلغاء قفل المكافأة
   void unlock() {
@@ -319,6 +319,17 @@ enum RewardType {
 /// الجدولة التكيفية
 @HiveType(typeId: 163)
 class AdaptiveSchedule extends HiveObject {
+
+  AdaptiveSchedule({
+    required this.habitId,
+    required this.currentPattern,
+    this.optimalTimeSlots = const [],
+    this.triedPatterns = const [],
+    this.flexibility = 0.5,
+    this.weekdayPreferences = const {},
+    this.adjustments = const [],
+    required this.lastAdaptation,
+  });
   @HiveField(0)
   String habitId;
 
@@ -342,17 +353,6 @@ class AdaptiveSchedule extends HiveObject {
 
   @HiveField(7)
   DateTime lastAdaptation;
-
-  AdaptiveSchedule({
-    required this.habitId,
-    required this.currentPattern,
-    this.optimalTimeSlots = const [],
-    this.triedPatterns = const [],
-    this.flexibility = 0.5,
-    this.weekdayPreferences = const {},
-    this.adjustments = const [],
-    required this.lastAdaptation,
-  });
 
   /// تكييف الجدول بناءً على الأداء
   void adaptToPerformance(PerformanceData performance) {
@@ -387,6 +387,15 @@ class AdaptiveSchedule extends HiveObject {
 /// نمط الجدولة
 @HiveType(typeId: 164)
 class SchedulePattern extends HiveObject {
+
+  SchedulePattern({
+    required this.type,
+    required this.frequency,
+    required this.interval,
+    this.daysOfWeek = const [],
+    this.timesOfDay = const [],
+    this.isFlexible = true,
+  });
   @HiveField(0)
   PatternType type;
 
@@ -404,15 +413,6 @@ class SchedulePattern extends HiveObject {
 
   @HiveField(5)
   bool isFlexible;
-
-  SchedulePattern({
-    required this.type,
-    required this.frequency,
-    required this.interval,
-    this.daysOfWeek = const [],
-    this.timesOfDay = const [],
-    this.isFlexible = true,
-  });
 }
 
 /// أنواع أنماط الجدولة
@@ -440,6 +440,14 @@ enum PatternType {
 /// فترة زمنية
 @HiveType(typeId: 166)
 class TimeSlot extends HiveObject {
+
+  TimeSlot({
+    required this.startTime,
+    required this.endTime,
+    required this.dayOfWeek,
+    this.successRate = 0.0,
+    this.completionCount = 0,
+  });
   @HiveField(0)
   TimeOfDay startTime;
 
@@ -454,26 +462,18 @@ class TimeSlot extends HiveObject {
 
   @HiveField(4)
   int completionCount;
-
-  TimeSlot({
-    required this.startTime,
-    required this.endTime,
-    required this.dayOfWeek,
-    this.successRate = 0.0,
-    this.completionCount = 0,
-  });
 }
 
 /// وقت اليوم (Hive compatible)
 @HiveType(typeId: 167)
 class TimeOfDay extends HiveObject {
+
+  TimeOfDay({required this.hour, required this.minute});
   @HiveField(0)
   int hour;
 
   @HiveField(1)
   int minute;
-
-  TimeOfDay({required this.hour, required this.minute});
 
   @override
   String toString() => '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
@@ -482,6 +482,15 @@ class TimeOfDay extends HiveObject {
 /// تعديل الجدول
 @HiveType(typeId: 168)
 class ScheduleAdjustment extends HiveObject {
+
+  ScheduleAdjustment({
+    required this.timestamp,
+    required this.type,
+    required this.reason,
+    this.oldValues = const {},
+    this.newValues = const {},
+    this.impactScore = 0.0,
+  });
   @HiveField(0)
   DateTime timestamp;
 
@@ -499,15 +508,6 @@ class ScheduleAdjustment extends HiveObject {
 
   @HiveField(5)
   double impactScore;
-
-  ScheduleAdjustment({
-    required this.timestamp,
-    required this.type,
-    required this.reason,
-    this.oldValues = const {},
-    this.newValues = const {},
-    this.impactScore = 0.0,
-  });
 }
 
 /// أنواع التعديلات
@@ -532,6 +532,15 @@ enum AdjustmentType {
 /// التخصيص الشخصي للعادة
 @HiveType(typeId: 170)
 class HabitPersonalization extends HiveObject {
+
+  HabitPersonalization({
+    required this.personalityProfile,
+    this.motivationFactors = const [],
+    required this.learningStyle,
+    this.preferences = const [],
+    this.successFactors = const {},
+    this.personalChallenges = const [],
+  });
   @HiveField(0)
   PersonalityProfile personalityProfile;
 
@@ -549,20 +558,19 @@ class HabitPersonalization extends HiveObject {
 
   @HiveField(5)
   List<Challenge> personalChallenges;
-
-  HabitPersonalization({
-    required this.personalityProfile,
-    this.motivationFactors = const [],
-    required this.learningStyle,
-    this.preferences = const [],
-    this.successFactors = const {},
-    this.personalChallenges = const [],
-  });
 }
 
 /// الملف الشخصي للشخصية
 @HiveType(typeId: 171)
 class PersonalityProfile extends HiveObject {
+
+  PersonalityProfile({
+    required this.type,
+    this.traits = const {},
+    this.strengths = const [],
+    this.weaknesses = const [],
+    required this.lastAssessment,
+  });
   @HiveField(0)
   PersonalityType type;
 
@@ -577,14 +585,6 @@ class PersonalityProfile extends HiveObject {
 
   @HiveField(4)
   DateTime lastAssessment;
-
-  PersonalityProfile({
-    required this.type,
-    this.traits = const {},
-    this.strengths = const [],
-    this.weaknesses = const [],
-    required this.lastAssessment,
-  });
 }
 
 /// أنواع الشخصية
@@ -618,6 +618,14 @@ enum PersonalityType {
 /// عوامل التحفيز
 @HiveType(typeId: 173)
 class MotivationFactor extends HiveObject {
+
+  MotivationFactor({
+    required this.name,
+    required this.type,
+    required this.impact,
+    this.isActive = true,
+    this.parameters = const {},
+  });
   @HiveField(0)
   String name;
 
@@ -632,14 +640,6 @@ class MotivationFactor extends HiveObject {
 
   @HiveField(4)
   Map<String, dynamic> parameters;
-
-  MotivationFactor({
-    required this.name,
-    required this.type,
-    required this.impact,
-    this.isActive = true,
-    this.parameters = const {},
-  });
 }
 
 /// أنواع التحفيز
@@ -673,6 +673,13 @@ enum MotivationType {
 /// أسلوب التعلم
 @HiveType(typeId: 175)
 class LearningStyle extends HiveObject {
+
+  LearningStyle({
+    required this.primaryType,
+    this.secondaryTypes = const [],
+    this.adaptabilityScore = 0.5,
+    this.effectivenessScores = const {},
+  });
   @HiveField(0)
   LearningType primaryType;
 
@@ -684,13 +691,6 @@ class LearningStyle extends HiveObject {
 
   @HiveField(3)
   Map<String, double> effectivenessScores;
-
-  LearningStyle({
-    required this.primaryType,
-    this.secondaryTypes = const [],
-    this.adaptabilityScore = 0.5,
-    this.effectivenessScores = const {},
-  });
 }
 
 /// أنواع التعلم
@@ -723,7 +723,15 @@ enum LearningType {
 
 /// التفضيل الشخصي
 @HiveType(typeId: 177)
-class Preference extends HiveObject {
+class Preference extends HiveObject { // أهمية التفضيل
+
+  Preference({
+    required this.key,
+    required this.value,
+    required this.type,
+    this.importance = 0.5,
+  });
+  @override
   @HiveField(0)
   String key;
 
@@ -734,14 +742,7 @@ class Preference extends HiveObject {
   PreferenceType type;
 
   @HiveField(3)
-  double importance; // أهمية التفضيل
-
-  Preference({
-    required this.key,
-    required this.value,
-    required this.type,
-    this.importance = 0.5,
-  });
+  double importance;
 }
 
 /// أنواع التفضيلات
@@ -775,6 +776,15 @@ enum PreferenceType {
 /// التحدي الشخصي
 @HiveType(typeId: 179)
 class Challenge extends HiveObject {
+
+  Challenge({
+    required this.name,
+    required this.type,
+    required this.description,
+    required this.severity,
+    this.strategies = const [],
+    this.isActive = true,
+  });
   @HiveField(0)
   String name;
 
@@ -792,15 +802,6 @@ class Challenge extends HiveObject {
 
   @HiveField(5)
   bool isActive;
-
-  Challenge({
-    required this.name,
-    required this.type,
-    required this.description,
-    required this.severity,
-    this.strategies = const [],
-    this.isActive = true,
-  });
 }
 
 /// أنواع التحديات
@@ -834,6 +835,15 @@ enum ChallengeType {
 /// رؤى الذكاء الاصطناعي
 @HiveType(typeId: 181)
 class AIInsights extends HiveObject {
+
+  AIInsights({
+    this.behaviorInsights = const [],
+    this.performanceInsights = const [],
+    this.patternInsights = const [],
+    this.recommendations = const [],
+    required this.lastAnalysis,
+    this.confidenceScore = 0.0,
+  });
   @HiveField(0)
   List<Insight> behaviorInsights;
 
@@ -851,15 +861,6 @@ class AIInsights extends HiveObject {
 
   @HiveField(5)
   double confidenceScore;
-
-  AIInsights({
-    this.behaviorInsights = const [],
-    this.performanceInsights = const [],
-    this.patternInsights = const [],
-    this.recommendations = const [],
-    required this.lastAnalysis,
-    this.confidenceScore = 0.0,
-  });
 
   /// إضافة رؤية جديدة
   void addInsight(Insight insight) {
@@ -891,6 +892,17 @@ class AIInsights extends HiveObject {
 /// الرؤية الفردية
 @HiveType(typeId: 182)
 class Insight extends HiveObject {
+
+  Insight({
+    required this.id,
+    required this.category,
+    required this.title,
+    required this.description,
+    required this.severity,
+    required this.confidence,
+    this.data = const {},
+    required this.generatedAt,
+  });
   @HiveField(0)
   String id;
 
@@ -914,17 +926,6 @@ class Insight extends HiveObject {
 
   @HiveField(7)
   DateTime generatedAt;
-
-  Insight({
-    required this.id,
-    required this.category,
-    required this.title,
-    required this.description,
-    required this.severity,
-    required this.confidence,
-    this.data = const {},
-    required this.generatedAt,
-  });
 }
 
 /// فئات الرؤى
@@ -965,6 +966,18 @@ enum InsightSeverity {
 /// التوصية
 @HiveType(typeId: 185)
 class Recommendation extends HiveObject {
+
+  Recommendation({
+    required this.id,
+    required this.type,
+    required this.title,
+    required this.description,
+    this.actionSteps = const [],
+    this.expectedImpact = 0.0,
+    this.priority = 1,
+    this.isImplemented = false,
+    required this.generatedAt,
+  });
   @HiveField(0)
   String id;
 
@@ -991,18 +1004,6 @@ class Recommendation extends HiveObject {
 
   @HiveField(8)
   DateTime generatedAt;
-
-  Recommendation({
-    required this.id,
-    required this.type,
-    required this.title,
-    required this.description,
-    this.actionSteps = const [],
-    this.expectedImpact = 0.0,
-    this.priority = 1,
-    this.isImplemented = false,
-    required this.generatedAt,
-  });
 }
 
 /// أنواع التوصيات
@@ -1036,6 +1037,16 @@ enum RecommendationType {
 /// تنبؤ التقدم
 @HiveType(typeId: 187)
 class ProgressPrediction extends HiveObject {
+
+  ProgressPrediction({
+    this.shortTermSuccessRate = 0.0,
+    this.mediumTermSuccessRate = 0.0,
+    this.longTermSuccessRate = 0.0,
+    this.predictedMilestones = const [],
+    this.riskFactors = const [],
+    required this.lastUpdate,
+    this.modelAccuracy = 0.0,
+  });
   @HiveField(0)
   double shortTermSuccessRate; // 7 أيام
 
@@ -1056,16 +1067,6 @@ class ProgressPrediction extends HiveObject {
 
   @HiveField(6)
   double modelAccuracy;
-
-  ProgressPrediction({
-    this.shortTermSuccessRate = 0.0,
-    this.mediumTermSuccessRate = 0.0,
-    this.longTermSuccessRate = 0.0,
-    this.predictedMilestones = const [],
-    this.riskFactors = const [],
-    required this.lastUpdate,
-    this.modelAccuracy = 0.0,
-  });
 
   /// تحديث التنبؤ بناءً على الأداء
   void updateBasedOnPerformance(PerformanceData performance) {
@@ -1100,6 +1101,14 @@ class ProgressPrediction extends HiveObject {
 /// المعلم المهم
 @HiveType(typeId: 188)
 class Milestone extends HiveObject {
+
+  Milestone({
+    required this.name,
+    required this.predictedDate,
+    required this.probability,
+    required this.description,
+    this.isAchieved = false,
+  });
   @HiveField(0)
   String name;
 
@@ -1114,19 +1123,19 @@ class Milestone extends HiveObject {
 
   @HiveField(4)
   bool isAchieved;
-
-  Milestone({
-    required this.name,
-    required this.predictedDate,
-    required this.probability,
-    required this.description,
-    this.isAchieved = false,
-  });
 }
 
 /// عامل الخطر
 @HiveType(typeId: 189)
 class RiskFactor extends HiveObject {
+
+  RiskFactor({
+    required this.name,
+    required this.level,
+    required this.probability,
+    required this.description,
+    this.mitigationStrategies = const [],
+  });
   @HiveField(0)
   String name;
 
@@ -1141,14 +1150,6 @@ class RiskFactor extends HiveObject {
 
   @HiveField(4)
   List<String> mitigationStrategies;
-
-  RiskFactor({
-    required this.name,
-    required this.level,
-    required this.probability,
-    required this.description,
-    this.mitigationStrategies = const [],
-  });
 }
 
 /// مستوى الخطر
@@ -1170,6 +1171,17 @@ enum RiskLevel {
 /// التذكير الذكي
 @HiveType(typeId: 191)
 class SmartReminder extends HiveObject {
+
+  SmartReminder({
+    required this.id,
+    required this.type,
+    required this.message,
+    this.conditions = const {},
+    this.effectiveness = 0.5,
+    this.isActive = true,
+    required this.lastSent,
+    this.sentCount = 0,
+  });
   @HiveField(0)
   String id;
 
@@ -1193,17 +1205,6 @@ class SmartReminder extends HiveObject {
 
   @HiveField(7)
   int sentCount;
-
-  SmartReminder({
-    required this.id,
-    required this.type,
-    required this.message,
-    this.conditions = const {},
-    this.effectiveness = 0.5,
-    this.isActive = true,
-    required this.lastSent,
-    this.sentCount = 0,
-  });
 }
 
 /// أنواع التذكير
@@ -1237,6 +1238,14 @@ enum ReminderType {
 /// البيانات السياقية
 @HiveType(typeId: 193)
 class ContextualData extends HiveObject {
+
+  ContextualData({
+    this.environmentalFactors = const {},
+    this.socialContext = const {},
+    this.temporalContext = const {},
+    this.personalContext = const {},
+    required this.lastUpdate,
+  });
   @HiveField(0)
   Map<String, dynamic> environmentalFactors;
 
@@ -1251,14 +1260,6 @@ class ContextualData extends HiveObject {
 
   @HiveField(4)
   DateTime lastUpdate;
-
-  ContextualData({
-    this.environmentalFactors = const {},
-    this.socialContext = const {},
-    this.temporalContext = const {},
-    this.personalContext = const {},
-    required this.lastUpdate,
-  });
 
   /// تحديث السياق البيئي
   void updateEnvironmentalContext(Map<String, dynamic> factors) {
@@ -1277,12 +1278,6 @@ class ContextualData extends HiveObject {
 
 /// بيانات الأداء
 class PerformanceData {
-  final double successRate;
-  final double recentSuccessRate;
-  final double overallSuccessRate;
-  final double trendSuccessRate;
-  final List<DateTime> completionDates;
-  final Map<int, int> hourlyCompletions;
 
   PerformanceData({
     required this.successRate,
@@ -1292,6 +1287,12 @@ class PerformanceData {
     required this.completionDates,
     required this.hourlyCompletions,
   });
+  final double successRate;
+  final double recentSuccessRate;
+  final double overallSuccessRate;
+  final double trendSuccessRate;
+  final List<DateTime> completionDates;
+  final Map<int, int> hourlyCompletions;
 
   /// الحصول على الأوقات الناجحة
   List<TimeSlot> getSuccessfulTimeSlots() {

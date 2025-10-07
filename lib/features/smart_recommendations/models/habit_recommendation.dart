@@ -3,7 +3,45 @@ import 'package:hive/hive.dart';
 part 'habit_recommendation.g.dart';
 
 @HiveType(typeId: 28)
-class HabitRecommendation extends HiveObject {
+class HabitRecommendation extends HiveObject { // أولوية التوصية (1-5)
+
+  HabitRecommendation({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.category,
+    required this.confidenceScore,
+    required this.type,
+    required this.reasons,
+    required this.metadata,
+    required this.createdAt,
+    this.acceptedAt,
+    this.rejectedAt,
+    this.isViewed = false,
+    this.priority = 3,
+  });
+
+  factory HabitRecommendation.fromMap(Map<String, dynamic> map) {
+    return HabitRecommendation(
+      id: map['id'] ?? '',
+      title: map['title'] ?? '',
+      description: map['description'] ?? '',
+      category: map['category'] ?? '',
+      confidenceScore: map['confidenceScore']?.toDouble() ?? 0.0,
+      type: RecommendationType.values[map['type'] ?? 0],
+      reasons: List<String>.from(map['reasons'] ?? []),
+      metadata: Map<String, dynamic>.from(map['metadata'] ?? {}),
+      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] ?? 0),
+      acceptedAt: map['acceptedAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['acceptedAt'])
+          : null,
+      rejectedAt: map['rejectedAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['rejectedAt'])
+          : null,
+      isViewed: map['isViewed'] ?? false,
+      priority: map['priority'] ?? 3,
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -41,23 +79,7 @@ class HabitRecommendation extends HiveObject {
   bool isViewed; // هل تم عرض التوصية
 
   @HiveField(12)
-  int priority; // أولوية التوصية (1-5)
-
-  HabitRecommendation({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.category,
-    required this.confidenceScore,
-    required this.type,
-    required this.reasons,
-    required this.metadata,
-    required this.createdAt,
-    this.acceptedAt,
-    this.rejectedAt,
-    this.isViewed = false,
-    this.priority = 3,
-  });
+  int priority;
 
   bool get isAccepted => acceptedAt != null;
   bool get isRejected => rejectedAt != null;
@@ -97,28 +119,6 @@ class HabitRecommendation extends HiveObject {
       'priority': priority,
     };
   }
-
-  factory HabitRecommendation.fromMap(Map<String, dynamic> map) {
-    return HabitRecommendation(
-      id: map['id'] ?? '',
-      title: map['title'] ?? '',
-      description: map['description'] ?? '',
-      category: map['category'] ?? '',
-      confidenceScore: map['confidenceScore']?.toDouble() ?? 0.0,
-      type: RecommendationType.values[map['type'] ?? 0],
-      reasons: List<String>.from(map['reasons'] ?? []),
-      metadata: Map<String, dynamic>.from(map['metadata'] ?? {}),
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] ?? 0),
-      acceptedAt: map['acceptedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['acceptedAt'])
-          : null,
-      rejectedAt: map['rejectedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['rejectedAt'])
-          : null,
-      isViewed: map['isViewed'] ?? false,
-      priority: map['priority'] ?? 3,
-    );
-  }
 }
 
 @HiveType(typeId: 29)
@@ -138,7 +138,37 @@ enum RecommendationType {
 }
 
 @HiveType(typeId: 30)
-class UserBehaviorPattern extends HiveObject {
+class UserBehaviorPattern extends HiveObject { // بيانات النمط
+
+  UserBehaviorPattern({
+    required this.id,
+    required this.userId,
+    required this.patternType,
+    required this.description,
+    required this.strength,
+    required this.frequency,
+    required this.firstObserved,
+    required this.lastObserved,
+    required this.data,
+  });
+
+  factory UserBehaviorPattern.fromMap(Map<String, dynamic> map) {
+    return UserBehaviorPattern(
+      id: map['id'] ?? '',
+      userId: map['userId'] ?? '',
+      patternType: PatternType.values[map['patternType'] ?? 0],
+      description: map['description'] ?? '',
+      strength: map['strength']?.toDouble() ?? 0.0,
+      frequency: map['frequency'] ?? 0,
+      firstObserved: DateTime.fromMillisecondsSinceEpoch(
+        map['firstObserved'] ?? 0,
+      ),
+      lastObserved: DateTime.fromMillisecondsSinceEpoch(
+        map['lastObserved'] ?? 0,
+      ),
+      data: Map<String, dynamic>.from(map['data'] ?? {}),
+    );
+  }
   @HiveField(0)
   String id;
 
@@ -164,19 +194,7 @@ class UserBehaviorPattern extends HiveObject {
   DateTime lastObserved; // آخر ملاحظة للنمط
 
   @HiveField(8)
-  Map<String, dynamic> data; // بيانات النمط
-
-  UserBehaviorPattern({
-    required this.id,
-    required this.userId,
-    required this.patternType,
-    required this.description,
-    required this.strength,
-    required this.frequency,
-    required this.firstObserved,
-    required this.lastObserved,
-    required this.data,
-  });
+  Map<String, dynamic> data;
 
   Map<String, dynamic> toMap() {
     return {
@@ -190,24 +208,6 @@ class UserBehaviorPattern extends HiveObject {
       'lastObserved': lastObserved.millisecondsSinceEpoch,
       'data': data,
     };
-  }
-
-  factory UserBehaviorPattern.fromMap(Map<String, dynamic> map) {
-    return UserBehaviorPattern(
-      id: map['id'] ?? '',
-      userId: map['userId'] ?? '',
-      patternType: PatternType.values[map['patternType'] ?? 0],
-      description: map['description'] ?? '',
-      strength: map['strength']?.toDouble() ?? 0.0,
-      frequency: map['frequency'] ?? 0,
-      firstObserved: DateTime.fromMillisecondsSinceEpoch(
-        map['firstObserved'] ?? 0,
-      ),
-      lastObserved: DateTime.fromMillisecondsSinceEpoch(
-        map['lastObserved'] ?? 0,
-      ),
-      data: Map<String, dynamic>.from(map['data'] ?? {}),
-    );
   }
 }
 

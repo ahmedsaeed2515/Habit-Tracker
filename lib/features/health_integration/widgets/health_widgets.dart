@@ -200,9 +200,6 @@ double _metricDefaultTargetFor(HealthMetricType type) {
 
 /// بطاقة عرض مقياس صحي
 class HealthMetricCard extends StatelessWidget {
-  final HealthMetricType metricType;
-  final List<HealthDataPoint> dataPoints;
-  final VoidCallback? onTap;
 
   const HealthMetricCard({
     super.key,
@@ -210,6 +207,9 @@ class HealthMetricCard extends StatelessWidget {
     required this.dataPoints,
     this.onTap,
   });
+  final HealthMetricType metricType;
+  final List<HealthDataPoint> dataPoints;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -515,9 +515,6 @@ class HealthMetricCard extends StatelessWidget {
 
 /// بطاقة عرض هدف صحي
 class HealthGoalCard extends StatelessWidget {
-  final HealthGoal goal;
-  final Function(double)? onProgressUpdate;
-  final VoidCallback? onToggleActive;
 
   const HealthGoalCard({
     super.key,
@@ -525,6 +522,9 @@ class HealthGoalCard extends StatelessWidget {
     this.onProgressUpdate,
     this.onToggleActive,
   });
+  final HealthGoal goal;
+  final Function(double)? onProgressUpdate;
+  final VoidCallback? onToggleActive;
 
   @override
   Widget build(BuildContext context) {
@@ -534,7 +534,7 @@ class HealthGoalCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       elevation: 2,
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: isAchieved ? Border.all(color: Colors.green, width: 2) : null,
@@ -784,21 +784,21 @@ class HealthGoalCard extends StatelessWidget {
 
 /// بطاقة عرض رؤية صحية
 class HealthInsightCard extends StatelessWidget {
-  final HealthInsight insight;
-  final VoidCallback? onMarkAsRead;
 
   const HealthInsightCard({
     super.key,
     required this.insight,
     this.onMarkAsRead,
   });
+  final HealthInsight insight;
+  final VoidCallback? onMarkAsRead;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       elevation: insight.isRead ? 1 : 3,
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: !insight.isRead
@@ -1033,9 +1033,9 @@ class HealthInsightCard extends StatelessWidget {
 
 /// حوار إضافة بيانات صحية
 class AddHealthDataDialog extends ConsumerStatefulWidget {
-  final String userId;
 
   const AddHealthDataDialog({super.key, required this.userId});
+  final String userId;
 
   @override
   ConsumerState<AddHealthDataDialog> createState() =>
@@ -1059,7 +1059,7 @@ class _AddHealthDataDialogState extends ConsumerState<AddHealthDataDialog> {
           children: [
             // نوع البيانات
             DropdownButtonFormField<HealthMetricType>(
-              value: _selectedType,
+              initialValue: _selectedType,
               decoration: const InputDecoration(
                 labelText: 'نوع البيانات',
                 border: OutlineInputBorder(),
@@ -1131,7 +1131,7 @@ class _AddHealthDataDialogState extends ConsumerState<AddHealthDataDialog> {
     );
   }
 
-  void _saveData() async {
+  Future<void> _saveData() async {
     if (_formKey.currentState?.validate() ?? false) {
       final dataPoint = HealthDataPoint(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -1139,7 +1139,6 @@ class _AddHealthDataDialogState extends ConsumerState<AddHealthDataDialog> {
         value: double.parse(_valueController.text),
         unit: _getMetricUnit(_selectedType),
         timestamp: _selectedDate,
-        source: HealthDataSource.manual,
         metadata: {},
       );
 
@@ -1167,9 +1166,9 @@ class _AddHealthDataDialogState extends ConsumerState<AddHealthDataDialog> {
 
 /// حوار إضافة هدف صحي
 class AddHealthGoalDialog extends ConsumerStatefulWidget {
-  final String userId;
 
   const AddHealthGoalDialog({super.key, required this.userId});
+  final String userId;
 
   @override
   ConsumerState<AddHealthGoalDialog> createState() =>
@@ -1194,7 +1193,7 @@ class _AddHealthGoalDialogState extends ConsumerState<AddHealthGoalDialog> {
           children: [
             // نوع الهدف
             DropdownButtonFormField<HealthMetricType>(
-              value: _selectedType,
+              initialValue: _selectedType,
               decoration: const InputDecoration(
                 labelText: 'نوع الهدف',
                 border: OutlineInputBorder(),
@@ -1238,7 +1237,7 @@ class _AddHealthGoalDialogState extends ConsumerState<AddHealthGoalDialog> {
 
             // فترة الهدف
             DropdownButtonFormField<GoalPeriod>(
-              value: _selectedPeriod,
+              initialValue: _selectedPeriod,
               decoration: const InputDecoration(
                 labelText: 'فترة الهدف',
                 border: OutlineInputBorder(),
@@ -1280,7 +1279,7 @@ class _AddHealthGoalDialogState extends ConsumerState<AddHealthGoalDialog> {
     );
   }
 
-  void _saveGoal() async {
+  Future<void> _saveGoal() async {
     if (_formKey.currentState?.validate() ?? false) {
       await ref
           .read(healthGoalsProvider(widget.userId).notifier)

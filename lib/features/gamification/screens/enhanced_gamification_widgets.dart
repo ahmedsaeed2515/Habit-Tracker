@@ -10,8 +10,9 @@ class EnhancedGamificationWidgets {
   /// قسم أحدث الإنجازات
   static Widget buildRecentAchievementsSection(
     BuildContext context,
-    bool isArabic,
-  ) {
+    bool isArabic, {
+    VoidCallback? onViewAll,
+  }) {
     return Consumer(
       builder: (context, ref, child) {
         final recentAchievements = ref.watch(recentAchievementsProvider);
@@ -41,9 +42,7 @@ class EnhancedGamificationWidgets {
                       ),
                       const Spacer(),
                       TextButton(
-                        onPressed: () {
-                          // TODO: التنقل إلى تبويب الإنجازات
-                        },
+                        onPressed: onViewAll,
                         child: Text(isArabic ? 'عرض الكل' : 'View All'),
                       ),
                     ],
@@ -64,7 +63,7 @@ class EnhancedGamificationWidgets {
                         debugPrint('خطأ في تحويل الإنجاز: $e');
                         return const SizedBox.shrink();
                       }
-                    }).toList(),
+                    }),
                 ],
               ),
             ),
@@ -77,8 +76,9 @@ class EnhancedGamificationWidgets {
   /// قسم التحديات النشطة
   static Widget buildActiveChallengesSection(
     BuildContext context,
-    bool isArabic,
-  ) {
+    bool isArabic, {
+    VoidCallback? onViewAll,
+  }) {
     return Consumer(
       builder: (context, ref, child) {
         final activeChallenges = ref.watch(activeChallengesProvider);
@@ -108,9 +108,7 @@ class EnhancedGamificationWidgets {
                       ),
                       const Spacer(),
                       TextButton(
-                        onPressed: () {
-                          // TODO: التنقل إلى تبويب التحديات
-                        },
+                        onPressed: onViewAll,
                         child: Text(isArabic ? 'عرض الكل' : 'View All'),
                       ),
                     ],
@@ -128,8 +126,7 @@ class EnhancedGamificationWidgets {
                             isArabic,
                             UnifiedChallenge.fromMap(challenge),
                           ),
-                        )
-                        .toList(),
+                        ),
                 ],
               ),
             ),
@@ -178,30 +175,28 @@ class EnhancedGamificationWidgets {
               ),
               const SizedBox(height: 12),
 
-              ...tips
-                  .map(
-                    (tip) => Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.arrow_right_rounded,
-                            size: 16,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          const SizedBox(width: 4),
-                          Expanded(
-                            child: Text(
-                              tip,
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ),
-                        ],
+              ...tips.map(
+                (tip) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.arrow_right_rounded,
+                        size: 16,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                    ),
-                  )
-                  .toList(),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: Text(
+                          tip,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -231,7 +226,10 @@ class EnhancedGamificationWidgets {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.auto_awesome_rounded, color: Colors.purple),
+                      const Icon(
+                        Icons.auto_awesome_rounded,
+                        color: Colors.purple,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         isArabic ? 'الإنجازات النادرة' : 'Rare Achievements',
@@ -253,8 +251,7 @@ class EnhancedGamificationWidgets {
                             isArabic,
                             UnifiedAchievement.fromMap(achievement),
                           ),
-                        )
-                        .toList(),
+                        ),
                 ],
               ),
             ),
@@ -279,7 +276,7 @@ class EnhancedGamificationWidgets {
           children: [
             Row(
               children: [
-                Icon(Icons.history_rounded, color: Colors.blue),
+                const Icon(Icons.history_rounded, color: Colors.blue),
                 const SizedBox(width: 8),
                 Text(
                   isArabic ? 'تاريخ المكافآت' : 'Rewards History',
@@ -617,7 +614,7 @@ class EnhancedGamificationWidgets {
     );
   }
 
-  static void _cleanupData(
+  static Future<void> _cleanupData(
     BuildContext context,
     bool isArabic,
     WidgetRef ref,

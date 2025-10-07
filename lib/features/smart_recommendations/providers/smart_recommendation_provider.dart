@@ -12,12 +12,6 @@ final smartRecommendationProvider =
     });
 
 class SmartRecommendationState {
-  final List<HabitRecommendation> recommendations;
-  final List<UserBehaviorPattern> patterns;
-  final bool isLoading;
-  final bool isAnalyzing;
-  final String? error;
-  final DateTime? lastAnalysis;
 
   const SmartRecommendationState({
     this.recommendations = const [],
@@ -27,6 +21,12 @@ class SmartRecommendationState {
     this.error,
     this.lastAnalysis,
   });
+  final List<HabitRecommendation> recommendations;
+  final List<UserBehaviorPattern> patterns;
+  final bool isLoading;
+  final bool isAnalyzing;
+  final String? error;
+  final DateTime? lastAnalysis;
 
   SmartRecommendationState copyWith({
     List<HabitRecommendation>? recommendations,
@@ -112,7 +112,7 @@ class SmartRecommendationNotifier
   Future<void> analyzeAndGenerateRecommendations() async {
     if (state.isAnalyzing) return;
 
-    state = state.copyWith(isAnalyzing: true, error: null);
+    state = state.copyWith(isAnalyzing: true);
 
     try {
       // الحصول على العادات الحالية
@@ -252,7 +252,7 @@ class SmartRecommendationNotifier
   Future<void> reanalyzePatterns() async {
     if (state.isAnalyzing) return;
 
-    state = state.copyWith(isAnalyzing: true, error: null);
+    state = state.copyWith(isAnalyzing: true);
 
     try {
       final habits = _ref.read(habitsProvider);
@@ -330,7 +330,7 @@ class SmartRecommendationNotifier
 
   // إزالة رسالة الخطأ
   void clearError() {
-    state = state.copyWith(error: null);
+    state = state.copyWith();
   }
 
   // تحديث يدوي

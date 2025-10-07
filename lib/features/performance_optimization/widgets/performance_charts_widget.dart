@@ -82,7 +82,6 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
       padding: const EdgeInsets.all(16),
       child: LineChart(
         LineChartData(
-          gridData: const FlGridData(show: true),
           titlesData: FlTitlesData(
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
@@ -108,8 +107,8 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
                 },
               ),
             ),
-            rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles: const AxisTitles(),
+            topTitles: const AxisTitles(),
           ),
           borderData: FlBorderData(show: true),
           minX: 0,
@@ -122,7 +121,6 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
               spots: cpuDataPoints,
               isCurved: true,
               color: Colors.red,
-              barWidth: 2,
               dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(
                 show: true,
@@ -134,7 +132,6 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
               spots: memoryDataPoints,
               isCurved: true,
               color: Colors.blue,
-              barWidth: 2,
               dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(
                 show: true,
@@ -146,7 +143,6 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
               spots: networkDataPoints,
               isCurved: true,
               color: Colors.green,
-              barWidth: 2,
               dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(
                 show: true,
@@ -187,11 +183,6 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
 }
 
 class PerformanceGaugeWidget extends ConsumerWidget {
-  final String title;
-  final double value;
-  final double maxValue;
-  final Color color;
-  final String unit;
   
   const PerformanceGaugeWidget({
     super.key,
@@ -201,6 +192,11 @@ class PerformanceGaugeWidget extends ConsumerWidget {
     required this.color,
     this.unit = '%',
   });
+  final String title;
+  final double value;
+  final double maxValue;
+  final Color color;
+  final String unit;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -241,7 +237,7 @@ class PerformanceGaugeWidget extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${value.toStringAsFixed(1)}',
+                          value.toStringAsFixed(1),
                           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                             color: color,
                             fontWeight: FontWeight.bold,
@@ -309,7 +305,6 @@ class PerformanceMetricsGrid extends ConsumerWidget {
                   value: cpu,
                   maxValue: 100,
                   color: Colors.red,
-                  unit: '%',
                 ),
                 loading: () => const _LoadingGaugeWidget(title: 'المعالج'),
                 error: (_, __) => const _ErrorGaugeWidget(title: 'المعالج'),
@@ -323,7 +318,6 @@ class PerformanceMetricsGrid extends ConsumerWidget {
                   value: memory,
                   maxValue: 100,
                   color: Colors.blue,
-                  unit: '%',
                 ),
                 loading: () => const _LoadingGaugeWidget(title: 'الذاكرة'),
                 error: (_, __) => const _ErrorGaugeWidget(title: 'الذاكرة'),
@@ -369,9 +363,9 @@ class PerformanceMetricsGrid extends ConsumerWidget {
 }
 
 class _LoadingGaugeWidget extends StatelessWidget {
-  final String title;
   
   const _LoadingGaugeWidget({required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -403,9 +397,9 @@ class _LoadingGaugeWidget extends StatelessWidget {
 }
 
 class _ErrorGaugeWidget extends StatelessWidget {
-  final String title;
   
   const _ErrorGaugeWidget({required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {

@@ -40,14 +40,14 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
             icon: Icon(
               monitoringState.isMonitoring ? Icons.pause : Icons.play_arrow,
             ),
-            onPressed: () => _toggleMonitoring(),
+            onPressed: _toggleMonitoring,
           ),
           IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () => _showSettings(),
+            onPressed: _showSettings,
           ),
           PopupMenuButton<String>(
-            onSelected: (value) => _handleMenuAction(value),
+            onSelected: _handleMenuAction,
             itemBuilder: (context) => [
               const PopupMenuItem(
                 value: 'optimize',
@@ -155,7 +155,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
     final metricsHistory = ref.watch(allPerformanceMetricsProvider);
     
     return metricsHistory.when(
-      data: (metrics) => _buildHistoryList(metrics),
+      data: _buildHistoryList,
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (error, stack) => _buildErrorWidget(error.toString()),
     );
@@ -186,7 +186,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
           ),
           const SizedBox(height: 24),
           ElevatedButton.icon(
-            onPressed: () => _toggleMonitoring(),
+            onPressed: _toggleMonitoring,
             icon: const Icon(Icons.play_arrow),
             label: const Text('بدء المراقبة'),
           ),
@@ -199,7 +199,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
     final performanceReport = ref.watch(performanceReportProvider);
     
     return performanceReport.when(
-      data: (report) => _buildAnalyticsCardsData(report),
+      data: _buildAnalyticsCardsData,
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (error, stack) => _buildErrorWidget(error.toString()),
     );
@@ -329,7 +329,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
               if (issuesList.isEmpty)
                 const Text('لا توجد مشاكل مكتشفة')
               else
-                ...issuesList.take(5).map((issue) => _buildIssueAnalysisItem(issue)),
+                ...issuesList.take(5).map(_buildIssueAnalysisItem),
             ],
           ),
         ),
@@ -454,7 +454,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
     );
   }
 
-  void _handleMenuAction(String action) async {
+  Future<void> _handleMenuAction(String action) async {
     final notifier = ref.read(performanceMonitoringStateProvider.notifier);
     
     switch (action) {
@@ -483,7 +483,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
     }
   }
 
-  void _showMetricsDetail(dynamic metric) {
+  void _showMetricsDetail(metric) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -639,7 +639,7 @@ class PerformanceSettingsDialog extends ConsumerWidget {
       ),
       actions: [
         TextButton(
-          onPressed: () => settingsNotifier.resetToDefaults(),
+          onPressed: settingsNotifier.resetToDefaults,
           child: const Text('إعادة تعيين'),
         ),
         TextButton(

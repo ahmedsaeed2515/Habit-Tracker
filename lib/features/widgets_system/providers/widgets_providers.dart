@@ -61,9 +61,9 @@ final defaultLayoutProvider = FutureProvider<WidgetLayout?>((ref) async {
 
 /// مقدم حالة تحديث الودجت
 class WidgetRefreshNotifier extends StateNotifier<AsyncValue<void>> {
-  final WidgetsSystemService _service;
 
   WidgetRefreshNotifier(this._service) : super(const AsyncValue.data(null));
+  final WidgetsSystemService _service;
 
   /// تحديث ودجت واحد
   Future<void> refreshWidget(String widgetId) async {

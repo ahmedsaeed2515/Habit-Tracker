@@ -5,7 +5,7 @@ import '../providers/pomodoro_providers.dart';
 
 /// شاشة إعدادات Pomodoro
 class PomodoroSettingsScreen extends ConsumerStatefulWidget {
-  const PomodoroSettingsScreen({Key? key}) : super(key: key);
+  const PomodoroSettingsScreen({super.key});
 
   @override
   ConsumerState<PomodoroSettingsScreen> createState() => _PomodoroSettingsScreenState();
@@ -268,7 +268,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
               title: const Text('تصدير الإعدادات'),
               subtitle: const Text('حفظ الإعدادات في ملف'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () => _exportSettings(),
+              onTap: _exportSettings,
             ),
             
             const Divider(),
@@ -278,7 +278,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
               title: const Text('استيراد الإعدادات'),
               subtitle: const Text('تحميل الإعدادات من ملف'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () => _importSettings(),
+              onTap: _importSettings,
             ),
           ],
         ),
@@ -459,7 +459,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
         Switch(
           value: value,
           onChanged: onChanged,
-          activeColor: color,
+          activeThumbColor: color,
         ),
       ],
     );

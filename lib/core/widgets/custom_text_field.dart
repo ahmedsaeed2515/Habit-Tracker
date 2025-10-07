@@ -4,43 +4,6 @@ import 'package:flutter/services.dart';
 /// A customizable text field widget that provides consistent styling and behavior
 /// throughout the application with additional features and validation support
 class CustomTextField extends StatefulWidget {
-  final String? labelText;
-  final String? hintText;
-  final String? helperText;
-  final String? errorText;
-  final IconData? prefixIcon;
-  final IconData? suffixIcon;
-  final VoidCallback? onSuffixIconPressed;
-  final TextEditingController? controller;
-  final TextInputType? keyboardType;
-  final TextInputAction? textInputAction;
-  final bool obscureText;
-  final bool enabled;
-  final bool readOnly;
-  final int? maxLines;
-  final int? minLines;
-  final int? maxLength;
-  final List<TextInputFormatter>? inputFormatters;
-  final String? Function(String?)? validator;
-  final void Function(String)? onChanged;
-  final void Function(String)? onSubmitted;
-  final void Function()? onTap;
-  final FocusNode? focusNode;
-  final TextCapitalization textCapitalization;
-  final TextAlign textAlign;
-  final EdgeInsets? contentPadding;
-  final Color? fillColor;
-  final bool filled;
-  final OutlineInputBorder? border;
-  final OutlineInputBorder? focusedBorder;
-  final OutlineInputBorder? errorBorder;
-  final OutlineInputBorder? disabledBorder;
-  final TextStyle? textStyle;
-  final TextStyle? labelStyle;
-  final TextStyle? hintStyle;
-  final bool showCharacterCount;
-  final Widget? prefix;
-  final Widget? suffix;
 
   const CustomTextField({
     super.key,
@@ -82,6 +45,43 @@ class CustomTextField extends StatefulWidget {
     this.prefix,
     this.suffix,
   });
+  final String? labelText;
+  final String? hintText;
+  final String? helperText;
+  final String? errorText;
+  final IconData? prefixIcon;
+  final IconData? suffixIcon;
+  final VoidCallback? onSuffixIconPressed;
+  final TextEditingController? controller;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final bool obscureText;
+  final bool enabled;
+  final bool readOnly;
+  final int? maxLines;
+  final int? minLines;
+  final int? maxLength;
+  final List<TextInputFormatter>? inputFormatters;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final void Function(String)? onSubmitted;
+  final void Function()? onTap;
+  final FocusNode? focusNode;
+  final TextCapitalization textCapitalization;
+  final TextAlign textAlign;
+  final EdgeInsets? contentPadding;
+  final Color? fillColor;
+  final bool filled;
+  final OutlineInputBorder? border;
+  final OutlineInputBorder? focusedBorder;
+  final OutlineInputBorder? errorBorder;
+  final OutlineInputBorder? disabledBorder;
+  final TextStyle? textStyle;
+  final TextStyle? labelStyle;
+  final TextStyle? hintStyle;
+  final bool showCharacterCount;
+  final Widget? prefix;
+  final Widget? suffix;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -208,7 +208,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
       borderRadius: BorderRadius.circular(8.0),
       borderSide: BorderSide(
         color: theme.colorScheme.outline.withOpacity(0.5),
-        width: 1.0,
       ),
     );
   }
@@ -238,7 +237,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
       borderRadius: BorderRadius.circular(8.0),
       borderSide: BorderSide(
         color: theme.disabledColor.withOpacity(0.3),
-        width: 1.0,
       ),
     );
   }
@@ -246,13 +244,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
 /// A search text field with built-in search icon and clear functionality
 class SearchTextField extends StatefulWidget {
-  final String? hintText;
-  final TextEditingController? controller;
-  final void Function(String)? onChanged;
-  final void Function(String)? onSubmitted;
-  final VoidCallback? onClear;
-  final bool showClearButton;
-  final EdgeInsets? margin;
 
   const SearchTextField({
     super.key,
@@ -264,6 +255,13 @@ class SearchTextField extends StatefulWidget {
     this.showClearButton = true,
     this.margin,
   });
+  final String? hintText;
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
+  final void Function(String)? onSubmitted;
+  final VoidCallback? onClear;
+  final bool showClearButton;
+  final EdgeInsets? margin;
 
   @override
   State<SearchTextField> createState() => _SearchTextFieldState();
@@ -330,16 +328,6 @@ class _SearchTextFieldState extends State<SearchTextField> {
 
 /// A multi-line text field optimized for longer text input
 class MultiLineTextField extends StatelessWidget {
-  final String? labelText;
-  final String? hintText;
-  final TextEditingController? controller;
-  final int maxLines;
-  final int? minLines;
-  final int? maxLength;
-  final String? Function(String?)? validator;
-  final void Function(String)? onChanged;
-  final bool enabled;
-  final EdgeInsets? contentPadding;
 
   const MultiLineTextField({
     super.key,
@@ -354,6 +342,16 @@ class MultiLineTextField extends StatelessWidget {
     this.enabled = true,
     this.contentPadding,
   });
+  final String? labelText;
+  final String? hintText;
+  final TextEditingController? controller;
+  final int maxLines;
+  final int? minLines;
+  final int? maxLength;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final bool enabled;
+  final EdgeInsets? contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -378,15 +376,6 @@ class MultiLineTextField extends StatelessWidget {
 
 /// A number input field with built-in validation and formatting
 class NumberTextField extends StatelessWidget {
-  final String? labelText;
-  final String? hintText;
-  final TextEditingController? controller;
-  final double? min;
-  final double? max;
-  final int? decimalPlaces;
-  final void Function(double?)? onChanged;
-  final bool enabled;
-  final bool allowNegative;
 
   const NumberTextField({
     super.key,
@@ -400,6 +389,15 @@ class NumberTextField extends StatelessWidget {
     this.enabled = true,
     this.allowNegative = false,
   });
+  final String? labelText;
+  final String? hintText;
+  final TextEditingController? controller;
+  final double? min;
+  final double? max;
+  final int? decimalPlaces;
+  final void Function(double?)? onChanged;
+  final bool enabled;
+  final bool allowNegative;
 
   @override
   Widget build(BuildContext context) {
@@ -412,12 +410,12 @@ class NumberTextField extends StatelessWidget {
         signed: allowNegative,
       ),
       inputFormatters: [
-        if (!allowNegative) FilteringTextInputFormatter.deny(RegExp(r'-')),
+        if (!allowNegative) FilteringTextInputFormatter.deny(RegExp('-')),
         if (decimalPlaces == 0) 
           FilteringTextInputFormatter.digitsOnly
         else
           FilteringTextInputFormatter.allow(
-            RegExp(r'^\d+\.?\d{0,' + decimalPlaces.toString() + r'}'),
+            RegExp(r'^\d+\.?\d{0,' + decimalPlaces.toString() + '}'),
           ),
       ],
       validator: (value) {

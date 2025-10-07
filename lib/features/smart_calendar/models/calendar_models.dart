@@ -9,6 +9,24 @@ part 'calendar_models.g.dart';
 /// حدث في التقويم
 @HiveType(typeId: 194)
 class CalendarEvent {
+
+  const CalendarEvent({
+    required this.id,
+    required this.title,
+    this.description,
+    required this.startDateTime,
+    required this.endDateTime,
+    required this.type,
+    this.habitId,
+    required this.priority,
+    this.location,
+    this.participants = const [],
+    this.reminder,
+    this.isCompleted = false,
+    this.metadata = const {},
+    required this.createdAt,
+    required this.updatedAt,
+  });
   @HiveField(0)
   final String id;
 
@@ -53,24 +71,6 @@ class CalendarEvent {
 
   @HiveField(14)
   final DateTime updatedAt;
-
-  const CalendarEvent({
-    required this.id,
-    required this.title,
-    this.description,
-    required this.startDateTime,
-    required this.endDateTime,
-    required this.type,
-    this.habitId,
-    required this.priority,
-    this.location,
-    this.participants = const [],
-    this.reminder,
-    this.isCompleted = false,
-    this.metadata = const {},
-    required this.createdAt,
-    required this.updatedAt,
-  });
 
   CalendarEvent copyWith({
     String? id,
@@ -198,6 +198,14 @@ enum CalendarEventPriority {
 /// تذكير الحدث
 @HiveType(typeId: 197)
 class EventReminder {
+
+  const EventReminder({
+    required this.beforeEvent,
+    this.isEnabled = true,
+    required this.type,
+    this.customMessage,
+    this.methods = const [ReminderMethod.notification],
+  });
   @HiveField(0)
   final Duration beforeEvent; // كم قبل الحدث
 
@@ -212,14 +220,6 @@ class EventReminder {
 
   @HiveField(4)
   final List<ReminderMethod> methods;
-
-  const EventReminder({
-    required this.beforeEvent,
-    this.isEnabled = true,
-    required this.type,
-    this.customMessage,
-    this.methods = const [ReminderMethod.notification],
-  });
 
   EventReminder copyWith({
     Duration? beforeEvent,
@@ -279,6 +279,20 @@ enum ReminderMethod {
 /// تقويم ذكي
 @HiveType(typeId: 200)
 class SmartCalendar {
+
+  const SmartCalendar({
+    required this.id,
+    required this.name,
+    this.description,
+    required this.type,
+    required this.color,
+    this.isVisible = true,
+    this.isDefault = false,
+    required this.settings,
+    this.syncSettings = const {},
+    required this.createdAt,
+    required this.updatedAt,
+  });
   @HiveField(0)
   final String id;
 
@@ -311,20 +325,6 @@ class SmartCalendar {
 
   @HiveField(10)
   final DateTime updatedAt;
-
-  const SmartCalendar({
-    required this.id,
-    required this.name,
-    this.description,
-    required this.type,
-    required this.color,
-    this.isVisible = true,
-    this.isDefault = false,
-    required this.settings,
-    this.syncSettings = const {},
-    required this.createdAt,
-    required this.updatedAt,
-  });
 
   SmartCalendar copyWith({
     String? id,
@@ -392,6 +392,17 @@ enum CalendarType {
 /// إعدادات التقويم
 @HiveType(typeId: 202)
 class CalendarSettings {
+
+  const CalendarSettings({
+    this.autoCreateFromHabits = true,
+    this.smartScheduling = true,
+    this.conflictDetection = true,
+    this.defaultEventDuration = const Duration(hours: 1),
+    this.defaultReminder,
+    this.defaultPriority = CalendarEventPriority.medium,
+    this.workingHours,
+    this.preferences = const {},
+  });
   @HiveField(0)
   final bool autoCreateFromHabits; // إنشاء أحداث تلقائياً من العادات
 
@@ -415,17 +426,6 @@ class CalendarSettings {
 
   @HiveField(7)
   final Map<String, dynamic> preferences;
-
-  const CalendarSettings({
-    this.autoCreateFromHabits = true,
-    this.smartScheduling = true,
-    this.conflictDetection = true,
-    this.defaultEventDuration = const Duration(hours: 1),
-    this.defaultReminder,
-    this.defaultPriority = CalendarEventPriority.medium,
-    this.workingHours,
-    this.preferences = const {},
-  });
 
   CalendarSettings copyWith({
     bool? autoCreateFromHabits,
@@ -452,7 +452,14 @@ class CalendarSettings {
 
 /// ساعات العمل
 @HiveType(typeId: 203)
-class WorkingHours {
+class WorkingHours { // فترات الراحة
+
+  const WorkingHours({
+    required this.startTime,
+    required this.endTime,
+    required this.workingDays,
+    this.breaks = const [],
+  });
   @HiveField(0)
   final TimeOfDay startTime;
 
@@ -463,14 +470,7 @@ class WorkingHours {
   final List<int> workingDays; // 1-7 (الاثنين - الأحد)
 
   @HiveField(3)
-  final List<BreakTime> breaks; // فترات الراحة
-
-  const WorkingHours({
-    required this.startTime,
-    required this.endTime,
-    required this.workingDays,
-    this.breaks = const [],
-  });
+  final List<BreakTime> breaks;
 
   WorkingHours copyWith({
     TimeOfDay? startTime,
@@ -510,7 +510,13 @@ class WorkingHours {
 
 /// فترة راحة
 @HiveType(typeId: 204)
-class BreakTime {
+class BreakTime { // اسم فترة الراحة
+
+  const BreakTime({
+    required this.startTime,
+    required this.endTime,
+    required this.name,
+  });
   @HiveField(0)
   final TimeOfDay startTime;
 
@@ -518,13 +524,7 @@ class BreakTime {
   final TimeOfDay endTime;
 
   @HiveField(2)
-  final String name; // اسم فترة الراحة
-
-  const BreakTime({
-    required this.startTime,
-    required this.endTime,
-    required this.name,
-  });
+  final String name;
 
   bool isInBreak(TimeOfDay time) {
     final timeInMinutes = time.hour * 60 + time.minute;
@@ -538,6 +538,15 @@ class BreakTime {
 /// عرض التقويم
 @HiveType(typeId: 205)
 class CalendarView {
+
+  const CalendarView({
+    required this.id,
+    required this.type,
+    required this.currentDate,
+    required this.visibleCalendars,
+    required this.visibleEventTypes,
+    required this.settings,
+  });
   @HiveField(0)
   final String id;
 
@@ -555,15 +564,6 @@ class CalendarView {
 
   @HiveField(5)
   final CalendarViewSettings settings;
-
-  const CalendarView({
-    required this.id,
-    required this.type,
-    required this.currentDate,
-    required this.visibleCalendars,
-    required this.visibleEventTypes,
-    required this.settings,
-  });
 
   CalendarView copyWith({
     String? id,
@@ -606,6 +606,15 @@ enum CalendarViewType {
 /// إعدادات عرض التقويم
 @HiveType(typeId: 207)
 class CalendarViewSettings {
+
+  const CalendarViewSettings({
+    this.showWeekends = true,
+    this.show24HourFormat = true,
+    this.firstDayOfWeek = 1, // الاثنين
+    this.showCompletedEvents = true,
+    this.groupEventsByType = false,
+    this.customizations = const {},
+  });
   @HiveField(0)
   final bool showWeekends;
 
@@ -623,15 +632,6 @@ class CalendarViewSettings {
 
   @HiveField(5)
   final Map<String, dynamic> customizations;
-
-  const CalendarViewSettings({
-    this.showWeekends = true,
-    this.show24HourFormat = true,
-    this.firstDayOfWeek = 1, // الاثنين
-    this.showCompletedEvents = true,
-    this.groupEventsByType = false,
-    this.customizations = const {},
-  });
 
   CalendarViewSettings copyWith({
     bool? showWeekends,
@@ -654,7 +654,21 @@ class CalendarViewSettings {
 
 /// تحليل التقويم الذكي
 @HiveType(typeId: 208)
-class CalendarAnalytics {
+class CalendarAnalytics { // الفترات الحرة
+
+  const CalendarAnalytics({
+    required this.id,
+    required this.date,
+    required this.totalEvents,
+    required this.completedEvents,
+    required this.missedEvents,
+    required this.totalTimeSpent,
+    required this.eventTypeStats,
+    required this.priorityStats,
+    required this.productivityScore,
+    required this.busySlots,
+    required this.freeSlots,
+  });
   @HiveField(0)
   final String id;
 
@@ -686,21 +700,7 @@ class CalendarAnalytics {
   final List<TimeSlot> busySlots; // الفترات المشغولة
 
   @HiveField(10)
-  final List<TimeSlot> freeSlots; // الفترات الحرة
-
-  const CalendarAnalytics({
-    required this.id,
-    required this.date,
-    required this.totalEvents,
-    required this.completedEvents,
-    required this.missedEvents,
-    required this.totalTimeSpent,
-    required this.eventTypeStats,
-    required this.priorityStats,
-    required this.productivityScore,
-    required this.busySlots,
-    required this.freeSlots,
-  });
+  final List<TimeSlot> freeSlots;
 
   double get completionRate => 
       totalEvents > 0 ? (completedEvents / totalEvents) * 100 : 0.0;
@@ -712,6 +712,13 @@ class CalendarAnalytics {
 /// فترة زمنية
 @HiveType(typeId: 209)
 class TimeSlot {
+
+  const TimeSlot({
+    required this.startTime,
+    required this.endTime,
+    this.description,
+    this.metadata = const {},
+  });
   @HiveField(0)
   final DateTime startTime;
 
@@ -723,13 +730,6 @@ class TimeSlot {
 
   @HiveField(3)
   final Map<String, dynamic> metadata;
-
-  const TimeSlot({
-    required this.startTime,
-    required this.endTime,
-    this.description,
-    this.metadata = const {},
-  });
 
   Duration get duration => endTime.difference(startTime);
 
@@ -745,6 +745,18 @@ class TimeSlot {
 /// اقتراح ذكي للجدولة
 @HiveType(typeId: 210)
 class SmartScheduleSuggestion {
+
+  const SmartScheduleSuggestion({
+    required this.id,
+    required this.eventId,
+    required this.suggestedStartTime,
+    required this.suggestedEndTime,
+    required this.confidenceScore,
+    required this.reasons,
+    required this.type,
+    this.context = const {},
+    required this.createdAt,
+  });
   @HiveField(0)
   final String id;
 
@@ -772,18 +784,6 @@ class SmartScheduleSuggestion {
   @HiveField(8)
   final DateTime createdAt;
 
-  const SmartScheduleSuggestion({
-    required this.id,
-    required this.eventId,
-    required this.suggestedStartTime,
-    required this.suggestedEndTime,
-    required this.confidenceScore,
-    required this.reasons,
-    required this.type,
-    this.context = const {},
-    required this.createdAt,
-  });
-
   Duration get suggestedDuration => 
       suggestedEndTime.difference(suggestedStartTime);
 }
@@ -807,6 +807,17 @@ enum SuggestionType {
 /// تضارب في التقويم
 @HiveType(typeId: 212)
 class CalendarConflict {
+
+  const CalendarConflict({
+    required this.id,
+    required this.conflictingEventIds,
+    required this.type,
+    required this.severity,
+    required this.detectedAt,
+    this.isResolved = false,
+    this.resolution,
+    this.suggestedResolutions = const [],
+  });
   @HiveField(0)
   final String id;
 
@@ -830,17 +841,6 @@ class CalendarConflict {
 
   @HiveField(7)
   final List<ConflictResolution> suggestedResolutions;
-
-  const CalendarConflict({
-    required this.id,
-    required this.conflictingEventIds,
-    required this.type,
-    required this.severity,
-    required this.detectedAt,
-    this.isResolved = false,
-    this.resolution,
-    this.suggestedResolutions = const [],
-  });
 
   CalendarConflict copyWith({
     String? id,
@@ -902,7 +902,15 @@ enum ConflictSeverity {
 
 /// حل التضارب
 @HiveType(typeId: 215)
-class ConflictResolution {
+class ConflictResolution { // 0.0 - 1.0
+
+  const ConflictResolution({
+    required this.id,
+    required this.type,
+    required this.description,
+    this.parameters = const {},
+    required this.feasibilityScore,
+  });
   @HiveField(0)
   final String id;
 
@@ -916,15 +924,7 @@ class ConflictResolution {
   final Map<String, dynamic> parameters;
 
   @HiveField(4)
-  final double feasibilityScore; // 0.0 - 1.0
-
-  const ConflictResolution({
-    required this.id,
-    required this.type,
-    required this.description,
-    this.parameters = const {},
-    required this.feasibilityScore,
-  });
+  final double feasibilityScore;
 }
 
 /// نوع الحل
@@ -952,6 +952,17 @@ enum ResolutionType {
 /// مزامنة التقويم
 @HiveType(typeId: 217)
 class CalendarSync {
+
+  const CalendarSync({
+    required this.id,
+    required this.calendarId,
+    required this.provider,
+    required this.credentials,
+    required this.settings,
+    this.lastSyncAt,
+    required this.status,
+    this.lastError,
+  });
   @HiveField(0)
   final String id;
 
@@ -975,17 +986,6 @@ class CalendarSync {
 
   @HiveField(7)
   final String? lastError;
-
-  const CalendarSync({
-    required this.id,
-    required this.calendarId,
-    required this.provider,
-    required this.credentials,
-    required this.settings,
-    this.lastSyncAt,
-    required this.status,
-    this.lastError,
-  });
 
   CalendarSync copyWith({
     String? id,
@@ -1035,6 +1035,16 @@ enum SyncProvider {
 /// إعدادات المزامنة
 @HiveType(typeId: 219)
 class SyncSettings {
+
+  const SyncSettings({
+    this.autoSync = true,
+    this.syncInterval = const Duration(minutes: 15),
+    this.direction = SyncDirection.bidirectional,
+    this.syncCompleted = true,
+    this.syncDeleted = false,
+    this.excludeEventTypes = const [],
+    this.filterRules = const {},
+  });
   @HiveField(0)
   final bool autoSync;
 
@@ -1055,16 +1065,6 @@ class SyncSettings {
 
   @HiveField(6)
   final Map<String, dynamic> filterRules;
-
-  const SyncSettings({
-    this.autoSync = true,
-    this.syncInterval = const Duration(minutes: 15),
-    this.direction = SyncDirection.bidirectional,
-    this.syncCompleted = true,
-    this.syncDeleted = false,
-    this.excludeEventTypes = const [],
-    this.filterRules = const {},
-  });
 
   SyncSettings copyWith({
     bool? autoSync,
@@ -1125,6 +1125,17 @@ enum SyncStatus {
 /// نمط التقويم الذكي
 @HiveType(typeId: 222)
 class CalendarPattern {
+
+  const CalendarPattern({
+    required this.id,
+    required this.name,
+    required this.type,
+    required this.rules,
+    required this.eventIds,
+    required this.confidence,
+    required this.discoveredAt,
+    this.lastSeenAt,
+  });
   @HiveField(0)
   final String id;
 
@@ -1148,17 +1159,6 @@ class CalendarPattern {
 
   @HiveField(7)
   final DateTime? lastSeenAt;
-
-  const CalendarPattern({
-    required this.id,
-    required this.name,
-    required this.type,
-    required this.rules,
-    required this.eventIds,
-    required this.confidence,
-    required this.discoveredAt,
-    this.lastSeenAt,
-  });
 
   CalendarPattern copyWith({
     String? id,
@@ -1205,17 +1205,17 @@ enum PatternType {
 // مساعد TimeOfDay للـ Hive
 @HiveType(typeId: 224)
 class HiveTimeOfDay {
-  @HiveField(0)
-  final int hour;
-
-  @HiveField(1)
-  final int minute;
 
   const HiveTimeOfDay({required this.hour, required this.minute});
 
   factory HiveTimeOfDay.fromTimeOfDay(TimeOfDay timeOfDay) {
     return HiveTimeOfDay(hour: timeOfDay.hour, minute: timeOfDay.minute);
   }
+  @HiveField(0)
+  final int hour;
+
+  @HiveField(1)
+  final int minute;
 
   TimeOfDay toTimeOfDay() {
     return TimeOfDay(hour: hour, minute: minute);

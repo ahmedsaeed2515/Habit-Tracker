@@ -5,11 +5,6 @@ import '../providers/pomodoro_providers.dart';
 
 /// ويدجت عرض المهمة مع ميزات متقدمة
 class TaskItemWidget extends ConsumerWidget {
-  final AdvancedTask task;
-  final bool isCompact;
-  final VoidCallback onTap;
-  final VoidCallback onComplete;
-  final VoidCallback onStartPomodoro;
 
   const TaskItemWidget({
     Key? key,
@@ -19,6 +14,11 @@ class TaskItemWidget extends ConsumerWidget {
     required this.onComplete,
     required this.onStartPomodoro,
   }) : super(key: key);
+  final AdvancedTask task;
+  final bool isCompact;
+  final VoidCallback onTap;
+  final VoidCallback onComplete;
+  final VoidCallback onStartPomodoro;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -247,7 +247,7 @@ class TaskItemWidget extends ConsumerWidget {
             
             // Pomodoro Sessions
             if (task.pomodoroSessions > 0) ...[
-              Icon(
+              const Icon(
                 Icons.local_fire_department,
                 size: 16,
                 color: Colors.orange,

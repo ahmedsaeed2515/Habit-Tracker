@@ -2,9 +2,11 @@
 // شاشة التقويم الذكي
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/calendar_providers.dart';
+
 import '../models/calendar_models.dart';
+import '../providers/calendar_providers.dart';
 
 /// شاشة التقويم الذكي الرئيسية
 class SmartCalendarScreen extends ConsumerWidget {
@@ -14,77 +16,137 @@ class SmartCalendarScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final calendarView = ref.watch(calendarViewProvider);
     final eventsAsync = ref.watch(eventsProvider);
+    final theme = Theme.of(context);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('التقويم الذكي'),
+        title: const Text(
+          'التقويم الذكي',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light,
+        ),
         actions: [
           // أزرار التبديل بين العروض
-          PopupMenuButton<CalendarViewType>(
-            icon: const Icon(Icons.view_module),
-            onSelected: (viewType) {
-              ref.read(calendarViewProvider.notifier).setViewType(viewType);
-            },
-            itemBuilder: (context) => CalendarViewType.values.map((viewType) {
-              return PopupMenuItem(
-                value: viewType,
-                child: Row(
-                  children: [
-                    Icon(_getViewTypeIcon(viewType)),
-                    const SizedBox(width: 8),
-                    Text(_getViewTypeName(viewType)),
-                  ],
-                ),
-              );
-            }).toList(),
+          Container(
+            margin: const EdgeInsets.only(right: 8),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: PopupMenuButton<CalendarViewType>(
+              icon: const Icon(Icons.view_module, color: Colors.white),
+              onSelected: (viewType) {
+                ref.read(calendarViewProvider.notifier).setViewType(viewType);
+              },
+              itemBuilder: (context) => CalendarViewType.values.map((viewType) {
+                return PopupMenuItem(
+                  value: viewType,
+                  child: Row(
+                    children: [
+                      Icon(_getViewTypeIcon(viewType)),
+                      const SizedBox(width: 8),
+                      Text(_getViewTypeName(viewType)),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
           ),
-          IconButton(
-            icon: const Icon(Icons.today),
-            onPressed: () {
-              ref.read(calendarViewProvider.notifier).goToToday();
-            },
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          // شريط التنقل بين التواريخ
-          _buildNavigationHeader(context, ref, calendarView),
-          const Divider(height: 1),
-
-          // محتوى التقويم
-          Expanded(
-            child: eventsAsync.when(
-              data: (events) =>
-                  _buildCalendarView(context, ref, calendarView, events),
-              loading: () => const Center(child: CircularProgressIndicator()),
-              error: (error, stack) => Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.error_outline,
-                      size: 64,
-                      color: Colors.red,
-                    ),
-                    const SizedBox(height: 16),
-                    Text('خطأ في تحميل الأحداث: $error'),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () => ref.refresh(eventsProvider),
-                      child: const Text('إعادة المحاولة'),
-                    ),
-                  ],
-                ),
-              ),
+          Container(
+            margin: const EdgeInsets.only(right: 8),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.today, color: Colors.white),
+              onPressed: () {
+                ref.read(calendarViewProvider.notifier).goToToday();
+              },
             ),
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showCreateEventDialog(context, ref),
-        child: const Icon(Icons.add),
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              theme.colorScheme.primary.withValues(alpha: 0.8),
+              theme.colorScheme.secondary.withValues(alpha: 0.6),
+              theme.colorScheme.tertiary.withValues(alpha: 0.4),
+            ],
+          ),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: kToolbarHeight + 16),
+            // شريط التنقل بين التواريخ
+            _buildNavigationHeader(context, ref, calendarView),
+            const Divider(height: 1),
+
+            // محتوى التقويم
+            Expanded(
+              child: eventsAsync.when(
+                data: (events) =>
+                    _buildCalendarView(context, ref, calendarView, events),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (error, stack) => Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        size: 64,
+                        color: Colors.white.withValues(alpha: 0.8),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'خطأ في تحميل الأحداث: $error',
+                        style: const TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        onPressed: () => ref.refresh(eventsProvider),
+                        child: const Text('إعادة المحاولة'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [theme.colorScheme.primary, theme.colorScheme.secondary],
+          ),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: theme.colorScheme.primary.withValues(alpha: 0.3),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: FloatingActionButton(
+          onPressed: () => _showCreateEventDialog(context, ref),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          child: const Icon(Icons.add, color: Colors.white),
+        ),
       ),
     );
   }
@@ -212,12 +274,13 @@ class SmartCalendarScreen extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (event.description?.isNotEmpty == true) Text(event.description!),
+            if (event.description?.isNotEmpty ?? false)
+              Text(event.description!),
             const SizedBox(height: 8),
             Text(
               'الوقت: ${_formatTime(event.startDateTime)} - ${_formatTime(event.endDateTime)}',
             ),
-            if (event.location?.isNotEmpty == true) ...[
+            if (event.location?.isNotEmpty ?? false) ...[
               const SizedBox(height: 8),
               Text('المكان: ${event.location}'),
             ],

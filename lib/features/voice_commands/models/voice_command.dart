@@ -38,6 +38,21 @@ enum CommandStatus {
 /// نموذج الأمر الصوتي
 @HiveType(typeId: 20)
 class VoiceCommand extends HiveObject {
+
+  VoiceCommand({
+    required this.id,
+    required this.originalText,
+    required this.processedText,
+    required this.type,
+    this.status = CommandStatus.pending,
+    this.parameters = const {},
+    this.response,
+    required this.createdAt,
+    this.executedAt,
+    this.confidence = 0.0,
+    this.errorMessage,
+    this.isBookmarked = false,
+  });
   @HiveField(0)
   String id;
 
@@ -73,21 +88,6 @@ class VoiceCommand extends HiveObject {
 
   @HiveField(11)
   bool isBookmarked;
-
-  VoiceCommand({
-    required this.id,
-    required this.originalText,
-    required this.processedText,
-    required this.type,
-    this.status = CommandStatus.pending,
-    this.parameters = const {},
-    this.response,
-    required this.createdAt,
-    this.executedAt,
-    this.confidence = 0.0,
-    this.errorMessage,
-    this.isBookmarked = false,
-  });
 
   VoiceCommand copyWith({
     String? id,

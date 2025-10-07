@@ -109,7 +109,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '${score.toStringAsFixed(0)}',
+              score.toStringAsFixed(0),
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -280,7 +280,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
     );
   }
 
-  Widget _buildIssueItem(BuildContext context, dynamic issue) {
+  Widget _buildIssueItem(BuildContext context, issue) {
     final severity = issue['severity'] ?? 'متوسطة';
     final description = issue['description'] ?? 'مشكلة غير معروفة';
     final suggestion = issue['suggestion'] ?? 'لا توجد اقتراحات';

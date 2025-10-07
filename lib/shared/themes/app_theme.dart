@@ -34,14 +34,9 @@ class AppTheme {
     colorScheme: const ColorScheme.light(
       primary: primaryColor,
       secondary: secondaryColor,
-      surface: lightSurfaceColor,
-      background: lightBackgroundColor,
       error: errorColor,
-      onPrimary: Colors.white,
       onSecondary: Colors.white,
       onSurface: lightOnSurfaceColor,
-      onBackground: lightOnBackgroundColor,
-      onError: Colors.white,
     ),
 
     // تصميم الخطوط
@@ -154,12 +149,9 @@ class AppTheme {
       primary: primaryColor,
       secondary: secondaryColor,
       surface: darkSurfaceColor,
-      background: darkBackgroundColor,
       error: errorColor,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
-      onSurface: darkOnSurfaceColor,
-      onBackground: darkOnBackgroundColor,
       onError: Colors.white,
     ),
 
@@ -368,14 +360,18 @@ class AppTheme {
     );
   }
 
-  // ألوان إضافية للميزات المختلفة
+  // ألوان إضافية للميزات المختلفة مع تحسين الوضوح
   static const Map<String, Color> featureColors = {
-    'gym': Color(0xFF6366F1), // Indigo
-    'morning': Color(0xFFF59E0B), // Amber
-    'habits': Color(0xFF10B981), // Emerald
-    'todo': Color(0xFF8B5CF6), // Violet
-    'dashboard': Color(0xFF3B82F6), // Blue
-    'settings': Color(0xFF6B7280), // Gray
+    'gym': Color(0xFF2563EB), // Blue-600 - أكثر وضوحاً
+    'morning': Color(0xFFF59E0B), // Amber-500 - محتفظ
+    'habits': Color(0xFF059669), // Emerald-600 - أكثر وضوحاً
+    'todo': Color(0xFF7C3AED), // Violet-600 - أكثر وضوحاً
+    'dashboard': Color(0xFF0891B2), // Cyan-600 - أكثر وضوحاً
+    'settings': Color(0xFF4B5563), // Gray-600 - أكثر وضوحاً
+    'social': Color(0xFFDC2626), // Red-600 - للميزة الاجتماعية
+    'analytics': Color(0xFF7C2D12), // Orange-700 - للتحليلات
+    'calendar': Color(0xFF365314), // Lime-700 - للتقويم
+    'productivity': Color(0xFF1E3A8A), // Blue-800 - للإنتاجية
   };
 
   // أنماط الظلال

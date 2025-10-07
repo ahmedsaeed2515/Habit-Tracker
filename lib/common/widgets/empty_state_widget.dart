@@ -5,6 +5,17 @@ import 'package:flutter/material.dart';
 
 /// Widget يعرض حالة فارغة مع أيقونة وعنوان ووصف وزر اختياري
 class EmptyStateWidget extends StatelessWidget {
+
+  const EmptyStateWidget({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.description,
+    this.buttonText,
+    this.onPressed,
+    this.color,
+    this.iconSize = 80,
+  });
   /// أيقونة الحالة الفارغة
   final IconData icon;
 
@@ -26,20 +37,10 @@ class EmptyStateWidget extends StatelessWidget {
   /// حجم الأيقونة
   final double iconSize;
 
-  const EmptyStateWidget({
-    super.key,
-    required this.icon,
-    required this.title,
-    required this.description,
-    this.buttonText,
-    this.onPressed,
-    this.color,
-    this.iconSize = 80,
-  });
-
   @override
   Widget build(BuildContext context) {
-    final defaultColor = color ?? Colors.grey;
+    final theme = Theme.of(context);
+    final defaultColor = color ?? theme.primaryColor;
 
     return Center(
       child: Padding(
@@ -47,25 +48,39 @@ class EmptyStateWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: iconSize, color: defaultColor),
-            const SizedBox(height: 16),
+            // حاوية الأيقونة مع خلفية ملونة
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: defaultColor.withOpacity(0.1),
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: defaultColor.withOpacity(0.2),
+                  width: 2,
+                ),
+              ),
+              child: Icon(icon, size: iconSize, color: defaultColor),
+            ),
+            const SizedBox(height: 24),
             Text(
               title,
-              style: TextStyle(
-                fontSize: 20,
+              style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: defaultColor,
+                color: theme.colorScheme.onSurface,
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             Text(
               description,
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                height: 1.5,
+              ),
               textAlign: TextAlign.center,
             ),
             if (buttonText != null && onPressed != null) ...[
-              const SizedBox(height: 24),
+              const SizedBox(height: 32),
               ElevatedButton.icon(
                 onPressed: onPressed,
                 icon: const Icon(Icons.add),
@@ -75,6 +90,13 @@ class EmptyStateWidget extends StatelessWidget {
                     horizontal: 24,
                     vertical: 12,
                   ),
+                  backgroundColor: defaultColor,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 4,
+                  shadowColor: defaultColor.withOpacity(0.3),
                 ),
               ),
             ],

@@ -4,35 +4,6 @@ part 'user_points.g.dart';
 
 @HiveType(typeId: 35)
 class UserPoints extends HiveObject {
-  @HiveField(0)
-  int totalPoints;
-
-  @HiveField(1)
-  int currentLevel;
-
-  @HiveField(2)
-  int pointsInCurrentLevel;
-
-  @HiveField(3)
-  DateTime lastUpdated;
-
-  @HiveField(4)
-  Map<String, int> pointsHistory; // يوم -> نقاط
-
-  @HiveField(5)
-  int weeklyPoints;
-
-  @HiveField(6)
-  int monthlyPoints;
-
-  @HiveField(7)
-  int dailyStreak;
-
-  @HiveField(8)
-  int bestStreak;
-
-  @HiveField(9)
-  DateTime? lastPointsEarned;
 
   UserPoints({
     this.totalPoints = 0,
@@ -62,6 +33,53 @@ class UserPoints extends HiveObject {
       lastPointsEarned: gameData.lastPointsEarned,
     );
   }
+
+  // إنشاء من Map
+  factory UserPoints.fromMap(Map<String, dynamic> map) {
+    return UserPoints(
+      totalPoints: map['totalPoints'] ?? 0,
+      currentLevel: map['currentLevel'] ?? 1,
+      pointsInCurrentLevel: map['pointsInCurrentLevel'] ?? 0,
+      lastUpdated: DateTime.parse(map['lastUpdated']),
+      pointsHistory: Map<String, int>.from(map['pointsHistory'] ?? {}),
+      weeklyPoints: map['weeklyPoints'] ?? 0,
+      monthlyPoints: map['monthlyPoints'] ?? 0,
+      dailyStreak: map['dailyStreak'] ?? 0,
+      bestStreak: map['bestStreak'] ?? 0,
+      lastPointsEarned: map['lastPointsEarned'] != null
+          ? DateTime.parse(map['lastPointsEarned'])
+          : null,
+    );
+  }
+  @HiveField(0)
+  int totalPoints;
+
+  @HiveField(1)
+  int currentLevel;
+
+  @HiveField(2)
+  int pointsInCurrentLevel;
+
+  @HiveField(3)
+  DateTime lastUpdated;
+
+  @HiveField(4)
+  Map<String, int> pointsHistory; // يوم -> نقاط
+
+  @HiveField(5)
+  int weeklyPoints;
+
+  @HiveField(6)
+  int monthlyPoints;
+
+  @HiveField(7)
+  int dailyStreak;
+
+  @HiveField(8)
+  int bestStreak;
+
+  @HiveField(9)
+  DateTime? lastPointsEarned;
 
   // حساب النقاط المطلوبة للمستوى التالي
   int get pointsRequiredForNextLevel {
@@ -124,8 +142,8 @@ class UserPoints extends HiveObject {
   // تحديث النقاط الأسبوعية والشهرية
   void _updateWeeklyMonthlyPoints(int points) {
     DateTime now = DateTime.now();
-    DateTime lastWeek = now.subtract(Duration(days: 7));
-    DateTime lastMonth = now.subtract(Duration(days: 30));
+    DateTime lastWeek = now.subtract(const Duration(days: 7));
+    DateTime lastMonth = now.subtract(const Duration(days: 30));
 
     // حساب النقاط الأسبوعية
     weeklyPoints = 0;
@@ -197,7 +215,7 @@ class UserPoints extends HiveObject {
   // إعادة تعيين النقاط الأسبوعية والشهرية
   void resetWeeklyMonthlyPoints() {
     DateTime now = DateTime.now();
-    DateTime lastMonth = now.subtract(Duration(days: 30));
+    DateTime lastMonth = now.subtract(const Duration(days: 30));
 
     // إزالة النقاط القديمة من التاريخ
     pointsHistory.removeWhere((dateStr, points) {
@@ -223,23 +241,5 @@ class UserPoints extends HiveObject {
       'bestStreak': bestStreak,
       'lastPointsEarned': lastPointsEarned?.toIso8601String(),
     };
-  }
-
-  // إنشاء من Map
-  factory UserPoints.fromMap(Map<String, dynamic> map) {
-    return UserPoints(
-      totalPoints: map['totalPoints'] ?? 0,
-      currentLevel: map['currentLevel'] ?? 1,
-      pointsInCurrentLevel: map['pointsInCurrentLevel'] ?? 0,
-      lastUpdated: DateTime.parse(map['lastUpdated']),
-      pointsHistory: Map<String, int>.from(map['pointsHistory'] ?? {}),
-      weeklyPoints: map['weeklyPoints'] ?? 0,
-      monthlyPoints: map['monthlyPoints'] ?? 0,
-      dailyStreak: map['dailyStreak'] ?? 0,
-      bestStreak: map['bestStreak'] ?? 0,
-      lastPointsEarned: map['lastPointsEarned'] != null
-          ? DateTime.parse(map['lastPointsEarned'])
-          : null,
-    );
   }
 }

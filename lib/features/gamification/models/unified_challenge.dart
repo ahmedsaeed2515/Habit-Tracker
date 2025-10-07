@@ -1,23 +1,6 @@
 /// نموذج التحدي الموحد
 /// يمثل تحدياً واحداً في نظام التحفيز
 class UnifiedChallenge {
-  final String id;
-  final String titleEn;
-  final String titleAr;
-  final String descriptionEn;
-  final String descriptionAr;
-  final ChallengeType type;
-  final ChallengeStatus status;
-  final ChallengeDifficulty difficulty;
-  final DateTime startDate;
-  final DateTime endDate;
-  final int targetValue;
-  final int currentValue;
-  final int pointsReward;
-  final String iconPath;
-  final String statusColor;
-  final List<String> requirements;
-  final bool isCustom;
 
   const UnifiedChallenge({
     required this.id,
@@ -38,6 +21,55 @@ class UnifiedChallenge {
     this.requirements = const [],
     this.isCustom = false,
   });
+
+  /// إنشاء من Map
+  factory UnifiedChallenge.fromMap(Map<String, dynamic> map) {
+    return UnifiedChallenge(
+      id: map['id'] ?? '',
+      titleEn: map['titleEn'] ?? '',
+      titleAr: map['titleAr'] ?? '',
+      descriptionEn: map['descriptionEn'] ?? '',
+      descriptionAr: map['descriptionAr'] ?? '',
+      type: ChallengeType.values.firstWhere(
+        (e) => e.name == map['type'],
+        orElse: () => ChallengeType.daily,
+      ),
+      status: ChallengeStatus.values.firstWhere(
+        (e) => e.name == map['status'],
+        orElse: () => ChallengeStatus.active,
+      ),
+      difficulty: ChallengeDifficulty.values.firstWhere(
+        (e) => e.name == map['difficulty'],
+        orElse: () => ChallengeDifficulty.medium,
+      ),
+      startDate: DateTime.fromMillisecondsSinceEpoch(map['startDate'] ?? 0),
+      endDate: DateTime.fromMillisecondsSinceEpoch(map['endDate'] ?? 0),
+      targetValue: map['targetValue']?.toInt() ?? 1,
+      currentValue: map['currentValue']?.toInt() ?? 0,
+      pointsReward: map['pointsReward']?.toInt() ?? 0,
+      iconPath: map['iconPath'] ?? '',
+      statusColor: map['statusColor'] ?? '#4CAF50',
+      requirements: List<String>.from(map['requirements'] ?? []),
+      isCustom: map['isCustom'] ?? false,
+    );
+  }
+  final String id;
+  final String titleEn;
+  final String titleAr;
+  final String descriptionEn;
+  final String descriptionAr;
+  final ChallengeType type;
+  final ChallengeStatus status;
+  final ChallengeDifficulty difficulty;
+  final DateTime startDate;
+  final DateTime endDate;
+  final int targetValue;
+  final int currentValue;
+  final int pointsReward;
+  final String iconPath;
+  final String statusColor;
+  final List<String> requirements;
+  final bool isCustom;
 
   /// الحصول على العنوان حسب اللغة
   String getTitle(bool isArabic) => isArabic ? titleAr : titleEn;
@@ -150,38 +182,6 @@ class UnifiedChallenge {
       'requirements': requirements,
       'isCustom': isCustom,
     };
-  }
-
-  /// إنشاء من Map
-  factory UnifiedChallenge.fromMap(Map<String, dynamic> map) {
-    return UnifiedChallenge(
-      id: map['id'] ?? '',
-      titleEn: map['titleEn'] ?? '',
-      titleAr: map['titleAr'] ?? '',
-      descriptionEn: map['descriptionEn'] ?? '',
-      descriptionAr: map['descriptionAr'] ?? '',
-      type: ChallengeType.values.firstWhere(
-        (e) => e.name == map['type'],
-        orElse: () => ChallengeType.daily,
-      ),
-      status: ChallengeStatus.values.firstWhere(
-        (e) => e.name == map['status'],
-        orElse: () => ChallengeStatus.active,
-      ),
-      difficulty: ChallengeDifficulty.values.firstWhere(
-        (e) => e.name == map['difficulty'],
-        orElse: () => ChallengeDifficulty.medium,
-      ),
-      startDate: DateTime.fromMillisecondsSinceEpoch(map['startDate'] ?? 0),
-      endDate: DateTime.fromMillisecondsSinceEpoch(map['endDate'] ?? 0),
-      targetValue: map['targetValue']?.toInt() ?? 1,
-      currentValue: map['currentValue']?.toInt() ?? 0,
-      pointsReward: map['pointsReward']?.toInt() ?? 0,
-      iconPath: map['iconPath'] ?? '',
-      statusColor: map['statusColor'] ?? '#4CAF50',
-      requirements: List<String>.from(map['requirements'] ?? []),
-      isCustom: map['isCustom'] ?? false,
-    );
   }
 }
 

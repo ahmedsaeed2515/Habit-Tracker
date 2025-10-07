@@ -1,20 +1,6 @@
 /// نموذج الإنجاز الموحد
 /// يمثل إنجازاً واحداً في نظام التحفيز
 class UnifiedAchievement {
-  final String id;
-  final String titleEn;
-  final String titleAr;
-  final String descriptionEn;
-  final String descriptionAr;
-  final AchievementType type;
-  final AchievementRarity rarity;
-  final int pointsReward;
-  final String iconPath;
-  final String rarityColor;
-  final bool isUnlocked;
-  final DateTime? unlockedAt;
-  final List<String> requirements;
-  final double progress;
 
   const UnifiedAchievement({
     required this.id,
@@ -32,6 +18,50 @@ class UnifiedAchievement {
     this.requirements = const [],
     this.progress = 0.0,
   });
+
+  /// إنشاء من Map
+  factory UnifiedAchievement.fromMap(Map<String, dynamic> map) {
+    return UnifiedAchievement(
+      id: map['id'] ?? '',
+      titleEn: map['titleEn'] ?? '',
+      titleAr: map['titleAr'] ?? '',
+      descriptionEn: map['descriptionEn'] ?? '',
+      descriptionAr: map['descriptionAr'] ?? '',
+      type: AchievementType.values.firstWhere(
+        (e) => e.name == map['type'],
+        orElse: () => AchievementType.habit,
+      ),
+      rarity: AchievementRarity.values.firstWhere(
+        (e) => e.name == map['rarity'],
+        orElse: () => AchievementRarity.common,
+      ),
+      pointsReward: map['pointsReward']?.toInt() ?? 0,
+      iconPath: map['iconPath'] ?? '',
+      rarityColor: map['rarityColor'] ?? '#4CAF50',
+      isUnlocked: map['isUnlocked'] ?? false,
+      unlockedAt: map['unlockedAt'] != null
+          ? (map['unlockedAt'] is DateTime
+                ? map['unlockedAt']
+                : DateTime.fromMillisecondsSinceEpoch(map['unlockedAt'] as int))
+          : null,
+      requirements: List<String>.from(map['requirements'] ?? []),
+      progress: map['progress']?.toDouble() ?? 0.0,
+    );
+  }
+  final String id;
+  final String titleEn;
+  final String titleAr;
+  final String descriptionEn;
+  final String descriptionAr;
+  final AchievementType type;
+  final AchievementRarity rarity;
+  final int pointsReward;
+  final String iconPath;
+  final String rarityColor;
+  final bool isUnlocked;
+  final DateTime? unlockedAt;
+  final List<String> requirements;
+  final double progress;
 
   /// الحصول على العنوان حسب اللغة
   String getTitle(bool isArabic) => isArabic ? titleAr : titleEn;
@@ -107,36 +137,6 @@ class UnifiedAchievement {
       'requirements': requirements,
       'progress': progress,
     };
-  }
-
-  /// إنشاء من Map
-  factory UnifiedAchievement.fromMap(Map<String, dynamic> map) {
-    return UnifiedAchievement(
-      id: map['id'] ?? '',
-      titleEn: map['titleEn'] ?? '',
-      titleAr: map['titleAr'] ?? '',
-      descriptionEn: map['descriptionEn'] ?? '',
-      descriptionAr: map['descriptionAr'] ?? '',
-      type: AchievementType.values.firstWhere(
-        (e) => e.name == map['type'],
-        orElse: () => AchievementType.habit,
-      ),
-      rarity: AchievementRarity.values.firstWhere(
-        (e) => e.name == map['rarity'],
-        orElse: () => AchievementRarity.common,
-      ),
-      pointsReward: map['pointsReward']?.toInt() ?? 0,
-      iconPath: map['iconPath'] ?? '',
-      rarityColor: map['rarityColor'] ?? '#4CAF50',
-      isUnlocked: map['isUnlocked'] ?? false,
-      unlockedAt: map['unlockedAt'] != null
-          ? (map['unlockedAt'] is DateTime
-                ? map['unlockedAt']
-                : DateTime.fromMillisecondsSinceEpoch(map['unlockedAt'] as int))
-          : null,
-      requirements: List<String>.from(map['requirements'] ?? []),
-      progress: map['progress']?.toDouble() ?? 0.0,
-    );
   }
 }
 

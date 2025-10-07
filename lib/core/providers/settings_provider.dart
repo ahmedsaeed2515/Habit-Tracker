@@ -112,6 +112,13 @@ class SettingsNotifier extends StateNotifier<AppSettings> {
     state = newSettings;
     await DatabaseManager.updateAppSettings(newSettings);
   }
+
+  /// تحديث حالة المستخدم الجديد
+  Future<void> completeOnboarding() async {
+    final newSettings = state.copyWith(isFirstTime: false);
+    state = newSettings;
+    await DatabaseManager.updateAppSettings(newSettings);
+  }
 }
 
 // مقدم حالة الإعدادات

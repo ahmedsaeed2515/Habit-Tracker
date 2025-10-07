@@ -6,6 +6,15 @@ import '../../../core/models/task.dart';
 
 /// بطاقة لعرض المهمة مع جميع المعلومات والخيارات
 class TaskCard extends StatelessWidget {
+
+  const TaskCard({
+    super.key,
+    required this.task,
+    this.onCompleted,
+    this.onEdit,
+    this.onDelete,
+    this.onPriorityChanged,
+  });
   /// المهمة المراد عرضها
   final Task task;
 
@@ -20,15 +29,6 @@ class TaskCard extends StatelessWidget {
 
   /// دالة استدعاء عند تغيير الأولوية
   final Function(TaskPriority)? onPriorityChanged;
-
-  const TaskCard({
-    super.key,
-    required this.task,
-    this.onCompleted,
-    this.onEdit,
-    this.onDelete,
-    this.onPriorityChanged,
-  });
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +143,7 @@ class TaskCard extends StatelessWidget {
                 ),
               ),
             );
-          }).toList(),
+          }),
           if (task.tags.length > 3)
             Text(
               '+${task.tags.length - 3}',

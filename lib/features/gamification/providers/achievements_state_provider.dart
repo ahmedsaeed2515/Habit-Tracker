@@ -15,9 +15,9 @@ final achievementsStateProvider =
 // مدير حالة الإنجازات في نظام الألعاب
 class AchievementsStateNotifier
     extends StateNotifier<List<Map<String, dynamic>>> {
-  final UnifiedGamificationService service;
 
   AchievementsStateNotifier(this.service) : super([]);
+  final UnifiedGamificationService service;
 
   // تحديث حالة الإنجازات
   Future<void> refresh() async {
@@ -25,7 +25,7 @@ class AchievementsStateNotifier
       // هذا مجرد حل مؤقت، يجب تعديله لاستخدام خدمة حقيقية
       state = await Future.delayed(
         const Duration(milliseconds: 500),
-        () => _getDefaultAchievements(),
+        _getDefaultAchievements,
       );
     } catch (e) {
       // التعامل مع الأخطاء

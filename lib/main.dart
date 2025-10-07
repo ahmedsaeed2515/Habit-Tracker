@@ -12,9 +12,14 @@ import 'shared/localization/app_localizations.dart';
 import 'features/smart_notifications/services/notification_service.dart';
 import 'features/smart_notifications/services/notification_database_service.dart';
 import 'features/analytics/services/analytics_service.dart';
-import 'features/gamification/services/unified_gamification_service.dart';
+import 'features/gamification_system/services/gamification_service.dart';
 import 'features/smart_calendar/services/smart_calendar_service.dart';
 import 'features/widgets_system/services/widgets_system_service.dart';
+import 'features/intelligent_workout_planner/services/ai_workout_planner_service.dart';
+import 'features/health_integration/services/health_integration_service.dart';
+import 'features/accessibility/services/accessibility_service.dart';
+import 'features/offline_mode/services/offline_mode_service.dart';
+import 'features/onboarding/screens/onboarding_screen.dart';
 import 'app.dart';
 
 Future<void> main() async {
@@ -40,8 +45,32 @@ Future<void> main() async {
     // تهيئة خدمة التقويم الذكي
     await _initializeSmartCalendar();
 
+    // تهيئة خدمة التخطيط الرياضي الذكي
+    await _initializeAIWorkoutPlanner();
+
     // تهيئة نظام الودجت
     await _initializeWidgetsSystem();
+
+    // تهيئة خدمة التكامل الصحي
+    await _initializeHealthIntegration();
+
+    // تهيئة خدمة إمكانية الوصول (Accessiblity)
+    try {
+      final accessibilityService = AccessibilityService();
+      await accessibilityService.initialize();
+      debugPrint('✅ Accessibility service initialized successfully');
+    } catch (e) {
+      debugPrint('❌ Error initializing Accessibility service: $e');
+    }
+
+    // تهيئة وضع العمل بدون اتصال (Offline Mode)
+    try {
+      final offlineService = OfflineModeService();
+      await offlineService.initialize();
+      debugPrint('✅ OfflineMode service initialized successfully');
+    } catch (e) {
+      debugPrint('❌ Error initializing OfflineMode service: $e');
+    }
 
     // نظام Pomodoro Task Management تم تهيئته مع DatabaseManager
 
@@ -70,7 +99,7 @@ class UltimateHabitTrackerApp extends ConsumerWidget {
     final settings = ref.watch(settingsProvider);
 
     return MaterialApp(
-      title: 'Ultimate Habit & Fitness Tracker',
+      title: 'Task Meta',
 
       // تهيئة النظام
       theme: AppTheme.lightTheme,
@@ -101,17 +130,18 @@ class UltimateHabitTrackerApp extends ConsumerWidget {
       // إزالة بانر التطوير
       debugShowCheckedModeBanner: false,
 
-      // الصفحة الرئيسية
-      home: const MainAppScreen(),
+      // الصفحة الرئيسية - عرض onboarding للمستخدمين الجدد
+      home: settings.isFirstTime
+          ? const OnboardingScreen()
+          : const MainAppScreen(),
     );
   }
 }
 
 /// شاشة الخطأ البسيطة
 class ErrorScreen extends StatelessWidget {
-  final String error;
-
   const ErrorScreen({super.key, required this.error});
+  final String error;
 
   @override
   Widget build(BuildContext context) {
@@ -151,10 +181,7 @@ class ErrorScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               ElevatedButton(
-                onPressed: () {
-                  // إعادة تشغيل التطبيق
-                  main();
-                },
+                onPressed: main,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red.shade600,
                   foregroundColor: Colors.white,
@@ -172,8 +199,8 @@ class ErrorScreen extends StatelessWidget {
 // تهيئة خدمة الألعاب والتحفيز
 Future<void> _initializeGamificationService() async {
   try {
-    final gamificationService = UnifiedGamificationService();
-    await gamificationService.initialize();
+    final gamificationService = GamificationService();
+    await gamificationService.init();
     debugPrint('✅ Gamification service initialized successfully');
   } catch (e) {
     debugPrint('❌ Error initializing gamification service: $e');
@@ -191,6 +218,16 @@ Future<void> _initializeSmartCalendar() async {
   }
 }
 
+// تهيئة خدمة التخطيط الرياضي الذكي
+Future<void> _initializeAIWorkoutPlanner() async {
+  try {
+    await AIWorkoutPlannerService.initialize();
+    debugPrint('✅ AI Workout Planner service initialized successfully');
+  } catch (e) {
+    debugPrint('❌ Error initializing AI Workout Planner service: $e');
+  }
+}
+
 // تهيئة نظام الودجت
 Future<void> _initializeWidgetsSystem() async {
   try {
@@ -203,5 +240,16 @@ Future<void> _initializeWidgetsSystem() async {
     debugPrint('✅ Widgets System service initialized successfully');
   } catch (e) {
     debugPrint('❌ Error initializing Widgets System service: $e');
+  }
+}
+
+// تهيئة خدمة التكامل الصحي
+Future<void> _initializeHealthIntegration() async {
+  try {
+    final healthService = HealthIntegrationService();
+    await healthService.initialize();
+    debugPrint('✅ Health Integration service initialized successfully');
+  } catch (e) {
+    debugPrint('❌ Error initializing Health Integration service: $e');
   }
 }

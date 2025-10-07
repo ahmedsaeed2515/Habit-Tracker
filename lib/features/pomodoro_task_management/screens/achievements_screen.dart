@@ -5,7 +5,7 @@ import '../providers/pomodoro_providers.dart';
 
 /// شاشة إدارة الإنجازات والمكافآت
 class AchievementsScreen extends ConsumerStatefulWidget {
-  const AchievementsScreen({Key? key}) : super(key: key);
+  const AchievementsScreen({super.key});
 
   @override
   ConsumerState<AchievementsScreen> createState() => _AchievementsScreenState();
@@ -50,11 +50,10 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
           // App Bar with Stats
           SliverAppBar(
             expandedHeight: 200.0,
-            floating: false,
             pinned: true,
             backgroundColor: Colors.transparent,
             flexibleSpace: FlexibleSpaceBar(
-              background: Container(
+              background: DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -209,8 +208,8 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                     const SizedBox(height: 16),
                     ...filteredAchievements
                         .where((a) => !a.isUnlocked && a.progress > 0.5)
-                        .map((a) => _buildProgressCard(a))
-                        .toList(),
+                        .map(_buildProgressCard)
+                        ,
                   ],
                 ),
               ),
@@ -419,7 +418,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                 if (isUnlocked) ...[
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: Colors.amber,
                         size: 16,
@@ -445,14 +444,14 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                         children: [
                           Text(
                             '${(progress * 100).toInt()}%',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.grey,
                               fontSize: 11,
                             ),
                           ),
                           Text(
                             '${achievement.currentValue}/${achievement.targetValue}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.grey,
                               fontSize: 11,
                             ),
@@ -523,7 +522,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                 const SizedBox(height: 4),
                 Text(
                   'باقي $remaining ${_getUnitName(achievement.category)}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white70,
                     fontSize: 12,
                   ),
@@ -649,12 +648,12 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
 
 /// حوار تفاصيل الإنجاز
 class AchievementDetailsDialog extends StatelessWidget {
-  final Achievement achievement;
 
   const AchievementDetailsDialog({
     Key? key,
     required this.achievement,
   }) : super(key: key);
+  final Achievement achievement;
 
   @override
   Widget build(BuildContext context) {
@@ -785,7 +784,7 @@ class AchievementDetailsDialog extends StatelessWidget {
 
 /// حوار دليل الإنجازات
 class AchievementGuideDialog extends StatelessWidget {
-  const AchievementGuideDialog({Key? key}) : super(key: key);
+  const AchievementGuideDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

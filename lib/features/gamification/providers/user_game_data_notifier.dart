@@ -6,11 +6,11 @@ import '../models/gamification_data.dart';
 /// مدير حالة بيانات المستخدم في نظام التحفيز
 /// ملف منفصل لسهولة الصيانة (أقل من 150 سطر)
 class UserGameDataNotifier extends StateNotifier<UserGameData> {
-  final UnifiedGamificationService _service;
 
   UserGameDataNotifier(this._service) : super(UserGameData()) {
     _initialize();
   }
+  final UnifiedGamificationService _service;
 
   Future<void> _initialize() async {
     try {

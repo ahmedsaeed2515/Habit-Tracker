@@ -191,7 +191,6 @@ class DynamicThemingService {
         accessibility: AccessibilitySettings.defaultSettings(),
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
-        isCustom: false,
         category: ThemeCategory.warm,
       ),
 
@@ -231,7 +230,6 @@ class DynamicThemingService {
         accessibility: AccessibilitySettings.defaultSettings(),
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
-        isCustom: false,
         category: ThemeCategory.cosmic,
       ),
     ];
@@ -244,7 +242,6 @@ class DynamicThemingService {
       userId: 'system',
       name: 'افتراضي',
       description: 'ثيم افتراضي احتياطي',
-      mode: ThemeMode.system,
       lightColorPalette: ColorPalette(
         primary: 0xFF6200EE,
         onPrimary: 0xFFFFFFFF,
@@ -274,8 +271,6 @@ class DynamicThemingService {
       accessibility: AccessibilitySettings.defaultSettings(),
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
-      isCustom: false,
-      category: ThemeCategory.basic,
     );
   }
 

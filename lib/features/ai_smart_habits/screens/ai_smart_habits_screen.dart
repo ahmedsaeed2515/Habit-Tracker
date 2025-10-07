@@ -6,15 +6,14 @@ import '../../../core/widgets/custom_card.dart';
 import '../../../core/widgets/loading_widget.dart';
 import '../../../core/widgets/error_widget.dart';
 import '../models/ai_models.dart';
-import '../services/ai_smart_habits_service.dart'; // إضافة لاستيراد enum
 import '../providers/ai_smart_habits_providers.dart';
 import '../widgets/smart_habit_widgets.dart';
 
 /// شاشة العادات الذكية الرئيسية
 class AISmartHabitsScreen extends ConsumerStatefulWidget {
-  final String userId;
 
   const AISmartHabitsScreen({Key? key, required this.userId}) : super(key: key);
+  final String userId;
 
   @override
   ConsumerState<AISmartHabitsScreen> createState() =>
@@ -442,7 +441,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
     );
 
     return recommendationsAsync.when(
-      data: (recommendations) => _buildRecommendationsList(recommendations),
+      data: _buildRecommendationsList,
       loading: () => const LoadingWidget(),
       error: (error, stack) => CustomErrorWidget(
         message: 'خطأ في تحميل التوصيات',
@@ -563,9 +562,9 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
           ),
           if (recommendation.actionSteps.isNotEmpty) ...[
             const SizedBox(height: 12),
-            Text(
+            const Text(
               'خطوات العمل:',
-              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
             ),
             const SizedBox(height: 8),
             ...recommendation.actionSteps
@@ -580,7 +579,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                           margin: const EdgeInsets.only(top: 6),
                           width: 4,
                           height: 4,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: AppColors.primary,
                             shape: BoxShape.circle,
                           ),
@@ -805,7 +804,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
     );
   }
 
-  void _generateAIHabits() async {
+  Future<void> _generateAIHabits() async {
     try {
       final preferences = <String, dynamic>{
         'experience_level': 'intermediate',
@@ -818,7 +817,6 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
           GenerateAIHabitsParams(
             userId: widget.userId,
             preferences: preferences,
-            count: 3,
           ),
         ).future,
       );
@@ -837,14 +835,13 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
     }
   }
 
-  void _generateSmartChallenge() async {
+  Future<void> _generateSmartChallenge() async {
     try {
       await ref.read(
         smartChallengesProvider(
           GenerateSmartChallengesParams(
             userId: widget.userId,
             duration: const Duration(days: 30),
-            difficulty: ChallengeDifficulty.medium,
           ),
         ).future,
       );

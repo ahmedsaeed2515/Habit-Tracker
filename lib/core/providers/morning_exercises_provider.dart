@@ -1,6 +1,7 @@
 // lib/core/providers/morning_exercises_provider.dart
 // مقدم حالة تمارين الصباح
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../database/database_manager.dart';
 import '../models/morning_exercise.dart';
@@ -16,20 +17,35 @@ class MorningExercisesNotifier extends StateNotifier<List<MorningExercise>> {
 
   /// إضافة تمرين جديد
   Future<void> addExercise(MorningExercise exercise) async {
-    await DatabaseManager.addMorningExercise(exercise);
-    _loadExercises();
+    try {
+      await DatabaseManager.addMorningExercise(exercise);
+    } catch (e, st) {
+      debugPrint('⚠️ Failed to add morning exercise: $e\n$st');
+    } finally {
+      _loadExercises();
+    }
   }
 
   /// تحديث تمرين موجود
   Future<void> updateExercise(MorningExercise exercise) async {
-    await DatabaseManager.updateMorningExercise(exercise);
-    _loadExercises();
+    try {
+      await DatabaseManager.updateMorningExercise(exercise);
+    } catch (e, st) {
+      debugPrint('⚠️ Failed to update morning exercise: $e\n$st');
+    } finally {
+      _loadExercises();
+    }
   }
 
   /// حذف تمرين
   Future<void> deleteExercise(String id) async {
-    await DatabaseManager.deleteMorningExercise(id);
-    _loadExercises();
+    try {
+      await DatabaseManager.deleteMorningExercise(id);
+    } catch (e, st) {
+      debugPrint('⚠️ Failed to delete morning exercise: $e\n$st');
+    } finally {
+      _loadExercises();
+    }
   }
 
   /// الحصول على تمارين اليوم
@@ -38,13 +54,12 @@ class MorningExercisesNotifier extends StateNotifier<List<MorningExercise>> {
     final startOfDay = DateTime(today.year, today.month, today.day);
     final endOfDay = DateTime(today.year, today.month, today.day, 23, 59, 59);
 
-    return state
-        .where(
-          (exercise) =>
-              exercise.date.isAfter(startOfDay) &&
-              exercise.date.isBefore(endOfDay),
-        )
-        .toList();
+    return state.where((exercise) {
+      // inclusive range: not before start and not after end
+      final notBeforeStart = !exercise.date.isBefore(startOfDay);
+      final notAfterEnd = !exercise.date.isAfter(endOfDay);
+      return notBeforeStart && notAfterEnd;
+    }).toList();
   }
 
   /// الحصول على تمارين في فترة محددة
@@ -52,13 +67,11 @@ class MorningExercisesNotifier extends StateNotifier<List<MorningExercise>> {
     DateTime startDate,
     DateTime endDate,
   ) {
-    return state
-        .where(
-          (exercise) =>
-              exercise.date.isAfter(startDate) &&
-              exercise.date.isBefore(endDate),
-        )
-        .toList();
+    return state.where((exercise) {
+      final notBeforeStart = !exercise.date.isBefore(startDate);
+      final notAfterEnd = !exercise.date.isAfter(endDate);
+      return notBeforeStart && notAfterEnd;
+    }).toList();
   }
 
   /// الحصول على تمارين الأسبوع الحالي
@@ -79,7 +92,11 @@ class MorningExercisesNotifier extends StateNotifier<List<MorningExercise>> {
         isCompleted: !exercise.isCompleted,
         completedAt: !exercise.isCompleted ? DateTime.now() : null,
       );
-      await updateExercise(updatedExercise);
+      try {
+        await updateExercise(updatedExercise);
+      } catch (e, st) {
+        debugPrint('⚠️ Failed to toggle exercise completion: $e\n$st');
+      }
     }
   }
 
@@ -98,7 +115,11 @@ class MorningExercisesNotifier extends StateNotifier<List<MorningExercise>> {
         actualSets: actualSets ?? exercise.targetSets,
         completedAt: DateTime.now(),
       );
-      await updateExercise(updatedExercise);
+      try {
+        await updateExercise(updatedExercise);
+      } catch (e, st) {
+        debugPrint('⚠️ Failed to complete exercise: $e\n$st');
+      }
     }
   }
 

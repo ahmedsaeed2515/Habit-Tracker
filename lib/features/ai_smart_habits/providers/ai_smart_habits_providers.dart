@@ -40,7 +40,7 @@ final createSmartHabitProvider =
       params,
     ) async {
       final service = ref.read(aiSmartHabitsServiceProvider);
-      return await service.createSmartHabit(
+      return service.createSmartHabit(
         userId: params.userId,
         name: params.name,
         description: params.description,
@@ -57,7 +57,7 @@ final generateAIHabitsProvider =
       params,
     ) async {
       final service = ref.read(aiSmartHabitsServiceProvider);
-      return await service.generateAIHabits(
+      return service.generateAIHabits(
         userId: params.userId,
         preferences: params.preferences,
         count: params.count,
@@ -68,14 +68,14 @@ final generateAIHabitsProvider =
 final analyzeHabitPerformanceProvider =
     FutureProvider.family<AIInsights, String>((ref, habitId) async {
       final service = ref.read(aiSmartHabitsServiceProvider);
-      return await service.analyzeHabitPerformance(habitId);
+      return service.analyzeHabitPerformance(habitId);
     });
 
 /// موفر تحديث التنبؤات
 final updatePredictionsProvider =
     FutureProvider.family<ProgressPrediction, String>((ref, habitId) async {
       final service = ref.read(aiSmartHabitsServiceProvider);
-      return await service.updatePredictions(habitId);
+      return service.updatePredictions(habitId);
     });
 
 /// موفر تكييف العادة
@@ -91,14 +91,14 @@ final adaptHabitProvider = FutureProvider.family<void, String>((
 final personalizedRecommendationsProvider =
     FutureProvider.family<List<Recommendation>, String>((ref, userId) async {
       final service = ref.read(aiSmartHabitsServiceProvider);
-      return await service.generatePersonalizedRecommendations(userId);
+      return service.generatePersonalizedRecommendations(userId);
     });
 
 /// موفر تحليل الأنماط السلوكية
 final behaviorPatternsProvider =
     FutureProvider.family<Map<String, dynamic>, String>((ref, userId) async {
       final service = ref.read(aiSmartHabitsServiceProvider);
-      return await service.analyzeBehaviorPatterns(userId);
+      return service.analyzeBehaviorPatterns(userId);
     });
 
 /// موفر توليد التحديات الذكية
@@ -108,7 +108,7 @@ final smartChallengesProvider =
       params,
     ) async {
       final service = ref.read(aiSmartHabitsServiceProvider);
-      return await service.generateSmartChallenges(
+      return service.generateSmartChallenges(
         userId: params.userId,
         duration: params.duration,
         difficulty: params.difficulty,
@@ -304,13 +304,13 @@ final habitsForAdaptationProvider = Provider.family<List<SmartHabit>, String>((
 // === مُدير حالة العادة الذكية ===
 
 class SmartHabitNotifier extends StateNotifier<SmartHabitState> {
-  final AISmartHabitsService _service;
-  final String habitId;
 
   SmartHabitNotifier(this._service, this.habitId)
     : super(SmartHabitState.loading()) {
     _loadHabit();
   }
+  final AISmartHabitsService _service;
+  final String habitId;
 
   Future<void> _loadHabit() async {
     try {
@@ -404,18 +404,18 @@ class SmartHabitLoading extends SmartHabitState {
 }
 
 class SmartHabitLoaded extends SmartHabitState {
-  final SmartHabit habit;
   const SmartHabitLoaded(this.habit);
+  final SmartHabit habit;
 }
 
 class SmartHabitAnalyzing extends SmartHabitState {
-  final SmartHabit habit;
   const SmartHabitAnalyzing(this.habit);
+  final SmartHabit habit;
 }
 
 class SmartHabitAdapting extends SmartHabitState {
-  final SmartHabit habit;
   const SmartHabitAdapting(this.habit);
+  final SmartHabit habit;
 }
 
 class SmartHabitDeleted extends SmartHabitState {
@@ -423,19 +423,13 @@ class SmartHabitDeleted extends SmartHabitState {
 }
 
 class SmartHabitError extends SmartHabitState {
-  final String message;
   const SmartHabitError(this.message);
+  final String message;
 }
 
 // === معاملات الطلبات ===
 
 class CreateSmartHabitParams {
-  final String userId;
-  final String name;
-  final String description;
-  final SmartHabitCategory category;
-  final int difficultyLevel;
-  final bool isAIGenerated;
 
   const CreateSmartHabitParams({
     required this.userId,
@@ -445,40 +439,41 @@ class CreateSmartHabitParams {
     this.difficultyLevel = 5,
     this.isAIGenerated = false,
   });
+  final String userId;
+  final String name;
+  final String description;
+  final SmartHabitCategory category;
+  final int difficultyLevel;
+  final bool isAIGenerated;
 }
 
 class GenerateAIHabitsParams {
-  final String userId;
-  final Map<String, dynamic> preferences;
-  final int count;
 
   const GenerateAIHabitsParams({
     required this.userId,
     required this.preferences,
     this.count = 3,
   });
+  final String userId;
+  final Map<String, dynamic> preferences;
+  final int count;
 }
 
 class GenerateSmartChallengesParams {
-  final String userId;
-  final Duration duration;
-  final ChallengeDifficulty difficulty;
 
   const GenerateSmartChallengesParams({
     required this.userId,
     required this.duration,
     this.difficulty = ChallengeDifficulty.medium,
   });
+  final String userId;
+  final Duration duration;
+  final ChallengeDifficulty difficulty;
 }
 
 // === إحصائيات العادات الذكية ===
 
 class SmartHabitsStats {
-  final int totalHabits;
-  final int aiGeneratedHabits;
-  final double averageSuccessProbability;
-  final Map<SmartHabitCategory, int> categoriesDistribution;
-  final Map<int, int> difficultyDistribution;
 
   const SmartHabitsStats({
     required this.totalHabits,
@@ -487,6 +482,11 @@ class SmartHabitsStats {
     required this.categoriesDistribution,
     required this.difficultyDistribution,
   });
+  final int totalHabits;
+  final int aiGeneratedHabits;
+  final double averageSuccessProbability;
+  final Map<SmartHabitCategory, int> categoriesDistribution;
+  final Map<int, int> difficultyDistribution;
 
   double get aiGeneratedPercentage =>
       totalHabits > 0 ? (aiGeneratedHabits / totalHabits) * 100 : 0.0;

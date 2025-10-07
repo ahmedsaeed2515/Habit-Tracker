@@ -3,14 +3,6 @@ import 'package:flutter/material.dart';
 /// A custom error widget that provides consistent error UI throughout the application
 /// This file is named with a 'custom_' prefix to avoid conflicts with Flutter's built-in ErrorWidget
 class CustomErrorWidget extends StatelessWidget {
-  final String? message;
-  final IconData? icon;
-  final VoidCallback? onRetry;
-  final String? retryButtonText;
-  final Color? iconColor;
-  final TextStyle? messageStyle;
-  final EdgeInsets? padding;
-  final bool showIcon;
 
   const CustomErrorWidget({
     super.key,
@@ -23,6 +15,14 @@ class CustomErrorWidget extends StatelessWidget {
     this.padding = const EdgeInsets.all(16.0),
     this.showIcon = true,
   });
+  final String? message;
+  final IconData? icon;
+  final VoidCallback? onRetry;
+  final String? retryButtonText;
+  final Color? iconColor;
+  final TextStyle? messageStyle;
+  final EdgeInsets? padding;
+  final bool showIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,6 @@ class CustomErrorWidget extends StatelessWidget {
       padding: padding!,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           if (showIcon && icon != null) ...[
@@ -73,10 +72,6 @@ class CustomErrorWidget extends StatelessWidget {
 
 /// A minimal error widget for inline error display
 class InlineErrorWidget extends StatelessWidget {
-  final String message;
-  final IconData? icon;
-  final Color? color;
-  final TextStyle? textStyle;
 
   const InlineErrorWidget({
     super.key,
@@ -85,6 +80,10 @@ class InlineErrorWidget extends StatelessWidget {
     this.color,
     this.textStyle,
   });
+  final String message;
+  final IconData? icon;
+  final Color? color;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +92,6 @@ class InlineErrorWidget extends StatelessWidget {
 
     return Row(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         if (icon != null) ...[
           Icon(
@@ -119,12 +117,6 @@ class InlineErrorWidget extends StatelessWidget {
 
 /// A full-screen error widget for major application errors
 class FullScreenErrorWidget extends StatelessWidget {
-  final String? title;
-  final String? message;
-  final VoidCallback? onRetry;
-  final VoidCallback? onGoHome;
-  final String? retryButtonText;
-  final String? homeButtonText;
 
   const FullScreenErrorWidget({
     super.key,
@@ -135,6 +127,12 @@ class FullScreenErrorWidget extends StatelessWidget {
     this.retryButtonText = 'Try Again',
     this.homeButtonText = 'Go Home',
   });
+  final String? title;
+  final String? message;
+  final VoidCallback? onRetry;
+  final VoidCallback? onGoHome;
+  final String? retryButtonText;
+  final String? homeButtonText;
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +144,6 @@ class FullScreenErrorWidget extends StatelessWidget {
           padding: const EdgeInsets.all(24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Icon(
                 Icons.error_outline,
@@ -213,9 +210,6 @@ class FullScreenErrorWidget extends StatelessWidget {
 
 /// An error boundary widget that catches and displays errors
 class ErrorBoundary extends StatefulWidget {
-  final Widget child;
-  final Widget Function(BuildContext context, FlutterErrorDetails error)? errorBuilder;
-  final void Function(FlutterErrorDetails error)? onError;
 
   const ErrorBoundary({
     super.key,
@@ -223,6 +217,9 @@ class ErrorBoundary extends StatefulWidget {
     this.errorBuilder,
     this.onError,
   });
+  final Widget child;
+  final Widget Function(BuildContext context, FlutterErrorDetails error)? errorBuilder;
+  final void Function(FlutterErrorDetails error)? onError;
 
   @override
   State<ErrorBoundary> createState() => _ErrorBoundaryState();
@@ -273,14 +270,14 @@ class _ErrorBoundaryState extends State<ErrorBoundary> {
 
 /// A network error widget specifically for network-related errors
 class NetworkErrorWidget extends StatelessWidget {
-  final VoidCallback? onRetry;
-  final String? customMessage;
 
   const NetworkErrorWidget({
     super.key,
     this.onRetry,
     this.customMessage,
   });
+  final VoidCallback? onRetry;
+  final String? customMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -288,16 +285,12 @@ class NetworkErrorWidget extends StatelessWidget {
       icon: Icons.wifi_off,
       message: customMessage ?? 'No internet connection. Please check your network and try again.',
       onRetry: onRetry,
-      retryButtonText: 'Retry',
     );
   }
 }
 
 /// A not found error widget for 404-style errors
 class NotFoundErrorWidget extends StatelessWidget {
-  final String? message;
-  final VoidCallback? onGoBack;
-  final String? goBackButtonText;
 
   const NotFoundErrorWidget({
     super.key,
@@ -305,6 +298,9 @@ class NotFoundErrorWidget extends StatelessWidget {
     this.onGoBack,
     this.goBackButtonText = 'Go Back',
   });
+  final String? message;
+  final VoidCallback? onGoBack;
+  final String? goBackButtonText;
 
   @override
   Widget build(BuildContext context) {

@@ -5,6 +5,26 @@ part 'habit_template.g.dart';
 
 @HiveType(typeId: 21)
 class HabitTemplate extends HiveObject {
+
+  HabitTemplate({
+    required this.id,
+    required this.nameAr,
+    required this.nameEn,
+    required this.descriptionAr,
+    required this.descriptionEn,
+    required this.category,
+    required this.recommendedFrequency,
+    required this.tags,
+    required this.iconName,
+    required this.colorCode,
+    required this.difficultyLevel,
+    required this.tips,
+    required this.estimatedDurationMinutes,
+    required this.popularityScore,
+    required this.prerequisites,
+    required this.isRecommended,
+    required this.createdAt,
+  });
   @HiveField(0)
   String id;
 
@@ -55,26 +75,6 @@ class HabitTemplate extends HiveObject {
 
   @HiveField(16)
   DateTime createdAt;
-
-  HabitTemplate({
-    required this.id,
-    required this.nameAr,
-    required this.nameEn,
-    required this.descriptionAr,
-    required this.descriptionEn,
-    required this.category,
-    required this.recommendedFrequency,
-    required this.tags,
-    required this.iconName,
-    required this.colorCode,
-    required this.difficultyLevel,
-    required this.tips,
-    required this.estimatedDurationMinutes,
-    required this.popularityScore,
-    required this.prerequisites,
-    required this.isRecommended,
-    required this.createdAt,
-  });
 
   // Helper methods
   String getName(String language) {
@@ -168,6 +168,20 @@ enum HabitCategory {
 
 @HiveType(typeId: 23)
 class UserProfile extends HiveObject {
+
+  UserProfile({
+    required this.id,
+    required this.interests,
+    required this.fitnessLevel,
+    required this.availableTimes,
+    required this.motivationStyle,
+    required this.challenges,
+    required this.completedHabits,
+    required this.lastUpdated,
+    required this.experiencePoints,
+    required this.achievements,
+    required this.preferences,
+  });
   @HiveField(0)
   String id;
 
@@ -200,20 +214,6 @@ class UserProfile extends HiveObject {
 
   @HiveField(10)
   Map<String, dynamic> preferences;
-
-  UserProfile({
-    required this.id,
-    required this.interests,
-    required this.fitnessLevel,
-    required this.availableTimes,
-    required this.motivationStyle,
-    required this.challenges,
-    required this.completedHabits,
-    required this.lastUpdated,
-    required this.experiencePoints,
-    required this.achievements,
-    required this.preferences,
-  });
 
   Map<String, dynamic> toJson() {
     return {

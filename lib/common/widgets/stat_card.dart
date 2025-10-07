@@ -5,6 +5,15 @@ import 'package:flutter/material.dart';
 
 /// Widget لعرض إحصائية واحدة في شكل بطاقة
 class StatCard extends StatelessWidget {
+
+  const StatCard({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.value,
+    this.color,
+    this.onTap,
+  });
   /// أيقونة الإحصائية
   final IconData icon;
 
@@ -19,15 +28,6 @@ class StatCard extends StatelessWidget {
 
   /// دالة يتم استدعاؤها عند الضغط على البطاقة
   final VoidCallback? onTap;
-
-  const StatCard({
-    super.key,
-    required this.icon,
-    required this.title,
-    required this.value,
-    this.color,
-    this.onTap,
-  });
 
   @override
   Widget build(BuildContext context) {

@@ -6,9 +6,9 @@ import '../widgets/health_widgets.dart';
 
 /// شاشة لوحة تحكم الصحة الرئيسية
 class HealthDashboardScreen extends ConsumerStatefulWidget {
-  final String userId;
 
   const HealthDashboardScreen({super.key, required this.userId});
+  final String userId;
 
   @override
   ConsumerState<HealthDashboardScreen> createState() =>
@@ -272,15 +272,15 @@ class _HealthDashboardScreenState extends ConsumerState<HealthDashboardScreen> {
     switch (_selectedTabIndex) {
       case 0:
         return FloatingActionButton(
-          heroTag: "add_health_data",
-          onPressed: () => _showAddDataDialog(),
+          heroTag: 'add_health_data',
+          onPressed: _showAddDataDialog,
           backgroundColor: Colors.green,
           child: const Icon(Icons.add, color: Colors.white),
         );
       case 1:
         return FloatingActionButton(
-          heroTag: "add_health_goal",
-          onPressed: () => _showAddGoalDialog(),
+          heroTag: 'add_health_goal',
+          onPressed: _showAddGoalDialog,
           backgroundColor: Colors.green,
           child: const Icon(Icons.flag, color: Colors.white),
         );
@@ -306,9 +306,9 @@ class _HealthDashboardScreenState extends ConsumerState<HealthDashboardScreen> {
 
 /// تبويب البيانات الصحية
 class _HealthDataTab extends ConsumerWidget {
-  final String userId;
 
   const _HealthDataTab({required this.userId});
+  final String userId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -396,10 +396,9 @@ class _HealthDataTab extends ConsumerWidget {
                     labelText: 'فلترة حسب النوع',
                     border: OutlineInputBorder(),
                   ),
-                  value: null,
+                  initialValue: null,
                   items: [
                     const DropdownMenuItem(
-                      value: null,
                       child: Text('جميع الأنواع'),
                     ),
                     ...HealthMetricType.values.map(
@@ -489,9 +488,9 @@ class _HealthDataTab extends ConsumerWidget {
 
 /// تبويب الأهداف الصحية
 class _HealthGoalsTab extends ConsumerWidget {
-  final String userId;
 
   const _HealthGoalsTab({required this.userId});
+  final String userId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -574,9 +573,9 @@ class _HealthGoalsTab extends ConsumerWidget {
 
 /// تبويب الرؤى الصحية
 class _HealthInsightsTab extends ConsumerWidget {
-  final String userId;
 
   const _HealthInsightsTab({required this.userId});
+  final String userId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

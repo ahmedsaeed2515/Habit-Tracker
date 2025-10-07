@@ -7,12 +7,12 @@ import '../providers/pomodoro_providers.dart';
 
 /// ويدجت عرض تايمر Pomodoro مع تأثيرات بصرية متقدمة
 class PomodoroTimerWidget extends ConsumerStatefulWidget {
-  final PomodoroSession session;
 
   const PomodoroTimerWidget({
     Key? key,
     required this.session,
   }) : super(key: key);
+  final PomodoroSession session;
 
   @override
   ConsumerState<PomodoroTimerWidget> createState() => _PomodoroTimerWidgetState();
@@ -108,7 +108,6 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: Colors.white.withOpacity(0.2),
-          width: 1,
         ),
       ),
       child: Column(
@@ -512,15 +511,15 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
 
 /// رسام التقدم الدائري للتايمر
 class TimerProgressPainter extends CustomPainter {
-  final double progress;
-  final Color color;
-  final double strokeWidth;
 
   TimerProgressPainter({
     required this.progress,
     required this.color,
     this.strokeWidth = 4.0,
   });
+  final double progress;
+  final Color color;
+  final double strokeWidth;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -578,12 +577,12 @@ class TimerProgressPainter extends CustomPainter {
 
 /// ويدجت مضغوط لعرض التايمر في الشريط العلوي
 class CompactTimerWidget extends ConsumerWidget {
-  final PomodoroSession session;
 
   const CompactTimerWidget({
     Key? key,
     required this.session,
   }) : super(key: key);
+  final PomodoroSession session;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

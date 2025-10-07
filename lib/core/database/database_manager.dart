@@ -99,22 +99,19 @@ class DatabaseManager extends BaseDatabaseManager {
       final goals = [
         ExerciseGoal(
           type: ExerciseType.squat,
-          targetReps: 1000,
           lastUpdated: DateTime.now(),
         ),
         ExerciseGoal(
           type: ExerciseType.pushUp,
-          targetReps: 1000,
           lastUpdated: DateTime.now(),
         ),
         ExerciseGoal(
           type: ExerciseType.pullUp,
-          targetReps: 1000,
           lastUpdated: DateTime.now(),
         ),
       ];
 
-      for (var goal in goals) {
+      for (final goal in goals) {
         await _exerciseGoalsBox.put(goal.type.toString(), goal);
       }
     }
@@ -125,7 +122,6 @@ class DatabaseManager extends BaseDatabaseManager {
         id: 'default_sheet',
         name: 'المهام الرئيسية',
         description: 'ورقة المهام الافتراضية',
-        color: '#2196F3',
         tasks: [],
         createdAt: DateTime.now(),
         lastModified: DateTime.now(),
@@ -273,7 +269,7 @@ class DatabaseManager extends BaseDatabaseManager {
   static Future<void> deleteTaskSheet(String id) async {
     // حذف جميع المهام في الورقة
     final tasks = _tasksBox.values.where((task) => task.sheetId == id).toList();
-    for (var task in tasks) {
+    for (final task in tasks) {
       await _tasksBox.delete(task.key);
     }
 

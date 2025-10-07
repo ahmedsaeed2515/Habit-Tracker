@@ -222,7 +222,6 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                 .read(habitBuilderProvider.notifier)
                 .updateSelectedCategories(categories);
           },
-          language: 'ar',
         ),
       ),
     );
@@ -342,7 +341,6 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                         child: TemplateCard(
                           template: template,
                           isSelected: isSelected,
-                          language: 'ar',
                           onTap: () {
                             ref
                                 .read(habitBuilderProvider.notifier)
@@ -467,7 +465,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.star, // يمكن تحسينه لاحقاً
                                 color: Colors.white,
                                 size: 20,
@@ -513,7 +511,6 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
         border: Border(
           top: BorderSide(
             color: theme.colorScheme.outline.withValues(alpha: 0.2),
-            width: 1,
           ),
         ),
       ),
@@ -826,7 +823,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
             onTap: () {
               ref
                   .read(habitBuilderProvider.notifier)
-                  .updateMotivationStyle(style['id'] as int);
+                  .updateMotivationStyle(style['id']! as int);
             },
             borderRadius: BorderRadius.circular(8),
             child: Container(
@@ -845,7 +842,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    style['title'] as String,
+                    style['title']! as String,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: isSelected
                           ? theme.colorScheme.onPrimaryContainer
@@ -855,7 +852,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    style['subtitle'] as String,
+                    style['subtitle']! as String,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: isSelected
                           ? theme.colorScheme.onPrimaryContainer.withValues(

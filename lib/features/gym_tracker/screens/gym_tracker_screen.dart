@@ -179,10 +179,6 @@ class _GymTrackerScreenState extends ConsumerState<GymTrackerScreen>
 
 /// Widget لعرض قائمة التمارين أو الحالة الفارغة
 class _WorkoutListView extends StatelessWidget {
-  final List<Workout> workouts;
-  final _EmptyStateConfig emptyStateConfig;
-  final Function(Workout) onEdit;
-  final Function(Workout) onDelete;
 
   const _WorkoutListView({
     required this.workouts,
@@ -190,6 +186,10 @@ class _WorkoutListView extends StatelessWidget {
     required this.onEdit,
     required this.onDelete,
   });
+  final List<Workout> workouts;
+  final _EmptyStateConfig emptyStateConfig;
+  final Function(Workout) onEdit;
+  final Function(Workout) onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -220,11 +220,6 @@ class _WorkoutListView extends StatelessWidget {
 
 /// إعدادات الحالة الفارغة لكل تبويبة
 class _EmptyStateConfig {
-  final IconData icon;
-  final String title;
-  final String description;
-  final String? buttonText;
-  final VoidCallback? onPressed;
 
   const _EmptyStateConfig({
     required this.icon,
@@ -257,4 +252,9 @@ class _EmptyStateConfig {
       description: 'سجل تمرينك الأول!',
     );
   }
+  final IconData icon;
+  final String title;
+  final String description;
+  final String? buttonText;
+  final VoidCallback? onPressed;
 }

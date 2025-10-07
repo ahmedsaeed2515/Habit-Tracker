@@ -4,6 +4,18 @@ part 'performance_metrics.g.dart';
 
 @HiveType(typeId: 105)
 class PerformanceMetrics extends HiveObject {
+
+  PerformanceMetrics({
+    required this.id,
+    required this.timestamp,
+    required this.appPerformance,
+    required this.databasePerformance,
+    required this.memoryUsage,
+    required this.networkPerformance,
+    required this.uiPerformance,
+    this.customMetrics = const {},
+    required this.deviceInfo,
+  });
   @HiveField(0)
   String id;
 
@@ -30,18 +42,6 @@ class PerformanceMetrics extends HiveObject {
 
   @HiveField(8)
   DeviceInfo deviceInfo;
-
-  PerformanceMetrics({
-    required this.id,
-    required this.timestamp,
-    required this.appPerformance,
-    required this.databasePerformance,
-    required this.memoryUsage,
-    required this.networkPerformance,
-    required this.uiPerformance,
-    this.customMetrics = const {},
-    required this.deviceInfo,
-  });
 
   // الحصول على النقاط الإجمالية للأداء
   double get overallPerformanceScore {
@@ -134,7 +134,16 @@ class PerformanceMetrics extends HiveObject {
 }
 
 @HiveType(typeId: 106)
-class AppPerformanceData extends HiveObject {
+class AppPerformanceData extends HiveObject { // إجمالي وقت الجلسة
+
+  AppPerformanceData({
+    this.startupTime = 0,
+    this.cpuUsage = 0.0,
+    this.batteryUsage = 0,
+    this.crashCount = 0,
+    this.featureUsageTimes = const {},
+    this.totalSessionTime = 0,
+  });
   @HiveField(0)
   int startupTime; // مللي ثانية
 
@@ -151,28 +160,21 @@ class AppPerformanceData extends HiveObject {
   Map<String, int> featureUsageTimes; // وقت استخدام كل ميزة
 
   @HiveField(5)
-  int totalSessionTime; // إجمالي وقت الجلسة
-
-  AppPerformanceData({
-    this.startupTime = 0,
-    this.cpuUsage = 0.0,
-    this.batteryUsage = 0,
-    this.crashCount = 0,
-    this.featureUsageTimes = const {},
-    this.totalSessionTime = 0,
-  });
+  int totalSessionTime;
 
   // حساب نقاط الأداء
   double get performanceScore {
     double score = 100.0;
     
     // خصم نقاط لوقت البدء البطيء
-    if (startupTime > 2000) score -= 20;
-    else if (startupTime > 1000) score -= 10;
+    if (startupTime > 2000) {
+      score -= 20;
+    } else if (startupTime > 1000) score -= 10;
     
     // خصم نقاط لاستخدام المعالج المرتفع
-    if (cpuUsage > 80) score -= 25;
-    else if (cpuUsage > 50) score -= 15;
+    if (cpuUsage > 80) {
+      score -= 25;
+    } else if (cpuUsage > 50) score -= 15;
     
     // خصم نقاط للتعطلات
     score -= (crashCount * 10).clamp(0, 30);
@@ -195,7 +197,16 @@ class AppPerformanceData extends HiveObject {
 }
 
 @HiveType(typeId: 107)
-class DatabasePerformanceData extends HiveObject {
+class DatabasePerformanceData extends HiveObject { // حجم قاعدة البيانات بالبايت
+
+  DatabasePerformanceData({
+    this.averageQueryTime = 0.0,
+    this.totalQueries = 0,
+    this.slowQueries = 0,
+    this.failedQueries = 0,
+    this.queryMetrics = const {},
+    this.databaseSize = 0,
+  });
   @HiveField(0)
   double averageQueryTime; // مللي ثانية
 
@@ -212,24 +223,16 @@ class DatabasePerformanceData extends HiveObject {
   Map<String, QueryMetrics> queryMetrics; // مقاييس كل استعلام
 
   @HiveField(5)
-  int databaseSize; // حجم قاعدة البيانات بالبايت
-
-  DatabasePerformanceData({
-    this.averageQueryTime = 0.0,
-    this.totalQueries = 0,
-    this.slowQueries = 0,
-    this.failedQueries = 0,
-    this.queryMetrics = const {},
-    this.databaseSize = 0,
-  });
+  int databaseSize;
 
   // حساب نقاط الأداء
   double get performanceScore {
     double score = 100.0;
     
     // خصم نقاط للاستعلامات البطيئة
-    if (averageQueryTime > 100) score -= 30;
-    else if (averageQueryTime > 50) score -= 15;
+    if (averageQueryTime > 100) {
+      score -= 30;
+    } else if (averageQueryTime > 50) score -= 15;
     
     // خصم نقاط للاستعلامات الفاشلة
     final failureRate = totalQueries > 0 ? (failedQueries / totalQueries) * 100 : 0;
@@ -258,6 +261,14 @@ class DatabasePerformanceData extends HiveObject {
 
 @HiveType(typeId: 108)
 class QueryMetrics extends HiveObject {
+
+  QueryMetrics({
+    required this.queryType,
+    this.averageTime = 0.0,
+    this.executionCount = 0,
+    this.minTime = double.infinity,
+    this.maxTime = 0.0,
+  });
   @HiveField(0)
   String queryType;
 
@@ -272,14 +283,6 @@ class QueryMetrics extends HiveObject {
 
   @HiveField(4)
   double maxTime;
-
-  QueryMetrics({
-    required this.queryType,
-    this.averageTime = 0.0,
-    this.executionCount = 0,
-    this.minTime = double.infinity,
-    this.maxTime = 0.0,
-  });
 
   // تحديث المقاييس
   void updateMetrics(double executionTime) {
@@ -306,7 +309,16 @@ class QueryMetrics extends HiveObject {
 }
 
 @HiveType(typeId: 109)
-class MemoryUsageData extends HiveObject {
+class MemoryUsageData extends HiveObject { // استخدام الذاكرة لكل ميزة
+
+  MemoryUsageData({
+    this.usedMemory = 0,
+    this.totalMemory = 0,
+    this.memoryUsagePercentage = 0.0,
+    this.snapshots = const [],
+    this.memoryLeaks = 0,
+    this.memoryByFeature = const {},
+  });
   @HiveField(0)
   int usedMemory; // MB
 
@@ -323,24 +335,16 @@ class MemoryUsageData extends HiveObject {
   int memoryLeaks; // عدد تسريبات الذاكرة المكتشفة
 
   @HiveField(5)
-  Map<String, int> memoryByFeature; // استخدام الذاكرة لكل ميزة
-
-  MemoryUsageData({
-    this.usedMemory = 0,
-    this.totalMemory = 0,
-    this.memoryUsagePercentage = 0.0,
-    this.snapshots = const [],
-    this.memoryLeaks = 0,
-    this.memoryByFeature = const {},
-  });
+  Map<String, int> memoryByFeature;
 
   // حساب نقاط الأداء
   double get performanceScore {
     double score = 100.0;
     
     // خصم نقاط لاستخدام الذاكرة المرتفع
-    if (memoryUsagePercentage > 90) score -= 40;
-    else if (memoryUsagePercentage > 80) score -= 25;
+    if (memoryUsagePercentage > 90) {
+      score -= 40;
+    } else if (memoryUsagePercentage > 80) score -= 25;
     else if (memoryUsagePercentage > 70) score -= 15;
     
     // خصم نقاط لتسريبات الذاكرة
@@ -378,7 +382,13 @@ class MemoryUsageData extends HiveObject {
 }
 
 @HiveType(typeId: 110)
-class MemorySnapshot extends HiveObject {
+class MemorySnapshot extends HiveObject { // السياق الذي أخذت فيه اللقطة
+
+  MemorySnapshot({
+    required this.timestamp,
+    required this.usedMemory,
+    required this.context,
+  });
   @HiveField(0)
   DateTime timestamp;
 
@@ -386,13 +396,7 @@ class MemorySnapshot extends HiveObject {
   int usedMemory;
 
   @HiveField(2)
-  String context; // السياق الذي أخذت فيه اللقطة
-
-  MemorySnapshot({
-    required this.timestamp,
-    required this.usedMemory,
-    required this.context,
-  });
+  String context;
 
   // تحويل إلى خريطة
   Map<String, dynamic> toMap() {
@@ -406,6 +410,15 @@ class MemorySnapshot extends HiveObject {
 
 @HiveType(typeId: 111)
 class NetworkPerformanceData extends HiveObject {
+
+  NetworkPerformanceData({
+    this.averageResponseTime = 0.0,
+    this.successfulRequests = 0,
+    this.failedRequests = 0,
+    this.totalDataTransferred = 0,
+    this.endpointMetrics = const {},
+    this.connectionType = ConnectionType.none,
+  });
   @HiveField(0)
   double averageResponseTime; // مللي ثانية
 
@@ -424,22 +437,14 @@ class NetworkPerformanceData extends HiveObject {
   @HiveField(5)
   ConnectionType connectionType;
 
-  NetworkPerformanceData({
-    this.averageResponseTime = 0.0,
-    this.successfulRequests = 0,
-    this.failedRequests = 0,
-    this.totalDataTransferred = 0,
-    this.endpointMetrics = const {},
-    this.connectionType = ConnectionType.none,
-  });
-
   // حساب نقاط الأداء
   double get performanceScore {
     double score = 100.0;
     
     // خصم نقاط لوقت الاستجابة البطيء
-    if (averageResponseTime > 2000) score -= 30;
-    else if (averageResponseTime > 1000) score -= 20;
+    if (averageResponseTime > 2000) {
+      score -= 30;
+    } else if (averageResponseTime > 1000) score -= 20;
     else if (averageResponseTime > 500) score -= 10;
     
     // خصم نقاط للطلبات الفاشلة
@@ -468,6 +473,13 @@ class NetworkPerformanceData extends HiveObject {
 
 @HiveType(typeId: 112)
 class EndpointMetrics extends HiveObject {
+
+  EndpointMetrics({
+    required this.endpoint,
+    this.averageResponseTime = 0.0,
+    this.requestCount = 0,
+    this.errorCount = 0,
+  });
   @HiveField(0)
   String endpoint;
 
@@ -479,13 +491,6 @@ class EndpointMetrics extends HiveObject {
 
   @HiveField(3)
   int errorCount;
-
-  EndpointMetrics({
-    required this.endpoint,
-    this.averageResponseTime = 0.0,
-    this.requestCount = 0,
-    this.errorCount = 0,
-  });
 
   // تحويل إلى خريطة
   Map<String, dynamic> toMap() {
@@ -499,7 +504,15 @@ class EndpointMetrics extends HiveObject {
 }
 
 @HiveType(typeId: 113)
-class UIPerformanceData extends HiveObject {
+class UIPerformanceData extends HiveObject { // تأخر الرسوم المتحركة
+
+  UIPerformanceData({
+    this.averageFrameTime = 0.0,
+    this.droppedFrames = 0,
+    this.scrollPerformance = 0.0,
+    this.screenMetrics = const {},
+    this.animationLags = 0,
+  });
   @HiveField(0)
   double averageFrameTime; // مللي ثانية
 
@@ -513,27 +526,21 @@ class UIPerformanceData extends HiveObject {
   Map<String, ScreenMetrics> screenMetrics;
 
   @HiveField(4)
-  int animationLags; // تأخر الرسوم المتحركة
-
-  UIPerformanceData({
-    this.averageFrameTime = 0.0,
-    this.droppedFrames = 0,
-    this.scrollPerformance = 0.0,
-    this.screenMetrics = const {},
-    this.animationLags = 0,
-  });
+  int animationLags;
 
   // حساب نقاط الأداء
   double get performanceScore {
     double score = 100.0;
     
     // خصم نقاط لوقت الإطار الطويل (المثالي 16.67ms للـ60 FPS)
-    if (averageFrameTime > 33.33) score -= 40; // أقل من 30 FPS
-    else if (averageFrameTime > 16.67) score -= 20; // أقل من 60 FPS
+    if (averageFrameTime > 33.33) {
+      score -= 40; // أقل من 30 FPS
+    } else if (averageFrameTime > 16.67) score -= 20; // أقل من 60 FPS
     
     // خصم نقاط للإطارات المفقودة
-    if (droppedFrames > 100) score -= 30;
-    else if (droppedFrames > 50) score -= 20;
+    if (droppedFrames > 100) {
+      score -= 30;
+    } else if (droppedFrames > 50) score -= 20;
     else if (droppedFrames > 20) score -= 10;
     
     // خصم نقاط لتأخر الرسوم المتحركة
@@ -556,7 +563,14 @@ class UIPerformanceData extends HiveObject {
 }
 
 @HiveType(typeId: 114)
-class ScreenMetrics extends HiveObject {
+class ScreenMetrics extends HiveObject { // عدد التفاعلات
+
+  ScreenMetrics({
+    required this.screenName,
+    this.loadTime = 0.0,
+    this.renderTime = 0,
+    this.interactionCount = 0,
+  });
   @HiveField(0)
   String screenName;
 
@@ -567,14 +581,7 @@ class ScreenMetrics extends HiveObject {
   int renderTime; // وقت الرسم
 
   @HiveField(3)
-  int interactionCount; // عدد التفاعلات
-
-  ScreenMetrics({
-    required this.screenName,
-    this.loadTime = 0.0,
-    this.renderTime = 0,
-    this.interactionCount = 0,
-  });
+  int interactionCount;
 
   // تحويل إلى خريطة
   Map<String, dynamic> toMap() {
@@ -589,6 +596,16 @@ class ScreenMetrics extends HiveObject {
 
 @HiveType(typeId: 115)
 class DeviceInfo extends HiveObject {
+
+  DeviceInfo({
+    required this.deviceModel,
+    required this.osVersion,
+    this.ramSize = 0,
+    this.storageSize = 0,
+    required this.cpuType,
+    this.screenDensity = 0.0,
+    required this.screenResolution,
+  });
   @HiveField(0)
   String deviceModel;
 
@@ -609,16 +626,6 @@ class DeviceInfo extends HiveObject {
 
   @HiveField(6)
   String screenResolution;
-
-  DeviceInfo({
-    required this.deviceModel,
-    required this.osVersion,
-    this.ramSize = 0,
-    this.storageSize = 0,
-    required this.cpuType,
-    this.screenDensity = 0.0,
-    required this.screenResolution,
-  });
 
   // تحويل إلى خريطة
   Map<String, dynamic> toMap() {
@@ -651,10 +658,6 @@ enum PerformanceLevel {
 
 @HiveType(typeId: 117)
 class PerformanceIssue {
-  final IssueType type;
-  final IssueSeverity severity;
-  final String description;
-  final String suggestion;
 
   PerformanceIssue({
     required this.type,
@@ -662,6 +665,10 @@ class PerformanceIssue {
     required this.description,
     required this.suggestion,
   });
+  final IssueType type;
+  final IssueSeverity severity;
+  final String description;
+  final String suggestion;
 
   // تحويل إلى خريطة
   Map<String, dynamic> toMap() {

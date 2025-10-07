@@ -6,7 +6,20 @@ import 'package:hive/hive.dart';
 part 'workout.g.dart';
 
 @HiveType(typeId: 0)
-class Workout extends HiveObject {
+class Workout extends HiveObject { // ملاحظات
+
+  Workout({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.date,
+    required this.muscleGroup,
+    required this.sets,
+    this.duration = 0,
+    this.isCompleted = false,
+    this.type = 'قوة',
+    this.notes = '',
+  });
   @HiveField(0)
   String id;
 
@@ -35,20 +48,7 @@ class Workout extends HiveObject {
   String type; // نوع التمرين (قوة، كارديو، مرونة، رياضة)
 
   @HiveField(9)
-  String notes; // ملاحظات
-
-  Workout({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.date,
-    required this.muscleGroup,
-    required this.sets,
-    this.duration = 0,
-    this.isCompleted = false,
-    this.type = 'قوة',
-    this.notes = '',
-  });
+  String notes;
 
   // حساب إجمالي الوزن المرفوع
   double get totalWeight {
@@ -89,6 +89,14 @@ class Workout extends HiveObject {
 
 @HiveType(typeId: 1)
 class ExerciseSet extends HiveObject {
+
+  ExerciseSet({
+    required this.exerciseName,
+    required this.reps,
+    required this.weight,
+    this.restTime = 60,
+    this.isCompleted = false,
+  });
   @HiveField(0)
   String exerciseName;
 
@@ -103,14 +111,6 @@ class ExerciseSet extends HiveObject {
 
   @HiveField(4)
   bool isCompleted;
-
-  ExerciseSet({
-    required this.exerciseName,
-    required this.reps,
-    required this.weight,
-    this.restTime = 60,
-    this.isCompleted = false,
-  });
 
   ExerciseSet copyWith({
     String? exerciseName,

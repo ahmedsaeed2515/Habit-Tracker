@@ -9,6 +9,20 @@ part 'pomodoro_models.g.dart';
 /// جلسة Pomodoro
 @HiveType(typeId: 81)
 class PomodoroSession {
+
+  const PomodoroSession({
+    required this.id,
+    this.taskId,
+    required this.type,
+    required this.duration,
+    required this.startTime,
+    this.endTime,
+    required this.status,
+    this.isCompleted = false,
+    this.actualDuration,
+    this.cycleNumber = 1,
+    this.metadata = const {},
+  });
   @HiveField(0)
   final String id;
 
@@ -41,20 +55,6 @@ class PomodoroSession {
 
   @HiveField(10)
   final Map<String, dynamic> metadata;
-
-  const PomodoroSession({
-    required this.id,
-    this.taskId,
-    required this.type,
-    required this.duration,
-    required this.startTime,
-    this.endTime,
-    required this.status,
-    this.isCompleted = false,
-    this.actualDuration,
-    this.cycleNumber = 1,
-    this.metadata = const {},
-  });
 
   PomodoroSession copyWith({
     String? id,
@@ -137,7 +137,28 @@ enum SessionStatus {
 
 /// إعدادات Pomodoro
 @HiveType(typeId: 84)
-class PomodoroSettings {
+class PomodoroSettings { // صوت الإشعارات
+
+  const PomodoroSettings({
+    this.focusSession = const Duration(minutes: 25),
+    this.shortBreak = const Duration(minutes: 5),
+    this.longBreak = const Duration(minutes: 15),
+    this.longBreakInterval = 4,
+    this.autoStartBreaks = false,
+    this.autoStartFocus = false,
+    this.enableNotifications = true,
+    this.enableBackgroundMode = true,
+    this.focusSound = 'default_focus.mp3',
+    this.breakSound = 'default_break.mp3',
+    this.soundVolume = 0.7,
+    this.enableVibration = true,
+    this.motivationalQuotes = const [],
+    this.customSettings = const {},
+    this.dailyGoal = 8,
+    this.taskReminders = true,
+    this.achievementNotifications = true,
+    this.notificationSound = 'default_notification.mp3',
+  });
   @HiveField(0)
   final Duration focusSession;
 
@@ -190,28 +211,7 @@ class PomodoroSettings {
   final bool achievementNotifications; // إشعارات الإنجازات
 
   @HiveField(17)
-  final String notificationSound; // صوت الإشعارات
-
-  const PomodoroSettings({
-    this.focusSession = const Duration(minutes: 25),
-    this.shortBreak = const Duration(minutes: 5),
-    this.longBreak = const Duration(minutes: 15),
-    this.longBreakInterval = 4,
-    this.autoStartBreaks = false,
-    this.autoStartFocus = false,
-    this.enableNotifications = true,
-    this.enableBackgroundMode = true,
-    this.focusSound = 'default_focus.mp3',
-    this.breakSound = 'default_break.mp3',
-    this.soundVolume = 0.7,
-    this.enableVibration = true,
-    this.motivationalQuotes = const [],
-    this.customSettings = const {},
-    this.dailyGoal = 8,
-    this.taskReminders = true,
-    this.achievementNotifications = true,
-    this.notificationSound = 'default_notification.mp3',
-  });
+  final String notificationSound;
 
   PomodoroSettings copyWith({
     Duration? focusSession,
@@ -267,6 +267,27 @@ class PomodoroSettings {
 /// مهمة To-Do متقدمة
 @HiveType(typeId: 85)
 class AdvancedTask {
+
+  const AdvancedTask({
+    required this.id,
+    required this.title,
+    this.description,
+    this.priority = TaskPriority.medium,
+    this.tags = const [],
+    this.dueDate,
+    this.reminderTime,
+    this.estimatedDuration,
+    this.actualDuration = Duration.zero,
+    this.status = TaskStatus.pending,
+    this.subtasks = const [],
+    this.recurrence,
+    this.projectId,
+    this.collaborators = const [],
+    this.pomodoroSessions = 0,
+    required this.createdAt,
+    required this.updatedAt,
+    this.metadata = const {},
+  });
   @HiveField(0)
   final String id;
 
@@ -320,27 +341,6 @@ class AdvancedTask {
 
   @HiveField(17)
   final Map<String, dynamic> metadata;
-
-  const AdvancedTask({
-    required this.id,
-    required this.title,
-    this.description,
-    this.priority = TaskPriority.medium,
-    this.tags = const [],
-    this.dueDate,
-    this.reminderTime,
-    this.estimatedDuration,
-    this.actualDuration = Duration.zero,
-    this.status = TaskStatus.pending,
-    this.subtasks = const [],
-    this.recurrence,
-    this.projectId,
-    this.collaborators = const [],
-    this.pomodoroSessions = 0,
-    required this.createdAt,
-    required this.updatedAt,
-    this.metadata = const {},
-  });
 
   AdvancedTask copyWith({
     String? id,
@@ -456,7 +456,16 @@ enum TaskStatus {
 
 /// مهمة فرعية
 @HiveType(typeId: 88)
-class Subtask {
+class Subtask { // ترتيب المهمة الفرعية
+
+  const Subtask({
+    required this.id,
+    required this.title,
+    this.isCompleted = false,
+    this.dueDate,
+    this.estimatedDuration,
+    this.order = 0,
+  });
   @HiveField(0)
   final String id;
 
@@ -473,16 +482,7 @@ class Subtask {
   final Duration? estimatedDuration;
 
   @HiveField(5)
-  final int order; // ترتيب المهمة الفرعية
-
-  const Subtask({
-    required this.id,
-    required this.title,
-    this.isCompleted = false,
-    this.dueDate,
-    this.estimatedDuration,
-    this.order = 0,
-  });
+  final int order;
 
   Subtask copyWith({
     String? id,
@@ -506,6 +506,14 @@ class Subtask {
 /// قاعدة التكرار
 @HiveType(typeId: 89)
 class RecurrenceRule {
+
+  const RecurrenceRule({
+    required this.type,
+    this.interval = 1,
+    this.daysOfWeek = const [],
+    this.endDate,
+    this.maxOccurrences,
+  });
   @HiveField(0)
   final RecurrenceType type;
 
@@ -520,14 +528,6 @@ class RecurrenceRule {
 
   @HiveField(4)
   final int? maxOccurrences;
-
-  const RecurrenceRule({
-    required this.type,
-    this.interval = 1,
-    this.daysOfWeek = const [],
-    this.endDate,
-    this.maxOccurrences,
-  });
 
   RecurrenceRule copyWith({
     RecurrenceType? type,
@@ -601,6 +601,20 @@ enum RecurrenceType {
 /// مشروع
 @HiveType(typeId: 91)
 class Project {
+
+  const Project({
+    required this.id,
+    required this.name,
+    this.description,
+    required this.color,
+    this.icon,
+    this.dueDate,
+    this.status = ProjectStatus.active,
+    this.memberIds = const [],
+    this.isShared = false,
+    required this.createdAt,
+    required this.updatedAt,
+  });
   @HiveField(0)
   final String id;
 
@@ -633,20 +647,6 @@ class Project {
 
   @HiveField(10)
   final DateTime updatedAt;
-
-  const Project({
-    required this.id,
-    required this.name,
-    this.description,
-    required this.color,
-    this.icon,
-    this.dueDate,
-    this.status = ProjectStatus.active,
-    this.memberIds = const [],
-    this.isShared = false,
-    required this.createdAt,
-    required this.updatedAt,
-  });
 
   Project copyWith({
     String? id,
@@ -699,6 +699,20 @@ enum ProjectStatus {
 /// إحصائيات Pomodoro
 @HiveType(typeId: 93)
 class PomodoroStats {
+
+  const PomodoroStats({
+    required this.id,
+    required this.date,
+    this.completedSessions = 0,
+    this.skippedSessions = 0,
+    this.totalFocusTime = Duration.zero,
+    this.totalBreakTime = Duration.zero,
+    this.completedTasks = 0,
+    this.streakDays = 0,
+    this.productivityScore = 0.0,
+    this.tagStats = const {},
+    this.priorityStats = const {},
+  });
   @HiveField(0)
   final String id;
 
@@ -731,20 +745,6 @@ class PomodoroStats {
 
   @HiveField(10)
   final Map<TaskPriority, int> priorityStats;
-
-  const PomodoroStats({
-    required this.id,
-    required this.date,
-    this.completedSessions = 0,
-    this.skippedSessions = 0,
-    this.totalFocusTime = Duration.zero,
-    this.totalBreakTime = Duration.zero,
-    this.completedTasks = 0,
-    this.streakDays = 0,
-    this.productivityScore = 0.0,
-    this.tagStats = const {},
-    this.priorityStats = const {},
-  });
 
   PomodoroStats copyWith({
     String? id,
@@ -824,7 +824,22 @@ enum AchievementCategory {
 
 /// إنجاز/شارة
 @HiveType(typeId: 94)
-class Achievement {
+class Achievement { // فئة الإنجاز
+
+  const Achievement({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.icon,
+    required this.type,
+    required this.targetValue,
+    this.currentValue = 0,
+    this.isUnlocked = false,
+    this.unlockedAt,
+    this.color = Colors.amber,
+    this.points = 10,
+    this.category = AchievementCategory.milestone,
+  });
   @HiveField(0)
   final String id;
 
@@ -859,22 +874,7 @@ class Achievement {
   final int points; // نقاط الإنجاز
 
   @HiveField(11)
-  final AchievementCategory category; // فئة الإنجاز
-
-  const Achievement({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.icon,
-    required this.type,
-    required this.targetValue,
-    this.currentValue = 0,
-    this.isUnlocked = false,
-    this.unlockedAt,
-    this.color = Colors.amber,
-    this.points = 10,
-    this.category = AchievementCategory.milestone,
-  });
+  final AchievementCategory category;
 
   Achievement copyWith({
     String? id,
@@ -937,6 +937,15 @@ enum AchievementType {
 /// تايمر متعدد
 @HiveType(typeId: 96)
 class MultiTimer {
+
+  const MultiTimer({
+    required this.id,
+    required this.name,
+    this.sessions = const [],
+    this.currentSessionIndex = 0,
+    this.isActive = false,
+    this.startedAt,
+  });
   @HiveField(0)
   final String id;
 
@@ -954,15 +963,6 @@ class MultiTimer {
 
   @HiveField(5)
   final DateTime? startedAt;
-
-  const MultiTimer({
-    required this.id,
-    required this.name,
-    this.sessions = const [],
-    this.currentSessionIndex = 0,
-    this.isActive = false,
-    this.startedAt,
-  });
 
   MultiTimer copyWith({
     String? id,
@@ -1013,6 +1013,18 @@ class MultiTimer {
 /// اقتراح AI للمهام
 @HiveType(typeId: 97)
 class AITaskSuggestion {
+
+  const AITaskSuggestion({
+    required this.id,
+    required this.taskId,
+    required this.type,
+    required this.suggestion,
+    required this.confidence,
+    this.reasons = const [],
+    this.data = const {},
+    required this.createdAt,
+    this.isApplied = false,
+  });
   @HiveField(0)
   final String id;
 
@@ -1039,18 +1051,6 @@ class AITaskSuggestion {
 
   @HiveField(8)
   final bool isApplied;
-
-  const AITaskSuggestion({
-    required this.id,
-    required this.taskId,
-    required this.type,
-    required this.suggestion,
-    required this.confidence,
-    this.reasons = const [],
-    this.data = const {},
-    required this.createdAt,
-    this.isApplied = false,
-  });
 
   AITaskSuggestion copyWith({
     String? id,
@@ -1102,6 +1102,18 @@ enum SuggestionType {
 /// ثيم تطبيق Pomodoro
 @HiveType(typeId: 99)
 class PomodoroTheme {
+
+  const PomodoroTheme({
+    required this.id,
+    required this.name,
+    required this.style,
+    required this.primaryColor,
+    required this.secondaryColor,
+    required this.backgroundColor,
+    required this.surfaceColor,
+    this.isDark = false,
+    this.customColors = const {},
+  });
   @HiveField(0)
   final String id;
 
@@ -1128,18 +1140,6 @@ class PomodoroTheme {
 
   @HiveField(8)
   final Map<String, Color> customColors;
-
-  const PomodoroTheme({
-    required this.id,
-    required this.name,
-    required this.style,
-    required this.primaryColor,
-    required this.secondaryColor,
-    required this.backgroundColor,
-    required this.surfaceColor,
-    this.isDark = false,
-    this.customColors = const {},
-  });
 
   PomodoroTheme copyWith({
     String? id,
@@ -1191,6 +1191,17 @@ enum ThemeStyle {
 /// إعدادات اقتراحات الاستراحة
 @HiveType(typeId: 251)
 class BreakSuggestion {
+
+  const BreakSuggestion({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.duration,
+    required this.type,
+    this.instructions = const [],
+    this.imageUrl,
+    this.isActive = true,
+  });
   @HiveField(0)
   final String id;
 
@@ -1214,17 +1225,6 @@ class BreakSuggestion {
 
   @HiveField(7)
   final bool isActive;
-
-  const BreakSuggestion({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.duration,
-    required this.type,
-    this.instructions = const [],
-    this.imageUrl,
-    this.isActive = true,
-  });
 
   BreakSuggestion copyWith({
     String? id,

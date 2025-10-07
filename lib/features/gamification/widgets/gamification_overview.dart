@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'points_summary.dart';
-import 'points_statistics.dart';
+
 import 'points_actions.dart';
+import 'points_statistics.dart';
+import 'points_summary.dart';
 
 /// النظرة الشاملة لنظام التحفيز - يجمع جميع المكونات المنفصلة
 /// هذا الملف يربط بين جميع ملفات النقاط المختلفة

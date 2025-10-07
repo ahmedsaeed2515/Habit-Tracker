@@ -100,7 +100,7 @@ class _SmartRecommendationsScreenState
               text: 'المقبولة (${state.acceptedCount})',
               icon: const Icon(Icons.check_circle),
             ),
-            Tab(text: 'الأنماط', icon: const Icon(Icons.insights)),
+            const Tab(text: 'الأنماط', icon: Icon(Icons.insights)),
           ],
         ),
       ),
@@ -245,7 +245,6 @@ class _SmartRecommendationsScreenState
                   isExpanded: true,
                   items: [
                     const DropdownMenuItem(
-                      value: null,
                       child: Text('جميع الأنواع'),
                     ),
                     ...RecommendationType.values.map(

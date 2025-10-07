@@ -3,22 +3,6 @@ import 'package:flutter/material.dart';
 /// A custom tab bar widget that provides consistent styling and behavior
 /// throughout the application with additional customization options
 class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
-  final List<Tab> tabs;
-  final TabController? controller;
-  final Color? indicatorColor;
-  final Color? labelColor;
-  final Color? unselectedLabelColor;
-  final TextStyle? labelStyle;
-  final TextStyle? unselectedLabelStyle;
-  final EdgeInsets? labelPadding;
-  final EdgeInsets? indicatorPadding;
-  final double? indicatorWeight;
-  final TabBarIndicatorSize? indicatorSize;
-  final Decoration? indicator;
-  final bool isScrollable;
-  final TabAlignment? tabAlignment;
-  final Color? backgroundColor;
-  final double? height;
 
   const CustomTabBar({
     super.key,
@@ -39,6 +23,22 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor,
     this.height = 48.0,
   });
+  final List<Tab> tabs;
+  final TabController? controller;
+  final Color? indicatorColor;
+  final Color? labelColor;
+  final Color? unselectedLabelColor;
+  final TextStyle? labelStyle;
+  final TextStyle? unselectedLabelStyle;
+  final EdgeInsets? labelPadding;
+  final EdgeInsets? indicatorPadding;
+  final double? indicatorWeight;
+  final TabBarIndicatorSize? indicatorSize;
+  final Decoration? indicator;
+  final bool isScrollable;
+  final TabAlignment? tabAlignment;
+  final Color? backgroundColor;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -74,15 +74,6 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
 
 /// A vertical tab bar for side navigation
 class VerticalTabBar extends StatelessWidget {
-  final List<Tab> tabs;
-  final int selectedIndex;
-  final void Function(int)? onTap;
-  final Color? selectedColor;
-  final Color? unselectedColor;
-  final Color? backgroundColor;
-  final double? width;
-  final EdgeInsets? padding;
-  final BorderRadius? borderRadius;
 
   const VerticalTabBar({
     super.key,
@@ -96,6 +87,15 @@ class VerticalTabBar extends StatelessWidget {
     this.padding,
     this.borderRadius,
   });
+  final List<Tab> tabs;
+  final int selectedIndex;
+  final void Function(int)? onTap;
+  final Color? selectedColor;
+  final Color? unselectedColor;
+  final Color? backgroundColor;
+  final double? width;
+  final EdgeInsets? padding;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +136,7 @@ class VerticalTabBar extends StatelessWidget {
                 children: [
                   if (tab.icon != null) ...[
                     Icon(
-                      (tab.icon as Icon).icon,
+                      (tab.icon! as Icon).icon,
                       color: isSelected
                           ? theme.colorScheme.onPrimaryContainer
                           : unselectedColor ?? theme.colorScheme.onSurface.withOpacity(0.6),
@@ -168,16 +168,6 @@ class VerticalTabBar extends StatelessWidget {
 
 /// A custom tab bar with badges
 class BadgeTabBar extends StatelessWidget implements PreferredSizeWidget {
-  final List<Tab> tabs;
-  final List<int?> badges;
-  final TabController? controller;
-  final Color? indicatorColor;
-  final Color? labelColor;
-  final Color? unselectedLabelColor;
-  final Color? badgeColor;
-  final Color? badgeTextColor;
-  final bool isScrollable;
-  final double height;
 
   const BadgeTabBar({
     super.key,
@@ -192,6 +182,16 @@ class BadgeTabBar extends StatelessWidget implements PreferredSizeWidget {
     this.isScrollable = false,
     this.height = 48.0,
   });
+  final List<Tab> tabs;
+  final List<int?> badges;
+  final TabController? controller;
+  final Color? indicatorColor;
+  final Color? labelColor;
+  final Color? unselectedLabelColor;
+  final Color? badgeColor;
+  final Color? badgeTextColor;
+  final bool isScrollable;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -259,17 +259,6 @@ class BadgeTabBar extends StatelessWidget implements PreferredSizeWidget {
 
 /// A sliding tab bar with smooth animations
 class SlidingTabBar extends StatefulWidget {
-  final List<String> tabs;
-  final int selectedIndex;
-  final void Function(int)? onTap;
-  final Color? selectedColor;
-  final Color? unselectedColor;
-  final Color? backgroundColor;
-  final Color? indicatorColor;
-  final double? height;
-  final EdgeInsets? padding;
-  final BorderRadius? borderRadius;
-  final Duration animationDuration;
 
   const SlidingTabBar({
     super.key,
@@ -285,6 +274,17 @@ class SlidingTabBar extends StatefulWidget {
     this.borderRadius,
     this.animationDuration = const Duration(milliseconds: 200),
   });
+  final List<String> tabs;
+  final int selectedIndex;
+  final void Function(int)? onTap;
+  final Color? selectedColor;
+  final Color? unselectedColor;
+  final Color? backgroundColor;
+  final Color? indicatorColor;
+  final double? height;
+  final EdgeInsets? padding;
+  final BorderRadius? borderRadius;
+  final Duration animationDuration;
 
   @override
   State<SlidingTabBar> createState() => _SlidingTabBarState();
@@ -334,7 +334,7 @@ class _SlidingTabBarState extends State<SlidingTabBar>
       height: widget.height,
       padding: widget.padding ?? const EdgeInsets.all(4.0),
       decoration: BoxDecoration(
-        color: widget.backgroundColor ?? theme.colorScheme.surfaceVariant,
+        color: widget.backgroundColor ?? theme.colorScheme.surfaceContainerHighest,
         borderRadius: widget.borderRadius ?? BorderRadius.circular(25.0),
       ),
       child: LayoutBuilder(
