@@ -270,8 +270,14 @@ class NotificationCard extends ConsumerWidget {
   }
 
   void _editNotification(BuildContext context, WidgetRef ref) {
-    // TODO: فتح شاشة تعديل الإشعار
+    // عرض رسالة بأن تعديل الإشعار قيد التطوير
     Navigator.pop(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('ميزة تعديل الإشعار قيد التطوير'),
+        duration: Duration(seconds: 2),
+      ),
+    );
   }
 
   void _deleteNotification(BuildContext context, WidgetRef ref) {

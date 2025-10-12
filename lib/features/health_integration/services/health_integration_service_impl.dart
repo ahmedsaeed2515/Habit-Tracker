@@ -56,13 +56,11 @@ class HealthIntegrationServiceImpl {
 
   // تسجيل محولات Hive
   void _registerAdapters() {
-    // تعطيل تسجيل المحولات مؤقتاً حتى يتم إنشاء ملفات .g.dart
-    // TODO: تفعيل هذا بعد تشغيل build_runner بنجاح
-
-    // سيتم تسجيل المحولات تلقائياً عند إنشاء ملفات .g.dart
-    // أو يمكن تسجيلها يدوياً بعد إصلاح الأخطاء في الملفات الأخرى
-
-    debugPrint('تم تخطي تسجيل محولات Hive مؤقتاً');
+    // ملاحظة: تسجيل المحولات يتم تلقائياً من خلال AdaptersManager
+    // في ملف health_adapters.dart ضمن نظام المحولات الموديلاري
+    // لا حاجة لتسجيلها هنا لتجنب التكرار
+    
+    debugPrint('✅ محولات Health Integration مسجلة من خلال AdaptersManager');
   }
 
   // إنشاء أو الحصول على ملف صحي

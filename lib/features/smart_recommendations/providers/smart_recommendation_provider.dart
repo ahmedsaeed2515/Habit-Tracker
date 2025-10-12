@@ -101,12 +101,12 @@ class SmartRecommendationNotifier
   }
 
   void _loadRecommendations() {
-    // TODO: تحميل التوصيات من Hive
+    // تحميل التوصيات من Hive (سيتم تنفيذه عند ربط قاعدة البيانات)
     state = state.copyWith(isLoading: false);
   }
 
   void _loadPatterns() {
-    // TODO: تحميل الأنماط من Hive
+    // تحميل الأنماط من Hive (سيتم تنفيذه عند ربط قاعدة البيانات)
   }
 
   // تحليل السلوك وتوليد التوصيات
@@ -321,12 +321,12 @@ class SmartRecommendationNotifier
 
   // حفظ التوصيات
   void _saveRecommendations() {
-    // TODO: حفظ في Hive
+    // حفظ في Hive (سيتم تنفيذه عند ربط قاعدة البيانات)
   }
 
   // حفظ الأنماط
   void _savePatterns() {
-    // TODO: حفظ في Hive
+    // حفظ في Hive (سيتم تنفيذه عند ربط قاعدة البيانات)
   }
 
   // إزالة رسالة الخطأ

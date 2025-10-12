@@ -90,7 +90,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                         const SizedBox(height: 16),
                         TextButton.icon(
                           onPressed: () {
-                            // TODO: Implement image picker
+                            // عرض رسالة بأن اختيار الصورة سيتم إضافته قريباً
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Image picker coming soon!'),

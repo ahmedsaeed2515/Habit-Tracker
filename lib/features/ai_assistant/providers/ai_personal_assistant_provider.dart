@@ -64,12 +64,13 @@ class AIPersonalAssistantNotifier
   }
 
   void _loadMessages() {
-    // TODO: تحميل الرسائل من Hive
+    // تحميل الرسائل من Hive (سيتم تنفيذه عند ربط قاعدة البيانات)
+    // حالياً يبدأ بقائمة فارغة
     state = state.copyWith(isLoading: false);
   }
 
   void _loadUserProfile() {
-    // TODO: تحميل الملف الشخصي من Hive
+    // تحميل الملف الشخصي من Hive (سيتم تنفيذه عند ربط قاعدة البيانات)
     // إذا لم يوجد ملف، إنشاء ملف افتراضي
     if (state.userProfile == null) {
       final defaultProfile = _createDefaultProfile();
@@ -190,7 +191,7 @@ class AIPersonalAssistantNotifier
   // تحديث الملف الشخصي
   void updateUserProfile(AIPersonalityProfile newProfile) {
     state = state.copyWith(userProfile: newProfile);
-    // TODO: حفظ في Hive
+    // حفظ في Hive (سيتم تنفيذه عند ربط قاعدة البيانات)
   }
 
   // حذف رسالة

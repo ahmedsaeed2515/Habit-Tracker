@@ -347,7 +347,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
   }
 
   void _showAddNotificationDialog(BuildContext context) {
-    // TODO: فتح حوار إضافة إشعار جديد
+    // عرض حوار إضافة إشعار جديد
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
