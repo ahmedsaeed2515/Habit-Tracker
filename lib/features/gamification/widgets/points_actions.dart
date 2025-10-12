@@ -103,7 +103,7 @@ class PointsActions extends ConsumerWidget {
           ),
           TextButton(
             onPressed: () {
-              // TODO: تنفيذ إعادة تعيين النقاط
+              // إعادة تعيين النقاط (سيتم ربطها بالمزود لاحقاً)
               Navigator.of(context).pop();
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('سيتم إضافة هذه الميزة لاحقاً')),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// ويدجت مستوى المستخدم المحسن
-/// TODO: تطوير هذا الويدجت مع البيانات الفعلية
+/// يعرض مستوى المستخدم (سيتم ربطها بالبيانات الفعلية في المرحلة القادمة)
 class EnhancedUserLevelWidget extends ConsumerWidget {
   const EnhancedUserLevelWidget({super.key});
 

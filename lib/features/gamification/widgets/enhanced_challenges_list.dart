@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// قائمة التحديات المحسنة
-/// TODO: تطوير هذا الويدجت مع البيانات الفعلية
+/// يعرض التحديات المتاحة (سيتم ربطها بالبيانات الفعلية في المرحلة القادمة)
 class EnhancedChallengesList extends ConsumerWidget {
   const EnhancedChallengesList({super.key});
 

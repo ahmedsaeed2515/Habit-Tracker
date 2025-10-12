@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// ملخص النقاط المحسن
-/// TODO: تطوير هذا الويدجت مع البيانات الفعلية
+/// يعرض ملخص النقاط (سيتم ربطها بالبيانات الفعلية في المرحلة القادمة)
 class EnhancedPointsSummary extends ConsumerWidget {
   const EnhancedPointsSummary({super.key});
 

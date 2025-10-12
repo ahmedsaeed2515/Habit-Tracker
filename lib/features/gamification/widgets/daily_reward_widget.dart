@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// ويدجت المكافأة اليومية
-/// TODO: تطوير هذا الويدجت مع البيانات الفعلية
+/// يعرض المكافآت اليومية (سيتم ربطها بالبيانات الفعلية في المرحلة القادمة)
 class DailyRewardWidget extends ConsumerWidget {
   const DailyRewardWidget({super.key});
 

@@ -144,7 +144,10 @@ class GamificationScreen extends ConsumerWidget {
                   icon: Icons.bar_chart,
                   color: Colors.teal,
                   onTap: () {
-                    // TODO: Navigate to statistics screen
+                    // Switch to statistics tab
+                    if (onTabChange != null) {
+                      onTabChange!(3); // Statistics tab index
+                    }
                   },
                 ),
               ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// شبكة الإنجازات المحسنة
-/// TODO: تطوير هذا الويدجت مع البيانات الفعلية
+/// يعرض الإنجازات المتاحة (سيتم ربطها بالبيانات الفعلية في المرحلة القادمة)
 class EnhancedAchievementsGrid extends ConsumerWidget {
   const EnhancedAchievementsGrid({super.key});
 

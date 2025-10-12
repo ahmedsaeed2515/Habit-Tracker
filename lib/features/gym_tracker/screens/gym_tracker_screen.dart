@@ -173,7 +173,20 @@ class _GymTrackerScreenState extends ConsumerState<GymTrackerScreen>
 
   /// إظهار حوار الإحصائيات
   void _showStatsDialog() {
-    // TODO: تطوير حوار الإحصائيات منفصل
+    // عرض رسالة بأن الإحصائيات التفصيلية قيد التطوير
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('إحصائيات التمارين'),
+        content: const Text('سيتم إضافة الإحصائيات التفصيلية في التحديث القادم'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('حسناً'),
+          ),
+        ],
+      ),
+    );
   }
 }
 
