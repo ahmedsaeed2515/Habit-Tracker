@@ -111,6 +111,27 @@ See the [Quick Start Guide](QUICK_START.md) for detailed setup instructions.
    flutter run
    ```
 
+### Quick Build (Android + Web)
+
+Use the provided build script to build both platforms at once:
+
+```bash
+# Build Android APK and Web
+./build-all.sh
+
+# Or manually:
+flutter build apk --release          # Android
+flutter build web --release          # Web
+```
+
+### Verify Deployment Setup
+
+Check if all deployment configurations are ready:
+
+```bash
+./verify-deployment-setup.sh
+```
+
 ## 📱 Screenshots
 
 ### AI Features
@@ -198,6 +219,7 @@ The app uses Hive for local data storage with the following type adapters:
 Comprehensive documentation is available:
 
 - **[Quick Start Guide](QUICK_START.md)** - Get started in minutes
+- **[Deployment Guide](DEPLOYMENT_GUIDE.md)** - Deploy to Android, Web (Netlify, Vercel)
 - **[Project Structure](PROJECT_STRUCTURE.md)** - Detailed architecture guide
 - **[Testing Report](TESTING_COMPLETE.md)** - Complete testing coverage
 - **[Current Status](CURRENT_STATUS.md)** - Development progress
