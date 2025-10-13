@@ -85,3 +85,10 @@ package-lock.json
 .env
 .env.local
 .env.*.local
+
+# Android signing keys (NEVER commit these!)
+/android/key.properties
+/android/*.jks
+/android/*.keystore
+*.jks
+*.keystore

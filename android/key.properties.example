@@ -1,0 +1,27 @@
+# Android Release Signing Configuration
+# ======================================
+# 
+# This file contains the configuration for signing your Android release APK.
+# 
+# IMPORTANT: 
+# - Rename this file to "key.properties" (remove .example)
+# - Add "key.properties" to .gitignore to keep your keys secure
+# - Never commit the actual key.properties file to version control
+#
+# Instructions:
+# -------------
+# 1. Generate a keystore file:
+#    keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+#
+# 2. Fill in the values below with your keystore information
+#
+# 3. Save this file as "key.properties" in the android/ directory
+
+storePassword=your_store_password_here
+keyPassword=your_key_password_here
+keyAlias=upload
+storeFile=../upload-keystore.jks
+
+# Note: The storeFile path is relative to the android/app directory
+# If your keystore is in the android directory, use: ../upload-keystore.jks
+# If it's in your home directory, use the full path: /home/username/upload-keystore.jks
