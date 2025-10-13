@@ -3,6 +3,7 @@
 
 export 'custom_tab_switcher.dart';
 export 'empty_state_widget.dart';
+export 'feature_grid_widget.dart';
 export 'interactive_button.dart';
 export 'loading_state_widget.dart';
 export 'search_bar_widget.dart';
