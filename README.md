@@ -4,10 +4,29 @@
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.9.2-02569B?logo=flutter)](https://flutter.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Android APK](https://img.shields.io/badge/Android-APK%20Ready-green?logo=android)](APK_BUILD_GUIDE_AR.md)
 
 > **Status**: ✅ Production Ready | **Version**: 1.0.0 | **Last Updated**: October 2025
 
 A comprehensive Flutter application for building and maintaining habits with artificial intelligence features, analytics, and personalized recommendations. Built with a modular architecture for easy maintenance and scalability.
+
+## 📱 Build APK / بناء APK
+
+**المشروع جاهز بالكامل لبناء APK لنظام أندرويد!**  
+**The project is fully ready to build Android APK!**
+
+```bash
+# بناء سريع - Quick build
+flutter build apk --release
+
+# أو إستخدام السكريبت - Or use the script
+./build-all.sh
+
+# التحقق من الجاهزية - Verify readiness
+./verify-apk-readiness.sh
+```
+
+📚 **للتفاصيل الكاملة بالعربية - For full details in Arabic**: [APK_BUILD_GUIDE_AR.md](APK_BUILD_GUIDE_AR.md)
 
 ## 🌐 Live Demo
 
