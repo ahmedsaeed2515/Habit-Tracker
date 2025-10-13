@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-// Note: we intentionally avoid requiring generated Hive adapters here and
-// instead provide toMap/fromMap helpers for Map-backed persistence.
+
+part 'inbox_models.g.dart';
 
 /// Idea model - typeId 271
 @HiveType(typeId: 271)
