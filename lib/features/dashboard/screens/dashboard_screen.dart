@@ -40,6 +40,31 @@ class DashboardScreen extends ConsumerWidget {
           statusBarIconBrightness: Brightness.light,
         ),
         actions: [
+          // زر الملف الشخصي
+          Semantics(
+            label: isArabic ? 'الملف الشخصي' : 'Profile',
+            hint: isArabic
+                ? 'اضغط لعرض الملف الشخصي'
+                : 'Tap to view profile',
+            child: Container(
+              margin: const EdgeInsets.only(right: 8),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: IconButton(
+                icon: const Icon(
+                  Icons.person_outline,
+                  color: Colors.white,
+                ),
+                tooltip: isArabic ? 'الملف الشخصي' : 'Profile',
+                onPressed: () {
+                  HapticFeedback.lightImpact();
+                  Navigator.pushNamed(context, '/profile');
+                },
+              ),
+            ),
+          ),
           Semantics(
             label: isArabic ? 'الإشعارات' : 'Notifications',
             hint: isArabic
