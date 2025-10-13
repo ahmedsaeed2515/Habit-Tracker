@@ -1,20 +1,57 @@
+# Netlify Configuration for Habit Tracker
+# Last updated: October 2025
+
 [build]
   command = "flutter build web --release --web-renderer canvaskit"
   publish = "build/web"
-
+  
 [build.environment]
   FLUTTER_VERSION = "3.9.2"
+  NODE_VERSION = "18"
 
+# SPA routing - redirect all routes to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# Production build with optimizations
 [context.production]
-  command = "flutter pub get && dart run build_runner build --delete-conflicting-outputs && flutter build web --release --web-renderer canvaskit"
+  command = "flutter pub get && dart run build_runner build --delete-conflicting-outputs && flutter build web --release --web-renderer canvaskit --dart-define=FLUTTER_WEB_USE_SKIA=true"
 
+# Deploy preview builds
 [context.deploy-preview]
   command = "flutter pub get && dart run build_runner build --delete-conflicting-outputs && flutter build web --release --web-renderer canvaskit"
 
+# Branch deploy builds
 [context.branch-deploy]
   command = "flutter pub get && dart run build_runner build --delete-conflicting-outputs && flutter build web --release --web-renderer canvaskit"
+
+# Headers for better performance and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/icons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
