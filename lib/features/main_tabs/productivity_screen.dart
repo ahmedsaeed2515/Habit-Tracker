@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/widgets/feature_grid_widget.dart';
 import '../../common/widgets/search_bar_widget.dart';
-import '../../features/gamification/screens/enhanced_gamification_screen.dart';
+import '../../features/gamification_system/screens/gamification_screen.dart';
 import '../../features/pomodoro_task_management/screens/pomodoro_todo_screen.dart';
 import '../budget/screens/budget_screen.dart';
 import '../inbox/screens/inbox_quick_capture.dart';
@@ -125,7 +125,7 @@ class _ProductivityScreenState extends ConsumerState<ProductivityScreen> {
     Widget? screen;
     switch (route) {
       case 'gamification':
-        screen = const EnhancedGamificationScreen();
+        screen = const GamificationScreen();
         break;
       case 'pomodoro':
         screen = const PomodoroTodoScreen();
