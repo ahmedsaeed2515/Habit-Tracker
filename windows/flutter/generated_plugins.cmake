@@ -5,7 +5,12 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   audioplayers_windows
   awesome_notifications
+  cloud_firestore
   connectivity_plus
+  firebase_auth
+  firebase_core
+  firebase_storage
+  flutter_secure_storage_windows
   flutter_tts
   permission_handler_windows
   speech_to_text_windows

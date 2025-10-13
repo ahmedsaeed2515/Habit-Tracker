@@ -76,158 +76,6 @@ class IdeaAdapter extends TypeAdapter<Idea> {
           typeId == other.typeId;
 }
 
-class IdeaStatusAdapter extends TypeAdapter<IdeaStatus> {
-  @override
-  final int typeId = 272;
-
-  @override
-  IdeaStatus read(BinaryReader reader) {
-    switch (reader.readByte()) {
-      case 0:
-        return IdeaStatus.inbox;
-      case 1:
-        return IdeaStatus.reviewing;
-      case 2:
-        return IdeaStatus.planned;
-      case 3:
-        return IdeaStatus.converted;
-      case 4:
-        return IdeaStatus.archived;
-      case 5:
-        return IdeaStatus.discarded;
-      default:
-        return IdeaStatus.inbox;
-    }
-  }
-
-  @override
-  void write(BinaryWriter writer, IdeaStatus obj) {
-    switch (obj) {
-      case IdeaStatus.inbox:
-        writer.writeByte(0);
-        break;
-      case IdeaStatus.reviewing:
-        writer.writeByte(1);
-        break;
-      case IdeaStatus.planned:
-        writer.writeByte(2);
-        break;
-      case IdeaStatus.converted:
-        writer.writeByte(3);
-        break;
-      case IdeaStatus.archived:
-        writer.writeByte(4);
-        break;
-      case IdeaStatus.discarded:
-        writer.writeByte(5);
-        break;
-    }
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is IdeaStatusAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-class IdeaPriorityAdapter extends TypeAdapter<IdeaPriority> {
-  @override
-  final int typeId = 273;
-
-  @override
-  IdeaPriority read(BinaryReader reader) {
-    switch (reader.readByte()) {
-      case 0:
-        return IdeaPriority.low;
-      case 1:
-        return IdeaPriority.normal;
-      case 2:
-        return IdeaPriority.high;
-      case 3:
-        return IdeaPriority.urgent;
-      default:
-        return IdeaPriority.normal;
-    }
-  }
-
-  @override
-  void write(BinaryWriter writer, IdeaPriority obj) {
-    switch (obj) {
-      case IdeaPriority.low:
-        writer.writeByte(0);
-        break;
-      case IdeaPriority.normal:
-        writer.writeByte(1);
-        break;
-      case IdeaPriority.high:
-        writer.writeByte(2);
-        break;
-      case IdeaPriority.urgent:
-        writer.writeByte(3);
-        break;
-    }
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is IdeaPriorityAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-class LinkedItemTypeAdapter extends TypeAdapter<LinkedItemType> {
-  @override
-  final int typeId = 274;
-
-  @override
-  LinkedItemType read(BinaryReader reader) {
-    switch (reader.readByte()) {
-      case 0:
-        return LinkedItemType.task;
-      case 1:
-        return LinkedItemType.note;
-      case 2:
-        return LinkedItemType.project;
-      default:
-        return LinkedItemType.task;
-    }
-  }
-
-  @override
-  void write(BinaryWriter writer, LinkedItemType obj) {
-    switch (obj) {
-      case LinkedItemType.task:
-        writer.writeByte(0);
-        break;
-      case LinkedItemType.note:
-        writer.writeByte(1);
-        break;
-      case LinkedItemType.project:
-        writer.writeByte(2);
-        break;
-    }
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is LinkedItemTypeAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
 class IdeaCategoryAdapter extends TypeAdapter<IdeaCategory> {
   @override
   final int typeId = 275;
@@ -322,6 +170,158 @@ class InboxItemAdapter extends TypeAdapter<InboxItem> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is InboxItemAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class IdeaStatusAdapter extends TypeAdapter<IdeaStatus> {
+  @override
+  final int typeId = 272;
+
+  @override
+  IdeaStatus read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return IdeaStatus.inbox;
+      case 1:
+        return IdeaStatus.reviewing;
+      case 2:
+        return IdeaStatus.planned;
+      case 3:
+        return IdeaStatus.converted;
+      case 4:
+        return IdeaStatus.archived;
+      case 5:
+        return IdeaStatus.discarded;
+      default:
+        return IdeaStatus.inbox;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, IdeaStatus obj) {
+    switch (obj) {
+      case IdeaStatus.inbox:
+        writer.writeByte(0);
+        break;
+      case IdeaStatus.reviewing:
+        writer.writeByte(1);
+        break;
+      case IdeaStatus.planned:
+        writer.writeByte(2);
+        break;
+      case IdeaStatus.converted:
+        writer.writeByte(3);
+        break;
+      case IdeaStatus.archived:
+        writer.writeByte(4);
+        break;
+      case IdeaStatus.discarded:
+        writer.writeByte(5);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is IdeaStatusAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class IdeaPriorityAdapter extends TypeAdapter<IdeaPriority> {
+  @override
+  final int typeId = 273;
+
+  @override
+  IdeaPriority read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return IdeaPriority.low;
+      case 1:
+        return IdeaPriority.normal;
+      case 2:
+        return IdeaPriority.high;
+      case 3:
+        return IdeaPriority.urgent;
+      default:
+        return IdeaPriority.low;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, IdeaPriority obj) {
+    switch (obj) {
+      case IdeaPriority.low:
+        writer.writeByte(0);
+        break;
+      case IdeaPriority.normal:
+        writer.writeByte(1);
+        break;
+      case IdeaPriority.high:
+        writer.writeByte(2);
+        break;
+      case IdeaPriority.urgent:
+        writer.writeByte(3);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is IdeaPriorityAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class LinkedItemTypeAdapter extends TypeAdapter<LinkedItemType> {
+  @override
+  final int typeId = 274;
+
+  @override
+  LinkedItemType read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return LinkedItemType.task;
+      case 1:
+        return LinkedItemType.note;
+      case 2:
+        return LinkedItemType.project;
+      default:
+        return LinkedItemType.task;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, LinkedItemType obj) {
+    switch (obj) {
+      case LinkedItemType.task:
+        writer.writeByte(0);
+        break;
+      case LinkedItemType.note:
+        writer.writeByte(1);
+        break;
+      case LinkedItemType.project:
+        writer.writeByte(2);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LinkedItemTypeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
