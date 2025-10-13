@@ -125,9 +125,11 @@ void main() {
       );
 
       final entry = HabitEntry(
+        id: 'entry-1',
+        habitId: 'test-id-6',
         date: DateTime(2024, 1, 2),
-        completed: true,
-        value: 1,
+        value: 1.0,
+        isCompleted: true,
       );
 
       // Act
@@ -135,7 +137,7 @@ void main() {
 
       // Assert
       expect(habit.entries.length, 1);
-      expect(habit.entries.first.completed, true);
+      expect(habit.entries.first.isCompleted, true);
       expect(habit.entries.first.date, DateTime(2024, 1, 2));
     });
   });

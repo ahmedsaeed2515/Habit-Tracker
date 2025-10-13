@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../gamification/screens/enhanced_gamification_screen.dart';
+import '../../gamification_system/screens/gamification_screen.dart';
 import '../../intelligent_workout_planner/screens/intelligent_workout_planner_screen.dart';
 // import '../../gym_tracker/screens/gym_tracker_screen.dart';
 // import '../../daily_habits/screens/daily_habits_screen.dart';
@@ -86,7 +86,7 @@ class QuickShortcuts extends ConsumerWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const EnhancedGamificationScreen(),
+                    builder: (_) => const GamificationScreen(),
                   ),
                 );
               },
