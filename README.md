@@ -198,6 +198,7 @@ The app uses Hive for local data storage with the following type adapters:
 Comprehensive documentation is available:
 
 - **[Quick Start Guide](QUICK_START.md)** - Get started in minutes
+- **[Deployment Guide](DEPLOYMENT_GUIDE.md)** - Deploy to Android, Web (Netlify, Vercel)
 - **[Project Structure](PROJECT_STRUCTURE.md)** - Detailed architecture guide
 - **[Testing Report](TESTING_COMPLETE.md)** - Complete testing coverage
 - **[Current Status](CURRENT_STATUS.md)** - Development progress

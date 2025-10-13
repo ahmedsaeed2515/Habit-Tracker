@@ -1,0 +1,20 @@
+[build]
+  command = "flutter build web --release --web-renderer canvaskit"
+  publish = "build/web"
+
+[build.environment]
+  FLUTTER_VERSION = "3.9.2"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production]
+  command = "flutter pub get && dart run build_runner build --delete-conflicting-outputs && flutter build web --release --web-renderer canvaskit"
+
+[context.deploy-preview]
+  command = "flutter pub get && dart run build_runner build --delete-conflicting-outputs && flutter build web --release --web-renderer canvaskit"
+
+[context.branch-deploy]
+  command = "flutter pub get && dart run build_runner build --delete-conflicting-outputs && flutter build web --release --web-renderer canvaskit"

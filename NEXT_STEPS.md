@@ -130,8 +130,14 @@ Based on our roadmap, here are the next highest impact features to implement:
 
 ### Web:
 
-- Build for web: `flutter build web`
-- Deploy to Firebase Hosting, Netlify, or Vercel
+- Build for web: `flutter build web --release --web-renderer canvaskit`
+- **Quick Deploy Guide**: See [WEB_DEPLOYMENT.md](WEB_DEPLOYMENT.md)
+- **Full Guide**: See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
+- Deploy to:
+  - **Netlify**: Drag & drop `build/web` folder (easiest!)
+  - **Vercel**: Git integration with auto-deploy
+  - **Firebase Hosting**: `firebase deploy --only hosting`
+- **CI/CD**: Automated web builds in `.github/workflows/ci.yml`
 
 ## 📊 Project Statistics
 
