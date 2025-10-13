@@ -135,8 +135,14 @@ class QuickShortcuts extends ConsumerWidget {
               },
             ),
             const SizedBox(width: 12),
-            // يمكن إضافة رابط آخر هنا في المستقبل
-            Expanded(child: Container()),
+            _tile(
+              context,
+              Icons.people,
+              isArabic ? 'التفاعل الاجتماعي' : 'Social Feed',
+              () {
+                Navigator.pushNamed(context, '/social-feed');
+              },
+            ),
           ],
         ),
       ],
