@@ -1,8 +1,17 @@
 # 🏆 Habit Tracker - AI-Powered Personal Development App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/your-site-id/deploy-status)](https://app.netlify.com/sites/your-site-name/deploys)
+[![Flutter Version](https://img.shields.io/badge/Flutter-3.9.2-02569B?logo=flutter)](https://flutter.dev)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 > **Status**: ✅ Production Ready | **Version**: 1.0.0 | **Last Updated**: October 2025
 
 A comprehensive Flutter application for building and maintaining habits with artificial intelligence features, analytics, and personalized recommendations. Built with a modular architecture for easy maintenance and scalability.
+
+## 🌐 Live Demo
+
+🚀 **[View Live Demo on Netlify](https://your-app-name.netlify.app)** *(Coming soon - deploy your own!)*
 
 ## ✨ Features
 
@@ -218,13 +227,26 @@ The app uses Hive for local data storage with the following type adapters:
 
 Comprehensive documentation is available:
 
+### Getting Started
 - **[Quick Start Guide](QUICK_START.md)** - Get started in minutes
-- **[Deployment Guide](DEPLOYMENT_GUIDE.md)** - Deploy to Android, Web (Netlify, Vercel)
 - **[Project Structure](PROJECT_STRUCTURE.md)** - Detailed architecture guide
+
+### Deployment
+- **[Deployment Guide (EN)](DEPLOYMENT_GUIDE.md)** - Deploy to Android, Web (Netlify, Vercel)
+- **[Netlify Deployment (AR) 🇸🇦](NETLIFY_DEPLOYMENT_AR.md)** - دليل النشر على Netlify بالعربية
+- **[Web Deployment](WEB_DEPLOYMENT.md)** - Quick web deployment reference
+- **[Quick Deploy](QUICK_DEPLOY.md)** - 5-minute deployment guide
+
+### Development & Quality
+- **[Code Quality Improvements](CODE_QUALITY_IMPROVEMENTS.md)** - Code quality guide
+- **[Refactoring Report](REFACTORING_REPORT.md)** - Code refactoring details
 - **[Testing Report](TESTING_COMPLETE.md)** - Complete testing coverage
 - **[Current Status](CURRENT_STATUS.md)** - Development progress
 - **[Development Roadmap](DEVELOPMENT_ROADMAP_UPDATED.md)** - Future plans
+
+### Technical
 - **[Adapter System Guide](lib/core/database/managers/adapters/README.md)** - Database adapters
+- **[Component Architecture](COMPONENT_ARCHITECTURE.md)** - UI component design
 
 ## 🤝 Contributing
 

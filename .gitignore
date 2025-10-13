@@ -48,3 +48,40 @@ app.*.map.json
 *.bak
 *.backup
 *_old.dart
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+
+# Temporary files
+/tmp/
+*.tmp
+*.temp
+
+# IDE and Editor files
+.vscode/settings.json
+.vscode/launch.json
+
+# Build artifacts
+*.dSYM.zip
+*.ipa
+*.apk
+*.aab
+
+# Web build
+/build/web/
+build/web/
+
+# Test coverage
+/coverage/
+coverage/
+
+# Node modules (for web tools)
+node_modules/
+package-lock.json
+
+# Environment files
+.env
+.env.local
+.env.*.local
