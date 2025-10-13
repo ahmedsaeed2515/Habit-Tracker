@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 
 import '../../../core/models/habit.dart';
+import '../../../core/services/encryption_service.dart';
 import '../models/habit_template.dart';
 
 class HabitBuilderService {
@@ -16,15 +17,29 @@ class HabitBuilderService {
 
   Future<void> initialize() async {
     try {
+      // تهيئة خدمة التشفير
+      final encryptionService = EncryptionService();
+      await encryptionService.initialize();
+
+      // الحصول على مفتاح التشفير
+      final encryptionKey = await encryptionService.getHiveEncryptionKey();
+
       _templatesBox = await Hive.openBox<HabitTemplate>(_templatesBoxName);
-      _profileBox = await Hive.openBox<UserProfile>(_profileBoxName);
+      
+      // فتح صندوق الملف الشخصي مع التشفير
+      _profileBox = await Hive.openBox<UserProfile>(
+        _profileBoxName,
+        encryptionCipher: HiveAesCipher(encryptionKey),
+      );
 
       // إضافة القوالب الافتراضية إذا كانت فارغة
       if (_templatesBox.isEmpty) {
         await _initializeDefaultTemplates();
       }
+      
+      debugPrint('✅ تم تهيئة خدمة بناء العادات مع التشفير');
     } catch (e) {
-      debugPrint('خطأ في تهيئة خدمة بناء العادات: $e');
+      debugPrint('❌ خطأ في تهيئة خدمة بناء العادات: $e');
       rethrow;
     }
   }
