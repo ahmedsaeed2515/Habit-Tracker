@@ -18,6 +18,11 @@ dependencies:
   # Local Database
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  
+  # Encryption & Security
+  encrypt: ^5.0.3
+  flutter_secure_storage: ^9.2.2
+  crypto: ^3.0.3
 
   # UI Components
   flutter_slidable: ^3.1.1

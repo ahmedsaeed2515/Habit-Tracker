@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../../../core/services/encryption_service.dart';
 import '../models/health_models.dart';
 
 // خدمة تكامل البيانات الصحية الشاملة - التنفيذ الكامل
@@ -38,8 +39,18 @@ class HealthIntegrationServiceImpl {
       // تسجيل المحولات
       _registerAdapters();
 
-      // فتح صندوق البيانات
-      _healthBox = await Hive.openBox<HealthProfile>(_boxName);
+      // تهيئة خدمة التشفير
+      final encryptionService = EncryptionService();
+      await encryptionService.initialize();
+
+      // الحصول على مفتاح التشفير لـ Hive
+      final encryptionKey = await encryptionService.getHiveEncryptionKey();
+
+      // فتح صندوق البيانات مع التشفير
+      _healthBox = await Hive.openBox<HealthProfile>(
+        _boxName,
+        encryptionCipher: HiveAesCipher(encryptionKey),
+      );
 
       // بدء المزامنة التلقائية
       _startAutoSync();
@@ -47,9 +58,9 @@ class HealthIntegrationServiceImpl {
       // بدء التحليل التلقائي
       _startAutoAnalysis();
 
-      debugPrint('تم تهيئة خدمة تكامل البيانات الصحية');
+      debugPrint('✅ تم تهيئة خدمة تكامل البيانات الصحية مع التشفير');
     } catch (e) {
-      debugPrint('خطأ في تهيئة خدمة البيانات الصحية: $e');
+      debugPrint('❌ خطأ في تهيئة خدمة البيانات الصحية: $e');
       rethrow;
     }
   }

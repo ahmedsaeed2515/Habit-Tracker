@@ -1,5 +1,6 @@
 // lib/features/mood_journal/data/mood_repository.dart
 import 'package:hive/hive.dart';
+import '../../../core/services/encryption_service.dart';
 import '../models/mood_models.dart';
 
 class MoodRepository {
@@ -12,8 +13,22 @@ class MoodRepository {
   Box<MoodAnalytics>? _analyticsBox;
 
   Future<void> init() async {
-    _moodBox ??= await Hive.openBox<MoodEntry>(moodBoxName);
-    _journalBox ??= await Hive.openBox<JournalEntry>(journalBoxName);
+    // تهيئة خدمة التشفير
+    final encryptionService = EncryptionService();
+    await encryptionService.initialize();
+
+    // الحصول على مفتاح التشفير
+    final encryptionKey = await encryptionService.getHiveEncryptionKey();
+
+    // فتح الصناديق مع التشفير للبيانات الحساسة
+    _moodBox ??= await Hive.openBox<MoodEntry>(
+      moodBoxName,
+      encryptionCipher: HiveAesCipher(encryptionKey),
+    );
+    _journalBox ??= await Hive.openBox<JournalEntry>(
+      journalBoxName,
+      encryptionCipher: HiveAesCipher(encryptionKey),
+    );
     _analyticsBox ??= await Hive.openBox<MoodAnalytics>(analyticsBoxName);
   }
 

@@ -2,6 +2,7 @@
 // Repository لإدارة CRUD للملاحظات
 
 import 'package:hive/hive.dart';
+import '../../../core/services/encryption_service.dart';
 import '../models/note_models.dart';
 
 class NotesRepository {
@@ -13,7 +14,18 @@ class NotesRepository {
   Box<Note>? _notesBox;
 
   Future<void> init() async {
-    _notesBox ??= await Hive.openBox<Note>(notesBoxName);
+    // تهيئة خدمة التشفير
+    final encryptionService = EncryptionService();
+    await encryptionService.initialize();
+
+    // الحصول على مفتاح التشفير
+    final encryptionKey = await encryptionService.getHiveEncryptionKey();
+
+    // فتح صندوق الملاحظات مع التشفير
+    _notesBox ??= await Hive.openBox<Note>(
+      notesBoxName,
+      encryptionCipher: HiveAesCipher(encryptionKey),
+    );
   }
 
   Box<Note> get _box {
