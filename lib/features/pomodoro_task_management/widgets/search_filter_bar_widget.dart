@@ -109,7 +109,7 @@ class _SearchFilterBarWidgetState extends ConsumerState<SearchFilterBarWidget> {
                 const SizedBox(width: 8),
 
                 // View Mode Toggles
-                Container(
+                DecoratedBox(
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Theme.of(context).dividerColor,

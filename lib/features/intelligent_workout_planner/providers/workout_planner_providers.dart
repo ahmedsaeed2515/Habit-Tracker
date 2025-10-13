@@ -1,8 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../core/models/user_profile.dart';
-import '../models/workout_plan.dart';
-import '../models/exercise.dart';
 import '../models/ai_recommendation.dart';
+import '../models/exercise.dart';
+import '../models/workout_plan.dart';
 import '../services/ai_workout_planner_service.dart';
 
 /// Provider لخدمة التخطيط الرياضي الذكي

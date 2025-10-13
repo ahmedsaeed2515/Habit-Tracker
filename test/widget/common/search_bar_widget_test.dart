@@ -9,11 +9,11 @@ void main() {
     testWidgets('should render search text field', (tester) async {
       // Arrange
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: TextField(
-              key: const Key('search_field'),
-              decoration: const InputDecoration(
+              key: Key('search_field'),
+              decoration: InputDecoration(
                 hintText: 'بحث...',
                 prefixIcon: Icon(Icons.search),
               ),
@@ -67,7 +67,7 @@ void main() {
                 suffixIcon: controller.text.isNotEmpty
                     ? IconButton(
                         icon: const Icon(Icons.clear),
-                        onPressed: () => controller.clear(),
+                        onPressed: controller.clear,
                       )
                     : null,
               ),

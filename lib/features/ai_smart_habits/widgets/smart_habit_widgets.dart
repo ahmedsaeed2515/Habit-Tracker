@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../shared/themes/app_colors.dart';
+
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_card.dart';
+import '../../../shared/themes/app_colors.dart';
 import '../models/ai_models.dart';
 import '../providers/ai_smart_habits_providers.dart';
 

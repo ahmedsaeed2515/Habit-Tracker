@@ -7,14 +7,6 @@ import 'firebase_service.dart';
 
 /// نموذج التفاعل
 class SocialInteraction {
-  final String id;
-  final String fromUserId;
-  final String toUserId;
-  final String type; // 'encouragement', 'gift', 'like', 'comment'
-  final String? message;
-  final int points;
-  final String? giftType;
-  final DateTime createdAt;
 
   SocialInteraction({
     required this.id,
@@ -26,19 +18,6 @@ class SocialInteraction {
     this.giftType,
     required this.createdAt,
   });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'fromUserId': fromUserId,
-      'toUserId': toUserId,
-      'type': type,
-      'message': message,
-      'points': points,
-      'giftType': giftType,
-      'createdAt': createdAt.toIso8601String(),
-    };
-  }
 
   factory SocialInteraction.fromMap(Map<String, dynamic> map) {
     return SocialInteraction(
@@ -52,17 +31,31 @@ class SocialInteraction {
       createdAt: DateTime.parse(map['createdAt']),
     );
   }
+  final String id;
+  final String fromUserId;
+  final String toUserId;
+  final String type; // 'encouragement', 'gift', 'like', 'comment'
+  final String? message;
+  final int points;
+  final String? giftType;
+  final DateTime createdAt;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'fromUserId': fromUserId,
+      'toUserId': toUserId,
+      'type': type,
+      'message': message,
+      'points': points,
+      'giftType': giftType,
+      'createdAt': createdAt.toIso8601String(),
+    };
+  }
 }
 
 /// نموذج مشاركة الإنجاز
 class AchievementShare {
-  final String id;
-  final String userId;
-  final String achievementId;
-  final String caption;
-  final int likes;
-  final List<String> comments;
-  final DateTime createdAt;
 
   AchievementShare({
     required this.id,
@@ -73,18 +66,6 @@ class AchievementShare {
     this.comments = const [],
     required this.createdAt,
   });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'userId': userId,
-      'achievementId': achievementId,
-      'caption': caption,
-      'likes': likes,
-      'comments': comments,
-      'createdAt': createdAt.toIso8601String(),
-    };
-  }
 
   factory AchievementShare.fromMap(Map<String, dynamic> map) {
     return AchievementShare(
@@ -97,16 +78,35 @@ class AchievementShare {
       createdAt: DateTime.parse(map['createdAt']),
     );
   }
+  final String id;
+  final String userId;
+  final String achievementId;
+  final String caption;
+  final int likes;
+  final List<String> comments;
+  final DateTime createdAt;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'userId': userId,
+      'achievementId': achievementId,
+      'caption': caption,
+      'likes': likes,
+      'comments': comments,
+      'createdAt': createdAt.toIso8601String(),
+    };
+  }
 }
 
 /// خدمة التفاعل الاجتماعي
 class FirebaseSocialService {
+  factory FirebaseSocialService() => _instance;
+  FirebaseSocialService._internal();
   final FirebaseService _firebase = FirebaseService();
   
   static final FirebaseSocialService _instance = 
       FirebaseSocialService._internal();
-  factory FirebaseSocialService() => _instance;
-  FirebaseSocialService._internal();
 
   CollectionReference get _interactionsCollection =>
       _firebase.firestore.collection('social_interactions');
@@ -192,7 +192,7 @@ class FirebaseSocialService {
           .snapshots()
           .map((snapshot) {
         return snapshot.docs.map((doc) {
-          return SocialInteraction.fromMap(doc.data() as Map<String, dynamic>);
+          return SocialInteraction.fromMap(doc.data()! as Map<String, dynamic>);
         }).toList();
       });
     } catch (e) {
@@ -210,7 +210,7 @@ class FirebaseSocialService {
           .snapshots()
           .map((snapshot) {
         return snapshot.docs.map((doc) {
-          return AchievementShare.fromMap(doc.data() as Map<String, dynamic>);
+          return AchievementShare.fromMap(doc.data()! as Map<String, dynamic>);
         }).toList();
       });
     } catch (e) {
@@ -256,10 +256,10 @@ class FirebaseSocialService {
         'sent': sentSnapshot.docs.length,
         'received': receivedSnapshot.docs.length,
         'encouragements': sentSnapshot.docs
-            .where((doc) => (doc.data() as Map)['type'] == 'encouragement')
+            .where((doc) => (doc.data()! as Map)['type'] == 'encouragement')
             .length,
         'gifts': sentSnapshot.docs
-            .where((doc) => (doc.data() as Map)['type'] == 'gift')
+            .where((doc) => (doc.data()! as Map)['type'] == 'gift')
             .length,
       };
     } catch (e) {

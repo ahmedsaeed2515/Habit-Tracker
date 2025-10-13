@@ -8,16 +8,6 @@ import 'firebase_service.dart';
 
 /// نموذج بيانات المستخدم
 class FirebaseUserData {
-  final String id;
-  final String name;
-  final String email;
-  final String? photoUrl;
-  final String? bio;
-  final int points;
-  final int level;
-  final List<String> achievements;
-  final DateTime createdAt;
-  final DateTime updatedAt;
 
   FirebaseUserData({
     required this.id,
@@ -32,21 +22,6 @@ class FirebaseUserData {
     required this.updatedAt,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'email': email,
-      'photoUrl': photoUrl,
-      'bio': bio,
-      'points': points,
-      'level': level,
-      'achievements': achievements,
-      'createdAt': createdAt.toIso8601String(),
-      'updatedAt': updatedAt.toIso8601String(),
-    };
-  }
-
   factory FirebaseUserData.fromMap(Map<String, dynamic> map) {
     return FirebaseUserData(
       id: map['id'] ?? '',
@@ -60,6 +35,31 @@ class FirebaseUserData {
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
     );
+  }
+  final String id;
+  final String name;
+  final String email;
+  final String? photoUrl;
+  final String? bio;
+  final int points;
+  final int level;
+  final List<String> achievements;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'photoUrl': photoUrl,
+      'bio': bio,
+      'points': points,
+      'level': level,
+      'achievements': achievements,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
+    };
   }
 
   FirebaseUserData copyWith({
@@ -88,11 +88,11 @@ class FirebaseUserData {
 
 /// خدمة إدارة المستخدمين
 class FirebaseUserService {
+  factory FirebaseUserService() => _instance;
+  FirebaseUserService._internal();
   final FirebaseService _firebase = FirebaseService();
   
   static final FirebaseUserService _instance = FirebaseUserService._internal();
-  factory FirebaseUserService() => _instance;
-  FirebaseUserService._internal();
 
   CollectionReference get _usersCollection =>
       _firebase.firestore.collection('users');
@@ -102,7 +102,7 @@ class FirebaseUserService {
     try {
       final doc = await _usersCollection.doc(userId).get();
       if (doc.exists) {
-        return FirebaseUserData.fromMap(doc.data() as Map<String, dynamic>);
+        return FirebaseUserData.fromMap(doc.data()! as Map<String, dynamic>);
       }
       return null;
     } catch (e) {
@@ -156,7 +156,7 @@ class FirebaseUserService {
           .snapshots()
           .map((snapshot) {
         return snapshot.docs.map((doc) {
-          return FirebaseUserData.fromMap(doc.data() as Map<String, dynamic>);
+          return FirebaseUserData.fromMap(doc.data()! as Map<String, dynamic>);
         }).toList();
       });
     } catch (e) {
@@ -175,7 +175,7 @@ class FirebaseUserService {
           .get();
 
       return snapshot.docs.map((doc) {
-        return FirebaseUserData.fromMap(doc.data() as Map<String, dynamic>);
+        return FirebaseUserData.fromMap(doc.data()! as Map<String, dynamic>);
       }).toList();
     } catch (e) {
       debugPrint('خطأ في البحث عن المستخدمين: $e');

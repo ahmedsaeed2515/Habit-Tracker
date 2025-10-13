@@ -12,14 +12,14 @@ void main() {
         id: 'user-1',
         name: 'أحمد محمد',
         email: 'ahmed@example.com',
-        createdAt: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
       );
 
       // Assert
       expect(profile.id, 'user-1');
       expect(profile.name, 'أحمد محمد');
       expect(profile.email, 'ahmed@example.com');
-      expect(profile.createdAt, DateTime(2024, 1, 1));
+      expect(profile.createdAt, DateTime(2024, 1));
     });
 
     test('should update profile name', () {
@@ -28,7 +28,7 @@ void main() {
         id: 'user-1',
         name: 'أحمد',
         email: 'ahmed@example.com',
-        createdAt: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
       );
 
       // Act
@@ -44,7 +44,7 @@ void main() {
         id: 'user-1',
         name: 'أحمد',
         email: 'old@example.com',
-        createdAt: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
       );
 
       // Act

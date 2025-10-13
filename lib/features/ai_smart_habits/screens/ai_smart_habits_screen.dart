@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../shared/themes/app_colors.dart';
+
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_card.dart';
-import '../../../core/widgets/loading_widget.dart';
 import '../../../core/widgets/error_widget.dart';
+import '../../../core/widgets/loading_widget.dart';
+import '../../../shared/themes/app_colors.dart';
 import '../models/ai_models.dart';
 import '../providers/ai_smart_habits_providers.dart';
 import '../widgets/smart_habit_widgets.dart';

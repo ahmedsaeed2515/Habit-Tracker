@@ -6,8 +6,8 @@ import '../../../core/services/encryption_service.dart';
 import '../models/note_models.dart';
 
 class NotesRepository {
-  NotesRepository._();
   factory NotesRepository() => _instance ??= NotesRepository._();
+  NotesRepository._();
   static const String notesBoxName = 'notes_box';
   static NotesRepository? _instance;
 

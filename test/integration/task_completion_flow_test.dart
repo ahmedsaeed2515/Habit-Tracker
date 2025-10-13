@@ -91,7 +91,7 @@ void main() {
                     title: Text(task),
                     value: completedTasks.contains(task),
                     onChanged: (value) {
-                      if (value == true) {
+                      if (value ?? false) {
                         completedTasks.add(task);
                       } else {
                         completedTasks.remove(task);

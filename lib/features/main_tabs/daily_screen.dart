@@ -131,8 +131,6 @@ class _DailyScreenState extends ConsumerState<DailyScreen> {
             child: FeatureGridWidget(
               items: _filteredItems,
               onItemTap: (route) => _navigateToFeature(context, route),
-              crossAxisCount: 2,
-              childAspectRatio: 1.2,
             ),
           ),
         ],

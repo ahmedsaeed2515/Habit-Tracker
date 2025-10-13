@@ -94,7 +94,7 @@ void main() {
       final entry1 = HabitEntry(
         id: 'entry-1',
         habitId: habit.id,
-        date: DateTime(2024, 1, 1),
+        date: DateTime(2024, 1),
         value: 1.0,
         isCompleted: true,
       );
@@ -113,7 +113,7 @@ void main() {
 
       // Assert
       expect(habit.entries.length, 2);
-      expect(habit.entries[0].date, DateTime(2024, 1, 1));
+      expect(habit.entries[0].date, DateTime(2024, 1));
       expect(habit.entries[1].date, DateTime(2024, 1, 2));
     });
 
@@ -125,8 +125,6 @@ void main() {
         type: HabitType.boolean,
         entries: [],
         createdAt: DateTime.now(),
-        currentStreak: 0,
-        longestStreak: 0,
       );
 
       // Act

@@ -10,13 +10,9 @@ void main() {
     testWidgets('should render basic widget structure', (tester) async {
       // Arrange
       await tester.pumpWidget(
-        ProviderScope(
+        const ProviderScope(
           child: MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: const Text('Dashboard'),
-              ),
-            ),
+            home: Scaffold(body: Center(child: Text('Dashboard'))),
           ),
         ),
       );
@@ -31,12 +27,8 @@ void main() {
         ProviderScope(
           child: MaterialApp(
             home: Scaffold(
-              appBar: AppBar(
-                title: const Text('لوحة التحكم'),
-              ),
-              body: Center(
-                child: const Text('Content'),
-              ),
+              appBar: AppBar(title: const Text('لوحة التحكم')),
+              body: const Center(child: Text('Content')),
             ),
           ),
         ),

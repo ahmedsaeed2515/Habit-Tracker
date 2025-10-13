@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../providers/gamification_providers.dart';
 import '../widgets/points_display.dart';
 import 'achievements_screen.dart';
 import 'badges_screen.dart';
 import 'challenges_screen.dart';
-import 'rewards_screen.dart';
 import 'leaderboard_screen.dart';
+import 'rewards_screen.dart';
 
 class GamificationScreen extends ConsumerWidget {
   const GamificationScreen({super.key});

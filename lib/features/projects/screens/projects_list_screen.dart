@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/projects_providers.dart';
+
 import '../models/project_models.dart';
+import '../providers/projects_providers.dart';
 import 'project_detail_screen.dart';
 
 class ProjectsListScreen extends ConsumerWidget {

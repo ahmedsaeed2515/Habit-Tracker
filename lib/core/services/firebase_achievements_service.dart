@@ -7,15 +7,6 @@ import 'firebase_service.dart';
 
 /// نموذج الإنجاز
 class Achievement {
-  final String id;
-  final String nameAr;
-  final String nameEn;
-  final String descriptionAr;
-  final String descriptionEn;
-  final String icon;
-  final int points;
-  final String category;
-  final int requiredCount;
 
   Achievement({
     required this.id,
@@ -28,20 +19,6 @@ class Achievement {
     required this.category,
     required this.requiredCount,
   });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'nameAr': nameAr,
-      'nameEn': nameEn,
-      'descriptionAr': descriptionAr,
-      'descriptionEn': descriptionEn,
-      'icon': icon,
-      'points': points,
-      'category': category,
-      'requiredCount': requiredCount,
-    };
-  }
 
   factory Achievement.fromMap(Map<String, dynamic> map) {
     return Achievement(
@@ -56,14 +33,33 @@ class Achievement {
       requiredCount: map['requiredCount'] ?? 1,
     );
   }
+  final String id;
+  final String nameAr;
+  final String nameEn;
+  final String descriptionAr;
+  final String descriptionEn;
+  final String icon;
+  final int points;
+  final String category;
+  final int requiredCount;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'nameAr': nameAr,
+      'nameEn': nameEn,
+      'descriptionAr': descriptionAr,
+      'descriptionEn': descriptionEn,
+      'icon': icon,
+      'points': points,
+      'category': category,
+      'requiredCount': requiredCount,
+    };
+  }
 }
 
 /// نموذج إنجاز المستخدم
 class UserAchievement {
-  final String achievementId;
-  final String userId;
-  final DateTime unlockedAt;
-  final int progress;
 
   UserAchievement({
     required this.achievementId,
@@ -71,15 +67,6 @@ class UserAchievement {
     required this.unlockedAt,
     required this.progress,
   });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'achievementId': achievementId,
-      'userId': userId,
-      'unlockedAt': unlockedAt.toIso8601String(),
-      'progress': progress,
-    };
-  }
 
   factory UserAchievement.fromMap(Map<String, dynamic> map) {
     return UserAchievement(
@@ -89,16 +76,29 @@ class UserAchievement {
       progress: map['progress'] ?? 0,
     );
   }
+  final String achievementId;
+  final String userId;
+  final DateTime unlockedAt;
+  final int progress;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'achievementId': achievementId,
+      'userId': userId,
+      'unlockedAt': unlockedAt.toIso8601String(),
+      'progress': progress,
+    };
+  }
 }
 
 /// خدمة الإنجازات
 class FirebaseAchievementsService {
+  factory FirebaseAchievementsService() => _instance;
+  FirebaseAchievementsService._internal();
   final FirebaseService _firebase = FirebaseService();
   
   static final FirebaseAchievementsService _instance = 
       FirebaseAchievementsService._internal();
-  factory FirebaseAchievementsService() => _instance;
-  FirebaseAchievementsService._internal();
 
   CollectionReference get _achievementsCollection =>
       _firebase.firestore.collection('achievements');
@@ -111,7 +111,7 @@ class FirebaseAchievementsService {
     try {
       final snapshot = await _achievementsCollection.get();
       return snapshot.docs.map((doc) {
-        return Achievement.fromMap(doc.data() as Map<String, dynamic>);
+        return Achievement.fromMap(doc.data()! as Map<String, dynamic>);
       }).toList();
     } catch (e) {
       debugPrint('خطأ في الحصول على الإنجازات: $e');
@@ -127,7 +127,7 @@ class FirebaseAchievementsService {
           .get();
       
       return snapshot.docs.map((doc) {
-        return UserAchievement.fromMap(doc.data() as Map<String, dynamic>);
+        return UserAchievement.fromMap(doc.data()! as Map<String, dynamic>);
       }).toList();
     } catch (e) {
       debugPrint('خطأ في الحصول على إنجازات المستخدم: $e');

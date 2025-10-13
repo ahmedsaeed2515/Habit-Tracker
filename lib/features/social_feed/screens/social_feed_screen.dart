@@ -219,7 +219,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
                   CircleAvatar(
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     child: Text(
-                      user?.name.isNotEmpty == true
+                      user?.name.isNotEmpty ?? false
                           ? user!.name[0].toUpperCase()
                           : '👤',
                       style: const TextStyle(color: Colors.white),
@@ -569,7 +569,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
     }
   }
 
-  void _sendEncouragement(String toUserId, bool isArabic) async {
+  Future<void> _sendEncouragement(String toUserId, bool isArabic) async {
     final currentUser = _firebaseService.currentUser;
     if (currentUser == null) return;
 
@@ -620,7 +620,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
     _showUsersSearch(context, isArabic);
   }
 
-  void _showSendGiftToUserDialog(
+  Future<void> _showSendGiftToUserDialog(
     BuildContext context,
     String userId,
     String userName,
@@ -646,9 +646,9 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
           mainAxisSize: MainAxisSize.min,
           children: gifts.map((gift) {
             return ListTile(
-              leading: Text(gift['icon'] as String,
+              leading: Text(gift['icon']! as String,
                   style: const TextStyle(fontSize: 32)),
-              title: Text(gift['name'] as String),
+              title: Text(gift['name']! as String),
               subtitle: Text('${gift['points']} ${isArabic ? 'نقطة' : 'pts'}'),
               onTap: () => Navigator.pop(context, gift),
             );
@@ -677,7 +677,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
     }
   }
 
-  void _showUsersSearch(BuildContext context, bool isArabic) async {
+  Future<void> _showUsersSearch(BuildContext context, bool isArabic) async {
     final controller = TextEditingController();
     
     showModalBottomSheet(
@@ -757,7 +757,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
     );
   }
 
-  void _showCommentDialog(
+  Future<void> _showCommentDialog(
     BuildContext context,
     String shareId,
     bool isArabic,

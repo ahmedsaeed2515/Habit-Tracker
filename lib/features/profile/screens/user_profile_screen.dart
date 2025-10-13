@@ -489,7 +489,6 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: 1.0,
               ),
               itemCount: _achievements.length,
               itemBuilder: (context, index) {

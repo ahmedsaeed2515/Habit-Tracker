@@ -11,13 +11,13 @@ void main() {
       final task = Task(
         id: 'task-1',
         title: 'مهمة اختبار',
-        createdAt: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
       );
 
       // Assert
       expect(task.id, 'task-1');
       expect(task.title, 'مهمة اختبار');
-      expect(task.createdAt, DateTime(2024, 1, 1));
+      expect(task.createdAt, DateTime(2024, 1));
       expect(task.isCompleted, false); // default value
     });
 
@@ -26,7 +26,7 @@ void main() {
       final task = Task(
         id: 'task-2',
         title: 'مهمة للإكمال',
-        createdAt: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
       );
 
       // Act
@@ -44,8 +44,8 @@ void main() {
         id: 'sheet-1',
         name: 'ورقة مهام',
         tasks: [],
-        createdAt: DateTime(2024, 1, 1),
-        lastModified: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
+        lastModified: DateTime(2024, 1),
       );
 
       // Assert
@@ -64,30 +64,28 @@ void main() {
           Task(
             id: 'task-1',
             title: 'مهمة 1',
-            createdAt: DateTime(2024, 1, 1),
+            createdAt: DateTime(2024, 1),
             isCompleted: true,
           ),
           Task(
             id: 'task-2',
             title: 'مهمة 2',
-            createdAt: DateTime(2024, 1, 1),
+            createdAt: DateTime(2024, 1),
             isCompleted: true,
           ),
           Task(
             id: 'task-3',
             title: 'مهمة 3',
-            createdAt: DateTime(2024, 1, 1),
-            isCompleted: false,
+            createdAt: DateTime(2024, 1),
           ),
           Task(
             id: 'task-4',
             title: 'مهمة 4',
-            createdAt: DateTime(2024, 1, 1),
-            isCompleted: false,
+            createdAt: DateTime(2024, 1),
           ),
         ],
-        createdAt: DateTime(2024, 1, 1),
-        lastModified: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
+        lastModified: DateTime(2024, 1),
       );
 
       // Assert
@@ -102,8 +100,8 @@ void main() {
         id: 'sheet-3',
         name: 'ورقة فارغة',
         tasks: [],
-        createdAt: DateTime(2024, 1, 1),
-        lastModified: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
+        lastModified: DateTime(2024, 1),
       );
 
       // Assert
@@ -119,18 +117,17 @@ void main() {
           Task(
             id: 'task-1',
             title: 'مهمة مكتملة',
-            createdAt: DateTime(2024, 1, 1),
+            createdAt: DateTime(2024, 1),
             isCompleted: true,
           ),
           Task(
             id: 'task-2',
             title: 'مهمة معلقة',
-            createdAt: DateTime(2024, 1, 1),
-            isCompleted: false,
+            createdAt: DateTime(2024, 1),
           ),
         ],
-        createdAt: DateTime(2024, 1, 1),
-        lastModified: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
+        lastModified: DateTime(2024, 1),
       );
 
       // Assert

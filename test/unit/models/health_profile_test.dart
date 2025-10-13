@@ -67,7 +67,7 @@ void main() {
       final dataPoint = HealthDataPoint(
         type: HealthDataType.steps,
         value: 1000,
-        timestamp: DateTime(2024, 1, 1, 12, 0),
+        timestamp: DateTime(2024, 1, 1, 12),
       );
 
       // Act
@@ -75,7 +75,7 @@ void main() {
 
       // Assert
       expect(profile.dailyHealthData.isNotEmpty, true);
-      final dateKey = '2024-01-01';
+      const dateKey = '2024-01-01';
       expect(profile.dailyHealthData.containsKey(dateKey), true);
       expect(profile.dailyHealthData[dateKey]!.length, 1);
     });
@@ -89,13 +89,13 @@ void main() {
       final dataPoint = HealthDataPoint(
         type: HealthDataType.steps,
         value: 5000,
-        timestamp: DateTime(2024, 1, 1, 10, 0),
+        timestamp: DateTime(2024, 1, 1, 10),
       );
 
       profile.addHealthDataPoint(dataPoint);
 
       // Act
-      final data = profile.getDataForDate(DateTime(2024, 1, 1));
+      final data = profile.getDataForDate(DateTime(2024, 1));
 
       // Assert
       expect(data.length, 1);
@@ -109,7 +109,7 @@ void main() {
       );
 
       // Act
-      final data = profile.getDataForDate(DateTime(2024, 1, 1));
+      final data = profile.getDataForDate(DateTime(2024, 1));
 
       // Assert
       expect(data, isEmpty);
@@ -124,7 +124,7 @@ void main() {
       final oldUpdatedAt = profile.updatedAt;
 
       // Act
-      Future.delayed(Duration(milliseconds: 10), () {
+      Future.delayed(const Duration(milliseconds: 10), () {
         final dataPoint = HealthDataPoint(
           type: HealthDataType.steps,
           value: 1000,

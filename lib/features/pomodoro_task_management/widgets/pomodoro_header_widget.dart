@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/pomodoro_models.dart';
 import '../providers/pomodoro_providers.dart';
 import '../screens/analytics_screen.dart';
 import '../screens/pomodoro_settings_screen.dart';

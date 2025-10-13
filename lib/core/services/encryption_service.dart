@@ -2,13 +2,11 @@
 // خدمة التشفير للبيانات الحساسة
 
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:hive/hive.dart';
 
 /// خدمة التشفير للبيانات الحساسة
 class EncryptionService {

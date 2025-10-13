@@ -13,7 +13,7 @@ void main() {
         name: 'تمرين صباحي',
         type: HabitType.boolean,
         entries: [],
-        createdAt: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
       );
 
       // Assert
@@ -21,7 +21,7 @@ void main() {
       expect(habit.name, 'تمرين صباحي');
       expect(habit.type, HabitType.boolean);
       expect(habit.entries, isEmpty);
-      expect(habit.createdAt, DateTime(2024, 1, 1));
+      expect(habit.createdAt, DateTime(2024, 1));
       expect(habit.isActive, true); // default value
       expect(habit.currentStreak, 0); // default value
       expect(habit.longestStreak, 0); // default value
@@ -38,8 +38,7 @@ void main() {
         targetValue: 8,
         unit: 'كوب',
         entries: [],
-        createdAt: DateTime(2024, 1, 1),
-        isActive: true,
+        createdAt: DateTime(2024, 1),
         currentStreak: 5,
         longestStreak: 10,
       );
@@ -63,7 +62,7 @@ void main() {
         name: 'قراءة',
         type: HabitType.boolean,
         entries: [],
-        createdAt: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
       );
 
       // Assert
@@ -83,7 +82,7 @@ void main() {
         name: 'تمرين',
         type: HabitType.boolean,
         entries: [],
-        createdAt: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
       );
 
       // Act
@@ -106,7 +105,7 @@ void main() {
         targetValue: 10000,
         unit: 'خطوة',
         entries: [],
-        createdAt: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
       );
 
       // Assert
@@ -122,7 +121,7 @@ void main() {
         name: 'تأمل',
         type: HabitType.boolean,
         entries: [],
-        createdAt: DateTime(2024, 1, 1),
+        createdAt: DateTime(2024, 1),
       );
 
       final entry = HabitEntry(
