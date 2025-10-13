@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-// import '../../../core/widgets/custom_card.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_text_field.dart';
 import '../models/pomodoro_models.dart';
 import '../providers/pomodoro_providers.dart';
 import '../widgets/pomodoro_fab.dart';
-import '../widgets/pomodoro_timer_widget.dart';
-import '../widgets/quick_stats_widget.dart';
+import '../widgets/pomodoro_header_widget.dart';
+import '../widgets/search_filter_bar_widget.dart';
 import '../widgets/task_item_widget.dart';
-import 'analytics_screen.dart';
-import 'pomodoro_settings_screen.dart';
 import 'task_details_screen.dart';
 
 /// شاشة To-Do List الرئيسية مع نظام Pomodoro متكامل
@@ -29,7 +26,6 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
   late AnimationController _listAnimationController;
 
   final ScrollController _scrollController = ScrollController();
-  final TextEditingController _searchController = TextEditingController();
 
   bool _isCompactView = false;
   bool _showCompleted = false;
@@ -56,7 +52,6 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
     _headerAnimationController.dispose();
     _listAnimationController.dispose();
     _scrollController.dispose();
-    _searchController.dispose();
     super.dispose();
   }
 
@@ -67,8 +62,8 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
       body: SafeArea(
         child: Column(
           children: [
-            // Header with Timer and Quick Stats (Fixed Height)
-            _buildHeader(),
+            // Header with Timer and Quick Stats
+            PomodoroHeaderWidget(animationController: _headerAnimationController),
 
             // Scrollable Content
             Expanded(
@@ -76,9 +71,26 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
                 child: Column(
                   children: [
                     // Search and Filter Bar
-                    _buildSearchAndFilterBar(),
+                    SearchFilterBarWidget(
+                      animationController: _headerAnimationController,
+                      onSearchChanged: (value) {
+                        setState(() {
+                          _searchQuery = value;
+                        });
+                      },
+                      onShowCompletedChanged: (value) {
+                        setState(() {
+                          _showCompleted = value;
+                        });
+                      },
+                      onViewModeChanged: (value) {
+                        setState(() {
+                          _isCompactView = value;
+                        });
+                      },
+                    ),
 
-                    // Task List (with minimum height)
+                    // Task List
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.6,
                       child: _buildTaskList(),
@@ -96,230 +108,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
     );
   }
 
-  Widget _buildHeader() {
-    final activeSession = ref.watch(activeSessionProvider);
-    final stats = ref.watch(pomodoroStatsProvider);
-    final analysis = ref.watch(productivityAnalysisProvider);
 
-    return SlideTransition(
-      position: Tween<Offset>(begin: const Offset(0, -1), end: Offset.zero)
-          .animate(
-            CurvedAnimation(
-              parent: _headerAnimationController,
-              curve: Curves.easeOutBack,
-            ),
-          ),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Theme.of(context).primaryColor.withOpacity(0.8),
-              Theme.of(context).primaryColor.withOpacity(0.6),
-            ],
-          ),
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(30),
-            bottomRight: Radius.circular(30),
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Top Row: Greeting and Settings
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      _getGreeting(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    const Text(
-                      'لنبدأ يوماً منتجاً! 🚀',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AnalyticsScreen(),
-                        ),
-                      ),
-                      icon: const Icon(Icons.analytics, color: Colors.white),
-                      tooltip: 'الإحصائيات',
-                    ),
-                    IconButton(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PomodoroSettingsScreen(),
-                        ),
-                      ),
-                      icon: const Icon(Icons.settings, color: Colors.white),
-                      tooltip: 'الإعدادات',
-                    ),
-                  ],
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 20),
-
-            // Active Timer or Quick Stats
-            if (activeSession != null)
-              PomodoroTimerWidget(session: activeSession)
-            else
-              QuickStatsWidget(stats: stats, analysis: analysis),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSearchAndFilterBar() {
-    return FadeTransition(
-      opacity: _headerAnimationController,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            // Search Bar
-            CustomTextField(
-              controller: _searchController,
-              hintText: 'البحث في المهام...',
-              prefixIcon: Icons.search,
-              onChanged: (value) {
-                setState(() {
-                  _searchQuery = value;
-                });
-              },
-              suffixIcon: _searchQuery.isNotEmpty ? Icons.clear : null,
-              onSuffixIconPressed: _searchQuery.isNotEmpty
-                  ? () {
-                      _searchController.clear();
-                      setState(() {
-                        _searchQuery = '';
-                      });
-                    }
-                  : null,
-            ),
-
-            const SizedBox(height: 12),
-
-            // Filter and View Options
-            Row(
-              children: [
-                // Quick Filters
-                Expanded(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        _buildFilterChip(
-                          'الكل',
-                          true,
-                          () => ref
-                              .read(taskFilterProvider.notifier)
-                              .resetFilter(),
-                        ),
-                        _buildFilterChip(
-                          'عالي الأولوية',
-                          false,
-                          () => ref
-                              .read(taskFilterProvider.notifier)
-                              .updatePriority(TaskPriority.high),
-                        ),
-                        _buildFilterChip('مستحقة اليوم', false, () {
-                          // تصفية المهام المستحقة اليوم
-                          ref.read(dueTodayTasksProvider);
-                          // يمكن تطبيق منطق أكثر تعقيداً هنا
-                        }),
-                        _buildFilterChip('متأخرة', false, () {
-                          // تصفية المهام المتأخرة
-                          ref.read(overdueTasksProvider);
-                        }),
-                      ],
-                    ),
-                  ),
-                ),
-
-                const SizedBox(width: 8),
-
-                // View Toggle
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _isCompactView = !_isCompactView;
-                    });
-                  },
-                  icon: Icon(
-                    _isCompactView ? Icons.view_agenda : Icons.view_compact,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  tooltip: _isCompactView ? 'عرض مفصل' : 'عرض مضغوط',
-                ),
-
-                // Show Completed Toggle
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _showCompleted = !_showCompleted;
-                    });
-                  },
-                  icon: Icon(
-                    _showCompleted ? Icons.visibility : Icons.visibility_off,
-                    color: _showCompleted
-                        ? Theme.of(context).primaryColor
-                        : Colors.grey,
-                  ),
-                  tooltip: _showCompleted ? 'إخفاء المكتملة' : 'عرض المكتملة',
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFilterChip(String label, bool isSelected, VoidCallback onTap) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 8),
-      child: FilterChip(
-        label: Text(
-          label,
-          style: TextStyle(
-            color: isSelected ? Colors.white : Theme.of(context).primaryColor,
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-          ),
-        ),
-        selected: isSelected,
-        onSelected: (_) => onTap(),
-        backgroundColor: Colors.transparent,
-        selectedColor: Theme.of(context).primaryColor,
-        side: BorderSide(color: Theme.of(context).primaryColor),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      ),
-    );
-  }
 
   Widget _buildTaskList() {
     return Consumer(
@@ -525,16 +314,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
     );
   }
 
-  String _getGreeting() {
-    final hour = DateTime.now().hour;
-    if (hour < 12) {
-      return 'صباح الخير! ☀️';
-    } else if (hour < 17) {
-      return 'مساء الخير! 🌤️';
-    } else {
-      return 'مساء الخير! 🌙';
-    }
-  }
+
 
   void _navigateToTaskDetails(AdvancedTask task) {
     Navigator.push(
