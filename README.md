@@ -10,6 +10,41 @@
 
 A comprehensive Flutter application for building and maintaining habits with artificial intelligence features, analytics, and personalized recommendations. Built with a modular architecture for easy maintenance and scalability.
 
+---
+
+## 📚 الدليل الشامل - Complete Guide
+
+> **🎯 ابدأ هنا! هذا الدليل يشمل كل شيء**  
+> **🎯 Start here! This guide includes everything**
+
+### **[📖 الدليل الشامل بالعربية - COMPLETE_GUIDE_AR.md](COMPLETE_GUIDE_AR.md)**
+
+**هذا الدليل الشامل يتضمن:**
+- ✅ المتطلبات الأساسية والتثبيت الكامل
+- ✅ الإعداد والتكوين خطوة بخطوة
+- ✅ تشغيل التطبيق على جميع المنصات
+- ✅ بناء APK بجميع الطرق (عادي، مقسم، موقّع)
+- ✅ النشر على الويب (Netlify، Vercel)
+- ✅ إعداد Firebase الكامل (اختياري)
+- ✅ شرح مفصل لجميع الميزات (39 ميزة)
+- ✅ هيكل المشروع والمعمارية
+- ✅ حل جميع المشاكل الشائعة
+- ✅ روابط لجميع الوثائق الإضافية
+
+**This comprehensive guide includes:**
+- ✅ Complete prerequisites and installation
+- ✅ Step-by-step setup and configuration
+- ✅ Running the app on all platforms
+- ✅ Building APK (standard, split, signed)
+- ✅ Web deployment (Netlify, Vercel)
+- ✅ Complete Firebase setup (optional)
+- ✅ Detailed explanation of all features (39 features)
+- ✅ Project structure and architecture
+- ✅ Troubleshooting all common issues
+- ✅ Links to all additional documentation
+
+---
+
 ## 📱 Build APK / بناء APK
 
 **المشروع جاهز بالكامل لبناء APK لنظام أندرويد!**  
