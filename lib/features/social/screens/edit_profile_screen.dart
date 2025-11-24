@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/social_user.dart';
@@ -89,13 +90,32 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                         ),
                         const SizedBox(height: 16),
                         TextButton.icon(
-                          onPressed: () {
-                            // عرض رسالة بأن اختيار الصورة سيتم إضافته قريباً
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Image picker coming soon!'),
-                              ),
-                            );
+                          onPressed: () async {
+                            try {
+                              final result = await FilePicker.platform.pickFiles(
+                                type: FileType.image,
+                                allowMultiple: false,
+                              );
+                              
+                              if (result != null && result.files.isNotEmpty) {
+                                final file = result.files.first;
+                                setState(() {
+                                  _avatarUrl = file.path;
+                                });
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Image selected successfully!'),
+                                  ),
+                                );
+                              }
+                            } catch (e) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Error selecting image: $e'),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            }
                           },
                           icon: const Icon(Icons.camera_alt),
                           label: const Text('Change Photo'),

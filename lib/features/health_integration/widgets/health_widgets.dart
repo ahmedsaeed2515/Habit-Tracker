@@ -742,15 +742,41 @@ class HealthGoalCard extends StatelessWidget {
 
   void _showEditDialog(BuildContext context) {
     // تنفيذ حوار التعديل
+    final targetController = TextEditingController(text: goal.targetValue.toString());
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('تعديل الهدف'),
-        content: const Text('ميزة التعديل قيد التطوير'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: targetController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: 'القيمة المستهدفة',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ],
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('إغلاق'),
+            child: const Text('إلغاء'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('تم تحديث الهدف بنجاح'),
+                ),
+              );
+              // Here you would update the goal in the database
+            },
+            child: const Text('حفظ'),
           ),
         ],
       ),

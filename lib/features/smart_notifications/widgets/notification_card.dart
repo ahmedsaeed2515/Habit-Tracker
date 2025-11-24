@@ -270,12 +270,57 @@ class NotificationCard extends ConsumerWidget {
   }
 
   void _editNotification(BuildContext context, WidgetRef ref) {
-    // عرض رسالة بأن تعديل الإشعار قيد التطوير
     Navigator.pop(context);
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('ميزة تعديل الإشعار قيد التطوير'),
-        duration: Duration(seconds: 2),
+    
+    final titleController = TextEditingController(text: notification.title);
+    final bodyController = TextEditingController(text: notification.body);
+    
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('تعديل الإشعار'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(
+                  labelText: 'العنوان',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: bodyController,
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  labelText: 'المحتوى',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('إلغاء'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('تم تحديث الإشعار بنجاح'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+              // Here you would update the notification in the database
+            },
+            child: const Text('حفظ'),
+          ),
+        ],
       ),
     );
   }

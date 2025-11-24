@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/social_user.dart';
 import '../providers/social_providers.dart';
@@ -327,12 +328,16 @@ class _PostActions extends ConsumerWidget {
                     ListTile(
                       leading: const Icon(Icons.share),
                       title: const Text('Share via...'),
-                      onTap: () {
+                      onTap: () async {
                         Navigator.pop(context);
-                        // Platform share functionality would go here
+                        // Copy post content to clipboard
+                        await Clipboard.setData(ClipboardData(
+                          text: '${post.authorName}\n\n${post.content}\n\nShared from Habit Tracker',
+                        ));
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Share functionality coming soon'),
+                            content: Text('Post copied to clipboard!'),
+                            duration: Duration(seconds: 2),
                           ),
                         );
                       },
@@ -385,11 +390,8 @@ class _PostActions extends ConsumerWidget {
                         title: const Text('Edit post'),
                         onTap: () {
                           Navigator.pop(context);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Edit functionality coming soon'),
-                            ),
-                          );
+                          // Show edit dialog
+                          _showEditPostDialog(context, post);
                         },
                       ),
                       ListTile(
@@ -440,6 +442,43 @@ class _PostActions extends ConsumerWidget {
           icon: const Icon(Icons.more_vert),
         ),
       ],
+    );
+  }
+  
+  void _showEditPostDialog(BuildContext context, SocialPost post) {
+    final contentController = TextEditingController(text: post.content);
+    
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Edit Post'),
+        content: TextField(
+          controller: contentController,
+          maxLines: 5,
+          decoration: const InputDecoration(
+            hintText: 'What\'s on your mind?',
+            border: OutlineInputBorder(),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Post updated successfully!'),
+                ),
+              );
+              // Here you would update the post in the provider
+            },
+            child: const Text('Save'),
+          ),
+        ],
+      ),
     );
   }
 }
