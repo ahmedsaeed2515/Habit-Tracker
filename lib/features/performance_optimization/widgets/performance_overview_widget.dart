@@ -223,7 +223,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
             decoration: BoxDecoration(
-              color: _getScoreColor(score).withOpacity(0.1),
+              color: _getScoreColor(score).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
@@ -308,9 +308,9 @@ class PerformanceOverviewWidget extends ConsumerWidget {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: severityColor.withOpacity(0.1),
+        color: severityColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: severityColor.withOpacity(0.3)),
+        border: Border.all(color: severityColor.withValues(alpha: 0.3)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

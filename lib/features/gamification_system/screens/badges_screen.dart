@@ -121,8 +121,8 @@ class BadgeCard extends StatelessWidget {
           gradient: isEarned
               ? LinearGradient(
                   colors: [
-                    _getRarityColor(badge.rarity).withOpacity(0.2),
-                    _getRarityColor(badge.rarity).withOpacity(0.1),
+                    _getRarityColor(badge.rarity).withValues(alpha: 0.2),
+                    _getRarityColor(badge.rarity).withValues(alpha: 0.1),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -142,8 +142,8 @@ class BadgeCard extends StatelessWidget {
                     : Theme.of(context).colorScheme.surfaceContainerHighest,
                 border: Border.all(
                   color: isEarned
-                      ? _getRarityColor(badge.rarity).withOpacity(0.5)
-                      : Theme.of(context).colorScheme.outline.withOpacity(0.3),
+                      ? _getRarityColor(badge.rarity).withValues(alpha: 0.5)
+                      : Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
                   width: 2,
                 ),
               ),
@@ -174,7 +174,7 @@ class BadgeCard extends StatelessWidget {
                     ? Theme.of(context).colorScheme.onSurfaceVariant
                     : Theme.of(
                         context,
-                      ).colorScheme.onSurfaceVariant.withOpacity(0.6),
+                      ).colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
               ),
               textAlign: TextAlign.center,
               maxLines: 2,
@@ -186,7 +186,7 @@ class BadgeCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: _getRarityColor(
                   badge.rarity,
-                ).withOpacity(isEarned ? 1.0 : 0.3),
+                ).withValues(alpha: isEarned ? 1.0 : 0.3),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(

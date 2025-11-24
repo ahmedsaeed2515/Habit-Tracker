@@ -113,7 +113,7 @@ class RecommendationCard extends StatelessWidget {
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.bold,
             color: recommendation.isViewed
-                ? theme.colorScheme.onSurface.withOpacity(0.8)
+                ? theme.colorScheme.onSurface.withValues(alpha: 0.8)
                 : theme.colorScheme.onSurface,
           ),
         ),
@@ -121,7 +121,7 @@ class RecommendationCard extends StatelessWidget {
         Text(
           recommendation.description,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurface.withOpacity(0.7),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
             height: 1.4,
           ),
         ),
@@ -156,7 +156,7 @@ class RecommendationCard extends StatelessWidget {
                       width: 4,
                       height: 4,
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.primary.withOpacity(0.6),
+                        color: theme.colorScheme.primary.withValues(alpha: 0.6),
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -165,7 +165,7 @@ class RecommendationCard extends StatelessWidget {
                       child: Text(
                         reason,
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.6),
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                         ),
                       ),
                     ),
@@ -185,7 +185,7 @@ class RecommendationCard extends StatelessWidget {
         Text(
           _formatDate(recommendation.createdAt),
           style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onSurface.withOpacity(0.5),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
           ),
         ),
         const Spacer(),
@@ -219,7 +219,7 @@ class RecommendationCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: theme.colorScheme.error.withOpacity(0.1),
+              color: theme.colorScheme.error.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Row(

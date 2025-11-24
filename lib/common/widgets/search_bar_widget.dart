@@ -69,7 +69,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget>
     final theme = Theme.of(context);
     final backgroundColor =
         widget.backgroundColor ??
-        theme.colorScheme.surfaceContainerHighest.withOpacity(0.5);
+        theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5);
     final textColor = widget.textColor ?? theme.colorScheme.onSurface;
 
     return AnimatedBuilder(
@@ -83,11 +83,11 @@ class _SearchBarWidgetState extends State<SearchBarWidget>
               color: backgroundColor,
               borderRadius: BorderRadius.circular(24),
               border: Border.all(
-                color: theme.colorScheme.outline.withOpacity(0.3),
+                color: theme.colorScheme.outline.withValues(alpha: 0.3),
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -100,12 +100,12 @@ class _SearchBarWidgetState extends State<SearchBarWidget>
               decoration: InputDecoration(
                 hintText: widget.hintText,
                 hintStyle: TextStyle(
-                  color: textColor.withOpacity(0.6),
+                  color: textColor.withValues(alpha: 0.6),
                   fontSize: 16,
                 ),
                 prefixIcon: Icon(
                   Icons.search,
-                  color: textColor.withOpacity(0.6),
+                  color: textColor.withValues(alpha: 0.6),
                   size: 20,
                 ),
                 suffixIcon:
@@ -113,7 +113,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget>
                     ? IconButton(
                         icon: Icon(
                           Icons.clear,
-                          color: textColor.withOpacity(0.6),
+                          color: textColor.withValues(alpha: 0.6),
                           size: 20,
                         ),
                         onPressed: _clearSearch,

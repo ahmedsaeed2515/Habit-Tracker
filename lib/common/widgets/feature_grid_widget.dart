@@ -107,12 +107,12 @@ class _FeatureCard extends StatelessWidget {
     final gradientColors = item.gradientColors ??
         [
           colorScheme.primaryContainer,
-          colorScheme.primaryContainer.withOpacity(0.7),
+          colorScheme.primaryContainer.withValues(alpha: 0.7),
         ];
 
     return Card(
       elevation: 2,
-      shadowColor: Colors.black.withOpacity(0.1),
+      shadowColor: Colors.black.withValues(alpha: 0.1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
@@ -134,7 +134,7 @@ class _FeatureCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.3),
+                  color: Colors.white.withValues(alpha: 0.3),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(

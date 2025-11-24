@@ -97,7 +97,7 @@ class MainAppScreen extends ConsumerWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 8,
             offset: const Offset(0, -2),
           ),
@@ -135,7 +135,7 @@ class MainAppScreen extends ConsumerWidget {
         color: theme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 8,
             offset: const Offset(0, -2),
           ),
@@ -165,7 +165,7 @@ class MainAppScreen extends ConsumerWidget {
                     decoration: BoxDecoration(
                       color: isSelected
                           ? theme.bottomNavigationBarTheme.selectedItemColor
-                                ?.withOpacity(0.1)
+                                ?.withValues(alpha: 0.1)
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(8),
                     ),

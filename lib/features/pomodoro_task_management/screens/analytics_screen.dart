@@ -240,8 +240,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.purple.withOpacity(0.2),
-                  Colors.blue.withOpacity(0.2),
+                  Colors.purple.withValues(alpha: 0.2),
+                  Colors.blue.withValues(alpha: 0.2),
                 ],
               ),
               borderRadius: BorderRadius.circular(16),
@@ -251,7 +251,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.purple.withOpacity(0.2),
+                    color: Colors.purple.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(
@@ -303,7 +303,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -327,7 +327,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                   horizontalInterval: 2,
                   getDrawingHorizontalLine: (value) {
                     return FlLine(
-                      color: Colors.white.withOpacity(0.1),
+                      color: Colors.white.withValues(alpha: 0.1),
                       strokeWidth: 1,
                     );
                   },
@@ -373,7 +373,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                     isStrokeCapRound: true,
                     belowBarData: BarAreaData(
                       show: true,
-                      color: Colors.blue.withOpacity(0.1),
+                      color: Colors.blue.withValues(alpha: 0.1),
                     ),
                     dotData: FlDotData(
                       getDotPainter: (spot, percent, barData, index) {
@@ -399,7 +399,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -527,8 +527,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.green.withOpacity(0.2),
-            Colors.blue.withOpacity(0.2),
+            Colors.green.withValues(alpha: 0.2),
+            Colors.blue.withValues(alpha: 0.2),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
@@ -550,7 +550,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: _getScoreColor(analysis.todayScore).withOpacity(0.2),
+                  color: _getScoreColor(analysis.todayScore).withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
@@ -589,7 +589,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: CircularProgressIndicator(
                   value: analysis.todayScore / 100,
                   strokeWidth: 8,
-                  backgroundColor: Colors.white.withOpacity(0.2),
+                  backgroundColor: Colors.white.withValues(alpha: 0.2),
                   valueColor: AlwaysStoppedAnimation<Color>(
                     _getScoreColor(analysis.todayScore),
                   ),

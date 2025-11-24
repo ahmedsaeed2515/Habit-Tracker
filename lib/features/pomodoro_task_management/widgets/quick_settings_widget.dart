@@ -19,7 +19,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -31,7 +31,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.05),
+              color: Colors.grey.withValues(alpha: 0.05),
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(12),
               ),
@@ -59,7 +59,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: _getSessionColor(activeSession.type).withOpacity(0.1),
+                      color: _getSessionColor(activeSession.type).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -236,7 +236,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -254,9 +254,9 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
             activeTrackColor: color,
-            inactiveTrackColor: color.withOpacity(0.2),
+            inactiveTrackColor: color.withValues(alpha: 0.2),
             thumbColor: color,
-            overlayColor: color.withOpacity(0.2),
+            overlayColor: color.withValues(alpha: 0.2),
             trackHeight: 4.0,
           ),
           child: Slider(
@@ -283,10 +283,10 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: value ? color.withOpacity(0.1) : Colors.grey.withOpacity(0.05),
+        color: value ? color.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: value ? color.withOpacity(0.3) : Colors.grey.withOpacity(0.2),
+          color: value ? color.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -330,10 +330,10 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.blue.withOpacity(0.05),
+        color: Colors.blue.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: Colors.blue.withOpacity(0.2),
+          color: Colors.blue.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -380,7 +380,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                           border: Border.all(
                             color: isSelected
                                 ? Colors.blue
-                                : Colors.grey.withOpacity(0.3),
+                                : Colors.grey.withValues(alpha: 0.3),
                           ),
                           borderRadius: BorderRadius.circular(6),
                         ),
@@ -456,7 +456,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Material(
-                  color: (preset['color']! as Color).withOpacity(0.1),
+                  color: (preset['color']! as Color).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                   child: InkWell(
                     onTap: () => _applyPreset(ref, preset),
@@ -482,7 +482,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                           Text(
                             '${preset['focus']}/${preset['short']}',
                             style: TextStyle(
-                              color: (preset['color']! as Color).withOpacity(0.7),
+                              color: (preset['color']! as Color).withValues(alpha: 0.7),
                               fontSize: 9,
                             ),
                           ),
@@ -552,7 +552,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -655,10 +655,10 @@ class NotificationQuickControlWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: value ? color.withOpacity(0.05) : null,
+        color: value ? color.withValues(alpha: 0.05) : null,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: value ? color.withOpacity(0.2) : Colors.grey.withOpacity(0.2),
+          color: value ? color.withValues(alpha: 0.2) : Colors.grey.withValues(alpha: 0.2),
         ),
       ),
       child: Row(
@@ -666,7 +666,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: value ? color.withOpacity(0.1) : Colors.grey.withOpacity(0.1),
+              color: value ? color.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
@@ -736,7 +736,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
           return Padding(
             padding: const EdgeInsets.only(bottom: 4),
             child: Material(
-              color: isSelected ? Colors.blue.withOpacity(0.1) : null,
+              color: isSelected ? Colors.blue.withValues(alpha: 0.1) : null,
               borderRadius: BorderRadius.circular(8),
               child: InkWell(
                 onTap: () {

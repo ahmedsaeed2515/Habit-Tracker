@@ -352,7 +352,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
           issue.severity.name,
           style: const TextStyle(fontSize: 12),
         ),
-        backgroundColor: _getIssueSeverityColor(issue.severity).withOpacity(0.1),
+        backgroundColor: _getIssueSeverityColor(issue.severity).withValues(alpha: 0.1),
       ),
     );
   }

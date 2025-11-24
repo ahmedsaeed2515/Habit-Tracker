@@ -52,10 +52,10 @@ class EmptyStateWidget extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: defaultColor.withOpacity(0.1),
+                color: defaultColor.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: defaultColor.withOpacity(0.2),
+                  color: defaultColor.withValues(alpha: 0.2),
                   width: 2,
                 ),
               ),
@@ -74,7 +74,7 @@ class EmptyStateWidget extends StatelessWidget {
             Text(
               description,
               style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 height: 1.5,
               ),
               textAlign: TextAlign.center,
@@ -96,7 +96,7 @@ class EmptyStateWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   elevation: 4,
-                  shadowColor: defaultColor.withOpacity(0.3),
+                  shadowColor: defaultColor.withValues(alpha: 0.3),
                 ),
               ),
             ],

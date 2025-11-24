@@ -138,7 +138,7 @@ class SmartHabitCard extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Icon(
@@ -173,7 +173,7 @@ class SmartHabitCard extends ConsumerWidget {
       height: 40,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: _getSuccessColor(habit.successProbability).withOpacity(0.1),
+        color: _getSuccessColor(habit.successProbability).withValues(alpha: 0.1),
       ),
       child: Center(
         child: Text(
@@ -198,7 +198,7 @@ class SmartHabitCard extends ConsumerWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
@@ -216,7 +216,7 @@ class SmartHabitCard extends ConsumerWidget {
             Text(
               label,
               style: TextStyle(
-                color: color.withOpacity(0.8),
+                color: color.withValues(alpha: 0.8),
                 fontSize: 10,
               ),
             ),
@@ -234,10 +234,10 @@ class SmartHabitCard extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: AppColors.primary.withOpacity(0.05),
+        color: AppColors.primary.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: AppColors.primary.withOpacity(0.2),
+          color: AppColors.primary.withValues(alpha: 0.2),
         ),
       ),
       child: Row(
@@ -596,7 +596,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
@@ -661,7 +661,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: _getSeverityColor(insight.severity).withOpacity(0.1),
+                color: _getSeverityColor(insight.severity).withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
@@ -829,7 +829,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: AppColors.secondary.withOpacity(0.1),
+                color: AppColors.secondary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
@@ -914,8 +914,8 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: reward.isUnlocked 
-                    ? Colors.amber.withOpacity(0.1)
-                    : Colors.grey.withOpacity(0.1),
+                    ? Colors.amber.withValues(alpha: 0.1)
+                    : Colors.grey.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
@@ -949,7 +949,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: AppColors.accent.withOpacity(0.1),
+                color: AppColors.accent.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(

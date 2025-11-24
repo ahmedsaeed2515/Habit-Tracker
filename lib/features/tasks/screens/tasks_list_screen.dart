@@ -154,7 +154,7 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
                               tileColor: isSelected
                                   ? Theme.of(
                                       context,
-                                    ).colorScheme.primary.withOpacity(0.12)
+                                    ).colorScheme.primary.withValues(alpha: 0.12)
                                   : null,
                               title: Text(
                                 t.title,

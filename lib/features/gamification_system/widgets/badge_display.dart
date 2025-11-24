@@ -34,14 +34,14 @@ class BadgeDisplay extends StatelessWidget {
                   : Theme.of(context).colorScheme.surfaceContainerHighest,
               border: Border.all(
                 color: badge.isEarned
-                    ? _getRarityColor(badge.rarity).withOpacity(0.5)
-                    : Theme.of(context).colorScheme.outline.withOpacity(0.3),
+                    ? _getRarityColor(badge.rarity).withValues(alpha: 0.5)
+                    : Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
                 width: 2,
               ),
               boxShadow: badge.isEarned
                   ? [
                       BoxShadow(
-                        color: _getRarityColor(badge.rarity).withOpacity(0.3),
+                        color: _getRarityColor(badge.rarity).withValues(alpha: 0.3),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       ),

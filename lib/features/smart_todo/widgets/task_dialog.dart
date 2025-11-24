@@ -273,7 +273,7 @@ class _TaskDialogState extends State<TaskDialog> {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? _getPriorityColor(priority).withOpacity(0.2)
+                        ? _getPriorityColor(priority).withValues(alpha: 0.2)
                         : Colors.grey.shade100,
                     border: Border.all(
                       color: isSelected

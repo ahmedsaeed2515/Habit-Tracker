@@ -119,14 +119,14 @@ class _InteractiveButtonState extends State<InteractiveButton>
               height: widget.height ?? 48,
               decoration: BoxDecoration(
                 color: isDisabled
-                    ? backgroundColor.withOpacity(0.5)
+                    ? backgroundColor.withValues(alpha: 0.5)
                     : backgroundColor,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: isDisabled
                     ? null
                     : [
                         BoxShadow(
-                          color: backgroundColor.withOpacity(0.3),
+                          color: backgroundColor.withValues(alpha: 0.3),
                           blurRadius: 8,
                           offset: const Offset(0, 4),
                         ),

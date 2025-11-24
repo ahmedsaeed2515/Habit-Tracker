@@ -107,7 +107,7 @@ mixin SearchMixin<T extends StatefulWidget> on State<T> {
           ),
           filled: true,
           fillColor: backgroundColor ??
-              Theme.of(context).colorScheme.surfaceContainerHighest.withOpacity(0.5),
+              Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 12,
@@ -207,7 +207,7 @@ mixin ConsumerSearchMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> 
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -247,7 +247,7 @@ mixin ConsumerSearchMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> 
           ),
           filled: true,
           fillColor: backgroundColor ??
-              Theme.of(context).colorScheme.surfaceContainerHighest.withOpacity(0.5),
+              Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 12,

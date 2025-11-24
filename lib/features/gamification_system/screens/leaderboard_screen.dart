@@ -98,7 +98,7 @@ class _LeaderboardContent extends StatelessWidget { // Points? but for demo we'l
                 color: isCurrentUser
                     ? Theme.of(
                         context,
-                      ).colorScheme.primaryContainer.withOpacity(0.3)
+                      ).colorScheme.primaryContainer.withValues(alpha: 0.3)
                     : Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(12),
                 border: isCurrentUser

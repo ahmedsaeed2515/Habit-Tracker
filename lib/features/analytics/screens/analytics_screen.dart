@@ -251,10 +251,10 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
             Row(
               children: [
                 _buildLegendItem('0-20%', Colors.grey.shade100),
-                _buildLegendItem('20-40%', Colors.green.withOpacity(0.3)),
-                _buildLegendItem('40-60%', Colors.green.withOpacity(0.5)),
-                _buildLegendItem('60-80%', Colors.green.withOpacity(0.7)),
-                _buildLegendItem('80-100%', Colors.green.withOpacity(0.9)),
+                _buildLegendItem('20-40%', Colors.green.withValues(alpha: 0.3)),
+                _buildLegendItem('40-60%', Colors.green.withValues(alpha: 0.5)),
+                _buildLegendItem('60-80%', Colors.green.withValues(alpha: 0.7)),
+                _buildLegendItem('80-100%', Colors.green.withValues(alpha: 0.9)),
               ],
             ),
           ],
@@ -362,7 +362,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: colors[index % colors.length].withOpacity(0.1),
+          backgroundColor: colors[index % colors.length].withValues(alpha: 0.1),
           child: Icon(
             icons[index % icons.length],
             color: colors[index % colors.length],

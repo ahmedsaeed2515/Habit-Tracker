@@ -80,7 +80,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
         bottom: TabBar(
           controller: _tabController,
           labelColor: theme.colorScheme.primary,
-          unselectedLabelColor: theme.colorScheme.onSurface.withOpacity(0.6),
+          unselectedLabelColor: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           indicatorColor: theme.colorScheme.primary,
           tabs: const [
             Tab(text: 'نشطة', icon: Icon(Icons.notifications_active)),
@@ -399,7 +399,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.onSurface.withOpacity(0.3),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),

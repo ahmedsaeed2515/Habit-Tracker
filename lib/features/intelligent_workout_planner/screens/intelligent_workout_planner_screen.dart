@@ -117,7 +117,7 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
 
         return Card(
           elevation: 4,
-          color: AppTheme.primaryColor.withOpacity(0.1),
+          color: AppTheme.primaryColor.withValues(alpha: 0.1),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(

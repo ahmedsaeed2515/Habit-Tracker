@@ -170,7 +170,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: Colors.amber.withOpacity(0.2),
+              color: Colors.amber.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(12),
             ),
             child: const Text(
@@ -285,7 +285,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
       label: Text(label),
       selected: isSelected,
       onSelected: (_) => onTap(),
-      selectedColor: Theme.of(context).primaryColor.withOpacity(0.2),
+      selectedColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
     );
   }
 
@@ -347,7 +347,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
+            color: color.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
           child: Icon(icon, color: color, size: 24),
@@ -579,7 +579,7 @@ class _ThemePreviewDialog extends ConsumerWidget {
                         Text(
                           'وصف البطاقة...',
                           style: TextStyle(
-                            color: Color(theme.lightColorPalette.onSurface).withOpacity(0.7),
+                            color: Color(theme.lightColorPalette.onSurface).withValues(alpha: 0.7),
                           ),
                         ),
                       ],

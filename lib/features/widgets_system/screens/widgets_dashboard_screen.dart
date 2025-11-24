@@ -194,7 +194,7 @@ class WidgetsDashboardScreen extends ConsumerWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: _getWidgetSizeColor(widget.size).withOpacity(0.2),
+                      color: _getWidgetSizeColor(widget.size).withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(

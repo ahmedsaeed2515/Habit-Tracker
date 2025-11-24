@@ -234,7 +234,7 @@ class HealthMetricCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: _getMetricColor().withOpacity(0.1),
+                      color: _getMetricColor().withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(
@@ -816,7 +816,7 @@ class HealthInsightCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: _getPriorityColor().withOpacity(0.1),
+                      color: _getPriorityColor().withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(
@@ -865,7 +865,7 @@ class HealthInsightCard extends StatelessWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: _getPriorityColor().withOpacity(0.1),
+                                color: _getPriorityColor().withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(

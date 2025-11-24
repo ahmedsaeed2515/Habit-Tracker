@@ -176,7 +176,7 @@ class _AIPersonalAssistantScreenState
           Icon(
             Icons.smart_toy_outlined,
             size: 80,
-            color: theme.colorScheme.primary.withOpacity(0.5),
+            color: theme.colorScheme.primary.withValues(alpha: 0.5),
           ),
           const SizedBox(height: 16),
           Text(
@@ -192,7 +192,7 @@ class _AIPersonalAssistantScreenState
               'يمكنني مساعدتك في تتبع عاداتك وتقديم النصائح والتحفيز. ابدأ محادثة معي!',
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
           ),
@@ -241,7 +241,7 @@ class _AIPersonalAssistantScreenState
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         border: Border(
-          top: BorderSide(color: theme.colorScheme.outline.withOpacity(0.3)),
+          top: BorderSide(color: theme.colorScheme.outline.withValues(alpha: 0.3)),
         ),
       ),
       padding: const EdgeInsets.all(16),

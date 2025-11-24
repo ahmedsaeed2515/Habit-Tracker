@@ -68,7 +68,7 @@ class _VoiceCommandsScreenState extends ConsumerState<VoiceCommandsScreen>
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
-              color: Colors.red.withOpacity(0.1),
+              color: Colors.red.withValues(alpha: 0.1),
               child: Row(
                 children: [
                   const Icon(Icons.error, color: Colors.red),

@@ -32,7 +32,7 @@ class NotificationCard extends ConsumerWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: _getTypeColor(notification.type).withOpacity(0.1),
+                      color: _getTypeColor(notification.type).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -112,7 +112,7 @@ class NotificationCard extends ConsumerWidget {
               Text(
                 notification.body,
                 style: textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
@@ -126,13 +126,13 @@ class NotificationCard extends ConsumerWidget {
                   Icon(
                     Icons.access_time,
                     size: 16,
-                    color: theme.colorScheme.onSurface.withOpacity(0.5),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                   ),
                   const SizedBox(width: 4),
                   Text(
                     _formatScheduleTime(notification),
                     style: textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurface.withOpacity(0.5),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                     ),
                   ),
 
@@ -145,7 +145,7 @@ class NotificationCard extends ConsumerWidget {
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.primary.withOpacity(0.1),
+                        color: theme.colorScheme.primary.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
@@ -178,13 +178,13 @@ class NotificationCard extends ConsumerWidget {
                     Icon(
                       Icons.send,
                       size: 14,
-                      color: theme.colorScheme.onSurface.withOpacity(0.4),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                     ),
                     const SizedBox(width: 4),
                     Text(
                       'تم الإرسال ${notification.sentCount} ${notification.sentCount == 1 ? "مرة" : "مرات"}',
                       style: textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.4),
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                         fontSize: 11,
                       ),
                     ),
@@ -192,7 +192,7 @@ class NotificationCard extends ConsumerWidget {
                       Text(
                         ' • آخر إرسال ${_formatLastSent(notification.lastSent!)}',
                         style: textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.4),
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                           fontSize: 11,
                         ),
                       ),
@@ -347,7 +347,7 @@ class NotificationDetailsSheet extends StatelessWidget {
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.onSurface.withOpacity(0.3),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -361,7 +361,7 @@ class NotificationDetailsSheet extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: _getTypeColor(notification.type).withOpacity(0.1),
+                      color: _getTypeColor(notification.type).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(

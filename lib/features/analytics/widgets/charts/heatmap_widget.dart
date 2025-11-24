@@ -176,7 +176,7 @@ class HeatMapWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: _getColorForIntensity(intensity),
         borderRadius: BorderRadius.circular(2),
-        border: Border.all(color: Colors.grey.withOpacity(0.2), width: 0.5),
+        border: Border.all(color: Colors.grey.withValues(alpha: 0.2), width: 0.5),
       ),
       child: InkWell(
         onTap: () {
@@ -203,7 +203,7 @@ class HeatMapWidget extends StatelessWidget {
               color: _getColorForIntensity(intensity),
               borderRadius: BorderRadius.circular(2),
               border: Border.all(
-                color: Colors.grey.withOpacity(0.2),
+                color: Colors.grey.withValues(alpha: 0.2),
                 width: 0.5,
               ),
             ),
@@ -222,8 +222,8 @@ class HeatMapWidget extends StatelessWidget {
 
     const baseColor = Colors.green;
     return Color.lerp(
-      baseColor.withOpacity(0.1),
-      baseColor.withOpacity(0.9),
+      baseColor.withValues(alpha: 0.1),
+      baseColor.withValues(alpha: 0.9),
       intensity,
     )!;
   }

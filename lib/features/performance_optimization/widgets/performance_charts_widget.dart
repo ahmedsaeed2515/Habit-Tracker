@@ -124,7 +124,7 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
               dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(
                 show: true,
-                color: Colors.red.withOpacity(0.1),
+                color: Colors.red.withValues(alpha: 0.1),
               ),
             ),
             // خط الذاكرة
@@ -135,7 +135,7 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
               dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(
                 show: true,
-                color: Colors.blue.withOpacity(0.1),
+                color: Colors.blue.withValues(alpha: 0.1),
               ),
             ),
             // خط الشبكة (مقسوم على 10)
@@ -146,7 +146,7 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
               dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(
                 show: true,
-                color: Colors.green.withOpacity(0.1),
+                color: Colors.green.withValues(alpha: 0.1),
               ),
             ),
           ],
@@ -221,8 +221,8 @@ class PerformanceGaugeWidget extends ConsumerWidget {
                   CircularProgressIndicator(
                     value: 1.0,
                     strokeWidth: 8,
-                    backgroundColor: color.withOpacity(0.1),
-                    valueColor: AlwaysStoppedAnimation<Color>(color.withOpacity(0.1)),
+                    backgroundColor: color.withValues(alpha: 0.1),
+                    valueColor: AlwaysStoppedAnimation<Color>(color.withValues(alpha: 0.1)),
                   ),
                   // الدائرة الأمامية
                   CircularProgressIndicator(

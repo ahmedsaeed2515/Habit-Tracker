@@ -63,7 +63,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: _getCommandTypeColor(command.type).withOpacity(0.2),
+                    color: _getCommandTypeColor(command.type).withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
@@ -104,7 +104,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: _getStatusColor(command.status).withOpacity(0.2),
+                    color: _getStatusColor(command.status).withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -137,7 +137,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: theme.colorScheme.surfaceContainerHighest.withOpacity(0.5),
+                color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -154,7 +154,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: theme.primaryColor.withOpacity(0.1),
+                  color: theme.primaryColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -182,7 +182,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
                   Expanded(
                     child: LinearProgressIndicator(
                       value: command.confidence,
-                      backgroundColor: Colors.grey.withOpacity(0.3),
+                      backgroundColor: Colors.grey.withValues(alpha: 0.3),
                       valueColor: AlwaysStoppedAnimation<Color>(
                         _getConfidenceColor(command.confidence),
                       ),

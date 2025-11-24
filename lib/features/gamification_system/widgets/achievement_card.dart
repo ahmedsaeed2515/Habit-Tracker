@@ -26,8 +26,8 @@ class AchievementCardWidget extends StatelessWidget {
             gradient: achievement.isUnlocked
                 ? LinearGradient(
                     colors: [
-                      Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                      Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+                      Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                      Theme.of(context).colorScheme.secondary.withValues(alpha: 0.1),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -75,7 +75,7 @@ class AchievementCardWidget extends StatelessWidget {
                             ? Theme.of(context).colorScheme.onSurfaceVariant
                             : Theme.of(
                                 context,
-                              ).colorScheme.onSurfaceVariant.withOpacity(0.6),
+                              ).colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,

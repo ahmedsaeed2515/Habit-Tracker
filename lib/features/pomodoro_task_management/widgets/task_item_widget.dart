@@ -44,8 +44,8 @@ class TaskItemWidget extends ConsumerWidget {
               gradient: task.status == TaskStatus.completed
                   ? LinearGradient(
                       colors: [
-                        Colors.green.withOpacity(0.1),
-                        Colors.green.withOpacity(0.05),
+                        Colors.green.withValues(alpha: 0.1),
+                        Colors.green.withValues(alpha: 0.05),
                       ],
                     )
                   : null,
@@ -367,9 +367,9 @@ class TaskItemWidget extends ConsumerWidget {
           tag,
           style: const TextStyle(fontSize: 11),
         ),
-        backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1),
+        backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.1),
         side: BorderSide(
-          color: Theme.of(context).primaryColor.withOpacity(0.3),
+          color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
         ),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         visualDensity: VisualDensity.compact,
@@ -517,7 +517,7 @@ class TaskItemWidget extends ConsumerWidget {
   Color _getBorderColor(BuildContext context) {
     if (task.isOverdue) return Colors.red;
     if (task.status == TaskStatus.completed) return Colors.green;
-    return task.priorityColor.withOpacity(0.3);
+    return task.priorityColor.withValues(alpha: 0.3);
   }
 
   String _formatDueDate(DateTime dueDate) {

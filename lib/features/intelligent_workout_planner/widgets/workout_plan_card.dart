@@ -39,7 +39,7 @@ class WorkoutPlanCard extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: AppTheme.primaryColor.withOpacity(0.1),
+                        color: AppTheme.primaryColor.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: AppTheme.primaryColor),
                       ),
@@ -102,9 +102,9 @@ class WorkoutPlanCard extends StatelessWidget {
                         _getMuscleName(muscle),
                         style: const TextStyle(fontSize: 12),
                       ),
-                      backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+                      backgroundColor: AppTheme.primaryColor.withValues(alpha: 0.1),
                       side: BorderSide(
-                        color: AppTheme.primaryColor.withOpacity(0.3),
+                        color: AppTheme.primaryColor.withValues(alpha: 0.3),
                       ),
                     );
                   }).toList(),

@@ -52,7 +52,7 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
         indicatorColor: indicatorColor ?? theme.primaryColor,
         labelColor: labelColor ?? theme.primaryColor,
         unselectedLabelColor: unselectedLabelColor ?? 
-            theme.colorScheme.onSurface.withOpacity(0.6),
+            theme.colorScheme.onSurface.withValues(alpha: 0.6),
         labelStyle: labelStyle ?? theme.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.w600,
         ),
@@ -108,7 +108,7 @@ class VerticalTabBar extends StatelessWidget {
         color: backgroundColor ?? theme.colorScheme.surface,
         borderRadius: borderRadius,
         border: Border.all(
-          color: theme.colorScheme.outline.withOpacity(0.2),
+          color: theme.colorScheme.outline.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -139,7 +139,7 @@ class VerticalTabBar extends StatelessWidget {
                       (tab.icon! as Icon).icon,
                       color: isSelected
                           ? theme.colorScheme.onPrimaryContainer
-                          : unselectedColor ?? theme.colorScheme.onSurface.withOpacity(0.6),
+                          : unselectedColor ?? theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       size: 20.0,
                     ),
                     const SizedBox(width: 8.0),
@@ -150,7 +150,7 @@ class VerticalTabBar extends StatelessWidget {
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: isSelected
                             ? theme.colorScheme.onPrimaryContainer
-                            : unselectedColor ?? theme.colorScheme.onSurface.withOpacity(0.6),
+                            : unselectedColor ?? theme.colorScheme.onSurface.withValues(alpha: 0.6),
                         fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -203,7 +203,7 @@ class BadgeTabBar extends StatelessWidget implements PreferredSizeWidget {
       indicatorColor: indicatorColor ?? theme.primaryColor,
       labelColor: labelColor ?? theme.primaryColor,
       unselectedLabelColor: unselectedLabelColor ?? 
-          theme.colorScheme.onSurface.withOpacity(0.6),
+          theme.colorScheme.onSurface.withValues(alpha: 0.6),
       tabs: tabs.asMap().entries.map((entry) {
         final index = entry.key;
         final tab = entry.value;

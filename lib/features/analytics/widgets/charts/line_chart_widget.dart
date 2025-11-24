@@ -54,11 +54,11 @@ class AnalyticsLineChart extends StatelessWidget {
                     horizontalInterval: (maxY - minY) / 5,
                     verticalInterval: 1,
                     getDrawingHorizontalLine: (value) => FlLine(
-                      color: Colors.grey.withOpacity(0.3),
+                      color: Colors.grey.withValues(alpha: 0.3),
                       strokeWidth: 1,
                     ),
                     getDrawingVerticalLine: (value) => FlLine(
-                      color: Colors.grey.withOpacity(0.3),
+                      color: Colors.grey.withValues(alpha: 0.3),
                       strokeWidth: 1,
                     ),
                   ),
@@ -105,7 +105,7 @@ class AnalyticsLineChart extends StatelessWidget {
                   ),
                   borderData: FlBorderData(
                     show: true,
-                    border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                    border: Border.all(color: Colors.grey.withValues(alpha: 0.3)),
                   ),
                   minX: 0,
                   maxX: (data.length - 1).toDouble(),
@@ -123,7 +123,7 @@ class AnalyticsLineChart extends StatelessWidget {
                       dotData: FlDotData(show: showDots),
                       belowBarData: BarAreaData(
                         show: true,
-                        color: lineColor.withOpacity(0.1),
+                        color: lineColor.withValues(alpha: 0.1),
                       ),
                     ),
                   ],

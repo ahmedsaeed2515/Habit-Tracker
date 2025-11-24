@@ -20,10 +20,10 @@ class QuickStatsWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: Colors.white.withOpacity(0.2),
+          color: Colors.white.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -114,10 +114,10 @@ class QuickStatsWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.orange.withOpacity(0.2),
+        color: Colors.orange.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: Colors.orange.withOpacity(0.4),
+          color: Colors.orange.withValues(alpha: 0.4),
         ),
       ),
       child: Row(
@@ -151,10 +151,10 @@ class QuickStatsWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: color.withOpacity(0.3),
+          color: color.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -181,7 +181,7 @@ class QuickStatsWidget extends ConsumerWidget {
           Text(
             label,
             style: TextStyle(
-              color: color.withOpacity(0.8),
+              color: color.withValues(alpha: 0.8),
               fontSize: 10,
             ),
             textAlign: TextAlign.center,
@@ -226,7 +226,7 @@ class QuickStatsWidget extends ConsumerWidget {
           child: LinearProgressIndicator(
             value: progress,
             minHeight: 6,
-            backgroundColor: Colors.white.withOpacity(0.2),
+            backgroundColor: Colors.white.withValues(alpha: 0.2),
             valueColor: AlwaysStoppedAnimation<Color>(
               remaining > 0 ? Colors.blue : Colors.green,
             ),
@@ -276,7 +276,7 @@ class QuickStatsWidget extends ConsumerWidget {
     required VoidCallback onTap,
   }) {
     return Material(
-      color: color.withOpacity(0.1),
+      color: color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(8),
       child: InkWell(
         onTap: onTap,
@@ -333,7 +333,7 @@ class WeeklyStatsPreview extends ConsumerWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -475,11 +475,11 @@ class WeeklyStatsPreview extends ConsumerWidget {
     final today = DateTime.now().weekday - 1; // Convert to 0-6
     
     if (dayIndex == today) {
-      return hasData ? Colors.blue : Colors.blue.withOpacity(0.3);
+      return hasData ? Colors.blue : Colors.blue.withValues(alpha: 0.3);
     } else if (dayIndex < today) {
-      return hasData ? Colors.green : Colors.grey.withOpacity(0.3);
+      return hasData ? Colors.green : Colors.grey.withValues(alpha: 0.3);
     } else {
-      return Colors.grey.withOpacity(0.2);
+      return Colors.grey.withValues(alpha: 0.2);
     }
   }
 
@@ -507,13 +507,13 @@ class ProductivityTipsWidget extends ConsumerWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.indigo.withOpacity(0.1),
-            Colors.blue.withOpacity(0.1),
+            Colors.indigo.withValues(alpha: 0.1),
+            Colors.blue.withValues(alpha: 0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: Colors.blue.withOpacity(0.3),
+          color: Colors.blue.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -615,9 +615,9 @@ class ProductivityTipsWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Text(
         text,

@@ -137,8 +137,8 @@ class ChallengeCard extends ConsumerWidget {
           gradient: challenge.status == ChallengeStatus.completed
               ? LinearGradient(
                   colors: [
-                    Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+                    Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                    Theme.of(context).colorScheme.secondary.withValues(alpha: 0.1),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -155,7 +155,7 @@ class ChallengeCard extends ConsumerWidget {
                   decoration: BoxDecoration(
                     color: _getDifficultyColor(
                       challenge.difficulty,
-                    ).withOpacity(0.2),
+                    ).withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
@@ -190,7 +190,7 @@ class ChallengeCard extends ConsumerWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: _getStatusColor(challenge.status).withOpacity(0.2),
+                    color: _getStatusColor(challenge.status).withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(

@@ -79,7 +79,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
   AppBar _buildAppBar(BuildContext context, AdvancedTask task) {
     return AppBar(
       title: const Text('تفاصيل المهمة'),
-      backgroundColor: task.priorityColor.withOpacity(0.8),
+      backgroundColor: task.priorityColor.withValues(alpha: 0.8),
       foregroundColor: Colors.white,
       actions: [
         IconButton(
@@ -130,8 +130,8 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
           borderRadius: BorderRadius.circular(16),
           gradient: LinearGradient(
             colors: [
-              task.priorityColor.withOpacity(0.1),
-              task.priorityColor.withOpacity(0.05),
+              task.priorityColor.withValues(alpha: 0.1),
+              task.priorityColor.withValues(alpha: 0.05),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -216,10 +216,10 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: _getStatusColor(task.status).withOpacity(0.1),
+                    color: _getStatusColor(task.status).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: _getStatusColor(task.status).withOpacity(0.3),
+                      color: _getStatusColor(task.status).withValues(alpha: 0.3),
                     ),
                   ),
                   child: Text(
@@ -245,9 +245,9 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                     tag,
                     style: const TextStyle(fontSize: 10),
                   ),
-                  backgroundColor: task.priorityColor.withOpacity(0.1),
+                  backgroundColor: task.priorityColor.withValues(alpha: 0.1),
                   side: BorderSide(
-                    color: task.priorityColor.withOpacity(0.3),
+                    color: task.priorityColor.withValues(alpha: 0.3),
                   ),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   visualDensity: VisualDensity.compact,
@@ -466,9 +466,9 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [

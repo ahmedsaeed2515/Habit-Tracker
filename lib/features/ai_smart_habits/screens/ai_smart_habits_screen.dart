@@ -150,7 +150,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
         label: Text(label),
         selected: isSelected,
         onSelected: (_) => onTap(),
-        selectedColor: AppColors.primary.withOpacity(0.2),
+        selectedColor: AppColors.primary.withValues(alpha: 0.2),
         backgroundColor: Colors.grey[200],
         labelStyle: TextStyle(
           color: isSelected ? AppColors.primary : Colors.grey[700],
@@ -266,7 +266,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -283,7 +283,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
           ),
           Text(
             label,
-            style: TextStyle(color: color.withOpacity(0.8), fontSize: 12),
+            style: TextStyle(color: color.withValues(alpha: 0.8), fontSize: 12),
             textAlign: TextAlign.center,
           ),
         ],
@@ -345,7 +345,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -504,7 +504,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                 decoration: BoxDecoration(
                   color: _getRecommendationTypeColor(
                     recommendation.type,
-                  ).withOpacity(0.1),
+                  ).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
@@ -540,7 +540,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                     decoration: BoxDecoration(
                       color: _getPriorityColor(
                         recommendation.priority,
-                      ).withOpacity(0.1),
+                      ).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -756,7 +756,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: _getSeverityColor(insight.severity).withOpacity(0.1),
+              color: _getSeverityColor(insight.severity).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(

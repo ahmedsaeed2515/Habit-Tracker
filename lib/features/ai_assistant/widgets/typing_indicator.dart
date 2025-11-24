@@ -66,7 +66,7 @@ class _TypingIndicatorState extends State<TypingIndicator>
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -79,7 +79,7 @@ class _TypingIndicatorState extends State<TypingIndicator>
                 Text(
                   'يكتب',
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant.withOpacity(0.7),
+                    color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
                   ),
                 ),
                 const SizedBox(width: 8),

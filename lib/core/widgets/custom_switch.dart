@@ -67,7 +67,7 @@ class _CustomSwitchState extends State<CustomSwitch> {
                       widget.subtitle!,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: widget.enabled 
-                            ? theme.colorScheme.onSurface.withOpacity(0.7)
+                            ? theme.colorScheme.onSurface.withValues(alpha: 0.7)
                             : theme.disabledColor,
                       ),
                     ),
@@ -98,7 +98,7 @@ class _CustomSwitchState extends State<CustomSwitch> {
       activeThumbColor: widget.thumbColor ?? theme.colorScheme.onPrimary,
       activeTrackColor: widget.activeColor ?? theme.colorScheme.primary,
       inactiveThumbColor: widget.thumbColor ?? theme.colorScheme.onSurface,
-      inactiveTrackColor: widget.inactiveColor ?? theme.colorScheme.outline.withOpacity(0.3),
+      inactiveTrackColor: widget.inactiveColor ?? theme.colorScheme.outline.withValues(alpha: 0.3),
     );
   }
 }
@@ -143,7 +143,7 @@ class CustomSwitchListTile extends StatelessWidget {
         subtitle: subtitle != null ? Text(subtitle!) : null,
         secondary: leading,
         activeThumbColor: activeColor ?? theme.colorScheme.primary,
-        inactiveTrackColor: inactiveColor ?? theme.colorScheme.outline.withOpacity(0.3),
+        inactiveTrackColor: inactiveColor ?? theme.colorScheme.outline.withValues(alpha: 0.3),
         contentPadding: EdgeInsets.zero,
         dense: false,
       ),
@@ -188,7 +188,7 @@ class CustomToggleSwitch extends StatelessWidget {
         color: inactiveColor ?? theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(borderRadius!),
         border: Border.all(
-          color: theme.colorScheme.outline.withOpacity(0.2),
+          color: theme.colorScheme.outline.withValues(alpha: 0.2),
         ),
       ),
       child: Row(
@@ -215,8 +215,8 @@ class CustomToggleSwitch extends StatelessWidget {
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: isSelected
                         ? activeForegroundColor ?? theme.colorScheme.onPrimary
-                        : inactiveForegroundColor ?? theme.colorScheme.onSurface.withOpacity(
-                            enabled ? 1.0 : 0.5,
+                        : inactiveForegroundColor ?? theme.colorScheme.onSurface.withValues(
+                            alpha: enabled ? 1.0 : 0.5,
                           ),
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                   ),

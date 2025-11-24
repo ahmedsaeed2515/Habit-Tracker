@@ -193,8 +193,8 @@ class RewardCard extends StatelessWidget {
           gradient: isUnlocked
               ? LinearGradient(
                   colors: [
-                    _getRarityColor(reward.rarity).withOpacity(0.2),
-                    _getRarityColor(reward.rarity).withOpacity(0.1),
+                    _getRarityColor(reward.rarity).withValues(alpha: 0.2),
+                    _getRarityColor(reward.rarity).withValues(alpha: 0.1),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -214,8 +214,8 @@ class RewardCard extends StatelessWidget {
                     : Theme.of(context).colorScheme.surfaceContainerHighest,
                 border: Border.all(
                   color: isUnlocked
-                      ? _getRarityColor(reward.rarity).withOpacity(0.5)
-                      : Theme.of(context).colorScheme.outline.withOpacity(0.3),
+                      ? _getRarityColor(reward.rarity).withValues(alpha: 0.5)
+                      : Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
                   width: 2,
                 ),
               ),
@@ -246,7 +246,7 @@ class RewardCard extends StatelessWidget {
                     ? Theme.of(context).colorScheme.onSurfaceVariant
                     : Theme.of(
                         context,
-                      ).colorScheme.onSurfaceVariant.withOpacity(0.6),
+                      ).colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
               ),
               textAlign: TextAlign.center,
               maxLines: 2,
@@ -299,7 +299,7 @@ class RewardCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: _getRarityColor(reward.rarity).withOpacity(0.2),
+                  color: _getRarityColor(reward.rarity).withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(

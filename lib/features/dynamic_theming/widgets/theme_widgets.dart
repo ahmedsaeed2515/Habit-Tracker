@@ -188,8 +188,8 @@ class ThemeCard extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                   gradient: LinearGradient(
                     colors: [
-                      Color(theme.lightColorPalette.primary).withOpacity(0.8),
-                      Color(theme.lightColorPalette.secondary).withOpacity(0.8),
+                      Color(theme.lightColorPalette.primary).withValues(alpha: 0.8),
+                      Color(theme.lightColorPalette.secondary).withValues(alpha: 0.8),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -203,7 +203,7 @@ class ThemeCard extends ConsumerWidget {
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.3),
+                          color: Colors.black.withValues(alpha: 0.3),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
@@ -402,7 +402,7 @@ class ThemeCategoryFilter extends ConsumerWidget {
       selected: isSelected,
       onSelected: (_) => onTap(),
       backgroundColor: Colors.transparent,
-      selectedColor: Theme.of(context).primaryColor.withOpacity(0.2),
+      selectedColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
       checkmarkColor: Theme.of(context).primaryColor,
       side: BorderSide(
         color: isSelected

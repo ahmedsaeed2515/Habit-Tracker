@@ -273,7 +273,7 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
             });
           },
           backgroundColor: Colors.grey[100],
-          selectedColor: AppTheme.primaryColor.withOpacity(0.2),
+          selectedColor: AppTheme.primaryColor.withValues(alpha: 0.2),
           checkmarkColor: AppTheme.primaryColor,
         );
       }).toList(),
@@ -332,7 +332,7 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
             });
           },
           backgroundColor: Colors.grey[100],
-          selectedColor: AppTheme.primaryColor.withOpacity(0.2),
+          selectedColor: AppTheme.primaryColor.withValues(alpha: 0.2),
           checkmarkColor: AppTheme.primaryColor,
         );
       }).toList(),

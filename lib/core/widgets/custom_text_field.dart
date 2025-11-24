@@ -207,7 +207,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8.0),
       borderSide: BorderSide(
-        color: theme.colorScheme.outline.withOpacity(0.5),
+        color: theme.colorScheme.outline.withValues(alpha: 0.5),
       ),
     );
   }
@@ -236,7 +236,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8.0),
       borderSide: BorderSide(
-        color: theme.disabledColor.withOpacity(0.3),
+        color: theme.disabledColor.withValues(alpha: 0.3),
       ),
     );
   }

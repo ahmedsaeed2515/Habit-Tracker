@@ -70,7 +70,7 @@ class _PointsWidget extends StatelessWidget {
                 height: 12,
                 color: Theme.of(
                   context,
-                ).colorScheme.onPrimaryContainer.withOpacity(0.3),
+                ).colorScheme.onPrimaryContainer.withValues(alpha: 0.3),
               ),
               const SizedBox(width: 8),
               Text(
@@ -136,7 +136,7 @@ class _PointsWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Theme.of(
                       context,
-                    ).colorScheme.onPrimaryContainer.withOpacity(0.2),
+                    ).colorScheme.onPrimaryContainer.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(2),
                   ),
                   child: FractionallySizedBox(
@@ -156,7 +156,7 @@ class _PointsWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Theme.of(
                       context,
-                    ).colorScheme.onPrimaryContainer.withOpacity(0.7),
+                    ).colorScheme.onPrimaryContainer.withValues(alpha: 0.7),
                   ),
                 ),
               ],

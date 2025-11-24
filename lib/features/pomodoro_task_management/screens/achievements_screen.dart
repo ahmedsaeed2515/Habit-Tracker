@@ -60,7 +60,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                     end: Alignment.bottomCenter,
                     colors: [
                       const Color(0xFF0A0E21),
-                      Colors.blue.withOpacity(0.2),
+                      Colors.blue.withValues(alpha: 0.2),
                     ],
                   ),
                 ),
@@ -241,10 +241,10 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: color.withOpacity(0.3),
+          color: color.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -267,7 +267,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                 Text(
                   suffix,
                   style: TextStyle(
-                    color: color.withOpacity(0.7),
+                    color: color.withValues(alpha: 0.7),
                     fontSize: 14,
                   ),
                 ),
@@ -277,7 +277,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
           Text(
             title,
             style: TextStyle(
-              color: color.withOpacity(0.8),
+              color: color.withValues(alpha: 0.8),
               fontSize: 12,
             ),
           ),
@@ -301,9 +301,9 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
           ),
         ),
         selectedColor: Colors.blue,
-        backgroundColor: Colors.white.withOpacity(0.1),
+        backgroundColor: Colors.white.withValues(alpha: 0.1),
         side: BorderSide(
-          color: isSelected ? Colors.blue : Colors.white.withOpacity(0.3),
+          color: isSelected ? Colors.blue : Colors.white.withValues(alpha: 0.3),
         ),
         onSelected: (selected) {
           if (selected) {
@@ -324,14 +324,14 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
       duration: const Duration(milliseconds: 300),
       child: Card(
         color: isUnlocked 
-            ? _getCategoryColor(achievement.category).withOpacity(0.1)
-            : Colors.grey.withOpacity(0.1),
+            ? _getCategoryColor(achievement.category).withValues(alpha: 0.1)
+            : Colors.grey.withValues(alpha: 0.1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
           side: BorderSide(
             color: isUnlocked 
                 ? _getCategoryColor(achievement.category)
-                : Colors.grey.withOpacity(0.3),
+                : Colors.grey.withValues(alpha: 0.3),
             width: isUnlocked ? 2 : 1,
           ),
         ),
@@ -351,8 +351,8 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: isUnlocked 
-                            ? _getCategoryColor(achievement.category).withOpacity(0.2)
-                            : Colors.grey.withOpacity(0.2),
+                            ? _getCategoryColor(achievement.category).withValues(alpha: 0.2)
+                            : Colors.grey.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(
@@ -370,7 +370,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.green.withOpacity(0.2),
+                          color: Colors.green.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Text(
@@ -461,7 +461,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                       const SizedBox(height: 4),
                       LinearProgressIndicator(
                         value: progress,
-                        backgroundColor: Colors.grey.withOpacity(0.3),
+                        backgroundColor: Colors.grey.withValues(alpha: 0.3),
                         valueColor: AlwaysStoppedAnimation<Color>(
                           _getCategoryColor(achievement.category),
                         ),
@@ -486,10 +486,10 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: _getCategoryColor(achievement.category).withOpacity(0.3),
+          color: _getCategoryColor(achievement.category).withValues(alpha: 0.3),
         ),
       ),
       child: Row(
@@ -497,7 +497,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: _getCategoryColor(achievement.category).withOpacity(0.2),
+              color: _getCategoryColor(achievement.category).withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
@@ -530,7 +530,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                 const SizedBox(height: 8),
                 LinearProgressIndicator(
                   value: progress,
-                  backgroundColor: Colors.grey.withOpacity(0.3),
+                  backgroundColor: Colors.grey.withValues(alpha: 0.3),
                   valueColor: AlwaysStoppedAnimation<Color>(
                     _getCategoryColor(achievement.category),
                   ),
@@ -672,8 +672,8 @@ class AchievementDetailsDialog extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: achievement.isUnlocked
-                    ? Colors.green.withOpacity(0.2)
-                    : Colors.grey.withOpacity(0.2),
+                    ? Colors.green.withValues(alpha: 0.2)
+                    : Colors.grey.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Icon(
@@ -715,7 +715,7 @@ class AchievementDetailsDialog extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.1),
+                  color: Colors.green.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
@@ -738,7 +738,7 @@ class AchievementDetailsDialog extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.05),
+                  color: Colors.white.withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Column(
@@ -753,7 +753,7 @@ class AchievementDetailsDialog extends StatelessWidget {
                     const SizedBox(height: 8),
                     LinearProgressIndicator(
                       value: achievement.progress,
-                      backgroundColor: Colors.grey.withOpacity(0.3),
+                      backgroundColor: Colors.grey.withValues(alpha: 0.3),
                       valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
                       minHeight: 6,
                     ),
@@ -868,7 +868,7 @@ class AchievementGuideDialog extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
+              color: color.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(icon, color: color, size: 20),

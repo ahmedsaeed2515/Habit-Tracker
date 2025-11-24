@@ -258,7 +258,7 @@ class _HabitDialogState extends ConsumerState<HabitDialog> {
                 },
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: isSelected ? Colors.blue.withOpacity(0.3) : null,
+                    color: isSelected ? Colors.blue.withValues(alpha: 0.3) : null,
                     borderRadius: BorderRadius.circular(6),
                     border: Border.all(
                       color: isSelected ? Colors.blue : Colors.transparent,
