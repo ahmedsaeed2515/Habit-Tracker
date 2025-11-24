@@ -70,7 +70,7 @@ class TaskCard extends StatelessWidget {
       child: Row(
         children: [
           _buildCompletionCheckbox(),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,7 +192,7 @@ class TaskCard extends StatelessWidget {
                     : TextDecoration.none,
               ),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
           ],
           _buildTaskMetadata(),
         ],
@@ -210,7 +210,7 @@ class TaskCard extends StatelessWidget {
             _formatDate(task.dueDate!),
             _isOverdue() ? Colors.red : Colors.orange,
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
         ],
         if (task.subTasks.isNotEmpty) ...[
           _buildMetadataChip(
@@ -218,7 +218,7 @@ class TaskCard extends StatelessWidget {
             '${task.subTasks.where((s) => s.isCompleted).length}/${task.subTasks.length}',
             Colors.blue,
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
         ],
         if (task.tags.isNotEmpty) ...[
           _buildMetadataChip(
@@ -244,7 +244,7 @@ class TaskCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 12, color: color),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
           Text(
             text,
             style: TextStyle(
@@ -284,7 +284,7 @@ class TaskCard extends StatelessWidget {
             Colors.blue,
             onEdit!,
           ),
-        if (onEdit != null && onDelete != null) const SizedBox(width: 8),
+        if (onEdit != null && onDelete != null) const const SizedBox(width: 8),
         if (onDelete != null)
           _buildActionButton(
             Icons.delete_outline,

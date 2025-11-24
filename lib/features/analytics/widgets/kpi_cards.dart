@@ -64,7 +64,7 @@ class KpiCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Text(
               value,
               style: TextStyle(
@@ -74,7 +74,7 @@ class KpiCard extends StatelessWidget {
               ),
             ),
             if (subtitle != null) ...[
-              const SizedBox(height: 4),
+              const const SizedBox(height: 4),
               Text(
                 subtitle!,
                 style: TextStyle(fontSize: 12, color: Colors.grey[500]),
@@ -82,7 +82,7 @@ class KpiCard extends StatelessWidget {
               ),
             ],
             if (showTrend && trend != null) ...[
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               _buildTrendIndicator(),
             ],
           ],
@@ -111,7 +111,7 @@ class KpiCard extends StatelessWidget {
     return Row(
       children: [
         Icon(trendIcon, size: 16, color: trendColor),
-        const SizedBox(width: 4),
+        const const SizedBox(width: 4),
         Text(
           trend!,
           style: TextStyle(
@@ -253,7 +253,7 @@ class CircularProgressKpi extends StatelessWidget {
               style: Theme.of(context).textTheme.titleSmall,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             SizedBox(
               width: 80,
               height: 80,
@@ -278,7 +278,7 @@ class CircularProgressKpi extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               '${value.toStringAsFixed(1)} / ${maxValue.toStringAsFixed(1)}',
               style: TextStyle(fontSize: 12, color: Colors.grey[600]),

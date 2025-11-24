@@ -63,7 +63,7 @@ class TaskItemWidget extends ConsumerWidget {
         // Completion Checkbox
         _buildCompletionCheckbox(context),
         
-        const SizedBox(width: 12),
+        const const SizedBox(width: 12),
         
         // Task Content
         Expanded(
@@ -102,7 +102,7 @@ class TaskItemWidget extends ConsumerWidget {
                         size: 14,
                         color: Colors.grey[600],
                       ),
-                      const SizedBox(width: 4),
+                      const const SizedBox(width: 4),
                       Text(
                         '${task.subtasks.where((s) => s.isCompleted).length}/${task.subtasks.length}',
                         style: TextStyle(
@@ -110,7 +110,7 @@ class TaskItemWidget extends ConsumerWidget {
                           color: Colors.grey[600],
                         ),
                       ),
-                      const SizedBox(width: 12),
+                      const const SizedBox(width: 12),
                     ],
                     if (task.dueDate != null) ...[
                       Icon(
@@ -118,7 +118,7 @@ class TaskItemWidget extends ConsumerWidget {
                         size: 14,
                         color: task.isOverdue ? Colors.red : Colors.grey[600],
                       ),
-                      const SizedBox(width: 4),
+                      const const SizedBox(width: 4),
                       Text(
                         _formatDueDate(task.dueDate!),
                         style: TextStyle(
@@ -147,7 +147,7 @@ class TaskItemWidget extends ConsumerWidget {
         Row(
           children: [
             _buildCompletionCheckbox(context),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,7 +175,7 @@ class TaskItemWidget extends ConsumerWidget {
                   
                   // Description
                   if (task.description != null && task.description!.isNotEmpty) ...[
-                    const SizedBox(height: 6),
+                    const const SizedBox(height: 6),
                     Text(
                       task.description!,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -191,18 +191,18 @@ class TaskItemWidget extends ConsumerWidget {
           ],
         ),
         
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         
         // Progress Bar (if has subtasks)
         if (task.subtasks.isNotEmpty) ...[
           _buildProgressBar(context),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
         ],
         
         // Tags
         if (task.tags.isNotEmpty) ...[
           _buildTagsRow(context),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
         ],
         
         // Info Row
@@ -215,7 +215,7 @@ class TaskItemWidget extends ConsumerWidget {
                 size: 16,
                 color: task.isOverdue ? Colors.red : Colors.grey[600],
               ),
-              const SizedBox(width: 4),
+              const const SizedBox(width: 4),
               Text(
                 _formatDueDate(task.dueDate!),
                 style: TextStyle(
@@ -224,7 +224,7 @@ class TaskItemWidget extends ConsumerWidget {
                   fontWeight: task.isOverdue ? FontWeight.w600 : null,
                 ),
               ),
-              const SizedBox(width: 16),
+              const const SizedBox(width: 16),
             ],
             
             // Estimated Duration
@@ -234,7 +234,7 @@ class TaskItemWidget extends ConsumerWidget {
                 size: 16,
                 color: Colors.grey[600],
               ),
-              const SizedBox(width: 4),
+              const const SizedBox(width: 4),
               Text(
                 '${task.estimatedDuration!.inMinutes} دقيقة',
                 style: TextStyle(
@@ -242,7 +242,7 @@ class TaskItemWidget extends ConsumerWidget {
                   color: Colors.grey[600],
                 ),
               ),
-              const SizedBox(width: 16),
+              const const SizedBox(width: 16),
             ],
             
             // Pomodoro Sessions
@@ -252,7 +252,7 @@ class TaskItemWidget extends ConsumerWidget {
                 size: 16,
                 color: Colors.orange,
               ),
-              const SizedBox(width: 4),
+              const const SizedBox(width: 4),
               Text(
                 '${task.pomodoroSessions} 🍅',
                 style: const TextStyle(
@@ -272,7 +272,7 @@ class TaskItemWidget extends ConsumerWidget {
         
         // Subtasks Preview (show first few)
         if (task.subtasks.isNotEmpty) ...[
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           _buildSubtasksPreview(context, ref),
         ],
       ],
@@ -346,7 +346,7 @@ class TaskItemWidget extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 4),
+        const const SizedBox(height: 4),
         LinearProgressIndicator(
           value: progress,
           backgroundColor: Colors.grey[300],
@@ -480,7 +480,7 @@ class TaskItemWidget extends ConsumerWidget {
                       : null,
                 ),
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   subtask.title,

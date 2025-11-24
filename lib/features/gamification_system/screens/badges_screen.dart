@@ -47,7 +47,7 @@ class _BadgesGrid extends StatelessWidget {
                     context,
                   ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
               ],
             ),
           ),
@@ -72,14 +72,14 @@ class _BadgesGrid extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 32),
+                const const SizedBox(height: 32),
                 Text(
                   'Not Earned (${unearnedBadges.length})',
                   style: Theme.of(
                     context,
                   ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
               ],
             ),
           ),
@@ -155,7 +155,7 @@ class BadgeCard extends StatelessWidget {
                 size: 30,
               ),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Text(
               badge.name,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -166,7 +166,7 @@ class BadgeCard extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               badge.description,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -180,7 +180,7 @@ class BadgeCard extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(

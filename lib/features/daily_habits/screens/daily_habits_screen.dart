@@ -141,7 +141,7 @@ class DailyHabitsScreen extends ConsumerWidget {
           totalStreak.toString(),
           Icons.trending_up,
         ),
-        const SizedBox(height: 16),
+        const const SizedBox(height: 16),
         _buildHabitsBreakdown(habits),
       ],
     );
@@ -174,14 +174,14 @@ class DailyHabitsScreen extends ConsumerWidget {
               'تفصيل العادات',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             ...habits.map(
               (habit) => Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Row(
                   children: [
                     Text(habit.icon),
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     Expanded(child: Text(habit.name)),
                     Text('${habit.getTodayProgress().toInt()}%'),
                   ],

@@ -65,7 +65,7 @@ class HabitCard extends StatelessWidget {
             backgroundColor: isCompleted ? Colors.green : Colors.orange,
             child: Text(habit.icon, style: const TextStyle(fontSize: 16)),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,10 +107,10 @@ class HabitCard extends StatelessWidget {
               habit.description,
               style: TextStyle(fontSize: 14, color: Colors.grey[700]),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
           ],
           _buildProgressBar(todayProgress),
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           _buildHabitStats(),
         ],
       ),
@@ -135,7 +135,7 @@ class HabitCard extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 4),
+        const const SizedBox(height: 4),
         LinearProgressIndicator(
           value: progress / 100,
           backgroundColor: Colors.grey[300],
@@ -157,14 +157,14 @@ class HabitCard extends StatelessWidget {
           '${habit.currentStreak} أيام',
           Colors.blue,
         ),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         _buildStatChip(
           Icons.star,
           'أطول سلسلة',
           '${habit.longestStreak} أيام',
           Colors.purple,
         ),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         _buildStatChip(
           Icons.timeline,
           'المعدل',
@@ -193,7 +193,7 @@ class HabitCard extends StatelessWidget {
         child: Column(
           children: [
             Icon(icon, size: 14, color: color),
-            const SizedBox(height: 2),
+            const const SizedBox(height: 2),
             Text(
               value,
               style: TextStyle(
@@ -247,7 +247,7 @@ class HabitCard extends StatelessWidget {
             onCompleted!,
           ),
         if (onEdit != null) ...[
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           _buildActionButton(
             Icons.edit_outlined,
             'تعديل',
@@ -256,7 +256,7 @@ class HabitCard extends StatelessWidget {
           ),
         ],
         if (onDelete != null) ...[
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           _buildActionButton(
             Icons.delete_outline,
             'حذف',

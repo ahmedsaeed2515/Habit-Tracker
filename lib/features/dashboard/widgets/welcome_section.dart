@@ -46,7 +46,7 @@ class WelcomeSection extends StatelessWidget {
           Row(
             children: [
               Icon(greetingIcon, color: Colors.white, size: 28),
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   greeting,
@@ -58,7 +58,7 @@ class WelcomeSection extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             'جاهز لتحقيق أهدافك اليوم؟',
             style: theme.textTheme.bodyLarge?.copyWith(

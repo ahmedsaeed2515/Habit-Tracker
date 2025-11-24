@@ -91,7 +91,7 @@ class _ChallengeTab extends StatelessWidget {
               size: 64,
               color: Theme.of(context).colorScheme.outline,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'No challenges here yet',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -164,7 +164,7 @@ class ChallengeCard extends ConsumerWidget {
                     size: 24,
                   ),
                 ),
-                const SizedBox(width: 12),
+                const const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,7 +174,7 @@ class ChallengeCard extends ConsumerWidget {
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 4),
+                      const const SizedBox(height: 4),
                       Text(
                         challenge.description,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -203,7 +203,7 @@ class ChallengeCard extends ConsumerWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             if (showProgress && challenge.isActive) ...[
               Text(
                 'Progress: ${challenge.currentProgress}/${challenge.targetProgress}',
@@ -211,7 +211,7 @@ class ChallengeCard extends ConsumerWidget {
                   context,
                 ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               LinearProgressIndicator(
                 value: challenge.progressPercentage,
                 backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
@@ -219,7 +219,7 @@ class ChallengeCard extends ConsumerWidget {
                   Theme.of(context).colorScheme.primary,
                 ),
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text(
                 '${(challenge.progressPercentage * 100).toInt()}% complete',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -227,7 +227,7 @@ class ChallengeCard extends ConsumerWidget {
                 ),
               ),
             ],
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Row(
               children: [
                 Icon(
@@ -235,7 +235,7 @@ class ChallengeCard extends ConsumerWidget {
                   size: 16,
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
-                const SizedBox(width: 4),
+                const const SizedBox(width: 4),
                 Text(
                   'Ends: ${_formatDate(challenge.endDate)}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(

@@ -30,7 +30,7 @@ class UserSuggestionsWidget extends ConsumerWidget {
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -90,7 +90,7 @@ class _SuggestedUserCard extends ConsumerWidget {
                         )
                       : null,
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
 
                 // Name
                 Text(
@@ -112,7 +112,7 @@ class _SuggestedUserCard extends ConsumerWidget {
                   ),
                 ),
 
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
 
                 // Follow Button
                 SizedBox(

@@ -54,7 +54,7 @@ class WorkoutPlanCard extends StatelessWidget {
                     ),
                 ],
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
 
               // وصف الخطة
               Text(
@@ -65,7 +65,7 @@ class WorkoutPlanCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
 
               // إحصائيات الخطة
               Row(
@@ -75,13 +75,13 @@ class WorkoutPlanCard extends StatelessWidget {
                     Icons.calendar_today,
                     '${plan.durationWeeks} أسابيع',
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   _buildStatChip(
                     context,
                     Icons.fitness_center,
                     _getDifficultyText(plan.difficulty),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   _buildStatChip(
                     context,
                     Icons.sports_gymnastics,
@@ -89,7 +89,7 @@ class WorkoutPlanCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
 
               // أهداف العضلات
               if (plan.targetMuscles.isNotEmpty)
@@ -110,13 +110,13 @@ class WorkoutPlanCard extends StatelessWidget {
                   }).toList(),
                 ),
 
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
 
               // تاريخ الإنشاء
               Row(
                 children: [
                   Icon(Icons.access_time, size: 16, color: Colors.grey[500]),
-                  const SizedBox(width: 4),
+                  const const SizedBox(width: 4),
                   Text(
                     'تم الإنشاء ${_formatDate(plan.createdAt)}',
                     style: Theme.of(
@@ -143,7 +143,7 @@ class WorkoutPlanCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 14, color: Colors.grey[600]),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
           Text(
             text,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(

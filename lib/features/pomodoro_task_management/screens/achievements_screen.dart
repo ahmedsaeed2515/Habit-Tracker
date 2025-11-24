@@ -86,7 +86,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        const const SizedBox(height: 20),
                         // Stats Row
                         Row(
                           children: [
@@ -99,7 +99,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                                 Icons.emoji_events,
                               ),
                             ),
-                            const SizedBox(width: 16),
+                            const const SizedBox(width: 16),
                             Expanded(
                               child: _buildStatCard(
                                 'النقاط',
@@ -109,7 +109,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                                 Icons.stars,
                               ),
                             ),
-                            const SizedBox(width: 16),
+                            const const SizedBox(width: 16),
                             Expanded(
                               child: _buildStatCard(
                                 'المستوى',
@@ -138,25 +138,25 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                 child: Row(
                   children: [
                     _buildFilterChip('الكل', 'all', achievements.length),
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     _buildFilterChip(
                       'المكتسبة', 
                       'unlocked', 
                       achievements.where((a) => a.isUnlocked).length,
                     ),
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     _buildFilterChip(
                       'متاحة', 
                       'available', 
                       achievements.where((a) => !a.isUnlocked).length,
                     ),
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     _buildFilterChip(
                       'الجلسات', 
                       'sessions', 
                       achievements.where((a) => a.category == AchievementCategory.sessions).length,
                     ),
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     _buildFilterChip(
                       'المهام', 
                       'tasks', 
@@ -190,7 +190,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
 
           // Progress Section
           if (_selectedFilter == 'available') ...[
-            const SliverToBoxAdapter(child: SizedBox(height: 32)),
+            const SliverToBoxAdapter(child: const SizedBox(height: 32)),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -205,7 +205,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const const SizedBox(height: 16),
                     ...filteredAchievements
                         .where((a) => !a.isUnlocked && a.progress > 0.5)
                         .map(_buildProgressCard)
@@ -216,7 +216,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
             ),
           ],
 
-          const SliverToBoxAdapter(child: SizedBox(height: 100)),
+          const SliverToBoxAdapter(child: const SizedBox(height: 100)),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -250,7 +250,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
       child: Column(
         children: [
           Icon(icon, color: color, size: 24),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -273,7 +273,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                 ),
             ],
           ),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           Text(
             title,
             style: TextStyle(
@@ -385,7 +385,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                   ],
                 ),
                 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 
                 // Title
                 Text(
@@ -399,7 +399,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                   overflow: TextOverflow.ellipsis,
                 ),
                 
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 
                 // Description
                 Text(
@@ -423,7 +423,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                         color: Colors.amber,
                         size: 16,
                       ),
-                      const SizedBox(width: 4),
+                      const const SizedBox(width: 4),
                       Text(
                         '${achievement.points} نقطة',
                         style: const TextStyle(
@@ -458,7 +458,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                           ),
                         ],
                       ),
-                      const SizedBox(height: 4),
+                      const const SizedBox(height: 4),
                       LinearProgressIndicator(
                         value: progress,
                         backgroundColor: Colors.grey.withValues(alpha: 0.3),
@@ -506,7 +506,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
               size: 20,
             ),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -519,7 +519,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const const SizedBox(height: 4),
                 Text(
                   'باقي $remaining ${_getUnitName(achievement.category)}',
                   style: const TextStyle(
@@ -527,7 +527,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
                     fontSize: 12,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 LinearProgressIndicator(
                   value: progress,
                   backgroundColor: Colors.grey.withValues(alpha: 0.3),
@@ -539,7 +539,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen>
               ],
             ),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Text(
             '${(progress * 100).toInt()}%',
             style: TextStyle(
@@ -683,7 +683,7 @@ class AchievementDetailsDialog extends StatelessWidget {
               ),
             ),
             
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // Title
             Text(
@@ -696,7 +696,7 @@ class AchievementDetailsDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             
             // Description
             Text(
@@ -708,7 +708,7 @@ class AchievementDetailsDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // Progress or Reward
             if (achievement.isUnlocked) ...[
@@ -722,7 +722,7 @@ class AchievementDetailsDialog extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(Icons.star, color: Colors.amber),
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     Text(
                       'حصلت على ${achievement.points} نقطة',
                       style: const TextStyle(
@@ -750,7 +750,7 @@ class AchievementDetailsDialog extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const const SizedBox(height: 8),
                     LinearProgressIndicator(
                       value: achievement.progress,
                       backgroundColor: Colors.grey.withValues(alpha: 0.3),
@@ -762,7 +762,7 @@ class AchievementDetailsDialog extends StatelessWidget {
               ),
             ],
             
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
             
             // Close Button
             TextButton(
@@ -807,7 +807,7 @@ class AchievementGuideDialog extends StatelessWidget {
               ),
             ),
             
-            const SizedBox(height: 20),
+            const const SizedBox(height: 20),
             
             _buildGuideItem(
               Icons.timer,
@@ -837,7 +837,7 @@ class AchievementGuideDialog extends StatelessWidget {
               'اجمع ساعات معينة من التركيز',
             ),
             
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
             
             TextButton(
               onPressed: () => Navigator.pop(context),
@@ -873,7 +873,7 @@ class AchievementGuideDialog extends StatelessWidget {
             ),
             child: Icon(icon, color: color, size: 20),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

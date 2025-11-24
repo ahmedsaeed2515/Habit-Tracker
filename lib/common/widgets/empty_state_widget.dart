@@ -61,7 +61,7 @@ class EmptyStateWidget extends StatelessWidget {
               ),
               child: Icon(icon, size: iconSize, color: defaultColor),
             ),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
             Text(
               title,
               style: theme.textTheme.headlineSmall?.copyWith(
@@ -70,7 +70,7 @@ class EmptyStateWidget extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Text(
               description,
               style: theme.textTheme.bodyLarge?.copyWith(
@@ -80,7 +80,7 @@ class EmptyStateWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             if (buttonText != null && onPressed != null) ...[
-              const SizedBox(height: 32),
+              const const SizedBox(height: 32),
               ElevatedButton.icon(
                 onPressed: onPressed,
                 icon: const Icon(Icons.add),

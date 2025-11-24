@@ -65,7 +65,7 @@ class ModernChip extends StatelessWidget {
             children: [
               if (icon != null) ...[
                 Icon(icon, size: 16, color: effectiveTextColor),
-                const SizedBox(width: AppDesignSystem.spacingXSmall),
+                const const SizedBox(width: AppDesignSystem.spacingXSmall),
               ],
               Text(
                 label,
@@ -76,7 +76,7 @@ class ModernChip extends StatelessWidget {
                 ),
               ),
               if (onDeleted != null) ...[
-                const SizedBox(width: AppDesignSystem.spacingXSmall),
+                const const SizedBox(width: AppDesignSystem.spacingXSmall),
                 InkWell(
                   onTap: onDeleted,
                   borderRadius: BorderRadius.circular(

@@ -82,7 +82,7 @@ class _RewardsGrid extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onPrimaryContainer,
                   size: 24,
                 ),
-                const SizedBox(width: 12),
+                const const SizedBox(width: 12),
                 Text(
                   'Your Points: $userPoints',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -227,7 +227,7 @@ class RewardCard extends StatelessWidget {
                 size: 30,
               ),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Text(
               reward.name,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -238,7 +238,7 @@ class RewardCard extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               reward.description,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -252,7 +252,7 @@ class RewardCard extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             if (!isUnlocked) ...[
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -264,7 +264,7 @@ class RewardCard extends StatelessWidget {
                         ? Theme.of(context).colorScheme.primary
                         : Theme.of(context).colorScheme.error,
                   ),
-                  const SizedBox(width: 4),
+                  const const SizedBox(width: 4),
                   Text(
                     '${reward.cost}',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -276,7 +276,7 @@ class RewardCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(

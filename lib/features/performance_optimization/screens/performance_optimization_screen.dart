@@ -54,7 +54,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
                 child: Row(
                   children: [
                     Icon(Icons.speed),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text('تحسين تلقائي'),
                   ],
                 ),
@@ -64,7 +64,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
                 child: Row(
                   children: [
                     Icon(Icons.file_download),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text('تصدير التقرير'),
                   ],
                 ),
@@ -74,7 +74,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
                 child: Row(
                   children: [
                     Icon(Icons.cleaning_services),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text('تنظيف البيانات'),
                   ],
                 ),
@@ -110,7 +110,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
       child: Column(
         children: [
           PerformanceOverviewWidget(),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           PerformanceMetricsGrid(),
         ],
       ),
@@ -129,7 +129,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
       child: Column(
         children: [
           LivePerformanceChart(),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           PerformanceMetricsGrid(),
         ],
       ),
@@ -142,9 +142,9 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
       child: Column(
         children: [
           _buildAnalyticsCards(),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           _buildPerformanceTrends(),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           _buildIssuesAnalysis(),
         ],
       ),
@@ -171,12 +171,12 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
             size: 80,
             color: Colors.grey[400],
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             'المراقبة المباشرة غير مفعلة',
             style: Theme.of(context).textTheme.headlineSmall,
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             'اضغط على زر التشغيل لبدء مراقبة الأداء المباشرة',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -184,7 +184,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
           ElevatedButton.icon(
             onPressed: _toggleMonitoring,
             icon: const Icon(Icons.play_arrow),
@@ -218,7 +218,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
                 Colors.blue,
               ),
             ),
-            const SizedBox(width: 8),
+            const const SizedBox(width: 8),
             Expanded(
               child: _buildAnalyticsCard(
                 'المشاكل المكتشفة',
@@ -229,7 +229,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Row(
           children: [
             Expanded(
@@ -240,7 +240,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
                 Colors.green,
               ),
             ),
-            const SizedBox(width: 8),
+            const const SizedBox(width: 8),
             Expanded(
               child: _buildAnalyticsCard(
                 'الحالة العامة',
@@ -262,7 +262,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
         child: Column(
           children: [
             Icon(icon, color: color, size: 32),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               value,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -270,7 +270,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 4),
+            const const SizedBox(height: 4),
             Text(
               title,
               style: Theme.of(context).textTheme.bodyMedium,
@@ -293,7 +293,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
               'اتجاهات الأداء',
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             // يمكن إضافة مخطط اتجاهات هنا
             Container(
               height: 200,
@@ -325,7 +325,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
                 'تحليل المشاكل',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               if (issuesList.isEmpty)
                 const Text('لا توجد مشاكل مكتشفة')
               else
@@ -364,7 +364,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.history, size: 80, color: Colors.grey),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text('لا توجد سجلات أداء متاحة'),
           ],
         ),
@@ -411,12 +411,12 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.error_outline, size: 80, color: Colors.red[400]),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             'خطأ في تحميل البيانات',
             style: Theme.of(context).textTheme.headlineSmall,
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             error,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -424,7 +424,7 @@ class _PerformanceOptimizationScreenState extends ConsumerState<PerformanceOptim
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () => ref.refresh(performanceReportProvider),
             child: const Text('إعادة المحاولة'),

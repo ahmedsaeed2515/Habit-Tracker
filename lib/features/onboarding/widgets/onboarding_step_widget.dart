@@ -41,7 +41,7 @@ class OnboardingStepWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
 
                 // الوصف
                 Text(
@@ -55,7 +55,7 @@ class OnboardingStepWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
 
-                const SizedBox(height: 32),
+                const const SizedBox(height: 32),
 
                 // نص الإجراء (اختياري)
                 if (step.actionText != null)

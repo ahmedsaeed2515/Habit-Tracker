@@ -88,7 +88,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                 )
                               : null,
                         ),
-                        const SizedBox(height: 16),
+                        const const SizedBox(height: 16),
                         TextButton.icon(
                           onPressed: () async {
                             try {
@@ -124,7 +124,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 32),
+                  const const SizedBox(height: 32),
 
                   // Basic Information
                   Text(
@@ -133,7 +133,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   // Display Name
                   TextField(
@@ -145,7 +145,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                     ),
                     maxLength: 50,
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   // Username (read-only)
                   TextField(
@@ -158,7 +158,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       enabled: false,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   // Bio
                   TextField(
@@ -173,7 +173,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                     maxLength: 200,
                   ),
 
-                  const SizedBox(height: 32),
+                  const const SizedBox(height: 32),
 
                   // Location
                   Text(
@@ -182,7 +182,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   // Country
                   TextField(
@@ -193,7 +193,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   // City
                   TextField(
@@ -205,7 +205,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 32),
+                  const const SizedBox(height: 32),
 
                   // Privacy Settings
                   Text(
@@ -214,7 +214,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   // Public Profile Toggle
                   SwitchListTile(
@@ -226,7 +226,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                     },
                   ),
 
-                  const SizedBox(height: 32),
+                  const const SizedBox(height: 32),
 
                   // Stats (read-only)
                   Text(
@@ -235,7 +235,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   Container(
                     padding: const EdgeInsets.all(16),
@@ -252,25 +252,25 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                           value: currentUser.level.toString(),
                           icon: Icons.star,
                         ),
-                        const SizedBox(height: 8),
+                        const const SizedBox(height: 8),
                         _StatRow(
                           label: 'Total Points',
                           value: currentUser.totalPoints.toString(),
                           icon: Icons.emoji_events,
                         ),
-                        const SizedBox(height: 8),
+                        const const SizedBox(height: 8),
                         _StatRow(
                           label: 'Achievements',
                           value: currentUser.achievements.length.toString(),
                           icon: Icons.military_tech,
                         ),
-                        const SizedBox(height: 8),
+                        const const SizedBox(height: 8),
                         _StatRow(
                           label: 'Followers',
                           value: currentUser.followers.length.toString(),
                           icon: Icons.people,
                         ),
-                        const SizedBox(height: 8),
+                        const const SizedBox(height: 8),
                         _StatRow(
                           label: 'Following',
                           value: currentUser.following.length.toString(),
@@ -360,7 +360,7 @@ class _StatRow extends StatelessWidget {
     return Row(
       children: [
         Icon(icon, size: 20, color: Theme.of(context).colorScheme.primary),
-        const SizedBox(width: 12),
+        const const SizedBox(width: 12),
         Text(label, style: Theme.of(context).textTheme.bodyMedium),
         const Spacer(),
         Text(

@@ -18,7 +18,7 @@ class VoiceCommandsHistory extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.history, size: 64, color: Colors.grey),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'لا توجد أوامر صوتية سابقة',
               style: TextStyle(fontSize: 16, color: Colors.grey),
@@ -73,7 +73,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(width: 12),
+                const const SizedBox(width: 12),
 
                 // تفاصيل الأمر
                 Expanded(
@@ -115,7 +115,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
                         size: 12,
                         color: _getStatusColor(command.status),
                       ),
-                      const SizedBox(width: 4),
+                      const const SizedBox(width: 4),
                       Text(
                         _getStatusLabel(command.status),
                         style: TextStyle(
@@ -130,7 +130,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
 
             // النص الأصلي
             Container(
@@ -149,7 +149,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
 
             // الاستجابة (إن وُجدت)
             if (command.response != null && command.response!.isNotEmpty) ...[
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
@@ -169,7 +169,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
 
             // شريط الثقة
             if (command.confidence > 0) ...[
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               Row(
                 children: [
                   Text(
@@ -178,7 +178,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  const const SizedBox(width: 8),
                   Expanded(
                     child: LinearProgressIndicator(
                       value: command.confidence,
@@ -188,7 +188,7 @@ class VoiceCommandHistoryItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  const const SizedBox(width: 8),
                   Text(
                     '${(command.confidence * 100).toInt()}%',
                     style: theme.textTheme.bodySmall?.copyWith(

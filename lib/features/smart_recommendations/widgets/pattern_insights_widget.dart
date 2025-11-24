@@ -23,7 +23,7 @@ class PatternInsightsWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         ...patterns.map((pattern) => _buildPatternCard(theme, pattern)),
       ],
     );
@@ -44,7 +44,7 @@ class PatternInsightsWidget extends StatelessWidget {
                   color: _getPatternColor(pattern.patternType),
                   size: 24,
                 ),
-                const SizedBox(width: 12),
+                const const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +55,7 @@ class PatternInsightsWidget extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const const SizedBox(height: 4),
                       Text(
                         pattern.description,
                         style: theme.textTheme.bodySmall?.copyWith(
@@ -68,7 +68,7 @@ class PatternInsightsWidget extends StatelessWidget {
                 _buildStrengthIndicator(theme, pattern.strength),
               ],
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             _buildPatternDetails(theme, pattern),
           ],
         ),
@@ -89,7 +89,7 @@ class PatternInsightsWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 4),
+        const const SizedBox(height: 4),
         Container(
           width: 40,
           height: 4,
@@ -229,7 +229,7 @@ class PatternInsightsWidget extends StatelessWidget {
     return Column(
       children: [
         const Divider(height: 1),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Wrap(spacing: 16, runSpacing: 8, children: details),
       ],
     );
@@ -245,7 +245,7 @@ class PatternInsightsWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(icon, size: 16, color: theme.colorScheme.primary),
-        const SizedBox(width: 4),
+        const const SizedBox(width: 4),
         Text(
           '$label: ',
           style: theme.textTheme.bodySmall?.copyWith(

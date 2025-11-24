@@ -95,7 +95,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
               icon: Icons.checklist,
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Expanded(
             child: StatCard(
               title: 'مكتملة',
@@ -104,7 +104,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
               icon: Icons.check_circle,
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Expanded(
             child: StatCard(
               title: 'معلقة',
@@ -113,7 +113,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
               icon: Icons.pending,
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Expanded(
             child: StatCard(
               title: 'متأخرة',
@@ -151,7 +151,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
               onChanged: (value) => setState(() => _searchQuery = value),
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey.shade300),
@@ -342,7 +342,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
               'الأولوية:',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               children: [null, ...TaskPriority.values].map((priority) {
@@ -361,12 +361,12 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
                 );
               }).toList(),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             const Text(
               'العلامات:',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             if (allTags.isEmpty)
               const Text('لا توجد علامات')
             else
@@ -467,7 +467,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
               'ترتيب المهام',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             ListTile(
               leading: const Icon(Icons.calendar_today),
               title: const Text('حسب تاريخ الإنشاء'),
@@ -602,7 +602,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
       child: Row(
         children: [
           Icon(icon, color: color ?? Colors.grey[700], size: 20),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(child: Text(label, style: const TextStyle(fontSize: 14))),
           Text(
             value,
@@ -631,7 +631,7 @@ class _SmartTodoScreenState extends ConsumerState<SmartTodoScreen>
               'تصدير المهام',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             ListTile(
               leading: const Icon(Icons.description),
               title: const Text('تصدير كـ CSV'),

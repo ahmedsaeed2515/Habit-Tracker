@@ -45,19 +45,19 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
               controller: _titleCtrl,
               decoration: const InputDecoration(labelText: 'Title'),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             TextField(
               controller: _urlCtrl,
               decoration: const InputDecoration(labelText: 'URL'),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             ElevatedButton(
               onPressed: _saving ? null : _add,
               child: _saving
                   ? const CircularProgressIndicator()
                   : const Text('Add Link'),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             const Divider(),
             Expanded(
               child: list.isEmpty

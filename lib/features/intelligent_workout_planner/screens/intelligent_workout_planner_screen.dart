@@ -42,22 +42,22 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
                   color: AppTheme.primaryColor,
                 ),
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text(
                 'خطط تمرين مخصصة مدعومة بالذكاء الاصطناعي',
                 style: Theme.of(
                   context,
                 ).textTheme.bodyLarge?.copyWith(color: Colors.grey[600]),
               ),
-              const SizedBox(height: 24),
+              const const SizedBox(height: 24),
 
               // التوصيات الذكية
               const AIRecommendationsWidget(),
-              const SizedBox(height: 24),
+              const const SizedBox(height: 24),
 
               // الخطة النشطة
               _buildActivePlanSection(context, activePlanAsync),
-              const SizedBox(height: 24),
+              const const SizedBox(height: 24),
 
               // قائمة الخطط
               Expanded(
@@ -90,7 +90,7 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
               child: Row(
                 children: [
                   Icon(Icons.fitness_center, color: Colors.grey[400], size: 48),
-                  const SizedBox(width: 16),
+                  const const SizedBox(width: 16),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +100,7 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
                           style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(height: 4),
+                        const const SizedBox(height: 4),
                         Text(
                           'أنشئ خطة تمرين مخصصة لبدء رحلتك الرياضية',
                           style: Theme.of(context).textTheme.bodyMedium
@@ -130,7 +130,7 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
                       color: AppTheme.primaryColor,
                       size: 32,
                     ),
-                    const SizedBox(width: 12),
+                    const const SizedBox(width: 12),
                     Text(
                       'الخطة النشطة',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -140,21 +140,21 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const const SizedBox(height: 12),
                 Text(
                   activePlan.name,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Text(
                   activePlan.description,
                   style: Theme.of(
                     context,
                   ).textTheme.bodyMedium?.copyWith(color: Colors.grey[700]),
                 ),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 Row(
                   children: [
                     _buildPlanStat(
@@ -163,7 +163,7 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
                       'أسابيع',
                       Icons.calendar_today,
                     ),
-                    const SizedBox(width: 24),
+                    const const SizedBox(width: 24),
                     _buildPlanStat(
                       context,
                       activePlan.difficulty,
@@ -190,7 +190,7 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
           child: Row(
             children: [
               Icon(Icons.error, color: Colors.red.shade600),
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   'خطأ في تحميل الخطة النشطة: ${error.toString()}',
@@ -213,7 +213,7 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
     return Row(
       children: [
         Icon(icon, size: 20, color: AppTheme.primaryColor),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -247,14 +247,14 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.fitness_center, size: 64, color: Colors.grey[300]),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 Text(
                   'لا توجد خطط تمرين',
                   style: Theme.of(
                     context,
                   ).textTheme.headlineSmall?.copyWith(color: Colors.grey[600]),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Text(
                   'ابدأ بإنشاء خطة تمرين مخصصة',
                   style: Theme.of(
@@ -284,14 +284,14 @@ class IntelligentWorkoutPlannerScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.error, size: 64, color: Colors.red.shade300),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'خطأ في تحميل خطط التمرين',
               style: Theme.of(
                 context,
               ).textTheme.headlineSmall?.copyWith(color: Colors.red.shade600),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               error.toString(),
               style: Theme.of(

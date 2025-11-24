@@ -74,7 +74,7 @@ class FeatureGridWidget extends StatelessWidget {
             size: 64,
             color: Theme.of(context).colorScheme.outline,
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             isArabic ? 'لا توجد نتائج' : 'No results found',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -143,7 +143,7 @@ class _FeatureCard extends StatelessWidget {
                   color: item.iconColor ?? colorScheme.onPrimaryContainer,
                 ),
               ),
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(

@@ -52,7 +52,7 @@ class TemplateCard extends StatelessWidget {
                       size: 20,
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
 
                   // العنوان والفئة
                   Expanded(
@@ -68,7 +68,7 @@ class TemplateCard extends StatelessWidget {
                                 : theme.colorScheme.onSurface,
                           ),
                         ),
-                        const SizedBox(height: 2),
+                        const const SizedBox(height: 2),
                         Text(
                           template.category.getDisplayName(language),
                           style: theme.textTheme.bodySmall?.copyWith(
@@ -94,7 +94,7 @@ class TemplateCard extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
 
               // الوصف
               Text(
@@ -110,7 +110,7 @@ class TemplateCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
 
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
 
               // معلومات إضافية
               Row(
@@ -123,7 +123,7 @@ class TemplateCard extends StatelessWidget {
                         ? 'المستوى ${template.difficultyLevel}'
                         : 'Level ${template.difficultyLevel}',
                   ),
-                  const SizedBox(width: 8),
+                  const const SizedBox(width: 8),
 
                   // المدة المقدرة
                   _buildInfoChip(
@@ -131,7 +131,7 @@ class TemplateCard extends StatelessWidget {
                     Icons.access_time,
                     '${template.estimatedDurationMinutes} ${language == 'ar' ? 'دقيقة' : 'min'}',
                   ),
-                  const SizedBox(width: 8),
+                  const const SizedBox(width: 8),
 
                   // التكرار الموصى به
                   _buildInfoChip(
@@ -144,7 +144,7 @@ class TemplateCard extends StatelessWidget {
 
               // الكلمات المفتاحية
               if (template.tags.isNotEmpty) ...[
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Wrap(
                   spacing: 4,
                   runSpacing: 4,
@@ -195,7 +195,7 @@ class TemplateCard extends StatelessWidget {
             size: 12,
             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
           Text(
             text,
             style: theme.textTheme.bodySmall?.copyWith(

@@ -26,12 +26,12 @@ class PostCard extends ConsumerWidget {
             // Post Header
             _PostHeader(post: post),
 
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
 
             // Post Content
             _PostContent(post: post),
 
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
 
             // Post Actions
             _PostActions(
@@ -80,7 +80,7 @@ class _PostHeader extends ConsumerWidget {
                 )
               : null,
         ),
-        const SizedBox(width: 12),
+        const const SizedBox(width: 12),
 
         // User Info
         Expanded(
@@ -118,7 +118,7 @@ class _PostHeader extends ConsumerWidget {
                 size: 14,
                 color: _getPostTypeColor(post.type),
               ),
-              const SizedBox(width: 4),
+              const const SizedBox(width: 4),
               Text(
                 _getPostTypeLabel(post.type),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -217,7 +217,7 @@ class _PostContent extends StatelessWidget {
 
         // Tags (if any)
         if (post.tags.isNotEmpty) ...[
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Wrap(
             spacing: 4,
             children: post.tags

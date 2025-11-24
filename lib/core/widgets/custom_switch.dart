@@ -46,7 +46,7 @@ class _CustomSwitchState extends State<CustomSwitch> {
           children: [
             if (widget.leading != null) ...[
               widget.leading!,
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
             ],
             Expanded(
               child: Column(
@@ -74,10 +74,10 @@ class _CustomSwitchState extends State<CustomSwitch> {
                 ],
               ),
             ),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             _buildSwitch(theme),
             if (widget.trailing != null) ...[
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
               widget.trailing!,
             ],
           ],
@@ -279,7 +279,7 @@ class CustomIconSwitch extends StatelessWidget {
                         : theme.disabledColor,
                   ),
                 if (inactiveLabel != null) ...[
-                  if (inactiveIcon != null) const SizedBox(width: 4),
+                  if (inactiveIcon != null) const const SizedBox(width: 4),
                   Text(
                     inactiveLabel!,
                     style: theme.textTheme.bodySmall?.copyWith(
@@ -291,7 +291,7 @@ class CustomIconSwitch extends StatelessWidget {
                 ],
               ],
             ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           CustomSwitch(
             value: value,
             onChanged: onChanged,
@@ -299,7 +299,7 @@ class CustomIconSwitch extends StatelessWidget {
             activeColor: activeColor,
             inactiveColor: inactiveColor,
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           if (activeIcon != null || activeLabel != null)
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -313,7 +313,7 @@ class CustomIconSwitch extends StatelessWidget {
                         : theme.disabledColor,
                   ),
                 if (activeLabel != null) ...[
-                  if (activeIcon != null) const SizedBox(width: 4),
+                  if (activeIcon != null) const const SizedBox(width: 4),
                   Text(
                     activeLabel!,
                     style: theme.textTheme.bodySmall?.copyWith(

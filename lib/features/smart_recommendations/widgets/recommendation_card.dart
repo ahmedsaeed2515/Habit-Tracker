@@ -35,11 +35,11 @@ class RecommendationCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildHeader(theme),
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               _buildContent(theme),
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               _buildReasons(theme),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               _buildFooter(theme),
             ],
           ),
@@ -65,7 +65,7 @@ class RecommendationCard extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           decoration: BoxDecoration(
@@ -76,7 +76,7 @@ class RecommendationCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(_getTypeIcon(), size: 14, color: Colors.white),
-              const SizedBox(width: 4),
+              const const SizedBox(width: 4),
               Text(
                 _getTypeDisplayName(),
                 style: theme.textTheme.bodySmall?.copyWith(
@@ -90,7 +90,7 @@ class RecommendationCard extends StatelessWidget {
         const Spacer(),
         _buildConfidenceIndicator(theme),
         if (!recommendation.isViewed) ...[
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Container(
             width: 8,
             height: 8,
@@ -117,7 +117,7 @@ class RecommendationCard extends StatelessWidget {
                 : theme.colorScheme.onSurface,
           ),
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Text(
           recommendation.description,
           style: theme.textTheme.bodyMedium?.copyWith(
@@ -142,7 +142,7 @@ class RecommendationCard extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
         ),
-        const SizedBox(height: 4),
+        const const SizedBox(height: 4),
         ...recommendation.reasons
             .take(3)
             .map(
@@ -160,7 +160,7 @@ class RecommendationCard extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         reason,
@@ -181,7 +181,7 @@ class RecommendationCard extends StatelessWidget {
     return Row(
       children: [
         _buildPriorityIndicator(theme),
-        const SizedBox(width: 12),
+        const const SizedBox(width: 12),
         Text(
           _formatDate(recommendation.createdAt),
           style: theme.textTheme.bodySmall?.copyWith(
@@ -199,7 +199,7 @@ class RecommendationCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           ElevatedButton.icon(
             onPressed: onAccept,
             icon: const Icon(Icons.check, size: 16),
@@ -230,7 +230,7 @@ class RecommendationCard extends StatelessWidget {
                   size: 16,
                   color: theme.colorScheme.error,
                 ),
-                const SizedBox(width: 4),
+                const const SizedBox(width: 4),
                 Text(
                   'مرفوضة',
                   style: theme.textTheme.bodySmall?.copyWith(
@@ -270,7 +270,7 @@ class RecommendationCard extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 4),
+        const const SizedBox(width: 4),
         Text(
           '$percentage%',
           style: theme.textTheme.bodySmall?.copyWith(

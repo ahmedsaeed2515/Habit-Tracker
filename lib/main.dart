@@ -180,7 +180,7 @@ class ErrorScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.error_outline, size: 64, color: Colors.red.shade600),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               Text(
                 'تعذر تشغيل التطبيق',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -189,7 +189,7 @@ class ErrorScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -205,7 +205,7 @@ class ErrorScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 24),
+              const const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: main,
                 style: ElevatedButton.styleFrom(

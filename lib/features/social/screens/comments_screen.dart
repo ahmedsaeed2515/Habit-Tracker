@@ -145,7 +145,7 @@ class _CommentCard extends ConsumerWidget {
                         )
                       : null,
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,12 +168,12 @@ class _CommentCard extends ConsumerWidget {
               ],
             ),
 
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
 
             // Comment Content
             Text(comment.content),
 
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
 
             // Comment Actions
             Row(
@@ -272,7 +272,7 @@ class _AddCommentWidget extends StatelessWidget {
               onSubmitted: (_) => onSend(),
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           IconButton(
             onPressed: isLoading ? null : onSend,
             icon: isLoading
@@ -305,12 +305,12 @@ class _EmptyCommentsWidget extends StatelessWidget {
               size: 48,
               color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'No comments yet',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'Be the first to comment on this post!',
               style: Theme.of(context).textTheme.bodyMedium,

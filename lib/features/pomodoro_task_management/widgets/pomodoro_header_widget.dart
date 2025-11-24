@@ -67,7 +67,7 @@ class PomodoroHeaderWidget extends ConsumerWidget {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     const Text(
                       'لنبدأ يوماً منتجاً! 🚀',
                       style: TextStyle(
@@ -105,7 +105,7 @@ class PomodoroHeaderWidget extends ConsumerWidget {
               ],
             ),
 
-            const SizedBox(height: 20),
+            const const SizedBox(height: 20),
 
             // Active Timer or Quick Stats
             if (activeSession != null)

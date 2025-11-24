@@ -51,7 +51,7 @@ class SmartCalendarScreen extends ConsumerWidget {
                   child: Row(
                     children: [
                       Icon(_getViewTypeIcon(viewType)),
-                      const SizedBox(width: 8),
+                      const const SizedBox(width: 8),
                       Text(_getViewTypeName(viewType)),
                     ],
                   ),
@@ -88,7 +88,7 @@ class SmartCalendarScreen extends ConsumerWidget {
         ),
         child: Column(
           children: [
-            const SizedBox(height: kToolbarHeight + 16),
+            const const SizedBox(height: kToolbarHeight + 16),
             // شريط التنقل بين التواريخ
             _buildNavigationHeader(context, ref, calendarView),
             const Divider(height: 1),
@@ -108,13 +108,13 @@ class SmartCalendarScreen extends ConsumerWidget {
                         size: 64,
                         color: Colors.white.withValues(alpha: 0.8),
                       ),
-                      const SizedBox(height: 16),
+                      const const SizedBox(height: 16),
                       Text(
                         'خطأ في تحميل الأحداث: $error',
                         style: const TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(height: 16),
+                      const const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () => ref.refresh(eventsProvider),
                         child: const Text('إعادة المحاولة'),
@@ -257,7 +257,7 @@ class SmartCalendarScreen extends ConsumerWidget {
                         color: isToday ? Theme.of(context).primaryColor : null,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
@@ -354,7 +354,7 @@ class SmartCalendarScreen extends ConsumerWidget {
                 .toList(),
           ),
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         // Calendar grid
         Expanded(
           child: GridView.builder(
@@ -428,7 +428,7 @@ class SmartCalendarScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.event_busy, size: 64, color: Colors.grey),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text('لا توجد أحداث', style: TextStyle(fontSize: 18, color: Colors.grey)),
           ],
         ),
@@ -490,7 +490,7 @@ class SmartCalendarScreen extends ConsumerWidget {
                 onTap: () => _showEventDetails(context, event),
               ),
             )),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
           ],
         );
       },
@@ -504,7 +504,7 @@ class SmartCalendarScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.timeline, size: 64, color: Colors.grey),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text('لا توجد أحداث', style: TextStyle(fontSize: 18, color: Colors.grey)),
           ],
         ),
@@ -561,7 +561,7 @@ class SmartCalendarScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              const SizedBox(width: 16),
+              const const SizedBox(width: 16),
               // Event card
               Expanded(
                 child: Card(
@@ -598,22 +598,22 @@ class SmartCalendarScreen extends ConsumerWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 8),
+                        const const SizedBox(height: 8),
                         Row(
                           children: [
                             const Icon(Icons.access_time, size: 16),
-                            const SizedBox(width: 4),
+                            const const SizedBox(width: 4),
                             Text(
                               '${_formatTime(event.startTime)} - ${_formatTime(event.endTime)}',
                               style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ],
                         ),
-                        const SizedBox(height: 4),
+                        const const SizedBox(height: 4),
                         Row(
                           children: [
                             const Icon(Icons.calendar_today, size: 16),
-                            const SizedBox(width: 4),
+                            const const SizedBox(width: 4),
                             Text(
                               '${event.startTime.day} ${_getMonthName(event.startTime.month)} ${event.startTime.year}',
                               style: Theme.of(context).textTheme.bodySmall,
@@ -621,7 +621,7 @@ class SmartCalendarScreen extends ConsumerWidget {
                           ],
                         ),
                         if (event.description?.isNotEmpty ?? false) ...[
-                          const SizedBox(height: 8),
+                          const const SizedBox(height: 8),
                           Text(
                             event.description!,
                             maxLines: 2,
@@ -668,12 +668,12 @@ class SmartCalendarScreen extends ConsumerWidget {
           children: [
             if (event.description?.isNotEmpty ?? false)
               Text(event.description!),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'الوقت: ${_formatTime(event.startDateTime)} - ${_formatTime(event.endDateTime)}',
             ),
             if (event.location?.isNotEmpty ?? false) ...[
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text('المكان: ${event.location}'),
             ],
           ],

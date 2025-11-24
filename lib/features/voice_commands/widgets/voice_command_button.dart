@@ -152,7 +152,7 @@ class VoiceCommandBottomBar extends ConsumerWidget {
                   shape: BoxShape.circle,
                 ),
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Text(
                 voiceState.isListening
                     ? 'جاري الاستماع...'
@@ -172,7 +172,7 @@ class VoiceCommandBottomBar extends ConsumerWidget {
             ],
           ),
 
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
 
           // النص المُعترف به
           if (voiceState.lastRecognizedText != null)
@@ -194,7 +194,7 @@ class VoiceCommandBottomBar extends ConsumerWidget {
           if (voiceState.lastResponse != null)
             Column(
               children: [
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(12),

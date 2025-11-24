@@ -44,7 +44,7 @@ class AnalyticsLineChart extends StatelessWidget {
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             SizedBox(
               height: 200,
               child: LineChart(
@@ -163,12 +163,12 @@ class AnalyticsLineChart extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.analytics_outlined, size: 48, color: Colors.grey[400]),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'لا توجد بيانات للعرض',
               style: TextStyle(fontSize: 16, color: Colors.grey[600]),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'ابدأ بتسجيل أنشطتك لرؤية التحليلات',
               style: TextStyle(fontSize: 14, color: Colors.grey[500]),

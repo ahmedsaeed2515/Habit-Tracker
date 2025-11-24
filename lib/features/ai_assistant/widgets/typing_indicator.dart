@@ -59,7 +59,7 @@ class _TypingIndicatorState extends State<TypingIndicator>
               color: theme.colorScheme.onSecondary,
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Container(
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainerHighest,
@@ -82,7 +82,7 @@ class _TypingIndicatorState extends State<TypingIndicator>
                     color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Row(
                   children: List.generate(3, (index) {
                     return AnimatedBuilder(

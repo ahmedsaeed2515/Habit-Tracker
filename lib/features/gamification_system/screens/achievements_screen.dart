@@ -50,7 +50,7 @@ class _AchievementsGrid extends StatelessWidget {
                     context,
                   ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
               ],
             ),
           ),
@@ -77,14 +77,14 @@ class _AchievementsGrid extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 32),
+                const const SizedBox(height: 32),
                 Text(
                   'Locked (${lockedAchievements.length})',
                   style: Theme.of(
                     context,
                   ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
               ],
             ),
           ),
@@ -160,7 +160,7 @@ class AchievementCard extends StatelessWidget {
                 size: 30,
               ),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Text(
               achievement.title,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -171,7 +171,7 @@ class AchievementCard extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               achievement.description,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -185,7 +185,7 @@ class AchievementCard extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             if (!isUnlocked && achievement.maxProgress > 1) ...[
               LinearProgressIndicator(
                 value: achievement.progressPercentage,
@@ -194,7 +194,7 @@ class AchievementCard extends StatelessWidget {
                   Theme.of(context).colorScheme.primary,
                 ),
               ),
-              const SizedBox(height: 4),
+              const const SizedBox(height: 4),
               Text(
                 '${achievement.progress}/${achievement.maxProgress}',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -203,7 +203,7 @@ class AchievementCard extends StatelessWidget {
               ),
             ],
             if (isUnlocked) ...[
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(

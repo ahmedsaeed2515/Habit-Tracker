@@ -154,13 +154,13 @@ class _HabitDialogState extends ConsumerState<HabitDialog> {
           children: [
             if (!isEditing) _buildQuickHabitSelector(),
             _buildNameField(),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             _buildDescriptionField(),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             _buildIconSelector(),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             _buildHabitTypeSelector(),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             _buildTargetAndUnitFields(),
           ],
         ),
@@ -174,7 +174,7 @@ class _HabitDialogState extends ConsumerState<HabitDialog> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('اختر عادة سريعة:'),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -193,9 +193,9 @@ class _HabitDialogState extends ConsumerState<HabitDialog> {
             );
           }).toList(),
         ),
-        const SizedBox(height: 16),
+        const const SizedBox(height: 16),
         const Text('أو اكتب عادة مخصصة:'),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
       ],
     );
   }
@@ -231,7 +231,7 @@ class _HabitDialogState extends ConsumerState<HabitDialog> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('اختر أيقونة:'),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Container(
           height: 120,
           padding: const EdgeInsets.all(8),
@@ -282,7 +282,7 @@ class _HabitDialogState extends ConsumerState<HabitDialog> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('نوع العادة:'),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         SegmentedButton<HabitType>(
           segments: const [
             ButtonSegment(
@@ -332,7 +332,7 @@ class _HabitDialogState extends ConsumerState<HabitDialog> {
             ),
           ),
         ),
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         Expanded(
           flex: 3,
           child: TextField(

@@ -132,7 +132,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.auto_awesome, size: 80, color: theme.colorScheme.primary),
-          const SizedBox(height: 32),
+          const const SizedBox(height: 32),
 
           Text(
             'مرحباً بك في بناء العادات الذكي!',
@@ -142,7 +142,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           Text(
             'سنقوم بمساعدتك في إنشاء خطة عادات شخصية مبنية على اهتماماتك وأهدافك.',
@@ -151,7 +151,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 32),
+          const const SizedBox(height: 32),
 
           Card(
             child: Padding(
@@ -165,14 +165,14 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                         color: theme.colorScheme.primary,
                         size: 20,
                       ),
-                      const SizedBox(width: 8),
+                      const const SizedBox(width: 8),
                       Text(
                         'يستغرق الأمر 3-5 دقائق فقط',
                         style: theme.textTheme.bodyMedium,
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
+                  const const SizedBox(height: 8),
                   Row(
                     children: [
                       Icon(
@@ -180,14 +180,14 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                         color: theme.colorScheme.primary,
                         size: 20,
                       ),
-                      const SizedBox(width: 8),
+                      const const SizedBox(width: 8),
                       Text(
                         'توصيات ذكية مخصصة لك',
                         style: theme.textTheme.bodyMedium,
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
+                  const const SizedBox(height: 8),
                   Row(
                     children: [
                       Icon(
@@ -195,7 +195,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                         color: theme.colorScheme.primary,
                         size: 20,
                       ),
-                      const SizedBox(width: 8),
+                      const const SizedBox(width: 8),
                       Text(
                         'متابعة تلقائية للتقدم',
                         style: theme.textTheme.bodyMedium,
@@ -243,29 +243,29 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                 color: theme.colorScheme.onSurface,
               ),
             ),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
 
             // مستوى اللياقة البدنية
             _buildSectionTitle('مستوى اللياقة البدنية الحالي'),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             _buildFitnessLevelSelector(state.selectedDifficulty),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
 
             // الأوقات المتاحة
             _buildSectionTitle('الأوقات المتاحة للعادات'),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             _buildTimeSelector(state.selectedTimes),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
 
             // أسلوب التحفيز
             _buildSectionTitle('أسلوب التحفيز المفضل'),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             _buildMotivationSelector(state.selectedMotivationStyle),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
 
             // التحديات
             _buildSectionTitle('التحديات الحالية (اختياري)'),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             _buildChallengesSelector(state.selectedChallenges),
           ],
         ),
@@ -293,7 +293,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                     color: theme.colorScheme.onSurface,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Text(
                   'اختر العادات التي تريد البدء بها (يمكنك اختيار عدة عادات)',
                   style: theme.textTheme.bodyMedium?.copyWith(
@@ -303,7 +303,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           Expanded(
             child: state.recommendedTemplates.isEmpty
@@ -316,7 +316,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                           size: 64,
                           color: theme.colorScheme.outline,
                         ),
-                        const SizedBox(height: 16),
+                        const const SizedBox(height: 16),
                         Text(
                           'لا توجد توصيات متاحة',
                           style: theme.textTheme.bodyLarge?.copyWith(
@@ -371,7 +371,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
               color: theme.colorScheme.onSurface,
             ),
           ),
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
 
           if (state.selectedTemplates.isEmpty)
             Center(
@@ -382,14 +382,14 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                     size: 64,
                     color: theme.colorScheme.error,
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
                   Text(
                     'لم تختر أي عادات بعد',
                     style: theme.textTheme.bodyLarge?.copyWith(
                       color: theme.colorScheme.error,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const const SizedBox(height: 8),
                   TextButton(
                     onPressed: () {
                       ref.read(habitBuilderProvider.notifier).previousStep();
@@ -421,7 +421,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                                 color: theme.colorScheme.primary,
                                 size: 20,
                               ),
-                              const SizedBox(width: 8),
+                              const const SizedBox(width: 8),
                               Text(
                                 'العادات المختارة: ${state.selectedTemplates.length}',
                                 style: theme.textTheme.titleMedium?.copyWith(
@@ -430,7 +430,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 8),
+                          const const SizedBox(height: 8),
                           Text(
                             'سيتم إضافة هذه العادات إلى قائمتك وستبدأ متابعتها اليوم.',
                             style: theme.textTheme.bodyMedium?.copyWith(
@@ -443,7 +443,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   Expanded(
                     child: ListView.builder(
@@ -531,7 +531,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
               ),
             ),
 
-          if (state.currentStep > 0) const SizedBox(width: 16),
+          if (state.currentStep > 0) const const SizedBox(width: 16),
 
           // زر التالي/الإنهاء
           Expanded(
@@ -665,7 +665,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.error_outline, size: 64, color: theme.colorScheme.error),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'حدث خطأ',
               style: theme.textTheme.titleLarge?.copyWith(
@@ -673,7 +673,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               error,
               style: theme.textTheme.bodyMedium?.copyWith(
@@ -681,7 +681,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 ref.read(habitBuilderProvider.notifier).initialize();
@@ -741,7 +741,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                         ? theme.colorScheme.onPrimaryContainer
                         : theme.colorScheme.onSurface,
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Text(
                     _getFitnessLevelText(level),
                     style: theme.textTheme.bodyMedium?.copyWith(
@@ -850,7 +850,7 @@ class _HabitBuilderScreenState extends ConsumerState<HabitBuilderScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const const SizedBox(height: 4),
                   Text(
                     style['subtitle']! as String,
                     style: theme.textTheme.bodySmall?.copyWith(

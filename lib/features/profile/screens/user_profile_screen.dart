@@ -154,13 +154,13 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(Icons.error_outline, size: 64),
-                      const SizedBox(height: 16),
+                      const const SizedBox(height: 16),
                       Text(
                         isArabic
                             ? 'فشل تحميل البيانات'
                             : 'Failed to load data',
                       ),
-                      const SizedBox(height: 16),
+                      const const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: _loadUserData,
                         child: Text(isArabic ? 'إعادة المحاولة' : 'Retry'),
@@ -182,10 +182,10 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                   ),
                   child: Column(
                     children: [
-                      const SizedBox(height: 100),
+                      const const SizedBox(height: 100),
                       // Header Card
                       _buildHeaderCard(context, isArabic),
-                      const SizedBox(height: 16),
+                      const const SizedBox(height: 16),
                       // Tabs
                       _buildTabs(context, isArabic),
                       // Tab Content
@@ -257,7 +257,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           // Name
           Text(
             _userData!.name,
@@ -265,7 +265,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           // Email
           Text(
             _userData!.email,
@@ -273,7 +273,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
               color: Colors.grey[600],
             ),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           // Level & Points
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -322,7 +322,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
     return Column(
       children: [
         Text(icon, style: const TextStyle(fontSize: 24)),
-        const SizedBox(height: 4),
+        const const SizedBox(height: 4),
         Text(
           value,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -442,7 +442,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Icon(icon, color: Theme.of(context).colorScheme.primary),
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -453,7 +453,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                       color: Colors.grey[600],
                     ),
               ),
-              const SizedBox(height: 4),
+              const const SizedBox(height: 4),
               Text(
                 value,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -536,7 +536,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
               color: isUnlocked ? null : Colors.grey,
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             isArabic ? achievement.nameAr : achievement.nameEn,
             textAlign: TextAlign.center,
@@ -545,7 +545,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                   color: isUnlocked ? null : Colors.grey,
                 ),
           ),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           Text(
             '${achievement.points} ${isArabic ? 'نقطة' : 'pts'}',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -577,7 +577,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
             _buildStatCard(
               context,
               icon: '📤',
@@ -585,7 +585,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
               value: _interactionStats['sent']?.toString() ?? '0',
               color: Colors.blue,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             _buildStatCard(
               context,
               icon: '📥',
@@ -593,7 +593,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
               value: _interactionStats['received']?.toString() ?? '0',
               color: Colors.green,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             _buildStatCard(
               context,
               icon: '💪',
@@ -601,7 +601,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
               value: _interactionStats['encouragements']?.toString() ?? '0',
               color: Colors.orange,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             _buildStatCard(
               context,
               icon: '🎁',
@@ -642,7 +642,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
               child: Text(icon, style: const TextStyle(fontSize: 28)),
             ),
           ),
-          const SizedBox(width: 16),
+          const const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -653,7 +653,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                         color: Colors.grey[700],
                       ),
                 ),
-                const SizedBox(height: 4),
+                const const SizedBox(height: 4),
                 Text(
                   value,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -687,7 +687,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                 border: const OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             TextField(
               controller: bioController,
               decoration: InputDecoration(

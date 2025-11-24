@@ -79,7 +79,7 @@ class PomodoroFAB extends ConsumerWidget {
               ),
             ),
             
-            const SizedBox(height: 20),
+            const const SizedBox(height: 20),
             
             // Title
             Text(
@@ -90,7 +90,7 @@ class PomodoroFAB extends ConsumerWidget {
               ),
             ),
             
-            const SizedBox(height: 20),
+            const const SizedBox(height: 20),
             
             // Actions
             Row(
@@ -143,7 +143,7 @@ class PomodoroFAB extends ConsumerWidget {
               ],
             ),
             
-            const SizedBox(height: 10),
+            const const SizedBox(height: 10),
           ],
         ),
       ),
@@ -177,7 +177,7 @@ class PomodoroFAB extends ConsumerWidget {
               ),
             ),
             
-            const SizedBox(height: 20),
+            const const SizedBox(height: 20),
             
             // Title
             Text(
@@ -187,7 +187,7 @@ class PomodoroFAB extends ConsumerWidget {
               ),
             ),
             
-            const SizedBox(height: 20),
+            const const SizedBox(height: 20),
             
             // Session Types
             _buildSessionTypeOption(
@@ -220,7 +220,7 @@ class PomodoroFAB extends ConsumerWidget {
               color: Colors.blue,
             ),
             
-            const SizedBox(height: 10),
+            const const SizedBox(height: 10),
           ],
         ),
       ),
@@ -274,7 +274,7 @@ class PomodoroFAB extends ConsumerWidget {
                   ),
                 ),
                 
-                const SizedBox(width: 16),
+                const const SizedBox(width: 16),
                 
                 Expanded(
                   child: Column(
@@ -287,7 +287,7 @@ class PomodoroFAB extends ConsumerWidget {
                           color: color,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const const SizedBox(height: 4),
                       Text(
                         subtitle,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -337,7 +337,7 @@ class PomodoroFAB extends ConsumerWidget {
               size: 24,
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             label,
             style: TextStyle(

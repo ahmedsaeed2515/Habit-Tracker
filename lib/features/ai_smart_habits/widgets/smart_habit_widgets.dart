@@ -33,7 +33,7 @@ class SmartHabitCard extends ConsumerWidget {
           Row(
             children: [
               _buildCategoryIcon(),
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,12 +47,12 @@ class SmartHabitCard extends ConsumerWidget {
                           ),
                         ),
                         if (habit.isAIGenerated) ...[
-                          const SizedBox(width: 8),
+                          const const SizedBox(width: 8),
                           _buildAIBadge(),
                         ],
                       ],
                     ),
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     Text(
                       habit.description,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -68,7 +68,7 @@ class SmartHabitCard extends ConsumerWidget {
             ],
           ),
           
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           // Metrics Row
           Row(
@@ -79,14 +79,14 @@ class SmartHabitCard extends ConsumerWidget {
                 value: '${(habit.successProbability * 100).toInt()}%',
                 color: _getSuccessColor(habit.successProbability),
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               _buildMetricChip(
                 icon: Icons.speed,
                 label: 'الصعوبة',
                 value: '${habit.difficultyLevel}/10',
                 color: _getDifficultyColor(habit.difficultyLevel),
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               _buildMetricChip(
                 icon: Icons.schedule,
                 label: 'التكرار',
@@ -96,14 +96,14 @@ class SmartHabitCard extends ConsumerWidget {
             ],
           ),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           // Insights Summary
           if (habit.insights.behaviorInsights.isNotEmpty ||
               habit.insights.performanceInsights.isNotEmpty ||
               habit.insights.patternInsights.isNotEmpty) ...[
             _buildInsightsSummary(context),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
           ],
           
           // Action Buttons
@@ -116,7 +116,7 @@ class SmartHabitCard extends ConsumerWidget {
                   icon: Icons.analytics_outlined,
                 ),
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Expanded(
                 child: CustomButton(
                   text: 'تكييف العادة',
@@ -204,7 +204,7 @@ class SmartHabitCard extends ConsumerWidget {
         child: Column(
           children: [
             Icon(icon, color: color, size: 16),
-            const SizedBox(height: 4),
+            const const SizedBox(height: 4),
             Text(
               value,
               style: TextStyle(
@@ -247,7 +247,7 @@ class SmartHabitCard extends ConsumerWidget {
             color: AppColors.primary,
             size: 16,
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Text(
             '$totalInsights رؤية متاحة',
             style: const TextStyle(
@@ -363,7 +363,7 @@ class SmartHabitsList extends ConsumerWidget {
 
     return ListView.separated(
       itemCount: filteredHabits.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 12),
+      separatorBuilder: (context, index) => const const SizedBox(height: 12),
       itemBuilder: (context, index) {
         final habit = filteredHabits[index];
         return SmartHabitCard(
@@ -386,14 +386,14 @@ class SmartHabitsList extends ConsumerWidget {
             size: 64,
             color: Colors.grey[400],
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             'لا توجد عادات ذكية',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: Colors.grey[600],
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             'ابدأ بإنشاء عادات ذكية مدعومة بالذكاء الاصطناعي',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -483,13 +483,13 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildOverviewSection(context),
-                  const SizedBox(height: 24),
+                  const const SizedBox(height: 24),
                   _buildInsightsSection(context),
-                  const SizedBox(height: 24),
+                  const const SizedBox(height: 24),
                   _buildPredictionsSection(context),
-                  const SizedBox(height: 24),
+                  const const SizedBox(height: 24),
                   _buildTriggersSection(context),
-                  const SizedBox(height: 24),
+                  const const SizedBox(height: 24),
                   _buildRewardsSection(context),
                 ],
               ),
@@ -510,7 +510,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         CustomCard(
           child: Column(
             children: [
@@ -550,7 +550,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
       child: Row(
         children: [
           Icon(icon, size: 20, color: AppColors.primary),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -610,7 +610,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         if (totalInsights > 0) ...[
           ...habit.insights.behaviorInsights.take(3).map(_buildInsightCard),
           ...habit.insights.performanceInsights.take(3).map(_buildInsightCard),
@@ -627,7 +627,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
                       size: 48,
                       color: Colors.grey[400],
                     ),
-                    const SizedBox(height: 12),
+                    const const SizedBox(height: 12),
                     Text(
                       'لا توجد رؤى متاحة',
                       style: TextStyle(
@@ -635,7 +635,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     Text(
                       'قم بتحليل الأداء للحصول على رؤى',
                       style: TextStyle(
@@ -670,7 +670,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
                 size: 20,
               ),
             ),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -681,7 +681,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const const SizedBox(height: 4),
                   Text(
                     insight.description,
                     style: TextStyle(
@@ -722,7 +722,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         CustomCard(
           child: Column(
             children: [
@@ -765,7 +765,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const const SizedBox(height: 4),
                 LinearProgressIndicator(
                   value: rate,
                   backgroundColor: Colors.grey[200],
@@ -776,7 +776,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
               ],
             ),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Text(
             value,
             style: TextStyle(
@@ -799,7 +799,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         if (habit.triggers.isNotEmpty)
           ...habit.triggers.map(_buildTriggerCard)
         else
@@ -838,7 +838,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
                 size: 20,
               ),
             ),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -849,7 +849,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const const SizedBox(height: 4),
                   Text(
                     'الفعالية: ${(trigger.effectiveness * 100).toInt()}%',
                     style: TextStyle(
@@ -883,7 +883,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         if (habit.rewards.isNotEmpty)
           ...habit.rewards.map(_buildRewardCard)
         else
@@ -924,7 +924,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
                 size: 20,
               ),
             ),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -935,7 +935,7 @@ class SmartHabitDetailsSheet extends ConsumerWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const const SizedBox(height: 4),
                   Text(
                     reward.description,
                     style: TextStyle(

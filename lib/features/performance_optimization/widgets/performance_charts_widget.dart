@@ -33,7 +33,7 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
               'مراقبة الأداء المباشرة',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             liveStats.when(
               data: (stats) {
                 _updateDataPoints(stats);
@@ -163,12 +163,12 @@ class _LivePerformanceChartState extends ConsumerState<LivePerformanceChart> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.error_outline, color: Colors.red[600], size: 48),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             'خطأ في تحميل بيانات الأداء',
             style: Theme.of(context).textTheme.titleMedium,
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             error,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -211,7 +211,7 @@ class PerformanceGaugeWidget extends ConsumerWidget {
               title,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             SizedBox(
               width: 120,
               height: 120,
@@ -255,7 +255,7 @@ class PerformanceGaugeWidget extends ConsumerWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               _getStatusText(percentage),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -310,7 +310,7 @@ class PerformanceMetricsGrid extends ConsumerWidget {
                 error: (_, __) => const _ErrorGaugeWidget(title: 'المعالج'),
               ),
             ),
-            const SizedBox(width: 8),
+            const const SizedBox(width: 8),
             Expanded(
               child: memoryUsage.when(
                 data: (memory) => PerformanceGaugeWidget(
@@ -325,7 +325,7 @@ class PerformanceMetricsGrid extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Row(
           children: [
             Expanded(
@@ -341,7 +341,7 @@ class PerformanceMetricsGrid extends ConsumerWidget {
                 error: (_, __) => const _ErrorGaugeWidget(title: 'الشبكة'),
               ),
             ),
-            const SizedBox(width: 8),
+            const const SizedBox(width: 8),
             Expanded(
               child: frameTime.when(
                 data: (frames) => PerformanceGaugeWidget(
@@ -378,13 +378,13 @@ class _LoadingGaugeWidget extends StatelessWidget {
               title,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             const SizedBox(
               width: 120,
               height: 120,
               child: Center(child: CircularProgressIndicator()),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'تحميل...',
               style: Theme.of(context).textTheme.bodySmall,
@@ -412,7 +412,7 @@ class _ErrorGaugeWidget extends StatelessWidget {
               title,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             SizedBox(
               width: 120,
               height: 120,
@@ -424,7 +424,7 @@ class _ErrorGaugeWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'خطأ في التحميل',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(

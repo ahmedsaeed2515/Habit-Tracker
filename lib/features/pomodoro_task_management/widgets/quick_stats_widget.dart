@@ -45,7 +45,7 @@ class QuickStatsWidget extends ConsumerWidget {
             ],
           ),
           
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           // Stats Grid
           Row(
@@ -58,7 +58,7 @@ class QuickStatsWidget extends ConsumerWidget {
                   color: Colors.orange,
                 ),
               ),
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
               Expanded(
                 child: _buildStatCard(
                   icon: Icons.timer,
@@ -70,7 +70,7 @@ class QuickStatsWidget extends ConsumerWidget {
             ],
           ),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           Row(
             children: [
@@ -82,7 +82,7 @@ class QuickStatsWidget extends ConsumerWidget {
                   color: Colors.green,
                 ),
               ),
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
               Expanded(
                 child: _buildStatCard(
                   icon: Icons.trending_up,
@@ -94,12 +94,12 @@ class QuickStatsWidget extends ConsumerWidget {
             ],
           ),
           
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           // Progress Indicator
           _buildProgressIndicator(),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           // Quick Actions
           _buildQuickActions(context, ref),
@@ -128,7 +128,7 @@ class QuickStatsWidget extends ConsumerWidget {
             color: Colors.orange,
             size: 16,
           ),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
           Text(
             '${analysis.streak} أيام',
             style: const TextStyle(
@@ -177,7 +177,7 @@ class QuickStatsWidget extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(
@@ -220,7 +220,7 @@ class QuickStatsWidget extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 6),
+        const const SizedBox(height: 6),
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: LinearProgressIndicator(
@@ -247,7 +247,7 @@ class QuickStatsWidget extends ConsumerWidget {
             onTap: () => _startQuickSession(ref, SessionType.focus),
           ),
         ),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         Expanded(
           child: _buildQuickActionButton(
             icon: Icons.coffee,
@@ -256,7 +256,7 @@ class QuickStatsWidget extends ConsumerWidget {
             onTap: () => _startQuickSession(ref, SessionType.shortBreak),
           ),
         ),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         Expanded(
           child: _buildQuickActionButton(
             icon: Icons.analytics,
@@ -290,7 +290,7 @@ class QuickStatsWidget extends ConsumerWidget {
                 color: color,
                 size: 20,
               ),
-              const SizedBox(height: 4),
+              const const SizedBox(height: 4),
               Text(
                 label,
                 style: TextStyle(
@@ -360,7 +360,7 @@ class WeeklyStatsPreview extends ConsumerWidget {
             ],
           ),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           // Weekly Chart
           SizedBox(
@@ -390,7 +390,7 @@ class WeeklyStatsPreview extends ConsumerWidget {
                             borderRadius: BorderRadius.circular(2),
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        const const SizedBox(height: 4),
                         Text(
                           _getDayName(index),
                           style: TextStyle(
@@ -406,7 +406,7 @@ class WeeklyStatsPreview extends ConsumerWidget {
             ),
           ),
           
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           
           // Summary
           Row(
@@ -449,7 +449,7 @@ class WeeklyStatsPreview extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(icon, color: color, size: 14),
-            const SizedBox(width: 4),
+            const const SizedBox(width: 4),
             Text(
               value,
               style: TextStyle(
@@ -527,7 +527,7 @@ class ProductivityTipsWidget extends ConsumerWidget {
                 color: Colors.amber[600],
                 size: 20,
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               const Text(
                 'نصيحة ذكية',
                 style: TextStyle(
@@ -540,7 +540,7 @@ class ProductivityTipsWidget extends ConsumerWidget {
             ],
           ),
           
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           
           // Title
           Text(
@@ -551,7 +551,7 @@ class ProductivityTipsWidget extends ConsumerWidget {
             ),
           ),
           
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           
           // Description
           Text(
@@ -562,7 +562,7 @@ class ProductivityTipsWidget extends ConsumerWidget {
             ),
           ),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           // Action Buttons
           Row(
@@ -578,7 +578,7 @@ class ProductivityTipsWidget extends ConsumerWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Expanded(
                 child: TextButton.icon(
                   onPressed: () => _dismissRecommendation(ref, topRecommendation),

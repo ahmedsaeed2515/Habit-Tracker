@@ -33,7 +33,7 @@ class RecentActivity extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        const const SizedBox(height: 16),
         DecoratedBox(
           decoration: BoxDecoration(
             color: theme.cardColor,
@@ -100,7 +100,7 @@ class ActivityItem extends StatelessWidget {
             ),
             child: Icon(icon, color: color, size: 20),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +111,7 @@ class ActivityItem extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 2),
+                const const SizedBox(height: 2),
                 Text(subtitle, style: theme.textTheme.bodySmall),
               ],
             ),

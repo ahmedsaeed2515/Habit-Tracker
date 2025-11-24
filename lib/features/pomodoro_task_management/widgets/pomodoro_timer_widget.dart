@@ -115,12 +115,12 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
           // Timer Display
           _buildTimerDisplay(context, session, remainingTime, progress),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Controls
           _buildTimerControls(context, session),
           
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           // Session Info
           _buildSessionInfo(context, session),
@@ -206,7 +206,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
                           ),
                         ),
                         
-                        const SizedBox(height: 4),
+                        const const SizedBox(height: 4),
                         
                         // Session Type
                         Text(
@@ -294,7 +294,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
             tooltip: 'استئناف',
           ),
         
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         
         // Stop Button
         _buildControlButton(
@@ -304,7 +304,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
           tooltip: 'إيقاف',
         ),
         
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         
         // Skip Button
         _buildControlButton(
@@ -370,7 +370,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
                 color: Colors.white70,
                 size: 16,
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Flexible(
                 child: Text(
                   taskName,
@@ -385,7 +385,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
         ],
         
         // Next Session Info
@@ -615,7 +615,7 @@ class CompactTimerWidget extends ConsumerWidget {
             ),
           ),
           
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           
           // Time and Type
           Column(
@@ -641,7 +641,7 @@ class CompactTimerWidget extends ConsumerWidget {
             ],
           ),
           
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           
           // Status Icon
           Icon(

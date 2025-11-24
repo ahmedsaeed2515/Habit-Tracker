@@ -38,9 +38,9 @@ class WidgetsDashboardScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.error_outline, size: 64, color: Colors.red),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               Text('خطأ في تحميل الودجت: $error'),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () => ref.refresh(activeWidgetsProvider),
                 child: const Text('إعادة المحاولة'),
@@ -63,14 +63,14 @@ class WidgetsDashboardScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(Icons.widgets, size: 64, color: Colors.grey),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             const Text(
               'لا توجد ودجت مفعلة',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             const Text('اضغط على زر الإضافة لإنشاء ودجت جديدة'),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             ElevatedButton.icon(
               onPressed: () => _showAddWidgetDialog(context, ref),
               icon: const Icon(Icons.add),
@@ -175,7 +175,7 @@ class WidgetsDashboardScreen extends ConsumerWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               Text(
                 widget.title,
                 style: const TextStyle(

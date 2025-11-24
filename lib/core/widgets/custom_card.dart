@@ -132,7 +132,7 @@ class CustomCardWithHeader extends StatelessWidget {
                     color: theme.primaryColor,
                     size: 24,
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                 ],
                 Expanded(
                   child: Column(
@@ -146,7 +146,7 @@ class CustomCardWithHeader extends StatelessWidget {
                         ),
                       ),
                       if (subtitle != null) ...[
-                        const SizedBox(height: 4),
+                        const const SizedBox(height: 4),
                         DefaultTextStyle(
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.textTheme.bodySmall?.color?.withValues(alpha: 0.7),
@@ -237,7 +237,7 @@ class StatCard extends StatelessWidget {
             ],
           ),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           Text(
             title,
@@ -247,7 +247,7 @@ class StatCard extends StatelessWidget {
           ),
           
           if (subtitle != null) ...[
-            const SizedBox(height: 4),
+            const const SizedBox(height: 4),
             Text(
               subtitle!,
               style: theme.textTheme.bodySmall?.copyWith(
@@ -350,7 +350,7 @@ class ListCard extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(width: 4),
+                    const const SizedBox(width: 4),
                     Icon(
                       Icons.keyboard_arrow_down,
                       color: theme.primaryColor,
@@ -362,7 +362,7 @@ class ListCard extends StatelessWidget {
             ),
           ],
           
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
         ],
       ),
     );
@@ -395,7 +395,7 @@ class LoadingCard extends StatelessWidget {
                 color: theme.primaryColor,
               ),
               if (message != null) ...[
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 Text(
                   message!,
                   style: theme.textTheme.bodyMedium?.copyWith(
@@ -441,7 +441,7 @@ class EmptyCard extends StatelessWidget {
                 size: 64,
                 color: theme.disabledColor,
               ),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
             ],
             
             Text(
@@ -454,7 +454,7 @@ class EmptyCard extends StatelessWidget {
             ),
             
             if (subtitle != null) ...[
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text(
                 subtitle!,
                 style: theme.textTheme.bodyMedium?.copyWith(
@@ -465,7 +465,7 @@ class EmptyCard extends StatelessWidget {
             ],
             
             if (action != null) ...[
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               action!,
             ],
           ],

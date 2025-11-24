@@ -142,7 +142,7 @@ class VerticalTabBar extends StatelessWidget {
                           : unselectedColor ?? theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       size: 20.0,
                     ),
-                    const SizedBox(width: 8.0),
+                    const const SizedBox(width: 8.0),
                   ],
                   Expanded(
                     child: Text(
@@ -217,7 +217,7 @@ class BadgeTabBar extends StatelessWidget implements PreferredSizeWidget {
                 children: [
                   if (tab.icon != null) tab.icon!,
                   if (tab.icon != null && tab.text != null)
-                    const SizedBox(width: 8.0),
+                    const const SizedBox(width: 8.0),
                   if (tab.text != null) Text(tab.text!),
                 ],
               ),

@@ -21,7 +21,7 @@ class WeeklyStats extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 16),
+        const const SizedBox(height: 16),
         Container(
           width: double.infinity,
           padding: const EdgeInsets.all(20),
@@ -52,7 +52,7 @@ class WeeklyStats extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const const SizedBox(height: 20),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
@@ -67,7 +67,7 @@ class WeeklyStats extends StatelessWidget {
                       color: AppTheme.successColor,
                       size: 20,
                     ),
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     Text(
                       'أداء ممتاز هذا الأسبوع! 🎉',
                       style: theme.textTheme.bodyMedium?.copyWith(
@@ -112,7 +112,7 @@ class WeeklyStatItem extends StatelessWidget {
             color: color,
           ),
         ),
-        const SizedBox(height: 4),
+        const const SizedBox(height: 4),
         Text(
           title,
           style: theme.textTheme.bodyMedium?.copyWith(

@@ -54,7 +54,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               children: PostType.values.map((type) {
@@ -70,7 +70,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
               }).toList(),
             ),
 
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
 
             // Title Field (for achievement and milestone posts)
             if (_selectedType == PostType.achievement ||
@@ -84,7 +84,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
                 ),
                 maxLength: 100,
               ),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
             ],
 
             // Content Field
@@ -100,7 +100,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
               maxLength: 1000,
             ),
 
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
 
             // Preview
             if (_contentController.text.isNotEmpty) ...[
@@ -110,7 +110,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -128,10 +128,10 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 8),
+                      const const SizedBox(height: 8),
                     ],
                     Text(_contentController.text),
-                    const SizedBox(height: 8),
+                    const const SizedBox(height: 8),
                     Row(
                       children: [
                         Icon(
@@ -139,7 +139,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
                           size: 16,
                           color: Theme.of(context).colorScheme.primary,
                         ),
-                        const SizedBox(width: 4),
+                        const const SizedBox(width: 4),
                         Text(
                           _getPostTypeLabel(_selectedType),
                           style: Theme.of(context).textTheme.bodySmall

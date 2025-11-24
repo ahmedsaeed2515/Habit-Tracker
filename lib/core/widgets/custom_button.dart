@@ -103,7 +103,7 @@ class CustomButton extends StatelessWidget {
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Text(
             text,
             style: const TextStyle(
@@ -126,11 +126,11 @@ class CustomButton extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Icon(icon, size: 18),
         ] : [
           Icon(icon, size: 18),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Text(
             text,
             style: const TextStyle(
@@ -212,7 +212,7 @@ class CustomOutlinedButton extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Text(text),
         ],
       );
@@ -221,11 +221,11 @@ class CustomOutlinedButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: iconOnRight ? [
           Text(text),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Icon(icon, size: 18),
         ] : [
           Icon(icon, size: 18),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Text(text),
         ],
       );
@@ -290,7 +290,7 @@ class CustomTextButton extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Text(text),
         ],
       );
@@ -299,11 +299,11 @@ class CustomTextButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: iconOnRight ? [
           Text(text),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
           Icon(icon, size: 16),
         ] : [
           Icon(icon, size: 16),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
           Text(text),
         ],
       );
@@ -537,7 +537,7 @@ class CustomActionButton extends StatelessWidget {
                 ),
               ],
               
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               
               Text(
                 title,
@@ -548,7 +548,7 @@ class CustomActionButton extends StatelessWidget {
               ),
               
               if (subtitle != null) ...[
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Text(
                   subtitle!,
                   style: theme.textTheme.bodySmall?.copyWith(

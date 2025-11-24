@@ -178,14 +178,14 @@ class _AIPersonalAssistantScreenState
             size: 80,
             color: theme.colorScheme.primary.withValues(alpha: 0.5),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             'مرحباً! أنا مساعدك الذكي',
             style: theme.textTheme.headlineSmall?.copyWith(
               color: theme.colorScheme.primary,
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Text(
@@ -196,7 +196,7 @@ class _AIPersonalAssistantScreenState
               ),
             ),
           ),
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
           Wrap(
             spacing: 8,
             runSpacing: 8,
@@ -268,7 +268,7 @@ class _AIPersonalAssistantScreenState
               maxLines: null,
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           FloatingActionButton.small(
             onPressed: _sendMessage,
             backgroundColor: theme.colorScheme.primary,

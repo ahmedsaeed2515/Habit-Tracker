@@ -43,7 +43,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                   size: 20,
                   color: Colors.blue,
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 const Text(
                   'إعدادات سريعة',
                   style: TextStyle(
@@ -97,7 +97,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                   enabled: activeSession == null,
                 ),
                 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 
                 // Break Duration
                 _buildDurationSlider(
@@ -116,7 +116,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                   enabled: activeSession == null,
                 ),
                 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 
                 // Quick Toggle Options
                 Row(
@@ -135,7 +135,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                         },
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const const SizedBox(width: 12),
                     Expanded(
                       child: _buildToggleCard(
                         context,
@@ -153,7 +153,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                   ],
                 ),
                 
-                const SizedBox(height: 12),
+                const const SizedBox(height: 12),
                 
                 Row(
                   children: [
@@ -171,7 +171,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                         },
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const const SizedBox(width: 12),
                     Expanded(
                       child: _buildToggleCard(
                         context,
@@ -189,12 +189,12 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                   ],
                 ),
                 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 
                 // Session Target
                 _buildTargetSelector(context, ref, settings),
                 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 
                 // Preset Buttons
                 _buildPresetButtons(context, ref),
@@ -224,7 +224,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
         Row(
           children: [
             Icon(icon, color: color, size: 18),
-            const SizedBox(width: 8),
+            const const SizedBox(width: 8),
             Text(
               title,
               style: const TextStyle(
@@ -250,7 +250,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
             activeTrackColor: color,
@@ -307,7 +307,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           Text(
             title,
             style: TextStyle(
@@ -346,7 +346,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                 color: Colors.blue,
                 size: 18,
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(
                 'الهدف اليومي',
                 style: TextStyle(
@@ -356,7 +356,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Row(
             children: [2, 4, 6, 8, 10, 12].map((target) {
               final isSelected = settings.dailyGoal == target;
@@ -439,7 +439,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
         const Row(
           children: [
             Icon(Icons.palette, color: Colors.purple, size: 18),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               'إعدادات جاهزة',
               style: TextStyle(
@@ -449,7 +449,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Row(
           children: presets.map((preset) {
             return Expanded(
@@ -470,7 +470,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                             color: preset['color']! as Color,
                             size: 20,
                           ),
-                          const SizedBox(height: 4),
+                          const const SizedBox(height: 4),
                           Text(
                             preset['name']! as String,
                             style: TextStyle(
@@ -569,7 +569,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
                 color: Colors.amber,
                 size: 20,
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(
                 'إعدادات الإشعارات',
                 style: TextStyle(
@@ -580,7 +580,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
             ],
           ),
           
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           // Notification Types
           _buildNotificationToggle(
@@ -597,7 +597,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
             },
           ),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           _buildNotificationToggle(
             context,
@@ -613,7 +613,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
             },
           ),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           _buildNotificationToggle(
             context,
@@ -630,9 +630,9 @@ class NotificationQuickControlWidget extends ConsumerWidget {
           ),
           
           if (settings.showNotifications) ...[
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             const Divider(),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // Sound Selection
             _buildSoundSelector(context, ref, settings),
@@ -675,7 +675,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
               size: 20,
             ),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -730,7 +730,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
             fontSize: 14,
           ),
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         ...sounds.map((sound) {
           final isSelected = settings.notificationSound == sound['file'];
           return Padding(
@@ -758,7 +758,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
                         color: isSelected ? Colors.blue : Colors.grey,
                         size: 16,
                       ),
-                      const SizedBox(width: 12),
+                      const const SizedBox(width: 12),
                       Expanded(
                         child: Text(
                           sound['name']! as String,

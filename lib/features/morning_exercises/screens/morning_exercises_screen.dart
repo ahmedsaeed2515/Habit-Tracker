@@ -157,7 +157,7 @@ class MorningExercisesScreen extends ConsumerWidget {
     return Column(
       children: [
         Icon(icon, size: 32, color: color),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Text(
           value,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

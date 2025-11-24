@@ -116,28 +116,28 @@ class _TaskDialogState extends State<TaskDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             _buildHeader(),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildTitleField(),
-                    const SizedBox(height: 12),
+                    const const SizedBox(height: 12),
                     _buildDescriptionField(),
-                    const SizedBox(height: 12),
+                    const const SizedBox(height: 12),
                     _buildPrioritySection(),
-                    const SizedBox(height: 12),
+                    const const SizedBox(height: 12),
                     _buildDueDateSection(),
-                    const SizedBox(height: 12),
+                    const const SizedBox(height: 12),
                     _buildSubtasksSection(),
-                    const SizedBox(height: 12),
+                    const const SizedBox(height: 12),
                     _buildTagsField(),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             _buildActionButtons(),
           ],
         ),
@@ -154,7 +154,7 @@ class _TaskDialogState extends State<TaskDialog> {
           color: Colors.blue,
           size: 24,
         ),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         Expanded(
           child: Text(
             widget.task == null ? 'إضافة مهمة جديدة' : 'تحرير المهمة',
@@ -188,7 +188,7 @@ class _TaskDialogState extends State<TaskDialog> {
             color: Colors.black87,
           ),
         ),
-        const SizedBox(height: 6),
+        const const SizedBox(height: 6),
         TextField(
           controller: _titleController,
           decoration: InputDecoration(
@@ -224,7 +224,7 @@ class _TaskDialogState extends State<TaskDialog> {
             color: Colors.black87,
           ),
         ),
-        const SizedBox(height: 6),
+        const const SizedBox(height: 6),
         TextField(
           controller: _descriptionController,
           maxLines: 3,
@@ -261,7 +261,7 @@ class _TaskDialogState extends State<TaskDialog> {
             color: Colors.black87,
           ),
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Row(
           children: TaskPriority.values.map((priority) {
             final isSelected = _priority == priority;
@@ -291,7 +291,7 @@ class _TaskDialogState extends State<TaskDialog> {
                             : Colors.grey,
                         size: 20,
                       ),
-                      const SizedBox(height: 4),
+                      const const SizedBox(height: 4),
                       Text(
                         _getPriorityText(priority),
                         style: TextStyle(
@@ -326,7 +326,7 @@ class _TaskDialogState extends State<TaskDialog> {
             color: Colors.black87,
           ),
         ),
-        const SizedBox(height: 6),
+        const const SizedBox(height: 6),
         InkWell(
           onTap: _selectDueDate,
           borderRadius: BorderRadius.circular(8),
@@ -344,7 +344,7 @@ class _TaskDialogState extends State<TaskDialog> {
                   color: Colors.grey.shade600,
                   size: 18,
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     _dueDate == null
@@ -388,7 +388,7 @@ class _TaskDialogState extends State<TaskDialog> {
             color: Colors.black87,
           ),
         ),
-        const SizedBox(height: 6),
+        const const SizedBox(height: 6),
         Row(
           children: [
             Expanded(
@@ -412,7 +412,7 @@ class _TaskDialogState extends State<TaskDialog> {
                 onSubmitted: (_) => _addSubtask(),
               ),
             ),
-            const SizedBox(width: 8),
+            const const SizedBox(width: 8),
             IconButton(
               onPressed: _addSubtask,
               icon: const Icon(Icons.add),
@@ -427,7 +427,7 @@ class _TaskDialogState extends State<TaskDialog> {
           ],
         ),
         if (_subTasks.isNotEmpty) ...[
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           ...(_subTasks.map(
             (subtask) => Container(
               margin: const EdgeInsets.only(bottom: 4),
@@ -443,7 +443,7 @@ class _TaskDialogState extends State<TaskDialog> {
                     size: 16,
                     color: Colors.grey,
                   ),
-                  const SizedBox(width: 8),
+                  const const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       subtask.title,
@@ -476,7 +476,7 @@ class _TaskDialogState extends State<TaskDialog> {
             color: Colors.black87,
           ),
         ),
-        const SizedBox(height: 6),
+        const const SizedBox(height: 6),
         TextField(
           controller: _tagsController,
           decoration: InputDecoration(
@@ -519,7 +519,7 @@ class _TaskDialogState extends State<TaskDialog> {
             ),
           ),
         ),
-        const SizedBox(width: 12),
+        const const SizedBox(width: 12),
         Expanded(
           child: ElevatedButton(
             onPressed: _titleController.text.trim().isEmpty ? null : _saveTask,

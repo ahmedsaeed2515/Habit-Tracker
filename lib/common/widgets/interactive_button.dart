@@ -147,7 +147,7 @@ class _InteractiveButtonState extends State<InteractiveButton>
                         children: [
                           if (widget.icon != null) ...[
                             Icon(widget.icon, color: textColor, size: 20),
-                            const SizedBox(width: 8),
+                            const const SizedBox(width: 8),
                           ],
                           Text(
                             widget.text,

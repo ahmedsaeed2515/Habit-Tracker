@@ -56,7 +56,7 @@ class _StatItem extends StatelessWidget {
     return Column(
       children: [
         Icon(icon, size: 24),
-        const SizedBox(height: 4),
+        const const SizedBox(height: 4),
         Text(
           value,
           style: Theme.of(

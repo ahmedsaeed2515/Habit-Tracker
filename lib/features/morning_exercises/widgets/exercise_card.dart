@@ -37,9 +37,9 @@ class ExerciseCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildHeader(context),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             _buildExerciseInfo(),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             _buildFooter(context),
           ],
         ),
@@ -58,7 +58,7 @@ class ExerciseCard extends StatelessWidget {
               : Theme.of(context).colorScheme.primary,
           size: 28,
         ),
-        const SizedBox(width: 12),
+        const const SizedBox(width: 12),
         Expanded(
           child: Text(
             exercise.name,
@@ -83,9 +83,9 @@ class ExerciseCard extends StatelessWidget {
     return Row(
       children: [
         _buildInfoChip(Icons.repeat, '${exercise.targetReps} تكرار'),
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         _buildInfoChip(Icons.timer, '${exercise.targetSets} مجموعة'),
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         _buildInfoChip(
           Icons.local_fire_department,
           '${exercise.caloriesBurned} سعرة',
@@ -100,7 +100,7 @@ class ExerciseCard extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(icon, size: 16, color: Colors.grey),
-        const SizedBox(width: 4),
+        const const SizedBox(width: 4),
         Text(text, style: const TextStyle(fontSize: 12, color: Colors.grey)),
       ],
     );
@@ -128,7 +128,7 @@ class ExerciseCard extends StatelessWidget {
                   minimumSize: const Size(80, 32),
                 ),
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
             ],
             IconButton(
               icon: const Icon(Icons.edit, size: 20),

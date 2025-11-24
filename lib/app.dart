@@ -175,7 +175,7 @@ class MainAppScreen extends ConsumerWidget {
                       child: item.icon,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const const SizedBox(height: 4),
                   Text(
                     item.label ?? '',
                     style: TextStyle(

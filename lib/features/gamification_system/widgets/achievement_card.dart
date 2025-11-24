@@ -53,7 +53,7 @@ class AchievementCardWidget extends StatelessWidget {
                   size: 24,
                 ),
               ),
-              const SizedBox(width: 16),
+              const const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +67,7 @@ class AchievementCardWidget extends StatelessWidget {
                             : Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     Text(
                       achievement.description,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -82,7 +82,7 @@ class AchievementCardWidget extends StatelessWidget {
                     ),
                     if (!achievement.isUnlocked &&
                         achievement.maxProgress > 1) ...[
-                      const SizedBox(height: 8),
+                      const const SizedBox(height: 8),
                       LinearProgressIndicator(
                         value: achievement.progressPercentage,
                         backgroundColor: Theme.of(
@@ -92,7 +92,7 @@ class AchievementCardWidget extends StatelessWidget {
                           Theme.of(context).colorScheme.primary,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const const SizedBox(height: 4),
                       Text(
                         '${achievement.progress}/${achievement.maxProgress}',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -104,7 +104,7 @@ class AchievementCardWidget extends StatelessWidget {
                 ),
               ),
               if (achievement.isUnlocked) ...[
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,

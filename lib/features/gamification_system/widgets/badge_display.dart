@@ -57,7 +57,7 @@ class BadgeDisplay extends StatelessWidget {
             ),
           ),
           if (showLabel) ...[
-            const SizedBox(height: 4),
+            const const SizedBox(height: 4),
             Text(
               badge.name,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
