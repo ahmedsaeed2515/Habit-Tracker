@@ -43,7 +43,7 @@ class CustomCard extends StatelessWidget {
         border: border,
         boxShadow: elevation != null ? [
           BoxShadow(
-            color: shadowColor ?? theme.shadowColor.withOpacity(0.1),
+            color: shadowColor ?? theme.shadowColor.withValues(alpha: 0.1),
             blurRadius: elevation! * 2,
             offset: Offset(0, elevation! / 2),
           ),
@@ -118,7 +118,7 @@ class CustomCardWithHeader extends StatelessWidget {
             width: double.infinity,
             padding: padding ?? const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
-              color: headerColor ?? theme.primaryColor.withOpacity(0.1),
+              color: headerColor ?? theme.primaryColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(borderRadius ?? 12.0),
                 topRight: Radius.circular(borderRadius ?? 12.0),
@@ -132,7 +132,7 @@ class CustomCardWithHeader extends StatelessWidget {
                     color: theme.primaryColor,
                     size: 24,
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                 ],
                 Expanded(
                   child: Column(
@@ -146,10 +146,10 @@ class CustomCardWithHeader extends StatelessWidget {
                         ),
                       ),
                       if (subtitle != null) ...[
-                        const SizedBox(height: 4),
+                        const const SizedBox(height: 4),
                         DefaultTextStyle(
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.textTheme.bodySmall?.color?.withOpacity(0.7),
+                            color: theme.textTheme.bodySmall?.color?.withValues(alpha: 0.7),
                           ) ?? const TextStyle(),
                           child: subtitle!,
                         ),
@@ -202,8 +202,8 @@ class StatCard extends StatelessWidget {
       isClickable: onTap != null,
       gradient: LinearGradient(
         colors: [
-          cardColor.withOpacity(0.1),
-          cardColor.withOpacity(0.05),
+          cardColor.withValues(alpha: 0.1),
+          cardColor.withValues(alpha: 0.05),
         ],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
@@ -217,7 +217,7 @@ class StatCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: cardColor.withOpacity(0.2),
+                  color: cardColor.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
@@ -237,7 +237,7 @@ class StatCard extends StatelessWidget {
             ],
           ),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           Text(
             title,
@@ -247,11 +247,11 @@ class StatCard extends StatelessWidget {
           ),
           
           if (subtitle != null) ...[
-            const SizedBox(height: 4),
+            const const SizedBox(height: 4),
             Text(
               subtitle!,
               style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.textTheme.bodySmall?.color?.withOpacity(0.7),
+                color: theme.textTheme.bodySmall?.color?.withValues(alpha: 0.7),
               ),
             ),
           ],
@@ -325,7 +325,7 @@ class ListCard extends StatelessWidget {
                 child: Text(
                   'لا توجد عناصر للعرض',
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.textTheme.bodyMedium?.color?.withOpacity(0.6),
+                    color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
                   ),
                 ),
               ),
@@ -350,7 +350,7 @@ class ListCard extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(width: 4),
+                    const const SizedBox(width: 4),
                     Icon(
                       Icons.keyboard_arrow_down,
                       color: theme.primaryColor,
@@ -362,7 +362,7 @@ class ListCard extends StatelessWidget {
             ),
           ],
           
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
         ],
       ),
     );
@@ -395,11 +395,11 @@ class LoadingCard extends StatelessWidget {
                 color: theme.primaryColor,
               ),
               if (message != null) ...[
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 Text(
                   message!,
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7),
+                    color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.7),
                   ),
                 ),
               ],
@@ -441,7 +441,7 @@ class EmptyCard extends StatelessWidget {
                 size: 64,
                 color: theme.disabledColor,
               ),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
             ],
             
             Text(
@@ -454,7 +454,7 @@ class EmptyCard extends StatelessWidget {
             ),
             
             if (subtitle != null) ...[
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text(
                 subtitle!,
                 style: theme.textTheme.bodyMedium?.copyWith(
@@ -465,7 +465,7 @@ class EmptyCard extends StatelessWidget {
             ],
             
             if (action != null) ...[
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               action!,
             ],
           ],

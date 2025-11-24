@@ -44,7 +44,7 @@ class StatCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(icon, size: 32, color: cardColor),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text(
                 value,
                 style: TextStyle(
@@ -53,7 +53,7 @@ class StatCard extends StatelessWidget {
                   color: cardColor,
                 ),
               ),
-              const SizedBox(height: 4),
+              const const SizedBox(height: 4),
               Text(
                 title,
                 style: const TextStyle(fontSize: 12, color: Colors.grey),

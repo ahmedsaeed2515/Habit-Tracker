@@ -78,7 +78,7 @@ class CustomTabSwitcher extends StatelessWidget {
                             ? Theme.of(context).colorScheme.onPrimary
                             : Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
-                      const SizedBox(width: 8),
+                      const const SizedBox(width: 8),
                     ],
                     Text(
                       option.text,

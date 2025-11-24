@@ -92,7 +92,7 @@ class _HealthDashboardScreenState extends ConsumerState<HealthDashboardScreen> {
                               size: 30,
                             ),
                           ),
-                          const SizedBox(width: 16),
+                          const const SizedBox(width: 16),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +105,7 @@ class _HealthDashboardScreenState extends ConsumerState<HealthDashboardScreen> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const SizedBox(height: 4),
+                                const const SizedBox(height: 4),
                                 Text(
                                   '${score.toInt()}/100',
                                   style: const TextStyle(
@@ -146,7 +146,7 @@ class _HealthDashboardScreenState extends ConsumerState<HealthDashboardScreen> {
                           CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation(Colors.white),
                           ),
-                          SizedBox(width: 16),
+                          const SizedBox(width: 16),
                           Text(
                             'جاري التحميل...',
                             style: TextStyle(
@@ -173,7 +173,7 @@ class _HealthDashboardScreenState extends ConsumerState<HealthDashboardScreen> {
                       child: const Row(
                         children: [
                           Icon(Icons.error, color: Colors.white),
-                          SizedBox(width: 16),
+                          const SizedBox(width: 16),
                           Text(
                             'خطأ في التحميل',
                             style: TextStyle(
@@ -202,7 +202,7 @@ class _HealthDashboardScreenState extends ConsumerState<HealthDashboardScreen> {
             ),
           ),
 
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           // محتوى التبويبات
           Expanded(child: _buildTabContent()),
@@ -237,7 +237,7 @@ class _HealthDashboardScreenState extends ConsumerState<HealthDashboardScreen> {
                     : Colors.grey.shade600,
                 size: 20,
               ),
-              const SizedBox(height: 4),
+              const const SizedBox(height: 4),
               Text(
                 title,
                 style: TextStyle(
@@ -321,7 +321,7 @@ class _HealthDataTab extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircularProgressIndicator(),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text('جاري المزامنة...'),
           ],
         ),
@@ -332,14 +332,14 @@ class _HealthDataTab extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.error_outline, size: 64, color: Colors.red.shade300),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'خطأ في تحميل البيانات',
               style: TextStyle(color: Colors.red.shade600, fontSize: 18),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(error, style: const TextStyle(color: Colors.grey)),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () => ref.refresh(healthDataProvider(userId)),
               child: const Text('إعادة المحاولة'),
@@ -361,12 +361,12 @@ class _HealthDataTab extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.show_chart, size: 64, color: Colors.grey),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'لا توجد بيانات صحية',
               style: TextStyle(fontSize: 18, color: Colors.grey),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               'ابدأ بإضافة بعض البيانات الصحية أو قم بالمزامنة',
               style: TextStyle(color: Colors.grey),
@@ -503,14 +503,14 @@ class _HealthGoalsTab extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.error_outline, size: 64, color: Colors.red.shade300),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'خطأ في تحميل الأهداف',
               style: TextStyle(color: Colors.red.shade600, fontSize: 18),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(error, style: const TextStyle(color: Colors.grey)),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () => ref.refresh(healthGoalsProvider(userId)),
               child: const Text('إعادة المحاولة'),
@@ -532,12 +532,12 @@ class _HealthGoalsTab extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.flag_outlined, size: 64, color: Colors.grey),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'لا توجد أهداف صحية',
               style: TextStyle(fontSize: 18, color: Colors.grey),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               'ابدأ بإضافة هدف صحي جديد',
               style: TextStyle(color: Colors.grey),
@@ -619,7 +619,7 @@ class _HealthInsightsTab extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CircularProgressIndicator(strokeWidth: 2),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       Text('جاري توليد الرؤى...'),
                     ],
                   ),
@@ -639,14 +639,14 @@ class _HealthInsightsTab extends ConsumerWidget {
                     size: 64,
                     color: Colors.red.shade300,
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
                   Text(
                     'خطأ في تحميل الرؤى',
                     style: TextStyle(color: Colors.red.shade600, fontSize: 18),
                   ),
-                  const SizedBox(height: 8),
+                  const const SizedBox(height: 8),
                   Text(error, style: const TextStyle(color: Colors.grey)),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () =>
                         ref.refresh(healthInsightsProvider(userId)),
@@ -672,12 +672,12 @@ class _HealthInsightsTab extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.lightbulb_outline, size: 64, color: Colors.grey),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'لا توجد رؤى صحية',
               style: TextStyle(fontSize: 18, color: Colors.grey),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               'قم بتوليد رؤى جديدة بناءً على بياناتك الصحية',
               style: TextStyle(color: Colors.grey),

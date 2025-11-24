@@ -92,12 +92,12 @@ class _BudgetScreenState extends ConsumerState<BudgetScreen>
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               const Text(
                 'المصروفات حسب الفئة:',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Expanded(
                 child: ref
                     .watch(categoriesProvider)

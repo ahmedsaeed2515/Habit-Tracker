@@ -85,10 +85,10 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
         ),
         child: Column(
           children: [
-            const SizedBox(height: 100),
+            const const SizedBox(height: 100),
             // Tabs
             _buildTabs(context, isArabic),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             // Tab Content
             Expanded(
               child: TabBarView(
@@ -162,7 +162,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(Icons.emoji_events_outlined, size: 64),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 Text(
                   isArabic
                       ? 'لا توجد إنجازات مشتركة بعد'
@@ -225,7 +225,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
                       style: const TextStyle(color: Colors.white),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -248,13 +248,13 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               // Achievement caption
               Text(
                 share.caption,
                 style: const TextStyle(fontSize: 16),
               ),
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               // Actions
               Row(
                 children: [
@@ -265,7 +265,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
                     },
                   ),
                   Text('${share.likes}'),
-                  const SizedBox(width: 16),
+                  const const SizedBox(width: 16),
                   IconButton(
                     icon: const Icon(Icons.comment_outlined),
                     onPressed: () {
@@ -303,7 +303,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(Icons.leaderboard_outlined, size: 64),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 Text(
                   isArabic ? 'لا يوجد مستخدمين بعد' : 'No users yet',
                   style: const TextStyle(color: Colors.white),
@@ -370,7 +370,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
               ),
             ),
           ),
-          const SizedBox(width: 16),
+          const const SizedBox(width: 16),
           // User info
           Expanded(
             child: Column(
@@ -383,11 +383,11 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
                     fontSize: 16,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const const SizedBox(height: 4),
                 Row(
                   children: [
                     const Text('⭐'),
-                    const SizedBox(width: 4),
+                    const const SizedBox(width: 4),
                     Text(
                       '${user.points} ${isArabic ? 'نقطة' : 'points'}',
                       style: TextStyle(
@@ -436,7 +436,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(Icons.favorite_border, size: 64),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 Text(
                   isArabic ? 'لا توجد تفاعلات بعد' : 'No interactions yet',
                   style: const TextStyle(color: Colors.white),
@@ -491,7 +491,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
           child: Row(
             children: [
               Text(icon, style: const TextStyle(fontSize: 32)),
-              const SizedBox(width: 16),
+              const const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -502,7 +502,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     Text(
                       interaction.message ??
                           _getInteractionText(interaction.type, isArabic),
@@ -511,7 +511,7 @@ class _SocialFeedScreenState extends ConsumerState<SocialFeedScreen>
                       ),
                     ),
                     if (interaction.points > 0) ...[
-                      const SizedBox(height: 4),
+                      const const SizedBox(height: 4),
                       Text(
                         '+${interaction.points} ${isArabic ? 'نقطة' : 'points'}',
                         style: TextStyle(

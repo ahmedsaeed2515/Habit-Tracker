@@ -47,7 +47,7 @@ class _BadgesGrid extends StatelessWidget {
                     context,
                   ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
               ],
             ),
           ),
@@ -72,14 +72,14 @@ class _BadgesGrid extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 32),
+                const const SizedBox(height: 32),
                 Text(
                   'Not Earned (${unearnedBadges.length})',
                   style: Theme.of(
                     context,
                   ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
               ],
             ),
           ),
@@ -121,8 +121,8 @@ class BadgeCard extends StatelessWidget {
           gradient: isEarned
               ? LinearGradient(
                   colors: [
-                    _getRarityColor(badge.rarity).withOpacity(0.2),
-                    _getRarityColor(badge.rarity).withOpacity(0.1),
+                    _getRarityColor(badge.rarity).withValues(alpha: 0.2),
+                    _getRarityColor(badge.rarity).withValues(alpha: 0.1),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -142,8 +142,8 @@ class BadgeCard extends StatelessWidget {
                     : Theme.of(context).colorScheme.surfaceContainerHighest,
                 border: Border.all(
                   color: isEarned
-                      ? _getRarityColor(badge.rarity).withOpacity(0.5)
-                      : Theme.of(context).colorScheme.outline.withOpacity(0.3),
+                      ? _getRarityColor(badge.rarity).withValues(alpha: 0.5)
+                      : Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
                   width: 2,
                 ),
               ),
@@ -155,7 +155,7 @@ class BadgeCard extends StatelessWidget {
                 size: 30,
               ),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Text(
               badge.name,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -166,7 +166,7 @@ class BadgeCard extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               badge.description,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -174,19 +174,19 @@ class BadgeCard extends StatelessWidget {
                     ? Theme.of(context).colorScheme.onSurfaceVariant
                     : Theme.of(
                         context,
-                      ).colorScheme.onSurfaceVariant.withOpacity(0.6),
+                      ).colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
               ),
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
                 color: _getRarityColor(
                   badge.rarity,
-                ).withOpacity(isEarned ? 1.0 : 0.3),
+                ).withValues(alpha: isEarned ? 1.0 : 0.3),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(

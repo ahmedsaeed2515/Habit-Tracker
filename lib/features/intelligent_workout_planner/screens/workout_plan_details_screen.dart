@@ -71,9 +71,9 @@ class WorkoutPlanDetailsScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.primaryColor.withOpacity(0.1),
+        color: AppTheme.primaryColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppTheme.primaryColor.withOpacity(0.3)),
+        border: Border.all(color: AppTheme.primaryColor.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +85,7 @@ class WorkoutPlanDetailsScreen extends ConsumerWidget {
                 color: AppTheme.primaryColor,
                 size: 24,
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Text(
                 'تقدم الخطة',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -95,7 +95,7 @@ class WorkoutPlanDetailsScreen extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           LinearProgressIndicator(
             value: progressPercent,
             backgroundColor: Colors.grey[300],
@@ -103,7 +103,7 @@ class WorkoutPlanDetailsScreen extends ConsumerWidget {
               AppTheme.primaryColor,
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             'اليوم $currentDay من $totalDays',
             style: Theme.of(
@@ -279,7 +279,7 @@ class WorkoutPlanDetailsScreen extends ConsumerWidget {
               'أنت على وشك البدء في تمرين اليوم ${currentDayIndex + 1}',
               style: const TextStyle(fontSize: 16),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             const Text(
               'الميزات:\n• مؤقت تلقائي\n• تتبع المجموعات والتكرارات\n• راحة بين التمارين',
               style: TextStyle(fontSize: 14),

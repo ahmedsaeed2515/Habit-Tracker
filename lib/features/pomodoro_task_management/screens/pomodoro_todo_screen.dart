@@ -199,7 +199,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
       child: Row(
         children: [
           Icon(Icons.warning_amber, color: Colors.red.shade600),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Text(
               'لديك $count مهام متأخرة تحتاج اهتمام!',
@@ -231,7 +231,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.task_alt, size: 80, color: Colors.grey[400]),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             _searchQuery.isNotEmpty
                 ? 'لا توجد مهام تطابق البحث'
@@ -242,7 +242,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
               color: Colors.grey,
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             _searchQuery.isNotEmpty
                 ? 'جرب مصطلح بحث مختلف'
@@ -250,7 +250,7 @@ class _PomodoroTodoScreenState extends ConsumerState<PomodoroTodoScreen>
             style: const TextStyle(fontSize: 14, color: Colors.grey),
           ),
           if (_searchQuery.isEmpty) ...[
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
             CustomButton(
               text: 'إضافة مهمة جديدة',
               onPressed: _showAddTaskDialog,
@@ -421,7 +421,7 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
             ],
           ),
 
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
 
           // Title Field
           CustomTextField(
@@ -430,7 +430,7 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
             prefixIcon: Icons.task,
           ),
 
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           // Description Field
           CustomTextField(
@@ -440,11 +440,11 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
             maxLines: 3,
           ),
 
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           // Priority Selector
           Text('الأولوية', style: Theme.of(context).textTheme.titleSmall),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Row(
             children: TaskPriority.values.map((priority) {
               return Expanded(
@@ -460,7 +460,7 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
             }).toList(),
           ),
 
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           // Due Date and Duration
           Row(
@@ -494,7 +494,7 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
             ],
           ),
 
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
 
           // Action Buttons
           Row(
@@ -505,7 +505,7 @@ class _AddTaskBottomSheetState extends ConsumerState<AddTaskBottomSheet> {
                   child: const Text('إلغاء'),
                 ),
               ),
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
               Expanded(
                 child: ElevatedButton(
                   onPressed: _titleController.text.isEmpty ? null : _addTask,
@@ -675,7 +675,7 @@ class QuickActionsBottomSheet extends ConsumerWidget {
             'إجراءات سريعة',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
 
           ListTile(
             leading: const Icon(Icons.flash_on, color: Colors.orange),

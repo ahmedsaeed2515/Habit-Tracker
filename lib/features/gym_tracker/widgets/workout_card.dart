@@ -33,10 +33,10 @@ class WorkoutCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildHeader(context),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             _buildTypeInfo(),
             if (workout.notes.isNotEmpty) _buildNotes(),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             _buildFooter(),
           ],
         ),
@@ -52,7 +52,7 @@ class WorkoutCard extends StatelessWidget {
           _getWorkoutIcon(workout.type),
           color: Theme.of(context).colorScheme.primary,
         ),
-        const SizedBox(width: 12),
+        const const SizedBox(width: 12),
         Expanded(
           child: Text(
             workout.name,
@@ -82,7 +82,7 @@ class WorkoutCard extends StatelessWidget {
   Widget _buildNotes() {
     return Column(
       children: [
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Text(
           workout.notes,
           style: TextStyle(color: Colors.grey[700], fontSize: 14),

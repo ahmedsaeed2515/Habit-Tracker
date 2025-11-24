@@ -99,7 +99,7 @@ class _SocialScreenState extends ConsumerState<SocialScreen> with SearchMixin {
             ? const _WelcomeScreen()
             : Column(
                 children: [
-                  const SizedBox(height: kToolbarHeight + 16),
+                  const const SizedBox(height: kToolbarHeight + 16),
                   // Create Post Button
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -243,19 +243,19 @@ class _WelcomeScreen extends StatelessWidget {
                 context,
               ).colorScheme.primary.withValues(alpha: 0.5),
             ),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
             Text(
               'Welcome to Social',
               style: Theme.of(context).textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'Connect with other habit trackers, share your progress, and get motivated by the community.',
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 32),
+            const const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -290,18 +290,18 @@ class _EmptyFeedWidget extends StatelessWidget {
                 context,
               ).colorScheme.primary.withValues(alpha: 0.5),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'No posts yet',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'Follow some users or create your first post to get started!',
               style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -336,12 +336,12 @@ class _EmptySearchWidget extends StatelessWidget {
                 context,
               ).colorScheme.primary.withValues(alpha: 0.5),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'No results found',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'Try adjusting your search terms or check your spelling.',
               style: Theme.of(context).textTheme.bodyMedium,

@@ -31,7 +31,7 @@ class CategorySelectionWidget extends StatelessWidget {
             color: theme.colorScheme.onSurface,
           ),
         ),
-        const SizedBox(height: 16),
+        const const SizedBox(height: 16),
 
         Text(
           language == 'ar'
@@ -41,7 +41,7 @@ class CategorySelectionWidget extends StatelessWidget {
             color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
-        const SizedBox(height: 24),
+        const const SizedBox(height: 24),
 
         Wrap(
           spacing: 12,
@@ -73,7 +73,7 @@ class CategorySelectionWidget extends StatelessWidget {
                 ? theme.colorScheme.onPrimary
                 : theme.colorScheme.onSurface,
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Text(
             category.getDisplayName(language),
             style: TextStyle(

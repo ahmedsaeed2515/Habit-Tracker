@@ -36,7 +36,7 @@ class ProjectsListScreen extends ConsumerWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const const SizedBox(height: 16),
                       ListTile(
                         leading: const Icon(Icons.all_inclusive),
                         title: const Text('All Projects'),
@@ -174,7 +174,7 @@ class _ProjectCard extends ConsumerWidget {
                 ],
               ),
               if (project.description.isNotEmpty) ...[
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Text(
                   project.description,
                   style: TextStyle(color: Colors.grey[600]),
@@ -182,7 +182,7 @@ class _ProjectCard extends ConsumerWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               Row(
                 children: [
                   Expanded(
@@ -191,27 +191,27 @@ class _ProjectCard extends ConsumerWidget {
                       backgroundColor: Colors.grey[300],
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  const const SizedBox(width: 8),
                   Text('${project.progress}%'),
                 ],
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Row(
                 children: [
                   Icon(Icons.calendar_today, size: 16, color: Colors.grey[600]),
-                  const SizedBox(width: 4),
+                  const const SizedBox(width: 4),
                   Text(
                     '${project.startDate.day}/${project.startDate.month}/${project.startDate.year}',
                     style: TextStyle(color: Colors.grey[600], fontSize: 12),
                   ),
                   if (project.endDate != null) ...[
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     Icon(
                       Icons.arrow_forward,
                       size: 16,
                       color: Colors.grey[600],
                     ),
-                    const SizedBox(width: 4),
+                    const const SizedBox(width: 4),
                     Text(
                       '${project.endDate!.day}/${project.endDate!.month}/${project.endDate!.year}',
                       style: TextStyle(color: Colors.grey[600], fontSize: 12),
@@ -262,7 +262,7 @@ class _StatusChip extends StatelessWidget {
 
     return Chip(
       label: Text(label, style: const TextStyle(fontSize: 12)),
-      backgroundColor: color.withOpacity(0.2),
+      backgroundColor: color.withValues(alpha: 0.2),
       labelStyle: TextStyle(color: color),
       padding: EdgeInsets.zero,
     );

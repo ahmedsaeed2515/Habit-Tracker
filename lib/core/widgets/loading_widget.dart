@@ -39,11 +39,11 @@ class LoadingWidget extends StatelessWidget {
             ),
           ),
           if (showMessage && message != null) ...[
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               message!,
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7),
+                color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.7),
               ),
               textAlign: TextAlign.center,
             ),
@@ -72,7 +72,7 @@ class FullScreenLoadingWidget extends StatelessWidget {
     final theme = Theme.of(context);
     
     return ColoredBox(
-      color: backgroundColor ?? theme.scaffoldBackgroundColor.withOpacity(0.8),
+      color: backgroundColor ?? theme.scaffoldBackgroundColor.withValues(alpha: 0.8),
       child: Center(
         child: LoadingWidget(
           message: message ?? 'Loading...',
@@ -107,7 +107,7 @@ class LoadingOverlay extends StatelessWidget {
         if (isLoading)
           Positioned.fill(
             child: ColoredBox(
-              color: overlayColor ?? Colors.black.withOpacity(0.3),
+              color: overlayColor ?? Colors.black.withValues(alpha: 0.3),
               child: LoadingWidget(
                 message: loadingMessage ?? 'Loading...',
               ),

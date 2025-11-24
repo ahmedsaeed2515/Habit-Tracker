@@ -80,7 +80,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
         bottom: TabBar(
           controller: _tabController,
           labelColor: theme.colorScheme.primary,
-          unselectedLabelColor: theme.colorScheme.onSurface.withOpacity(0.6),
+          unselectedLabelColor: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           indicatorColor: theme.colorScheme.primary,
           tabs: const [
             Tab(text: 'نشطة', icon: Icon(Icons.notifications_active)),
@@ -191,7 +191,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
               });
             },
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           ...NotificationType.values.map(
             (type) => Padding(
               padding: const EdgeInsets.only(right: 8),
@@ -239,7 +239,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   _buildStatRow(
                     'إجمالي الإشعارات',
@@ -264,7 +264,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
             ),
           ),
 
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           // إحصائيات حسب النوع
           Card(
@@ -279,7 +279,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   ...typeStats.entries.map(
                     (entry) => _buildStatRow(
@@ -311,7 +311,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
       child: Row(
         children: [
           Icon(icon, size: 20, color: Theme.of(context).colorScheme.primary),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(child: Text(label)),
           Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
         ],
@@ -325,15 +325,15 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Icon(Icons.error_outline, size: 64, color: Colors.red),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text('حدث خطأ', style: Theme.of(context).textTheme.headlineSmall),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             errorMessage,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               ref.read(smartNotificationsProvider.notifier).clearError();
@@ -399,13 +399,13 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.onSurface.withOpacity(0.3),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
               ),
 
-              const SizedBox(height: 20),
+              const const SizedBox(height: 20),
 
               Text(
                 'إعدادات الإشعارات',
@@ -414,7 +414,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
                 ),
               ),
 
-              const SizedBox(height: 20),
+              const const SizedBox(height: 20),
 
               // إعدادات تفعيل الإشعارات
               Consumer(
@@ -467,7 +467,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
                 },
               ),
 
-              const SizedBox(height: 20),
+              const const SizedBox(height: 20),
 
               // أزرار الإجراءات
               Row(
@@ -479,7 +479,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen>
                       label: const Text('إعدادات النظام'),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Expanded(
                     child: ElevatedButton.icon(
                       onPressed: () async {

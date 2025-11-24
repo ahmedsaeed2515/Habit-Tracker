@@ -38,7 +38,7 @@ class StatRow extends StatelessWidget {
             children: [
               if (icon != null) ...[
                 Icon(icon, size: 16, color: textColor ?? Colors.grey),
-                const SizedBox(width: 4),
+                const const SizedBox(width: 4),
               ],
               Text(
                 value,

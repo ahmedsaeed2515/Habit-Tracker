@@ -402,7 +402,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
                 border: InputBorder.none,
                 hintStyle: TextStyle(
                   color: (widget.foregroundColor ?? theme.appBarTheme.foregroundColor)
-                      ?.withOpacity(0.7),
+                      ?.withValues(alpha: 0.7),
                 ),
               ),
               style: TextStyle(

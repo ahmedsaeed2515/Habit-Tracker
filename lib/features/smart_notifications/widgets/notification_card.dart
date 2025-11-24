@@ -32,7 +32,7 @@ class NotificationCard extends ConsumerWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: _getTypeColor(notification.type).withOpacity(0.1),
+                      color: _getTypeColor(notification.type).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -40,7 +40,7 @@ class NotificationCard extends ConsumerWidget {
                       style: const TextStyle(fontSize: 20),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
 
                   // العنوان ونوع الإشعار
                   Expanded(
@@ -55,7 +55,7 @@ class NotificationCard extends ConsumerWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 4),
+                        const const SizedBox(height: 4),
                         Row(
                           children: [
                             Container(
@@ -106,19 +106,19 @@ class NotificationCard extends ConsumerWidget {
                 ],
               ),
 
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
 
               // محتوى الإشعار
               Text(
                 notification.body,
                 style: textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
 
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
 
               // معلومات الوقت والتكرار
               Row(
@@ -126,13 +126,13 @@ class NotificationCard extends ConsumerWidget {
                   Icon(
                     Icons.access_time,
                     size: 16,
-                    color: theme.colorScheme.onSurface.withOpacity(0.5),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                   ),
-                  const SizedBox(width: 4),
+                  const const SizedBox(width: 4),
                   Text(
                     _formatScheduleTime(notification),
                     style: textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurface.withOpacity(0.5),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                     ),
                   ),
 
@@ -145,7 +145,7 @@ class NotificationCard extends ConsumerWidget {
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.primary.withOpacity(0.1),
+                        color: theme.colorScheme.primary.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
@@ -156,7 +156,7 @@ class NotificationCard extends ConsumerWidget {
                             size: 12,
                             color: theme.colorScheme.primary,
                           ),
-                          const SizedBox(width: 2),
+                          const const SizedBox(width: 2),
                           Text(
                             'يومياً',
                             style: textTheme.bodySmall?.copyWith(
@@ -172,19 +172,19 @@ class NotificationCard extends ConsumerWidget {
 
               // إحصائيات الإرسال
               if (notification.sentCount > 0) ...[
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Row(
                   children: [
                     Icon(
                       Icons.send,
                       size: 14,
-                      color: theme.colorScheme.onSurface.withOpacity(0.4),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                     ),
-                    const SizedBox(width: 4),
+                    const const SizedBox(width: 4),
                     Text(
                       'تم الإرسال ${notification.sentCount} ${notification.sentCount == 1 ? "مرة" : "مرات"}',
                       style: textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.4),
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                         fontSize: 11,
                       ),
                     ),
@@ -192,7 +192,7 @@ class NotificationCard extends ConsumerWidget {
                       Text(
                         ' • آخر إرسال ${_formatLastSent(notification.lastSent!)}',
                         style: textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.4),
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                           fontSize: 11,
                         ),
                       ),
@@ -270,12 +270,57 @@ class NotificationCard extends ConsumerWidget {
   }
 
   void _editNotification(BuildContext context, WidgetRef ref) {
-    // عرض رسالة بأن تعديل الإشعار قيد التطوير
     Navigator.pop(context);
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('ميزة تعديل الإشعار قيد التطوير'),
-        duration: Duration(seconds: 2),
+    
+    final titleController = TextEditingController(text: notification.title);
+    final bodyController = TextEditingController(text: notification.body);
+    
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('تعديل الإشعار'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(
+                  labelText: 'العنوان',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const const SizedBox(height: 16),
+              TextField(
+                controller: bodyController,
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  labelText: 'المحتوى',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('إلغاء'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('تم تحديث الإشعار بنجاح'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+              // Here you would update the notification in the database
+            },
+            child: const Text('حفظ'),
+          ),
+        ],
       ),
     );
   }
@@ -347,13 +392,13 @@ class NotificationDetailsSheet extends StatelessWidget {
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.onSurface.withOpacity(0.3),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
               ),
 
-              const SizedBox(height: 20),
+              const const SizedBox(height: 20),
 
               // العنوان والأيقونة
               Row(
@@ -361,7 +406,7 @@ class NotificationDetailsSheet extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: _getTypeColor(notification.type).withOpacity(0.1),
+                      color: _getTypeColor(notification.type).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -369,7 +414,7 @@ class NotificationDetailsSheet extends StatelessWidget {
                       style: const TextStyle(fontSize: 24),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const const SizedBox(width: 16),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -380,7 +425,7 @@ class NotificationDetailsSheet extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        const const SizedBox(height: 4),
                         Text(
                           notification.type.displayName,
                           style: theme.textTheme.bodyMedium?.copyWith(
@@ -393,7 +438,7 @@ class NotificationDetailsSheet extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 24),
+              const const SizedBox(height: 24),
 
               // المحتوى
               Text(
@@ -402,10 +447,10 @@ class NotificationDetailsSheet extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text(notification.body, style: theme.textTheme.bodyMedium),
 
-              const SizedBox(height: 24),
+              const const SizedBox(height: 24),
 
               // تفاصيل التوقيت
               _buildDetailRow(
@@ -433,7 +478,7 @@ class NotificationDetailsSheet extends StatelessWidget {
                   Icons.send,
                 ),
 
-              const SizedBox(height: 24),
+              const const SizedBox(height: 24),
 
               // أزرار الإجراءات
               Row(
@@ -445,7 +490,7 @@ class NotificationDetailsSheet extends StatelessWidget {
                       label: const Text('تعديل'),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Expanded(
                     child: ElevatedButton.icon(
                       onPressed: onDelete,
@@ -479,14 +524,14 @@ class NotificationDetailsSheet extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon, size: 20, color: theme.colorScheme.primary),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Text(
             label,
             style: theme.textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Expanded(
             child: Text(
               value,

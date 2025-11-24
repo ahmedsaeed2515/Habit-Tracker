@@ -31,9 +31,9 @@ class HeatMapWidget extends StatelessWidget {
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             _buildHeatMap(context),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             _buildLegend(),
           ],
         ),
@@ -72,7 +72,7 @@ class HeatMapWidget extends StatelessWidget {
             // أيام الأسبوع (header)
             Row(
               children: [
-                SizedBox(width: cellSize + 2), // مساحة فارغة للمحاذاة
+                const SizedBox(width: cellSize + 2), // مساحة فارغة للمحاذاة
                 ..._buildDayLabels(),
               ],
             ),
@@ -176,7 +176,7 @@ class HeatMapWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: _getColorForIntensity(intensity),
         borderRadius: BorderRadius.circular(2),
-        border: Border.all(color: Colors.grey.withOpacity(0.2), width: 0.5),
+        border: Border.all(color: Colors.grey.withValues(alpha: 0.2), width: 0.5),
       ),
       child: InkWell(
         onTap: () {
@@ -192,7 +192,7 @@ class HeatMapWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text('أقل', style: TextStyle(fontSize: 12)),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         ...List.generate(5, (index) {
           final intensity = index / 4.0;
           return Container(
@@ -203,13 +203,13 @@ class HeatMapWidget extends StatelessWidget {
               color: _getColorForIntensity(intensity),
               borderRadius: BorderRadius.circular(2),
               border: Border.all(
-                color: Colors.grey.withOpacity(0.2),
+                color: Colors.grey.withValues(alpha: 0.2),
                 width: 0.5,
               ),
             ),
           );
         }),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         const Text('أكثر', style: TextStyle(fontSize: 12)),
       ],
     );
@@ -222,8 +222,8 @@ class HeatMapWidget extends StatelessWidget {
 
     const baseColor = Colors.green;
     return Color.lerp(
-      baseColor.withOpacity(0.1),
-      baseColor.withOpacity(0.9),
+      baseColor.withValues(alpha: 0.1),
+      baseColor.withValues(alpha: 0.9),
       intensity,
     )!;
   }

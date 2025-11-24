@@ -74,7 +74,7 @@ class FeatureGridWidget extends StatelessWidget {
             size: 64,
             color: Theme.of(context).colorScheme.outline,
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             isArabic ? 'لا توجد نتائج' : 'No results found',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -107,12 +107,12 @@ class _FeatureCard extends StatelessWidget {
     final gradientColors = item.gradientColors ??
         [
           colorScheme.primaryContainer,
-          colorScheme.primaryContainer.withOpacity(0.7),
+          colorScheme.primaryContainer.withValues(alpha: 0.7),
         ];
 
     return Card(
       elevation: 2,
-      shadowColor: Colors.black.withOpacity(0.1),
+      shadowColor: Colors.black.withValues(alpha: 0.1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
@@ -134,7 +134,7 @@ class _FeatureCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.3),
+                  color: Colors.white.withValues(alpha: 0.3),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -143,7 +143,7 @@ class _FeatureCard extends StatelessWidget {
                   color: item.iconColor ?? colorScheme.onPrimaryContainer,
                 ),
               ),
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(

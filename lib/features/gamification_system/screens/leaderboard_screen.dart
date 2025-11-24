@@ -58,7 +58,7 @@ class _LeaderboardContent extends StatelessWidget { // Points? but for demo we'l
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 const Text(
                   '#3', // Mock rank
                   style: TextStyle(
@@ -67,7 +67,7 @@ class _LeaderboardContent extends StatelessWidget { // Points? but for demo we'l
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const const SizedBox(height: 4),
                 Text(
                   '${points?.totalPoints ?? 0} points',
                   style: const TextStyle(color: Colors.white, fontSize: 16),
@@ -98,7 +98,7 @@ class _LeaderboardContent extends StatelessWidget { // Points? but for demo we'l
                 color: isCurrentUser
                     ? Theme.of(
                         context,
-                      ).colorScheme.primaryContainer.withOpacity(0.3)
+                      ).colorScheme.primaryContainer.withValues(alpha: 0.3)
                     : Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(12),
                 border: isCurrentUser
@@ -143,7 +143,7 @@ class _LeaderboardContent extends StatelessWidget { // Points? but for demo we'l
                       size: 16,
                       color: Theme.of(context).colorScheme.primary,
                     ),
-                    const SizedBox(width: 4),
+                    const const SizedBox(width: 4),
                     Text(
                       '${entry['points'] as int}',
                       style: TextStyle(

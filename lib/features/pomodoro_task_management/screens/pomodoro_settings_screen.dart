@@ -29,25 +29,25 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
           _buildSectionTitle('إعدادات المؤقت'),
           _buildTimerSettingsCard(context, settings),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Automation Settings Section
           _buildSectionTitle('الإعدادات التلقائية'),
           _buildAutomationSettingsCard(context, settings),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Notification Settings Section
           _buildSectionTitle('إعدادات الإشعارات'),
           _buildNotificationSettingsCard(context, settings),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Audio Settings Section
           _buildSectionTitle('إعدادات الصوت'),
           _buildAudioSettingsCard(context, settings),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Advanced Settings Section
           _buildSectionTitle('الإعدادات المتقدمة'),
@@ -223,7 +223,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
                   .updateSoundVolume(value),
             ),
             
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             _buildSoundSelection(
               'صوت جلسة التركيز',
@@ -296,7 +296,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
     return Row(
       children: [
         Icon(icon, color: color),
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -330,7 +330,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -365,7 +365,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
     return Row(
       children: [
         Icon(icon, color: color),
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -399,7 +399,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -434,7 +434,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
     return Row(
       children: [
         Icon(icon, color: color),
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -480,7 +480,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
         Row(
           children: [
             Icon(icon, color: color),
-            const SizedBox(width: 16),
+            const const SizedBox(width: 16),
             Expanded(
               child: Text(
                 title,
@@ -521,7 +521,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
     return Row(
       children: [
         Icon(icon, color: color),
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -633,7 +633,7 @@ class _PomodoroSettingsScreenState extends ConsumerState<PomodoroSettingsScreen>
                 color: color,
               ),
             ),
-            const SizedBox(height: 20),
+            const const SizedBox(height: 20),
             ...sounds.map((sound) => ListTile(
               title: Text(_getSoundDisplayName(sound)),
               leading: Icon(

@@ -97,7 +97,7 @@ class _MoodJournalScreenState extends ConsumerState<MoodJournalScreen> {
                     label: _moodLevel.toString(),
                     onChanged: (v) => setState(() => _moodLevel = v.toInt()),
                   ),
-                  const SizedBox(height: 12),
+                  const const SizedBox(height: 12),
                   Expanded(
                     child: TextField(
                       controller: _journalController,

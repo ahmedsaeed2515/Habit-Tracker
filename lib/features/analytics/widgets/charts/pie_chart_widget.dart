@@ -43,7 +43,7 @@ class AnalyticsPieChart extends StatelessWidget {
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Row(
               children: [
                 Expanded(
@@ -65,7 +65,7 @@ class AnalyticsPieChart extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 20),
+                const const SizedBox(width: 20),
                 Expanded(child: _buildLegend()),
               ],
             ),
@@ -123,7 +123,7 @@ class AnalyticsPieChart extends StatelessWidget {
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,12 +160,12 @@ class AnalyticsPieChart extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.pie_chart_outline, size: 48, color: Colors.grey[400]),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'لا توجد بيانات للعرض',
               style: TextStyle(fontSize: 16, color: Colors.grey[600]),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'ابدأ بتسجيل أنشطتك لرؤية توزيع الفئات',
               style: TextStyle(fontSize: 14, color: Colors.grey[500]),

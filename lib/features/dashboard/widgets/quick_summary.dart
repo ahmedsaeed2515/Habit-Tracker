@@ -20,7 +20,7 @@ class QuickSummary extends StatelessWidget {
             context,
           ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 16),
+        const const SizedBox(height: 16),
         Row(
           children: [
             Expanded(
@@ -32,7 +32,7 @@ class QuickSummary extends StatelessWidget {
                 color: AppTheme.featureColors['gym']!,
               ),
             ),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             Expanded(
               child: SummaryCard(
                 title: 'العادات',
@@ -42,7 +42,7 @@ class QuickSummary extends StatelessWidget {
                 color: AppTheme.featureColors['habits']!,
               ),
             ),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             Expanded(
               child: SummaryCard(
                 title: 'المهام',
@@ -85,7 +85,7 @@ class SummaryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme.cardColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withOpacity(0.2)),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
         boxShadow: AppTheme.lightShadow,
       ),
       child: Column(
@@ -96,7 +96,7 @@ class SummaryCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
+                  color: color.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(icon, color: color, size: 20),
@@ -104,7 +104,7 @@ class SummaryCard extends StatelessWidget {
               const Spacer(),
             ],
           ),
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           Text(
             value,
             style: theme.textTheme.headlineSmall?.copyWith(
@@ -112,7 +112,7 @@ class SummaryCard extends StatelessWidget {
               color: color,
             ),
           ),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           Text(
             title,
             style: theme.textTheme.bodyMedium?.copyWith(

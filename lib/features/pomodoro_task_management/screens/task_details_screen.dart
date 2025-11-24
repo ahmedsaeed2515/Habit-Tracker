@@ -44,29 +44,29 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
             // Header Card
             _buildHeaderCard(context, task, pomodoroCount, progress),
             
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // Description Section
             if (task.description != null && task.description!.isNotEmpty)
               _buildDescriptionSection(context, task),
             
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // Subtasks Section
             if (task.subtasks.isNotEmpty)
               _buildSubtasksSection(context, task),
             
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // Progress Section
             _buildProgressSection(context, task, progress),
             
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // Time Tracking Section
             _buildTimeTrackingSection(context, task, pomodoroCount),
             
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // Actions Section
             _buildActionsSection(context, task),
@@ -79,7 +79,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
   AppBar _buildAppBar(BuildContext context, AdvancedTask task) {
     return AppBar(
       title: const Text('تفاصيل المهمة'),
-      backgroundColor: task.priorityColor.withOpacity(0.8),
+      backgroundColor: task.priorityColor.withValues(alpha: 0.8),
       foregroundColor: Colors.white,
       actions: [
         IconButton(
@@ -130,8 +130,8 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
           borderRadius: BorderRadius.circular(16),
           gradient: LinearGradient(
             colors: [
-              task.priorityColor.withOpacity(0.1),
-              task.priorityColor.withOpacity(0.05),
+              task.priorityColor.withValues(alpha: 0.1),
+              task.priorityColor.withValues(alpha: 0.05),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -170,7 +170,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
               ],
             ),
             
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // Info Row
             Row(
@@ -182,7 +182,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                     size: 16,
                     color: task.isOverdue ? Colors.red : Colors.grey[600],
                   ),
-                  const SizedBox(width: 4),
+                  const const SizedBox(width: 4),
                   Text(
                     _formatDate(task.dueDate!),
                     style: TextStyle(
@@ -191,7 +191,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                       fontWeight: task.isOverdue ? FontWeight.bold : null,
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const const SizedBox(width: 16),
                 ],
                 
                 // Pomodoro Count
@@ -200,7 +200,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                   size: 16,
                   color: Colors.orange,
                 ),
-                const SizedBox(width: 4),
+                const const SizedBox(width: 4),
                 Text(
                   '$pomodoroCount 🍅',
                   style: const TextStyle(
@@ -216,10 +216,10 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: _getStatusColor(task.status).withOpacity(0.1),
+                    color: _getStatusColor(task.status).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: _getStatusColor(task.status).withOpacity(0.3),
+                      color: _getStatusColor(task.status).withValues(alpha: 0.3),
                     ),
                   ),
                   child: Text(
@@ -236,7 +236,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
             
             // Tags
             if (task.tags.isNotEmpty) ...[
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               Wrap(
                 spacing: 6,
                 runSpacing: 6,
@@ -245,9 +245,9 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                     tag,
                     style: const TextStyle(fontSize: 10),
                   ),
-                  backgroundColor: task.priorityColor.withOpacity(0.1),
+                  backgroundColor: task.priorityColor.withValues(alpha: 0.1),
                   side: BorderSide(
-                    color: task.priorityColor.withOpacity(0.3),
+                    color: task.priorityColor.withValues(alpha: 0.3),
                   ),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   visualDensity: VisualDensity.compact,
@@ -270,7 +270,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
             Row(
               children: [
                 Icon(Icons.description, color: Colors.grey[600]),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Text(
                   'الوصف',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -279,7 +279,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Text(
               task.description!,
               style: Theme.of(context).textTheme.bodyMedium,
@@ -300,7 +300,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
             Row(
               children: [
                 Icon(Icons.checklist, color: Colors.grey[600]),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Text(
                   'المهام الفرعية',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -317,7 +317,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             ...task.subtasks.map((subtask) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
@@ -340,7 +340,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                           : null,
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       subtask.title,
@@ -373,7 +373,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
             Row(
               children: [
                 Icon(Icons.trending_up, color: Colors.grey[600]),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Text(
                   'التقدم',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -391,7 +391,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             LinearProgressIndicator(
               value: progress / 100,
               backgroundColor: Colors.grey[300],
@@ -418,7 +418,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
             Row(
               children: [
                 Icon(Icons.timer, color: Colors.grey[600]),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Text(
                   'تتبع الوقت',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -427,7 +427,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
@@ -438,7 +438,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                     Colors.blue,
                   ),
                 ),
-                const SizedBox(width: 12),
+                const const SizedBox(width: 12),
                 Expanded(
                   child: _buildTimeInfo(
                     'الوقت الفعلي',
@@ -449,7 +449,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             _buildTimeInfo(
               'جلسات Pomodoro',
               '$pomodoroCount جلسة',
@@ -466,14 +466,14 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
           Icon(icon, color: color, size: 20),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(
@@ -481,7 +481,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
               color: Colors.grey[600],
             ),
           ),
-          const SizedBox(height: 2),
+          const const SizedBox(height: 2),
           Text(
             value,
             style: TextStyle(
@@ -508,7 +508,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
@@ -524,7 +524,7 @@ class _TaskDetailsScreenState extends ConsumerState<TaskDetailsScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const const SizedBox(width: 12),
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: task.status != TaskStatus.completed

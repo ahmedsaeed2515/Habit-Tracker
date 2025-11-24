@@ -80,7 +80,7 @@ class ModernListTile extends StatelessWidget {
               children: [
                 if (leading != null) ...[
                   leading!,
-                  const SizedBox(width: AppDesignSystem.spacingMedium),
+                  const const SizedBox(width: AppDesignSystem.spacingMedium),
                 ],
                 Expanded(
                   child: Column(
@@ -98,7 +98,7 @@ class ModernListTile extends StatelessWidget {
                         child: title,
                       ),
                       if (subtitle != null) ...[
-                        const SizedBox(height: AppDesignSystem.spacingXSmall),
+                        const const SizedBox(height: AppDesignSystem.spacingXSmall),
                         DefaultTextStyle(
                           style: AppDesignSystem.bodySmall(context).copyWith(
                             color: enabled
@@ -116,7 +116,7 @@ class ModernListTile extends StatelessWidget {
                   ),
                 ),
                 if (trailing != null) ...[
-                  const SizedBox(width: AppDesignSystem.spacingMedium),
+                  const const SizedBox(width: AppDesignSystem.spacingMedium),
                   trailing!,
                 ],
               ],

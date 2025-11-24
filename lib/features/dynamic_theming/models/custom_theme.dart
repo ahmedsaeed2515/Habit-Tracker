@@ -162,7 +162,7 @@ class CustomTheme extends HiveObject {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: primaryColor.withOpacity(0.3)),
+          borderSide: BorderSide(color: primaryColor.withValues(alpha: 0.3)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -176,7 +176,7 @@ class CustomTheme extends HiveObject {
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: surfaceColor,
         selectedItemColor: primaryColor,
-        unselectedItemColor: _getContrastColor(surfaceColor).withOpacity(0.6),
+        unselectedItemColor: _getContrastColor(surfaceColor).withValues(alpha: 0.6),
         type: BottomNavigationBarType.fixed,
       ),
     );

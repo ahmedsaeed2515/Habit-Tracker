@@ -150,7 +150,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
         label: Text(label),
         selected: isSelected,
         onSelected: (_) => onTap(),
-        selectedColor: AppColors.primary.withOpacity(0.2),
+        selectedColor: AppColors.primary.withValues(alpha: 0.2),
         backgroundColor: Colors.grey[200],
         labelStyle: TextStyle(
           color: isSelected ? AppColors.primary : Colors.grey[700],
@@ -189,9 +189,9 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
       child: Column(
         children: [
           _buildStatsOverview(statsProvider),
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
           _buildPerformanceAnalysis(),
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
           _buildHabitsDistribution(statsProvider),
         ],
       ),
@@ -209,7 +209,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Row(
             children: [
               Expanded(
@@ -230,7 +230,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Row(
             children: [
               Expanded(
@@ -266,13 +266,13 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
         children: [
           Icon(icon, color: color, size: 24),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             value,
             style: TextStyle(
@@ -283,7 +283,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
           ),
           Text(
             label,
-            style: TextStyle(color: color.withOpacity(0.8), fontSize: 12),
+            style: TextStyle(color: color.withValues(alpha: 0.8), fontSize: 12),
             textAlign: TextAlign.center,
           ),
         ],
@@ -309,7 +309,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Row(
             children: [
               Expanded(
@@ -345,13 +345,13 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
         children: [
           Icon(icon, color: color, size: 20),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           Text(
             '$count',
             style: TextStyle(
@@ -381,7 +381,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           ...stats.categoriesDistribution.entries.map(
             (entry) => _buildCategoryDistributionItem(
               entry.key,
@@ -414,7 +414,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
               borderRadius: BorderRadius.circular(4),
             ),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Text(
               _getCategoryName(category),
@@ -422,7 +422,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
             ),
           ),
           Text('$count'),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           SizedBox(
             width: 60,
             child: LinearProgressIndicator(
@@ -459,14 +459,14 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.lightbulb_outlined, size: 64, color: Colors.grey[400]),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'لا توجد توصيات',
               style: Theme.of(
                 context,
               ).textTheme.headlineSmall?.copyWith(color: Colors.grey[600]),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'استخدم العادات الذكية أكثر للحصول على توصيات مخصصة',
               style: Theme.of(
@@ -483,7 +483,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
       padding: const EdgeInsets.all(16),
       child: ListView.separated(
         itemCount: recommendations.length,
-        separatorBuilder: (context, index) => const SizedBox(height: 12),
+        separatorBuilder: (context, index) => const const SizedBox(height: 12),
         itemBuilder: (context, index) {
           final recommendation = recommendations[index];
           return _buildRecommendationCard(recommendation);
@@ -504,7 +504,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                 decoration: BoxDecoration(
                   color: _getRecommendationTypeColor(
                     recommendation.type,
-                  ).withOpacity(0.1),
+                  ).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
@@ -513,7 +513,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                   size: 20,
                 ),
               ),
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -522,7 +522,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                       recommendation.title,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     Text(
                       recommendation.description,
                       style: TextStyle(color: Colors.grey[600], fontSize: 12),
@@ -540,7 +540,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                     decoration: BoxDecoration(
                       color: _getPriorityColor(
                         recommendation.priority,
-                      ).withOpacity(0.1),
+                      ).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -552,7 +552,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                       ),
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const const SizedBox(height: 4),
                   Text(
                     'تأثير: ${(recommendation.expectedImpact * 100).toInt()}%',
                     style: const TextStyle(fontSize: 10),
@@ -562,12 +562,12 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
             ],
           ),
           if (recommendation.actionSteps.isNotEmpty) ...[
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             const Text(
               'خطوات العمل:',
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             ...recommendation.actionSteps
                 .take(3)
                 .map(
@@ -585,7 +585,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                             shape: BoxShape.circle,
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        const const SizedBox(width: 8),
                         Expanded(
                           child: Text(
                             step,
@@ -600,7 +600,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                   ),
                 ),
           ],
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           CustomButton(
             text: 'تطبيق التوصية',
             onPressed: () => _implementRecommendation(recommendation),
@@ -638,7 +638,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             CustomButton(
               text: 'إنشاء عادة يدوياً',
               onPressed: () {
@@ -647,7 +647,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
               },
               icon: Icons.edit,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             CustomButton(
               text: 'توليد عادات بالذكاء الاصطناعي',
               onPressed: () {
@@ -656,7 +656,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
               },
               icon: Icons.psychology,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             CustomButton(
               text: 'تحدي ذكي',
               onPressed: () {
@@ -725,7 +725,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                             size: 64,
                             color: Colors.grey[400],
                           ),
-                          const SizedBox(height: 16),
+                          const const SizedBox(height: 16),
                           Text(
                             'لا توجد رؤى متاحة',
                             style: Theme.of(context).textTheme.titleMedium
@@ -738,7 +738,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                       padding: const EdgeInsets.all(16),
                       itemCount: insights.length,
                       separatorBuilder: (context, index) =>
-                          const SizedBox(height: 12),
+                          const const SizedBox(height: 12),
                       itemBuilder: (context, index) =>
                           _buildInsightCard(insights[index]),
                     ),
@@ -756,7 +756,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: _getSeverityColor(insight.severity).withOpacity(0.1),
+              color: _getSeverityColor(insight.severity).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
@@ -765,7 +765,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
               size: 20,
             ),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -774,7 +774,7 @@ class _AISmartHabitsScreenState extends ConsumerState<AISmartHabitsScreen>
                   insight.title,
                   style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
-                const SizedBox(height: 4),
+                const const SizedBox(height: 4),
                 Text(
                   insight.description,
                   style: TextStyle(color: Colors.grey[600], fontSize: 12),

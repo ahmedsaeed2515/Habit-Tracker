@@ -49,7 +49,7 @@ class WorkoutDayCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 16),
+              const const SizedBox(width: 16),
 
               // معلومات اليوم
               Expanded(
@@ -62,7 +62,7 @@ class WorkoutDayCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     Text(
                       '${day.exercises.length} تمرين',
                       style: Theme.of(context).textTheme.bodyMedium,

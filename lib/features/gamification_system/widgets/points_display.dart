@@ -55,7 +55,7 @@ class _PointsWidget extends StatelessWidget {
               size: 16,
               color: Theme.of(context).colorScheme.onPrimaryContainer,
             ),
-            const SizedBox(width: 4),
+            const const SizedBox(width: 4),
             Text(
               '${points.totalPoints}',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -64,15 +64,15 @@ class _PointsWidget extends StatelessWidget {
               ),
             ),
             if (showLevel) ...[
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Container(
                 width: 1,
                 height: 12,
                 color: Theme.of(
                   context,
-                ).colorScheme.onPrimaryContainer.withOpacity(0.3),
+                ).colorScheme.onPrimaryContainer.withValues(alpha: 0.3),
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Text(
                 'Lv.${points.currentLevel}',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -100,7 +100,7 @@ class _PointsWidget extends StatelessWidget {
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 size: 24,
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Text(
                 'Points',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -110,7 +110,7 @@ class _PointsWidget extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             '${points.totalPoints}',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
@@ -119,7 +119,7 @@ class _PointsWidget extends StatelessWidget {
             ),
           ),
           if (showLevel) ...[
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -129,14 +129,14 @@ class _PointsWidget extends StatelessWidget {
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Container(
                   width: 100,
                   height: 4,
                   decoration: BoxDecoration(
                     color: Theme.of(
                       context,
-                    ).colorScheme.onPrimaryContainer.withOpacity(0.2),
+                    ).colorScheme.onPrimaryContainer.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(2),
                   ),
                   child: FractionallySizedBox(
@@ -150,13 +150,13 @@ class _PointsWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Text(
                   '${points.pointsToNextLevel} to next',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Theme.of(
                       context,
-                    ).colorScheme.onPrimaryContainer.withOpacity(0.7),
+                    ).colorScheme.onPrimaryContainer.withValues(alpha: 0.7),
                   ),
                 ),
               ],

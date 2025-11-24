@@ -21,7 +21,7 @@ class MessageBubble extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isUser) _buildAvatar(theme),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Flexible(
             child: GestureDetector(
               onLongPress: onDelete,
@@ -33,7 +33,7 @@ class MessageBubble extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 4,
                       offset: const Offset(0, 2),
                     ),
@@ -59,14 +59,14 @@ class MessageBubble extends StatelessWidget {
                         height: 1.4,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     _buildMessageFooter(theme, isUser),
                   ],
                 ),
               ),
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           if (isUser) _buildUserAvatar(theme),
         ],
       ),
@@ -99,7 +99,7 @@ class MessageBubble extends StatelessWidget {
       child: Row(
         children: [
           Icon(_getMessageIcon(), size: 14, color: _getMessageColor(theme)),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
           Text(
             _getMessageTypeLabel(),
             style: theme.textTheme.bodySmall?.copyWith(
@@ -108,7 +108,7 @@ class MessageBubble extends StatelessWidget {
             ),
           ),
           if (message.confidence != null) ...[
-            const SizedBox(width: 8),
+            const const SizedBox(width: 8),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
               decoration: BoxDecoration(
@@ -140,7 +140,7 @@ class MessageBubble extends StatelessWidget {
                 (isUser
                         ? theme.colorScheme.onPrimary
                         : theme.colorScheme.onSurfaceVariant)
-                    .withOpacity(0.7),
+                    .withValues(alpha: 0.7),
             fontSize: 11,
           ),
         ),
