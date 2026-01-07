@@ -1,4 +1,6 @@
 # 🏆 Habit Tracker - AI-Powered Personal Development App
+## Contribution
+This project welcomes contributions.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/your-site-id/deploy-status)](https://app.netlify.com/sites/your-site-name/deploys)
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.9.2-02569B?logo=flutter)](https://flutter.dev)
