@@ -55,7 +55,7 @@ class ProfileScreen extends ConsumerWidget {
                     // Profile Header
                     _ProfileHeader(user: currentUser, stats: userStats),
 
-                    const SizedBox(height: 24),
+                    const const SizedBox(height: 24),
 
                     // Bio
                     if (currentUser.bio.isNotEmpty) ...[
@@ -65,18 +65,18 @@ class ProfileScreen extends ConsumerWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const const SizedBox(height: 8),
                       Text(
                         currentUser.bio,
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
-                      const SizedBox(height: 24),
+                      const const SizedBox(height: 24),
                     ],
 
                     // Stats
                     _ProfileStats(stats: userStats),
 
-                    const SizedBox(height: 24),
+                    const const SizedBox(height: 24),
 
                     // Posts
                     Text(
@@ -85,7 +85,7 @@ class ProfileScreen extends ConsumerWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const const SizedBox(height: 16),
 
                     if (userPosts.isEmpty) const Center(
                             child: Padding(
@@ -135,7 +135,7 @@ class _ProfileHeader extends StatelessWidget {
                 )
               : null,
         ),
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
 
         // User Info
         Expanded(
@@ -154,14 +154,14 @@ class _ProfileHeader extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Row(
                 children: [
                   _StatChip(
                     label: '${stats['followersCount'] ?? 0} Followers',
                     icon: Icons.people,
                   ),
-                  const SizedBox(width: 8),
+                  const const SizedBox(width: 8),
                   _StatChip(
                     label: '${stats['followingCount'] ?? 0} Following',
                     icon: Icons.person_add,
@@ -186,7 +186,7 @@ class _ProfileStats extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest.withOpacity(0.3),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -234,7 +234,7 @@ class _StatItem extends StatelessWidget {
     return Column(
       children: [
         Icon(icon, size: 24, color: Theme.of(context).colorScheme.primary),
-        const SizedBox(height: 4),
+        const const SizedBox(height: 4),
         Text(
           value,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -264,14 +264,14 @@ class _StatChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+        color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 16, color: Theme.of(context).colorScheme.primary),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
           Text(
             label,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(

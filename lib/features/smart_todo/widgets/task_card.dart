@@ -70,7 +70,7 @@ class TaskCard extends StatelessWidget {
       child: Row(
         children: [
           _buildCompletionCheckbox(),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,9 +159,9 @@ class TaskCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: _getPriorityColor().withOpacity(0.2),
+        color: _getPriorityColor().withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: _getPriorityColor().withOpacity(0.5)),
+        border: Border.all(color: _getPriorityColor().withValues(alpha: 0.5)),
       ),
       child: Text(
         _getPriorityText(),
@@ -192,7 +192,7 @@ class TaskCard extends StatelessWidget {
                     : TextDecoration.none,
               ),
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
           ],
           _buildTaskMetadata(),
         ],
@@ -210,7 +210,7 @@ class TaskCard extends StatelessWidget {
             _formatDate(task.dueDate!),
             _isOverdue() ? Colors.red : Colors.orange,
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
         ],
         if (task.subTasks.isNotEmpty) ...[
           _buildMetadataChip(
@@ -218,7 +218,7 @@ class TaskCard extends StatelessWidget {
             '${task.subTasks.where((s) => s.isCompleted).length}/${task.subTasks.length}',
             Colors.blue,
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
         ],
         if (task.tags.isNotEmpty) ...[
           _buildMetadataChip(
@@ -236,15 +236,15 @@ class TaskCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 12, color: color),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
           Text(
             text,
             style: TextStyle(
@@ -284,7 +284,7 @@ class TaskCard extends StatelessWidget {
             Colors.blue,
             onEdit!,
           ),
-        if (onEdit != null && onDelete != null) const SizedBox(width: 8),
+        if (onEdit != null && onDelete != null) const const SizedBox(width: 8),
         if (onDelete != null)
           _buildActionButton(
             Icons.delete_outline,

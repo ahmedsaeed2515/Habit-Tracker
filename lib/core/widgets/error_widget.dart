@@ -41,7 +41,7 @@ class CustomErrorWidget extends StatelessWidget {
               size: 64.0,
               color: iconColor ?? theme.colorScheme.error,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
           ],
           Text(
             defaultMessage,
@@ -51,7 +51,7 @@ class CustomErrorWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           if (onRetry != null) ...[
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
             ElevatedButton.icon(
               onPressed: onRetry,
               icon: const Icon(Icons.refresh),
@@ -99,7 +99,7 @@ class InlineErrorWidget extends StatelessWidget {
             size: 16.0,
             color: errorColor,
           ),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
         ],
         Flexible(
           child: Text(
@@ -150,7 +150,7 @@ class FullScreenErrorWidget extends StatelessWidget {
                 size: 80.0,
                 color: theme.colorScheme.error,
               ),
-              const SizedBox(height: 24),
+              const const SizedBox(height: 24),
               Text(
                 title!,
                 style: theme.textTheme.headlineSmall?.copyWith(
@@ -160,16 +160,16 @@ class FullScreenErrorWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               if (message != null) ...[
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 Text(
                   message!,
                   style: theme.textTheme.bodyLarge?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.8),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
                   ),
                   textAlign: TextAlign.center,
                 ),
               ],
-              const SizedBox(height: 32),
+              const const SizedBox(height: 32),
               Column(
                 children: [
                   if (onRetry != null)
@@ -185,7 +185,7 @@ class FullScreenErrorWidget extends StatelessWidget {
                       ),
                     ),
                   if (onRetry != null && onGoHome != null)
-                    const SizedBox(height: 16),
+                    const const SizedBox(height: 16),
                   if (onGoHome != null)
                     SizedBox(
                       width: double.infinity,

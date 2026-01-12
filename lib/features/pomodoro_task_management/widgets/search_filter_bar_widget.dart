@@ -71,7 +71,7 @@ class _SearchFilterBarWidgetState extends ConsumerState<SearchFilterBarWidget> {
                   : null,
             ),
 
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
 
             // Filter and View Options
             Row(
@@ -106,7 +106,7 @@ class _SearchFilterBarWidgetState extends ConsumerState<SearchFilterBarWidget> {
                   ),
                 ),
 
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
 
                 // View Mode Toggles
                 DecoratedBox(

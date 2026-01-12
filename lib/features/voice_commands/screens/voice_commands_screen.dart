@@ -68,11 +68,11 @@ class _VoiceCommandsScreenState extends ConsumerState<VoiceCommandsScreen>
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
-              color: Colors.red.withOpacity(0.1),
+              color: Colors.red.withValues(alpha: 0.1),
               child: Row(
                 children: [
                   const Icon(Icons.error, color: Colors.red),
-                  const SizedBox(width: 8),
+                  const const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       voiceState.error!,
@@ -139,7 +139,7 @@ class _VoiceCommandsScreenState extends ConsumerState<VoiceCommandsScreen>
                             ? Colors.green
                             : Colors.red,
                       ),
-                      const SizedBox(width: 8),
+                      const const SizedBox(width: 8),
                       Text(
                         voiceState.isInitialized
                             ? 'جاهز للاستخدام'
@@ -154,7 +154,7 @@ class _VoiceCommandsScreenState extends ConsumerState<VoiceCommandsScreen>
                     ],
                   ),
 
-                  const SizedBox(height: 8),
+                  const const SizedBox(height: 8),
 
                   if (!voiceState.isInitialized)
                     ElevatedButton(
@@ -168,7 +168,7 @@ class _VoiceCommandsScreenState extends ConsumerState<VoiceCommandsScreen>
             ),
           ),
 
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
 
           // الأوامر المتاحة
           Text(
@@ -178,7 +178,7 @@ class _VoiceCommandsScreenState extends ConsumerState<VoiceCommandsScreen>
             ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
           ),
 
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           // قائمة الأوامر المتاحة
           ..._buildAvailableCommands(context),

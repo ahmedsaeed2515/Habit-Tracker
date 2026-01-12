@@ -52,16 +52,16 @@ class EmptyStateWidget extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: defaultColor.withOpacity(0.1),
+                color: defaultColor.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: defaultColor.withOpacity(0.2),
+                  color: defaultColor.withValues(alpha: 0.2),
                   width: 2,
                 ),
               ),
               child: Icon(icon, size: iconSize, color: defaultColor),
             ),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
             Text(
               title,
               style: theme.textTheme.headlineSmall?.copyWith(
@@ -70,17 +70,17 @@ class EmptyStateWidget extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Text(
               description,
               style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 height: 1.5,
               ),
               textAlign: TextAlign.center,
             ),
             if (buttonText != null && onPressed != null) ...[
-              const SizedBox(height: 32),
+              const const SizedBox(height: 32),
               ElevatedButton.icon(
                 onPressed: onPressed,
                 icon: const Icon(Icons.add),
@@ -96,7 +96,7 @@ class EmptyStateWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   elevation: 4,
-                  shadowColor: defaultColor.withOpacity(0.3),
+                  shadowColor: defaultColor.withValues(alpha: 0.3),
                 ),
               ),
             ],

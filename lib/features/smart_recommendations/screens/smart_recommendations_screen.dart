@@ -192,7 +192,7 @@ class _SmartRecommendationsScreenState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildStatsCard(state),
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 PatternInsightsWidget(patterns: state.patterns),
               ],
             ),
@@ -206,7 +206,7 @@ class _SmartRecommendationsScreenState
         color: Theme.of(context).colorScheme.surface,
         border: Border(
           bottom: BorderSide(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
           ),
         ),
       ),
@@ -217,7 +217,7 @@ class _SmartRecommendationsScreenState
             'تصفية حسب:',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Row(
             children: [
               Expanded(
@@ -239,7 +239,7 @@ class _SmartRecommendationsScreenState
                   },
                 ),
               ),
-              const SizedBox(width: 16),
+              const const SizedBox(width: 16),
               Expanded(
                 child: DropdownButton<RecommendationType?>(
                   value: _selectedType,
@@ -287,7 +287,7 @@ class _SmartRecommendationsScreenState
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -313,11 +313,11 @@ class _SmartRecommendationsScreenState
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Row(
               children: [
                 Icon(Icons.trending_up, color: theme.colorScheme.primary),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Text(
                   'متوسط الثقة: ${(stats['averageConfidence'] * 100).round()}%',
                   style: theme.textTheme.bodyMedium,
@@ -325,11 +325,11 @@ class _SmartRecommendationsScreenState
               ],
             ),
             if (state.lastAnalysis != null) ...[
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Row(
                 children: [
                   Icon(Icons.access_time, color: theme.colorScheme.primary),
-                  const SizedBox(width: 8),
+                  const const SizedBox(width: 8),
                   Text(
                     'آخر تحليل: ${_formatDate(state.lastAnalysis!)}',
                     style: theme.textTheme.bodySmall,
@@ -348,7 +348,7 @@ class _SmartRecommendationsScreenState
     return Column(
       children: [
         Icon(icon, color: theme.colorScheme.primary),
-        const SizedBox(height: 4),
+        const const SizedBox(height: 4),
         Text(
           value,
           style: theme.textTheme.titleLarge?.copyWith(
@@ -370,23 +370,23 @@ class _SmartRecommendationsScreenState
           Icon(
             Icons.lightbulb_outlined,
             size: 64,
-            color: theme.colorScheme.primary.withOpacity(0.5),
+            color: theme.colorScheme.primary.withValues(alpha: 0.5),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             title,
             style: theme.textTheme.titleMedium?.copyWith(
               color: theme.colorScheme.primary,
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Text(
               subtitle,
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
           ),
@@ -401,14 +401,14 @@ class _SmartRecommendationsScreenState
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.error_outline, size: 64, color: theme.colorScheme.error),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             'حدث خطأ',
             style: theme.textTheme.titleMedium?.copyWith(
               color: theme.colorScheme.error,
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Text(
@@ -417,7 +417,7 @@ class _SmartRecommendationsScreenState
               style: theme.textTheme.bodyMedium,
             ),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () =>
                 ref.read(smartRecommendationProvider.notifier).clearError(),
@@ -534,7 +534,7 @@ class _SmartRecommendationsScreenState
               Text(
                 'متوسط الثقة: ${(stats['averageConfidence'] * 100).round()}%',
               ),
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
               const Text(
                 'التوزيع حسب الفئة:',
                 style: TextStyle(fontWeight: FontWeight.bold),

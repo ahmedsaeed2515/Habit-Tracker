@@ -79,7 +79,7 @@ class _ExerciseDialogState extends ConsumerState<ExerciseDialog> {
         children: [
           if (!isEditing) _buildQuickExerciseSelector(),
           _buildNameField(),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           _buildRepsAndSetsRow(),
         ],
       ),
@@ -92,7 +92,7 @@ class _ExerciseDialogState extends ConsumerState<ExerciseDialog> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('اختر تمرين سريع:'),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Wrap(
           spacing: 8,
           children: _defaultExercises.map((exerciseName) {
@@ -104,9 +104,9 @@ class _ExerciseDialogState extends ConsumerState<ExerciseDialog> {
             );
           }).toList(),
         ),
-        const SizedBox(height: 16),
+        const const SizedBox(height: 16),
         const Text('أو اكتب تمرين مخصص:'),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
       ],
     );
   }
@@ -138,7 +138,7 @@ class _ExerciseDialogState extends ConsumerState<ExerciseDialog> {
             ),
           ),
         ),
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         Expanded(
           child: TextField(
             controller: _setsController,

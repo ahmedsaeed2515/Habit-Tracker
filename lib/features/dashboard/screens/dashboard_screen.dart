@@ -122,23 +122,23 @@ class DashboardScreen extends ConsumerWidget {
                 children: const [
                   // قسم الترحيب
                   WelcomeSection(),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
                   // الملخص السريع
                   QuickSummary(),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
                   // روابط الوصول السريع
                   QuickShortcuts(),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
                   // الإجراءات السريعة
                   QuickActions(),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
                   // النشاط الأخير
                   RecentActivity(),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
                   // الإحصائيات الأسبوعية
                   WeeklyStats(),
@@ -196,14 +196,14 @@ class DashboardScreen extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(2),
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const const SizedBox(height: 16),
                       Text(
                         isArabic ? 'إضافة عنصر جديد' : 'Add New Item',
                         style: theme.textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const const SizedBox(height: 16),
                       _buildAddItemTile(
                         context,
                         icon: Icons.task_alt,

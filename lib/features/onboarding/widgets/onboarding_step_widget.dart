@@ -41,7 +41,7 @@ class OnboardingStepWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
 
                 // الوصف
                 Text(
@@ -49,13 +49,13 @@ class OnboardingStepWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Theme.of(
                       context,
-                    ).colorScheme.onSurface.withOpacity(0.7),
+                    ).colorScheme.onSurface.withValues(alpha: 0.7),
                     height: 1.5,
                   ),
                   textAlign: TextAlign.center,
                 ),
 
-                const SizedBox(height: 32),
+                const const SizedBox(height: 32),
 
                 // نص الإجراء (اختياري)
                 if (step.actionText != null)
@@ -65,10 +65,10 @@ class OnboardingStepWidget extends StatelessWidget {
                       vertical: 10,
                     ),
                     decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withOpacity(0.1),
+                      color: AppTheme.primaryColor.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: AppTheme.primaryColor.withOpacity(0.2),
+                        color: AppTheme.primaryColor.withValues(alpha: 0.2),
                       ),
                     ),
                     child: Text(
@@ -95,10 +95,10 @@ class OnboardingStepWidget extends StatelessWidget {
       return Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppTheme.primaryColor.withOpacity(0.1),
+          color: AppTheme.primaryColor.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
-            color: AppTheme.primaryColor.withOpacity(0.2),
+            color: AppTheme.primaryColor.withValues(alpha: 0.2),
             width: 2,
           ),
         ),
@@ -110,7 +110,7 @@ class OnboardingStepWidget extends StatelessWidget {
         width: double.infinity,
         height: 200,
         decoration: BoxDecoration(
-          color: AppTheme.primaryColor.withOpacity(0.1),
+          color: AppTheme.primaryColor.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(24),
         ),
         child: Icon(_getStepIcon(), size: 80, color: AppTheme.primaryColor),

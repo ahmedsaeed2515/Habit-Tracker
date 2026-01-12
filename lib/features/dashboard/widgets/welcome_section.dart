@@ -34,7 +34,7 @@ class WelcomeSection extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             AppTheme.primaryColor,
-            AppTheme.primaryColor.withOpacity(0.8),
+            AppTheme.primaryColor.withValues(alpha: 0.8),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
@@ -46,7 +46,7 @@ class WelcomeSection extends StatelessWidget {
           Row(
             children: [
               Icon(greetingIcon, color: Colors.white, size: 28),
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   greeting,
@@ -58,11 +58,11 @@ class WelcomeSection extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             'جاهز لتحقيق أهدافك اليوم؟',
             style: theme.textTheme.bodyLarge?.copyWith(
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white.withValues(alpha: 0.9),
             ),
           ),
         ],

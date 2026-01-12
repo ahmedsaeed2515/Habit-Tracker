@@ -70,7 +70,7 @@ class ModernAlertDialog extends StatelessWidget {
               ),
               child: Icon(icon, color: Colors.white, size: 30),
             ),
-            const SizedBox(height: AppDesignSystem.spacingMedium),
+            const const SizedBox(height: AppDesignSystem.spacingMedium),
           ],
           // Title
           if (title != null) ...[
@@ -79,7 +79,7 @@ class ModernAlertDialog extends StatelessWidget {
               style: AppDesignSystem.titleLarge(context),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: AppDesignSystem.spacingMedium),
+            const const SizedBox(height: AppDesignSystem.spacingMedium),
           ],
           // Content
           if (content != null) ...[
@@ -88,7 +88,7 @@ class ModernAlertDialog extends StatelessWidget {
               textAlign: TextAlign.center,
               child: content!,
             ),
-            const SizedBox(height: AppDesignSystem.spacingLarge),
+            const const SizedBox(height: AppDesignSystem.spacingLarge),
           ],
           // Actions
           if (actions != null && actions!.isNotEmpty)

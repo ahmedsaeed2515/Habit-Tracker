@@ -117,18 +117,18 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.error_outline, size: 64, color: Colors.red[300]),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             'خطأ في تحميل البيانات',
             style: Theme.of(context).textTheme.titleLarge,
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             error,
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.grey[600]),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           ElevatedButton(
             onPressed: _loadAnalytics,
             child: const Text('إعادة المحاولة'),
@@ -152,9 +152,9 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               context,
             ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           KpiCardsGrid(summaryStats: summaryStats),
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
           if (state.insights.isNotEmpty) ...[
             Text(
               'رؤى سريعة',
@@ -162,7 +162,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             ...state.insights
                 .take(3)
                 .map(
@@ -196,7 +196,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               title: 'تطور النقاط الأسبوعية',
             ),
 
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           // مخطط العادات والمهام
           if (weeklyTrends['habits']?.isNotEmpty ?? false)
@@ -208,7 +208,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               maxY: weeklyTrends['habits']!.reduce((a, b) => a > b ? a : b) + 2,
             ),
 
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           // مخطط دائري للفئات
           if (topCategories.isNotEmpty)
@@ -227,7 +227,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
       child: Column(
         children: [
           HeatMapWidget(data: state.heatMapData, title: 'خريطة النشاط السنوية'),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           _buildHeatMapLegend(),
         ],
       ),
@@ -247,14 +247,14 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Row(
               children: [
                 _buildLegendItem('0-20%', Colors.grey.shade100),
-                _buildLegendItem('20-40%', Colors.green.withOpacity(0.3)),
-                _buildLegendItem('40-60%', Colors.green.withOpacity(0.5)),
-                _buildLegendItem('60-80%', Colors.green.withOpacity(0.7)),
-                _buildLegendItem('80-100%', Colors.green.withOpacity(0.9)),
+                _buildLegendItem('20-40%', Colors.green.withValues(alpha: 0.3)),
+                _buildLegendItem('40-60%', Colors.green.withValues(alpha: 0.5)),
+                _buildLegendItem('60-80%', Colors.green.withValues(alpha: 0.7)),
+                _buildLegendItem('80-100%', Colors.green.withValues(alpha: 0.9)),
               ],
             ),
           ],
@@ -275,7 +275,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               border: Border.all(color: Colors.grey.shade300),
             ),
           ),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           Text(
             label,
             style: const TextStyle(fontSize: 10),
@@ -298,7 +298,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               context,
             ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
 
           if (state.insights.isEmpty)
             _buildEmptyInsights()
@@ -309,7 +309,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               return _buildInsightCard(insight, index);
             }),
 
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           _buildActionRecommendations(),
         ],
       ),
@@ -324,12 +324,12 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
         child: Column(
           children: [
             Icon(Icons.psychology, size: 48, color: Colors.grey[400]),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'لا توجد رؤى متاحة حالياً',
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'استمر في تسجيل أنشطتك للحصول على رؤى مخصصة',
               textAlign: TextAlign.center,
@@ -362,7 +362,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: colors[index % colors.length].withOpacity(0.1),
+          backgroundColor: colors[index % colors.length].withValues(alpha: 0.1),
           child: Icon(
             icons[index % icons.length],
             color: colors[index % colors.length],
@@ -389,7 +389,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
             Row(
               children: [
                 Icon(Icons.recommend, color: Colors.blue[600]),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Text(
                   'توصيات للتحسين',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -398,7 +398,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             _buildRecommendationItem(
               'حدد أهداف يومية واضحة',
               'اجعل عاداتك محددة وقابلة للقياس',
@@ -430,7 +430,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
       child: Row(
         children: [
           Icon(icon, size: 20, color: Colors.blue[400]),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

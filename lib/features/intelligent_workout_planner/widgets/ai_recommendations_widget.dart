@@ -43,7 +43,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
           child: Row(
             children: [
               Icon(Icons.warning, color: Colors.orange.shade600),
-              const SizedBox(width: 12),
+              const const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   'خطأ في تحميل التوصيات: ${error.toString()}',
@@ -65,7 +65,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
         child: Row(
           children: [
             Icon(Icons.lightbulb_outline, color: Colors.grey[400], size: 32),
-            const SizedBox(width: 16),
+            const const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +76,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const const SizedBox(height: 4),
                   Text(
                     'لا توجد توصيات حالياً. أنشئ خطة تمرين للحصول على توصيات مخصصة',
                     style: Theme.of(
@@ -112,7 +112,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
         Row(
           children: [
             const Icon(Icons.auto_fix_high, color: AppTheme.primaryColor, size: 24),
-            const SizedBox(width: 8),
+            const const SizedBox(width: 8),
             Text(
               'توصيات ذكية',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -122,7 +122,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         ...sortedRecommendations.take(3).map((recommendation) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
@@ -152,7 +152,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
               Row(
                 children: [
                   _getRecommendationIcon(recommendation.recommendationType),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       recommendation.title,
@@ -167,7 +167,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -181,7 +181,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text(
                 recommendation.description,
                 style: Theme.of(
@@ -190,7 +190,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               Row(
                 children: [
                   Text(
@@ -205,7 +205,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
                         _applyRecommendation(context, recommendation, ref),
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Colors.white.withOpacity(0.2),
+                      backgroundColor: Colors.white.withValues(alpha: 0.2),
                     ),
                     child: const Text('تطبيق'),
                   ),
@@ -263,7 +263,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Icon(icon, color: color, size: 20),
@@ -296,7 +296,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
         title: Row(
           children: [
             _getRecommendationIcon(recommendation.recommendationType),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             Expanded(child: Text(recommendation.title)),
           ],
         ),
@@ -305,7 +305,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(recommendation.description),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             if (recommendation.parameters.isNotEmpty) ...[
               Text(
                 'تفاصيل التوصية:',
@@ -313,7 +313,7 @@ class AIRecommendationsWidget extends ConsumerWidget {
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               ...recommendation.parameters.entries.map((entry) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 4.0),

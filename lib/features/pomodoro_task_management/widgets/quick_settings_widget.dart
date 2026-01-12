@@ -19,7 +19,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -31,7 +31,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.05),
+              color: Colors.grey.withValues(alpha: 0.05),
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(12),
               ),
@@ -43,7 +43,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                   size: 20,
                   color: Colors.blue,
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 const Text(
                   'إعدادات سريعة',
                   style: TextStyle(
@@ -59,7 +59,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: _getSessionColor(activeSession.type).withOpacity(0.1),
+                      color: _getSessionColor(activeSession.type).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -97,7 +97,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                   enabled: activeSession == null,
                 ),
                 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 
                 // Break Duration
                 _buildDurationSlider(
@@ -116,7 +116,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                   enabled: activeSession == null,
                 ),
                 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 
                 // Quick Toggle Options
                 Row(
@@ -135,7 +135,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                         },
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const const SizedBox(width: 12),
                     Expanded(
                       child: _buildToggleCard(
                         context,
@@ -153,7 +153,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                   ],
                 ),
                 
-                const SizedBox(height: 12),
+                const const SizedBox(height: 12),
                 
                 Row(
                   children: [
@@ -171,7 +171,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                         },
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const const SizedBox(width: 12),
                     Expanded(
                       child: _buildToggleCard(
                         context,
@@ -189,12 +189,12 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                   ],
                 ),
                 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 
                 // Session Target
                 _buildTargetSelector(context, ref, settings),
                 
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 
                 // Preset Buttons
                 _buildPresetButtons(context, ref),
@@ -224,7 +224,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
         Row(
           children: [
             Icon(icon, color: color, size: 18),
-            const SizedBox(width: 8),
+            const const SizedBox(width: 8),
             Text(
               title,
               style: const TextStyle(
@@ -236,7 +236,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -250,13 +250,13 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
             activeTrackColor: color,
-            inactiveTrackColor: color.withOpacity(0.2),
+            inactiveTrackColor: color.withValues(alpha: 0.2),
             thumbColor: color,
-            overlayColor: color.withOpacity(0.2),
+            overlayColor: color.withValues(alpha: 0.2),
             trackHeight: 4.0,
           ),
           child: Slider(
@@ -283,10 +283,10 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: value ? color.withOpacity(0.1) : Colors.grey.withOpacity(0.05),
+        color: value ? color.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: value ? color.withOpacity(0.3) : Colors.grey.withOpacity(0.2),
+          color: value ? color.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -307,7 +307,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           Text(
             title,
             style: TextStyle(
@@ -330,10 +330,10 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.blue.withOpacity(0.05),
+        color: Colors.blue.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: Colors.blue.withOpacity(0.2),
+          color: Colors.blue.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -346,7 +346,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                 color: Colors.blue,
                 size: 18,
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(
                 'الهدف اليومي',
                 style: TextStyle(
@@ -356,7 +356,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Row(
             children: [2, 4, 6, 8, 10, 12].map((target) {
               final isSelected = settings.dailyGoal == target;
@@ -380,7 +380,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                           border: Border.all(
                             color: isSelected
                                 ? Colors.blue
-                                : Colors.grey.withOpacity(0.3),
+                                : Colors.grey.withValues(alpha: 0.3),
                           ),
                           borderRadius: BorderRadius.circular(6),
                         ),
@@ -439,7 +439,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
         const Row(
           children: [
             Icon(Icons.palette, color: Colors.purple, size: 18),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               'إعدادات جاهزة',
               style: TextStyle(
@@ -449,14 +449,14 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Row(
           children: presets.map((preset) {
             return Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Material(
-                  color: (preset['color']! as Color).withOpacity(0.1),
+                  color: (preset['color']! as Color).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                   child: InkWell(
                     onTap: () => _applyPreset(ref, preset),
@@ -470,7 +470,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                             color: preset['color']! as Color,
                             size: 20,
                           ),
-                          const SizedBox(height: 4),
+                          const const SizedBox(height: 4),
                           Text(
                             preset['name']! as String,
                             style: TextStyle(
@@ -482,7 +482,7 @@ class PomodoroQuickSettingsWidget extends ConsumerWidget {
                           Text(
                             '${preset['focus']}/${preset['short']}',
                             style: TextStyle(
-                              color: (preset['color']! as Color).withOpacity(0.7),
+                              color: (preset['color']! as Color).withValues(alpha: 0.7),
                               fontSize: 9,
                             ),
                           ),
@@ -552,7 +552,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -569,7 +569,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
                 color: Colors.amber,
                 size: 20,
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(
                 'إعدادات الإشعارات',
                 style: TextStyle(
@@ -580,7 +580,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
             ],
           ),
           
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           // Notification Types
           _buildNotificationToggle(
@@ -597,7 +597,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
             },
           ),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           _buildNotificationToggle(
             context,
@@ -613,7 +613,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
             },
           ),
           
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           _buildNotificationToggle(
             context,
@@ -630,9 +630,9 @@ class NotificationQuickControlWidget extends ConsumerWidget {
           ),
           
           if (settings.showNotifications) ...[
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             const Divider(),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // Sound Selection
             _buildSoundSelector(context, ref, settings),
@@ -655,10 +655,10 @@ class NotificationQuickControlWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: value ? color.withOpacity(0.05) : null,
+        color: value ? color.withValues(alpha: 0.05) : null,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: value ? color.withOpacity(0.2) : Colors.grey.withOpacity(0.2),
+          color: value ? color.withValues(alpha: 0.2) : Colors.grey.withValues(alpha: 0.2),
         ),
       ),
       child: Row(
@@ -666,7 +666,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: value ? color.withOpacity(0.1) : Colors.grey.withOpacity(0.1),
+              color: value ? color.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
@@ -675,7 +675,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
               size: 20,
             ),
           ),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -730,13 +730,13 @@ class NotificationQuickControlWidget extends ConsumerWidget {
             fontSize: 14,
           ),
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         ...sounds.map((sound) {
           final isSelected = settings.notificationSound == sound['file'];
           return Padding(
             padding: const EdgeInsets.only(bottom: 4),
             child: Material(
-              color: isSelected ? Colors.blue.withOpacity(0.1) : null,
+              color: isSelected ? Colors.blue.withValues(alpha: 0.1) : null,
               borderRadius: BorderRadius.circular(8),
               child: InkWell(
                 onTap: () {
@@ -758,7 +758,7 @@ class NotificationQuickControlWidget extends ConsumerWidget {
                         color: isSelected ? Colors.blue : Colors.grey,
                         size: 16,
                       ),
-                      const SizedBox(width: 12),
+                      const const SizedBox(width: 12),
                       Expanded(
                         child: Text(
                           sound['name']! as String,

@@ -157,7 +157,7 @@ class _UserSearchCard extends ConsumerWidget {
                       )
                     : null,
               ),
-              const SizedBox(width: 16),
+              const const SizedBox(width: 16),
 
               // User Info
               Expanded(
@@ -177,7 +177,7 @@ class _UserSearchCard extends ConsumerWidget {
                       ),
                     ),
                     if (user.bio.isNotEmpty) ...[
-                      const SizedBox(height: 4),
+                      const const SizedBox(height: 4),
                       Text(
                         user.bio,
                         style: Theme.of(context).textTheme.bodySmall,
@@ -185,14 +185,14 @@ class _UserSearchCard extends ConsumerWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     Row(
                       children: [
                         _StatChip(
                           label: '${user.followers.length} followers',
                           icon: Icons.people,
                         ),
-                        const SizedBox(width: 8),
+                        const const SizedBox(width: 8),
                         _StatChip(
                           label: 'Level ${user.level}',
                           icon: Icons.star,
@@ -246,14 +246,14 @@ class _StatChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+        color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 12, color: Theme.of(context).colorScheme.primary),
-          const SizedBox(width: 4),
+          const const SizedBox(width: 4),
           Text(
             label,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -281,15 +281,15 @@ class _SearchPromptWidget extends StatelessWidget {
             Icon(
               Icons.search,
               size: 64,
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'Search for users and posts',
               style: Theme.of(context).textTheme.headlineSmall,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'Find friends, discover content, and connect with the community',
               style: Theme.of(context).textTheme.bodyMedium,
@@ -318,15 +318,15 @@ class _NoResultsWidget extends StatelessWidget {
             Icon(
               Icons.search_off,
               size: 64,
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             Text(
               'No $type found',
               style: Theme.of(context).textTheme.headlineSmall,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'Try adjusting your search terms',
               style: Theme.of(context).textTheme.bodyMedium,

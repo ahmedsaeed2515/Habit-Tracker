@@ -95,11 +95,11 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
                     decoration: const InputDecoration(hintText: 'New task'),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 ElevatedButton(onPressed: _add, child: const Text('Add')),
               ],
             ),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Row(
               children: [
                 Expanded(
@@ -112,12 +112,12 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
                         ref.read(tasksListProvider.notifier).applyFilter(v),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: _bulkComplete,
                   child: const Text('Complete'),
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: _bulkDelete,
                   style: ElevatedButton.styleFrom(
@@ -127,7 +127,7 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             Expanded(
               child: tasks.isEmpty
                   ? const Center(child: Text('No tasks yet'))
@@ -154,7 +154,7 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
                               tileColor: isSelected
                                   ? Theme.of(
                                       context,
-                                    ).colorScheme.primary.withOpacity(0.12)
+                                    ).colorScheme.primary.withValues(alpha: 0.12)
                                   : null,
                               title: Text(
                                 t.title,
@@ -335,7 +335,7 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
                       onPressed: () async => _bulkComplete(),
                       child: const Text('Complete'),
                     ),
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     TextButton(
                       onPressed: () async => _bulkDelete(),
                       child: const Text(
@@ -343,7 +343,7 @@ class _TasksListScreenState extends ConsumerState<TasksListScreen> {
                         style: TextStyle(color: Colors.red),
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const const SizedBox(width: 8),
                     TextButton(
                       onPressed: _toggleSelectionMode,
                       child: const Text('Cancel'),

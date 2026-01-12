@@ -51,7 +51,7 @@ class SmartCalendarScreen extends ConsumerWidget {
                   child: Row(
                     children: [
                       Icon(_getViewTypeIcon(viewType)),
-                      const SizedBox(width: 8),
+                      const const SizedBox(width: 8),
                       Text(_getViewTypeName(viewType)),
                     ],
                   ),
@@ -88,7 +88,7 @@ class SmartCalendarScreen extends ConsumerWidget {
         ),
         child: Column(
           children: [
-            const SizedBox(height: kToolbarHeight + 16),
+            const const SizedBox(height: kToolbarHeight + 16),
             // شريط التنقل بين التواريخ
             _buildNavigationHeader(context, ref, calendarView),
             const Divider(height: 1),
@@ -108,13 +108,13 @@ class SmartCalendarScreen extends ConsumerWidget {
                         size: 64,
                         color: Colors.white.withValues(alpha: 0.8),
                       ),
-                      const SizedBox(height: 16),
+                      const const SizedBox(height: 16),
                       Text(
                         'خطأ في تحميل الأحداث: $error',
                         style: const TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(height: 16),
+                      const const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () => ref.refresh(eventsProvider),
                         child: const Text('إعادة المحاولة'),
@@ -234,19 +234,411 @@ class SmartCalendarScreen extends ConsumerWidget {
   }
 
   Widget _buildWeekView(BuildContext context, List<CalendarEvent> events) {
-    return const Center(child: Text('عرض الأسبوع - قيد التطوير'));
+    final now = DateTime.now();
+    final startOfWeek = now.subtract(Duration(days: now.weekday - 1));
+    final weekDays = List.generate(7, (i) => startOfWeek.add(Duration(days: i)));
+    
+    return Column(
+      children: [
+        // Week days header
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: weekDays.map((day) {
+              final isToday = day.day == now.day && day.month == now.month;
+              return Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      _getDayName(day.weekday),
+                      style: TextStyle(
+                        fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
+                        color: isToday ? Theme.of(context).primaryColor : null,
+                      ),
+                    ),
+                    const const SizedBox(height: 4),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: isToday ? Theme.of(context).primaryColor : Colors.transparent,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Text(
+                        '${day.day}',
+                        style: TextStyle(
+                          color: isToday ? Colors.white : null,
+                          fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
+        ),
+        const Divider(),
+        // Events for the week
+        Expanded(
+          child: ListView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: events.length,
+            itemBuilder: (context, index) {
+              final event = events[index];
+              final eventDate = event.startTime;
+              if (eventDate.isAfter(weekDays.first.subtract(const Duration(days: 1))) &&
+                  eventDate.isBefore(weekDays.last.add(const Duration(days: 1)))) {
+                return Card(
+                  margin: const EdgeInsets.only(bottom: 8),
+                  child: ListTile(
+                    leading: Container(
+                      width: 4,
+                      color: _getEventColor(event.type),
+                    ),
+                    title: Text(event.title),
+                    subtitle: Text('${_formatTime(event.startTime)} - ${_formatTime(event.endTime)}'),
+                    onTap: () => _showEventDetails(context, event),
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
+      ],
+    );
+  }
+  
+  String _getDayName(int weekday) {
+    const days = ['الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت', 'الأحد'];
+    return days[weekday - 1];
+  }
+  
+  String _formatTime(DateTime time) {
+    return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
   }
 
   Widget _buildMonthView(BuildContext context, List<CalendarEvent> events) {
-    return const Center(child: Text('عرض الشهر - قيد التطوير'));
+    final now = DateTime.now();
+    final firstDayOfMonth = DateTime(now.year, now.month, 1);
+    final lastDayOfMonth = DateTime(now.year, now.month + 1, 0);
+    final daysInMonth = lastDayOfMonth.day;
+    
+    return Column(
+      children: [
+        // Month header
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            _getMonthName(now.month),
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        // Week days
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: ['أحد', 'إثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت']
+                .map((day) => Expanded(
+                      child: Center(
+                        child: Text(
+                          day,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ))
+                .toList(),
+          ),
+        ),
+        const const SizedBox(height: 8),
+        // Calendar grid
+        Expanded(
+          child: GridView.builder(
+            padding: const EdgeInsets.all(16),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 7,
+              childAspectRatio: 1,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+            ),
+            itemCount: daysInMonth,
+            itemBuilder: (context, index) {
+              final day = index + 1;
+              final date = DateTime(now.year, now.month, day);
+              final isToday = day == now.day;
+              final dayEvents = events.where((e) =>
+                  e.startTime.year == date.year &&
+                  e.startTime.month == date.month &&
+                  e.startTime.day == date.day).length;
+              
+              return Container(
+                decoration: BoxDecoration(
+                  color: isToday ? Theme.of(context).primaryColor : null,
+                  border: Border.all(
+                    color: Theme.of(context).dividerColor,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '$day',
+                      style: TextStyle(
+                        color: isToday ? Colors.white : null,
+                        fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                    if (dayEvents > 0)
+                      Container(
+                        margin: const EdgeInsets.only(top: 2),
+                        width: 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: isToday ? Colors.white : Theme.of(context).primaryColor,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+  
+  String _getMonthName(int month) {
+    const months = [
+      'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+      'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
+    ];
+    return months[month - 1];
   }
 
   Widget _buildAgendaView(BuildContext context, List<CalendarEvent> events) {
-    return const Center(child: Text('عرض الأجندة - قيد التطوير'));
+    if (events.isEmpty) {
+      return const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.event_busy, size: 64, color: Colors.grey),
+            const SizedBox(height: 16),
+            Text('لا توجد أحداث', style: TextStyle(fontSize: 18, color: Colors.grey)),
+          ],
+        ),
+      );
+    }
+    
+    // Group events by date
+    final groupedEvents = <String, List<CalendarEvent>>{};
+    for (final event in events) {
+      final dateKey = '${event.startTime.year}-${event.startTime.month}-${event.startTime.day}';
+      groupedEvents.putIfAbsent(dateKey, () => []).add(event);
+    }
+    
+    // Sort dates
+    final sortedDates = groupedEvents.keys.toList()..sort();
+    
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: sortedDates.length,
+      itemBuilder: (context, index) {
+        final dateKey = sortedDates[index];
+        final dateEvents = groupedEvents[dateKey]!;
+        final date = dateEvents.first.startTime;
+        
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Text(
+                '${_getDayName(date.weekday)} ${date.day} ${_getMonthName(date.month)}',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ...dateEvents.map((event) => Card(
+              margin: const EdgeInsets.only(bottom: 8),
+              child: ListTile(
+                leading: Container(
+                  width: 4,
+                  height: double.infinity,
+                  color: _getEventColor(event.type),
+                ),
+                title: Text(event.title),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('${_formatTime(event.startTime)} - ${_formatTime(event.endTime)}'),
+                    if (event.description?.isNotEmpty ?? false)
+                      Text(
+                        event.description!,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                  ],
+                ),
+                trailing: Icon(Icons.chevron_right),
+                onTap: () => _showEventDetails(context, event),
+              ),
+            )),
+            const const SizedBox(height: 16),
+          ],
+        );
+      },
+    );
   }
 
   Widget _buildTimelineView(BuildContext context, List<CalendarEvent> events) {
-    return const Center(child: Text('عرض الخط الزمني - قيد التطوير'));
+    if (events.isEmpty) {
+      return const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.timeline, size: 64, color: Colors.grey),
+            const SizedBox(height: 16),
+            Text('لا توجد أحداث', style: TextStyle(fontSize: 18, color: Colors.grey)),
+          ],
+        ),
+      );
+    }
+    
+    // Sort events by start time
+    final sortedEvents = List<CalendarEvent>.from(events)
+      ..sort((a, b) => a.startTime.compareTo(b.startTime));
+    
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: sortedEvents.length,
+      itemBuilder: (context, index) {
+        final event = sortedEvents[index];
+        final isFirst = index == 0;
+        final isLast = index == sortedEvents.length - 1;
+        
+        return IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Timeline indicator
+              SizedBox(
+                width: 60,
+                child: Column(
+                  children: [
+                    if (!isFirst)
+                      Expanded(
+                        child: Container(
+                          width: 2,
+                          color: Theme.of(context).dividerColor,
+                        ),
+                      ),
+                    Container(
+                      width: 12,
+                      height: 12,
+                      decoration: BoxDecoration(
+                        color: _getEventColor(event.type),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Theme.of(context).scaffoldBackgroundColor,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    if (!isLast)
+                      Expanded(
+                        child: Container(
+                          width: 2,
+                          color: Theme.of(context).dividerColor,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              const const SizedBox(width: 16),
+              // Event card
+              Expanded(
+                child: Card(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                event.title,
+                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: _getEventColor(event.type).withValues(alpha: 0.2),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                event.type.name,
+                                style: TextStyle(
+                                  color: _getEventColor(event.type),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            const Icon(Icons.access_time, size: 16),
+                            const const SizedBox(width: 4),
+                            Text(
+                              '${_formatTime(event.startTime)} - ${_formatTime(event.endTime)}',
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ],
+                        ),
+                        const const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            const Icon(Icons.calendar_today, size: 16),
+                            const const SizedBox(width: 4),
+                            Text(
+                              '${event.startTime.day} ${_getMonthName(event.startTime.month)} ${event.startTime.year}',
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ],
+                        ),
+                        if (event.description?.isNotEmpty ?? false) ...[
+                          const const SizedBox(height: 8),
+                          Text(
+                            event.description!,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   void _showCreateEventDialog(BuildContext context, WidgetRef ref) {
@@ -276,12 +668,12 @@ class SmartCalendarScreen extends ConsumerWidget {
           children: [
             if (event.description?.isNotEmpty ?? false)
               Text(event.description!),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Text(
               'الوقت: ${_formatTime(event.startDateTime)} - ${_formatTime(event.endDateTime)}',
             ),
             if (event.location?.isNotEmpty ?? false) ...[
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text('المكان: ${event.location}'),
             ],
           ],

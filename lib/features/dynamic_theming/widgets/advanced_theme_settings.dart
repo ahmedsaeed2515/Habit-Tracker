@@ -19,12 +19,12 @@ class AdvancedThemeSettings extends ConsumerWidget {
           // الإعدادات الأساسية
           _buildBasicSettings(context, ref, themeSettings),
           
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
           
           // إعدادات التخصيص
           _buildCustomizationSettings(context, ref, themeSettings),
           
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
           
           // إعدادات الأداء
           _buildPerformanceSettings(context, ref, themeSettings),
@@ -46,7 +46,7 @@ class AdvancedThemeSettings extends ConsumerWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // تغيير تلقائي للثيمات
             SwitchListTile(
@@ -126,7 +126,7 @@ class AdvancedThemeSettings extends ConsumerWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // الألوان المفضلة
             ListTile(
@@ -159,7 +159,7 @@ class AdvancedThemeSettings extends ConsumerWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             // تفعيل الرسوم المتحركة
             SwitchListTile(

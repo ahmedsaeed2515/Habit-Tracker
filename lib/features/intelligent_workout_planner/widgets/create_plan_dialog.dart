@@ -75,7 +75,7 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
                       color: AppTheme.primaryColor,
                       size: 28,
                     ),
-                    const SizedBox(width: 12),
+                    const const SizedBox(width: 12),
                     Text(
                       'إنشاء خطة تمرين ذكية',
                       style: Theme.of(context).textTheme.headlineSmall
@@ -83,14 +83,14 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Text(
                   'سوف يقوم الذكاء الاصطناعي بإنشاء خطة مخصصة لك',
                   style: Theme.of(
                     context,
                   ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
                 ),
-                const SizedBox(height: 24),
+                const const SizedBox(height: 24),
 
                 // مستوى اللياقة البدنية
                 Text(
@@ -99,9 +99,9 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 _buildFitnessLevelSelector(),
-                const SizedBox(height: 20),
+                const const SizedBox(height: 20),
 
                 // الأهداف
                 Text(
@@ -110,9 +110,9 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 _buildGoalsSelector(),
-                const SizedBox(height: 20),
+                const const SizedBox(height: 20),
 
                 // مدة البرنامج
                 Text(
@@ -121,9 +121,9 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 _buildDurationSelector(),
-                const SizedBox(height: 20),
+                const const SizedBox(height: 20),
 
                 // المعدات المتاحة
                 Text(
@@ -132,9 +132,9 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 _buildEquipmentSelector(),
-                const SizedBox(height: 20),
+                const const SizedBox(height: 20),
 
                 // القيود والحساسية
                 Text(
@@ -143,7 +143,7 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 TextFormField(
                   controller: _restrictionsController,
                   decoration: InputDecoration(
@@ -158,7 +158,7 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
                   ),
                   maxLines: 2,
                 ),
-                const SizedBox(height: 24),
+                const const SizedBox(height: 24),
 
                 // أزرار الحوار
                 Row(
@@ -170,7 +170,7 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
                           : () => Navigator.of(context).pop(),
                       child: const Text('إلغاء'),
                     ),
-                    const SizedBox(width: 12),
+                    const const SizedBox(width: 12),
                     ElevatedButton(
                       onPressed: isCreating ? null : _createPlan,
                       style: ElevatedButton.styleFrom(
@@ -199,7 +199,7 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Icon(Icons.auto_fix_high, size: 18),
-                                SizedBox(width: 8),
+                                const SizedBox(width: 8),
                                 Text('إنشاء الخطة'),
                               ],
                             ),
@@ -218,9 +218,9 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
     return Row(
       children: [
         _buildLevelButton('مبتدئ', 'beginner'),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         _buildLevelButton('متوسط', 'intermediate'),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         _buildLevelButton('متقدم', 'advanced'),
       ],
     );
@@ -273,7 +273,7 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
             });
           },
           backgroundColor: Colors.grey[100],
-          selectedColor: AppTheme.primaryColor.withOpacity(0.2),
+          selectedColor: AppTheme.primaryColor.withValues(alpha: 0.2),
           checkmarkColor: AppTheme.primaryColor,
         );
       }).toList(),
@@ -332,7 +332,7 @@ class _CreatePlanDialogState extends ConsumerState<CreatePlanDialog> {
             });
           },
           backgroundColor: Colors.grey[100],
-          selectedColor: AppTheme.primaryColor.withOpacity(0.2),
+          selectedColor: AppTheme.primaryColor.withValues(alpha: 0.2),
           checkmarkColor: AppTheme.primaryColor,
         );
       }).toList(),

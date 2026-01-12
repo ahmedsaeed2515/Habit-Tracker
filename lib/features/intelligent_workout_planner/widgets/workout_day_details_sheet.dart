@@ -67,13 +67,13 @@ class WorkoutDayDetailsSheet extends StatelessWidget {
                                 style: Theme.of(context).textTheme.titleMedium
                                     ?.copyWith(fontWeight: FontWeight.bold),
                               ),
-                              const SizedBox(height: 4),
+                              const const SizedBox(height: 4),
                               Text(
                                 '${exercise.sets} مجموعات × ${exercise.reps} تكرار',
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                               if (exercise.restSeconds > 0) ...[
-                                const SizedBox(height: 4),
+                                const const SizedBox(height: 4),
                                 Text(
                                   'وقت الراحة: ${exercise.restSeconds} ثانية',
                                   style: Theme.of(context).textTheme.bodySmall,

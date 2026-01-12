@@ -33,7 +33,7 @@ class GamificationScreen extends ConsumerWidget {
                   ? const PointsDisplay()
                   : const SizedBox.shrink(),
             ),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
 
             // Quick Stats Row
             Row(
@@ -57,7 +57,7 @@ class GamificationScreen extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 16),
+                const const SizedBox(width: 16),
                 Expanded(
                   child: _StatCard(
                     title: 'Badges',
@@ -75,7 +75,7 @@ class GamificationScreen extends ConsumerWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
 
             // Main Actions Grid
             GridView.count(
@@ -154,7 +154,7 @@ class GamificationScreen extends ConsumerWidget {
               ],
             ),
 
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
 
             // Recent Achievements Section
             Text(
@@ -163,7 +163,7 @@ class GamificationScreen extends ConsumerWidget {
                 context,
               ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             achievementsAsync.when(
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (error, stack) => Text('Error: $error'),
@@ -242,7 +242,7 @@ class _StatCard extends StatelessWidget {
                 size: 32,
                 color: Theme.of(context).colorScheme.primary,
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text(
                 value,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -250,7 +250,7 @@ class _StatCard extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ),
-              const SizedBox(height: 4),
+              const const SizedBox(height: 4),
               Text(
                 title,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -293,7 +293,7 @@ class _ActionCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             gradient: LinearGradient(
-              colors: [color.withOpacity(0.1), color.withOpacity(0.05)],
+              colors: [color.withValues(alpha: 0.1), color.withValues(alpha: 0.05)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -307,7 +307,7 @@ class _ActionCard extends StatelessWidget {
                 decoration: BoxDecoration(shape: BoxShape.circle, color: color),
                 child: Icon(icon, color: Colors.white, size: 24),
               ),
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               Text(
                 title,
                 style: Theme.of(
@@ -315,7 +315,7 @@ class _ActionCard extends StatelessWidget {
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 4),
+              const const SizedBox(height: 4),
               Text(
                 subtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(

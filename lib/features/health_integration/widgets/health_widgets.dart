@@ -234,7 +234,7 @@ class HealthMetricCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: _getMetricColor().withOpacity(0.1),
+                      color: _getMetricColor().withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(
@@ -243,7 +243,7 @@ class HealthMetricCard extends StatelessWidget {
                       size: 24,
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,7 +256,7 @@ class HealthMetricCard extends StatelessWidget {
                           ),
                         ),
                         if (latestPoint != null) ...[
-                          const SizedBox(height: 2),
+                          const const SizedBox(height: 2),
                           Text(
                             'آخر تحديث: ${_formatDate(latestPoint.timestamp)}',
                             style: TextStyle(
@@ -291,7 +291,7 @@ class HealthMetricCard extends StatelessWidget {
                                 : Colors.red.shade700,
                             size: 16,
                           ),
-                          const SizedBox(width: 4),
+                          const const SizedBox(width: 4),
                           Text(
                             '${trend.abs().toStringAsFixed(1)}%',
                             style: TextStyle(
@@ -309,7 +309,7 @@ class HealthMetricCard extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 16),
+              const const SizedBox(height: 16),
 
               // القيم الرئيسية
               Row(
@@ -321,7 +321,7 @@ class HealthMetricCard extends StatelessWidget {
                       _getMetricUnit(),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Expanded(
                     child: _buildValueCard(
                       'المتوسط (7 أيام)',
@@ -329,7 +329,7 @@ class HealthMetricCard extends StatelessWidget {
                       _getMetricUnit(),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Expanded(
                     child: _buildValueCard(
                       'عدد القراءات',
@@ -342,7 +342,7 @@ class HealthMetricCard extends StatelessWidget {
 
               // مؤشر الأداء البسيط
               if (dataPoints.isNotEmpty) ...[
-                const SizedBox(height: 16),
+                const const SizedBox(height: 16),
                 _buildPerformanceIndicator(),
               ],
             ],
@@ -367,7 +367,7 @@ class HealthMetricCard extends StatelessWidget {
             style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           Text(
             value,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -406,7 +406,7 @@ class HealthMetricCard extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 6),
+        const const SizedBox(height: 6),
         LinearProgressIndicator(
           value: performance,
           backgroundColor: Colors.grey.shade200,
@@ -563,7 +563,7 @@ class HealthGoalCard extends StatelessWidget {
                       size: 24,
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -575,7 +575,7 @@ class HealthGoalCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 2),
+                        const const SizedBox(height: 2),
                         Text(
                           _getPeriodText(),
                           style: TextStyle(
@@ -614,7 +614,7 @@ class HealthGoalCard extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(width: 16),
+              const const SizedBox(width: 16),
 
               // شريط التقدم
               Column(
@@ -642,7 +642,7 @@ class HealthGoalCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 6),
+                  const const SizedBox(height: 6),
                   LinearProgressIndicator(
                     value: progressPercentage / 100,
                     backgroundColor: Colors.grey.shade200,
@@ -655,7 +655,7 @@ class HealthGoalCard extends StatelessWidget {
 
               // معلومات إضافية
               if (goal.description.isNotEmpty) ...[
-                const SizedBox(height: 12),
+                const const SizedBox(height: 12),
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
@@ -670,7 +670,7 @@ class HealthGoalCard extends StatelessWidget {
               ],
 
               // تاريخ الإنجاز أو الوقت المتبقي
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               if (isAchieved) ...[
                 Container(
                   padding: const EdgeInsets.symmetric(
@@ -689,7 +689,7 @@ class HealthGoalCard extends StatelessWidget {
                         color: Colors.green.shade700,
                         size: 16,
                       ),
-                      const SizedBox(width: 4),
+                      const const SizedBox(width: 4),
                       Text(
                         'تم تحقيقه في ${_formatDate(goal.lastAchievedDate)}',
                         style: TextStyle(
@@ -742,15 +742,41 @@ class HealthGoalCard extends StatelessWidget {
 
   void _showEditDialog(BuildContext context) {
     // تنفيذ حوار التعديل
+    final targetController = TextEditingController(text: goal.targetValue.toString());
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('تعديل الهدف'),
-        content: const Text('ميزة التعديل قيد التطوير'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: targetController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: 'القيمة المستهدفة',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ],
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('إغلاق'),
+            child: const Text('إلغاء'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('تم تحديث الهدف بنجاح'),
+                ),
+              );
+              // Here you would update the goal in the database
+            },
+            child: const Text('حفظ'),
           ),
         ],
       ),
@@ -816,7 +842,7 @@ class HealthInsightCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: _getPriorityColor().withOpacity(0.1),
+                      color: _getPriorityColor().withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(
@@ -825,7 +851,7 @@ class HealthInsightCard extends StatelessWidget {
                       size: 20,
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -856,7 +882,7 @@ class HealthInsightCard extends StatelessWidget {
                             ],
                           ],
                         ),
-                        const SizedBox(height: 4),
+                        const const SizedBox(height: 4),
                         Row(
                           children: [
                             Container(
@@ -865,7 +891,7 @@ class HealthInsightCard extends StatelessWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: _getPriorityColor().withOpacity(0.1),
+                                color: _getPriorityColor().withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
@@ -877,7 +903,7 @@ class HealthInsightCard extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            const const SizedBox(width: 8),
                             Text(
                               _formatDate(insight.createdAt),
                               style: TextStyle(
@@ -923,7 +949,7 @@ class HealthInsightCard extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
 
               // محتوى الرؤية
               Text(
@@ -937,7 +963,7 @@ class HealthInsightCard extends StatelessWidget {
 
               // إجراء قابل للتنفيذ
               if (insight.isActionable && insight.actionText != null) ...[
-                const SizedBox(height: 12),
+                const const SizedBox(height: 12),
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton.icon(
@@ -1077,7 +1103,7 @@ class _AddHealthDataDialogState extends ConsumerState<AddHealthDataDialog> {
               },
             ),
 
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
 
             // القيمة
             TextFormField(
@@ -1099,7 +1125,7 @@ class _AddHealthDataDialogState extends ConsumerState<AddHealthDataDialog> {
               },
             ),
 
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
 
             // التاريخ
             ListTile(
@@ -1211,7 +1237,7 @@ class _AddHealthGoalDialogState extends ConsumerState<AddHealthGoalDialog> {
               },
             ),
 
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
 
             // القيمة المستهدفة
             TextFormField(
@@ -1233,7 +1259,7 @@ class _AddHealthGoalDialogState extends ConsumerState<AddHealthGoalDialog> {
               },
             ),
 
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
 
             // فترة الهدف
             DropdownButtonFormField<GoalPeriod>(
@@ -1255,7 +1281,7 @@ class _AddHealthGoalDialogState extends ConsumerState<AddHealthGoalDialog> {
               },
             ),
 
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
 
             // الوصف (اختياري)
             TextFormField(

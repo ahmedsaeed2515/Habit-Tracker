@@ -176,27 +176,27 @@ class _AIPersonalAssistantScreenState
           Icon(
             Icons.smart_toy_outlined,
             size: 80,
-            color: theme.colorScheme.primary.withOpacity(0.5),
+            color: theme.colorScheme.primary.withValues(alpha: 0.5),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             'مرحباً! أنا مساعدك الذكي',
             style: theme.textTheme.headlineSmall?.copyWith(
               color: theme.colorScheme.primary,
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Text(
               'يمكنني مساعدتك في تتبع عاداتك وتقديم النصائح والتحفيز. ابدأ محادثة معي!',
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
           ),
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
           Wrap(
             spacing: 8,
             runSpacing: 8,
@@ -241,7 +241,7 @@ class _AIPersonalAssistantScreenState
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         border: Border(
-          top: BorderSide(color: theme.colorScheme.outline.withOpacity(0.3)),
+          top: BorderSide(color: theme.colorScheme.outline.withValues(alpha: 0.3)),
         ),
       ),
       padding: const EdgeInsets.all(16),
@@ -268,7 +268,7 @@ class _AIPersonalAssistantScreenState
               maxLines: null,
             ),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           FloatingActionButton.small(
             onPressed: _sendMessage,
             backgroundColor: theme.colorScheme.primary,

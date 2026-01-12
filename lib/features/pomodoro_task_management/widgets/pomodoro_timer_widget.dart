@@ -104,10 +104,10 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.white.withOpacity(0.2),
+          color: Colors.white.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -115,12 +115,12 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
           // Timer Display
           _buildTimerDisplay(context, session, remainingTime, progress),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Controls
           _buildTimerControls(context, session),
           
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           // Session Info
           _buildSessionInfo(context, session),
@@ -150,7 +150,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: _getSessionColor(session.type)
-                        .withOpacity(0.3 * (1 - _rippleAnimation.value)),
+                        .withValues(alpha: 0.3 * (1 - _rippleAnimation.value)),
                     width: 2,
                   ),
                 ),
@@ -173,13 +173,13 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      _getSessionColor(session.type).withOpacity(0.8),
-                      _getSessionColor(session.type).withOpacity(0.4),
+                      _getSessionColor(session.type).withValues(alpha: 0.8),
+                      _getSessionColor(session.type).withValues(alpha: 0.4),
                     ],
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: _getSessionColor(session.type).withOpacity(0.3),
+                      color: _getSessionColor(session.type).withValues(alpha: 0.3),
                       blurRadius: 20,
                       spreadRadius: 5,
                     ),
@@ -206,7 +206,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
                           ),
                         ),
                         
-                        const SizedBox(height: 4),
+                        const const SizedBox(height: 4),
                         
                         // Session Type
                         Text(
@@ -259,10 +259,10 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
               height: 6,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.6),
+                color: Colors.white.withValues(alpha: 0.6),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.white.withOpacity(0.3),
+                    color: Colors.white.withValues(alpha: 0.3),
                     blurRadius: 4,
                   ),
                 ],
@@ -294,7 +294,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
             tooltip: 'استئناف',
           ),
         
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         
         // Stop Button
         _buildControlButton(
@@ -304,7 +304,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
           tooltip: 'إيقاف',
         ),
         
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         
         // Skip Button
         _buildControlButton(
@@ -326,7 +326,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
     return Tooltip(
       message: tooltip,
       child: Material(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(25),
         child: InkWell(
           onTap: onPressed,
@@ -337,7 +337,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: color.withOpacity(0.3),
+                color: color.withValues(alpha: 0.3),
                 width: 2,
               ),
             ),
@@ -370,7 +370,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
                 color: Colors.white70,
                 size: 16,
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Flexible(
                 child: Text(
                   taskName,
@@ -385,7 +385,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
         ],
         
         // Next Session Info
@@ -437,7 +437,7 @@ class _PomodoroTimerWidgetState extends ConsumerState<PomodoroTimerWidget>
       margin: const EdgeInsets.only(top: 12),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
@@ -528,7 +528,7 @@ class TimerProgressPainter extends CustomPainter {
 
     // Background Circle
     final backgroundPaint = Paint()
-      ..color = color.withOpacity(0.2)
+      ..color = color.withValues(alpha: 0.2)
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -592,10 +592,10 @@ class CompactTimerWidget extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: _getSessionColor(session.type).withOpacity(0.1),
+        color: _getSessionColor(session.type).withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: _getSessionColor(session.type).withOpacity(0.3),
+          color: _getSessionColor(session.type).withValues(alpha: 0.3),
         ),
       ),
       child: Row(
@@ -611,11 +611,11 @@ class CompactTimerWidget extends ConsumerWidget {
               valueColor: AlwaysStoppedAnimation<Color>(
                 _getSessionColor(session.type),
               ),
-              backgroundColor: _getSessionColor(session.type).withOpacity(0.2),
+              backgroundColor: _getSessionColor(session.type).withValues(alpha: 0.2),
             ),
           ),
           
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           
           // Time and Type
           Column(
@@ -634,14 +634,14 @@ class CompactTimerWidget extends ConsumerWidget {
               Text(
                 _getSessionTypeText(session.type),
                 style: TextStyle(
-                  color: _getSessionColor(session.type).withOpacity(0.7),
+                  color: _getSessionColor(session.type).withValues(alpha: 0.7),
                   fontSize: 10,
                 ),
               ),
             ],
           ),
           
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           
           // Status Icon
           Icon(

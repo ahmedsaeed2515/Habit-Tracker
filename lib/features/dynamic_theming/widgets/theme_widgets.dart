@@ -119,12 +119,12 @@ class ThemeList extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.palette_outlined, size: 64, color: Colors.grey),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Text(
             'لا توجد ثيمات متاحة',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             'قم بإضافة ثيم جديد أو تغيير الفلتر',
             style: TextStyle(color: Colors.grey),
@@ -188,8 +188,8 @@ class ThemeCard extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                   gradient: LinearGradient(
                     colors: [
-                      Color(theme.lightColorPalette.primary).withOpacity(0.8),
-                      Color(theme.lightColorPalette.secondary).withOpacity(0.8),
+                      Color(theme.lightColorPalette.primary).withValues(alpha: 0.8),
+                      Color(theme.lightColorPalette.secondary).withValues(alpha: 0.8),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -203,7 +203,7 @@ class ThemeCard extends ConsumerWidget {
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.3),
+                          color: Colors.black.withValues(alpha: 0.3),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
@@ -230,7 +230,7 @@ class ThemeCard extends ConsumerWidget {
                 ),
               ),
               
-              const SizedBox(height: 12),
+              const const SizedBox(height: 12),
               
               // اسم الثيم
               Text(
@@ -244,7 +244,7 @@ class ThemeCard extends ConsumerWidget {
                 textAlign: TextAlign.center,
               ),
               
-              const SizedBox(height: 4),
+              const const SizedBox(height: 4),
               
               // وصف الثيم
               if (theme.description.isNotEmpty)
@@ -374,7 +374,7 @@ class ThemeCategoryFilter extends ConsumerWidget {
             isSelected: selectedCategory == null,
             onTap: () => onCategoryChanged(null),
           ),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           ...ThemeCategory.values.map(
             (category) => Padding(
               padding: const EdgeInsets.only(right: 8),
@@ -402,7 +402,7 @@ class ThemeCategoryFilter extends ConsumerWidget {
       selected: isSelected,
       onSelected: (_) => onTap(),
       backgroundColor: Colors.transparent,
-      selectedColor: Theme.of(context).primaryColor.withOpacity(0.2),
+      selectedColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
       checkmarkColor: Theme.of(context).primaryColor,
       side: BorderSide(
         color: isSelected
@@ -491,7 +491,7 @@ class _ThemeEditorSheetState extends ConsumerState<ThemeEditorSheet> {
                   onPressed: () => Navigator.of(context).pop(),
                   icon: const Icon(Icons.close),
                 ),
-                const SizedBox(width: 8),
+                const const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     widget.theme == null ? 'إنشاء ثيم جديد' : 'تعديل الثيم',
@@ -518,11 +518,11 @@ class _ThemeEditorSheetState extends ConsumerState<ThemeEditorSheet> {
                 children: [
                   // Basic Info
                   _buildBasicInfo(),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
                   
                   // Light Theme Colors
                   _buildLightThemeColors(),
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
 
                   // Dark Theme Colors  
                   _buildDarkThemeColors(),
@@ -547,7 +547,7 @@ class _ThemeEditorSheetState extends ConsumerState<ThemeEditorSheet> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           TextFormField(
             controller: _nameController,
@@ -557,7 +557,7 @@ class _ThemeEditorSheetState extends ConsumerState<ThemeEditorSheet> {
             ),
           ),
           
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           TextFormField(
             controller: _descriptionController,
@@ -568,7 +568,7 @@ class _ThemeEditorSheetState extends ConsumerState<ThemeEditorSheet> {
             maxLines: 3,
           ),
           
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           DropdownButtonFormField<ThemeCategory>(
             initialValue: _selectedCategory,
@@ -607,7 +607,7 @@ class _ThemeEditorSheetState extends ConsumerState<ThemeEditorSheet> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           _buildColorPaletteEditor(
             palette: _lightPalette,
             onChanged: (newPalette) {
@@ -633,7 +633,7 @@ class _ThemeEditorSheetState extends ConsumerState<ThemeEditorSheet> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           _buildColorPaletteEditor(
             palette: _darkPalette,
             onChanged: (newPalette) {
@@ -687,7 +687,7 @@ class _ThemeEditorSheetState extends ConsumerState<ThemeEditorSheet> {
             style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 4),
+          const const SizedBox(height: 4),
           GestureDetector(
             onTap: () => _pickColor(currentColor, onChanged),
             child: Container(

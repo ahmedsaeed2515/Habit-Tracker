@@ -24,7 +24,7 @@ class QuickActions extends StatelessWidget {
             context,
           ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 16),
+        const const SizedBox(height: 16),
         Row(
           children: [
             Expanded(
@@ -41,7 +41,7 @@ class QuickActions extends StatelessWidget {
                 semanticLabel: 'Add gym exercise',
               ),
             ),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             Expanded(
               child: ActionButton(
                 title: 'إضافة عادة',
@@ -60,7 +60,7 @@ class QuickActions extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         Row(
           children: [
             Expanded(
@@ -77,7 +77,7 @@ class QuickActions extends StatelessWidget {
                 semanticLabel: 'Add task',
               ),
             ),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             Expanded(
               child: ActionButton(
                 title: 'تمارين الصباح',
@@ -130,16 +130,16 @@ class ActionButton extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.05),
+            color: color.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: color.withOpacity(0.2)),
+            border: Border.all(color: color.withValues(alpha: 0.2)),
           ),
           child: Column(
             children: [
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
+                  color: color.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Semantics(
@@ -147,7 +147,7 @@ class ActionButton extends StatelessWidget {
                   child: Icon(icon, color: color, size: 24),
                 ),
               ),
-              const SizedBox(height: 8),
+              const const SizedBox(height: 8),
               Text(
                 title,
                 style: theme.textTheme.bodyMedium?.copyWith(

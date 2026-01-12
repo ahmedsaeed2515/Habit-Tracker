@@ -89,7 +89,7 @@ class _NoteEditorScreenState extends ConsumerState<NoteEditorScreen> {
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  const const SizedBox(height: 12),
                   Expanded(
                     child: TextField(
                       controller: _contentController,

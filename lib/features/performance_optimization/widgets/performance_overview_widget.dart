@@ -21,7 +21,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
               'نظرة عامة على الأداء',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             performanceReport.when(
               data: (report) => _buildPerformanceOverview(context, report),
               loading: () => const Center(child: CircularProgressIndicator()),
@@ -50,7 +50,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
             Expanded(
               child: _buildScoreCircle(overallScore, isGood),
             ),
-            const SizedBox(width: 16),
+            const const SizedBox(width: 16),
             Expanded(
               flex: 2,
               child: Column(
@@ -60,7 +60,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
                     'مستوى الأداء: $performanceLevel',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  const SizedBox(height: 8),
+                  const const SizedBox(height: 8),
                   LinearProgressIndicator(
                     value: overallScore / 100,
                     backgroundColor: Colors.grey[300],
@@ -68,7 +68,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
                       _getScoreColor(overallScore),
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const const SizedBox(height: 4),
                   Text(
                     '${overallScore.toStringAsFixed(1)}%',
                     style: Theme.of(context).textTheme.bodySmall,
@@ -78,13 +78,13 @@ class PerformanceOverviewWidget extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 24),
+        const const SizedBox(height: 24),
         
         // تفاصيل الأداء
         if (report.containsKey('breakdown'))
           _buildPerformanceBreakdown(context, report['breakdown']),
         
-        const SizedBox(height: 16),
+        const const SizedBox(height: 16),
         
         // المشاكل المكتشفة
         if (report.containsKey('issues'))
@@ -135,7 +135,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
           'تفاصيل الأداء',
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         
         // أداء التطبيق
         if (breakdown.containsKey('app'))
@@ -202,7 +202,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
       child: Row(
         children: [
           Icon(icon, color: _getScoreColor(score), size: 20),
-          const SizedBox(width: 12),
+          const const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,7 +223,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
             decoration: BoxDecoration(
-              color: _getScoreColor(score).withOpacity(0.1),
+              color: _getScoreColor(score).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
@@ -252,7 +252,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
         child: Row(
           children: [
             Icon(Icons.check_circle, color: Colors.green[600]),
-            const SizedBox(width: 8),
+            const const SizedBox(width: 8),
             Text(
               'لم يتم اكتشاف أي مشاكل في الأداء',
               style: TextStyle(color: Colors.green[700]),
@@ -269,7 +269,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
           'المشاكل المكتشفة (${issues.length})',
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         ...issues.take(3).map((issue) => _buildIssueItem(context, issue)),
         if (issues.length > 3)
           TextButton(
@@ -308,15 +308,15 @@ class PerformanceOverviewWidget extends ConsumerWidget {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: severityColor.withOpacity(0.1),
+        color: severityColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: severityColor.withOpacity(0.3)),
+        border: Border.all(color: severityColor.withValues(alpha: 0.3)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(severityIcon, color: severityColor, size: 20),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -325,7 +325,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
                   description,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                const SizedBox(height: 4),
+                const const SizedBox(height: 4),
                 Text(
                   suggestion,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -351,7 +351,7 @@ class PerformanceOverviewWidget extends ConsumerWidget {
       child: Row(
         children: [
           Icon(Icons.error_outline, color: Colors.red[600]),
-          const SizedBox(width: 8),
+          const const SizedBox(width: 8),
           Expanded(
             child: Text(
               error,

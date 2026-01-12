@@ -124,7 +124,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
           ),
         ),
         
-        const SizedBox(width: 16),
+        const const SizedBox(width: 16),
         
         // معلومات الثيم
         Expanded(
@@ -151,7 +151,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
                 ],
               ),
               if (theme.description.isNotEmpty) ...[
-                const SizedBox(height: 4),
+                const const SizedBox(height: 4),
                 Text(
                   theme.description,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -170,7 +170,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: Colors.amber.withOpacity(0.2),
+              color: Colors.amber.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(12),
             ),
             child: const Text(
@@ -190,7 +190,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
     return const Row(
       children: [
         Icon(Icons.error_outline, color: Colors.orange),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         Text('لم يتم تحديد ثيم'),
       ],
     );
@@ -204,7 +204,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
         children: [
           // فلاتر البحث
           _buildThemeFilters(),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           // قائمة الثيمات المتاحة
           const ThemeList(),
@@ -227,7 +227,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (error, stack) => Text('خطأ: $error'),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           
           // الثيمات المخصصة
           customThemesAsync.when(
@@ -262,7 +262,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 12),
+          const const SizedBox(height: 12),
           
           // أزرار الفلاتر
           Wrap(
@@ -285,7 +285,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
       label: Text(label),
       selected: isSelected,
       onSelected: (_) => onTap(),
-      selectedColor: Theme.of(context).primaryColor.withOpacity(0.2),
+      selectedColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
     );
   }
 
@@ -347,12 +347,12 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
+            color: color.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
           child: Icon(icon, color: color, size: 24),
         ),
-        const SizedBox(height: 8),
+        const const SizedBox(height: 8),
         Text(
           count.toString(),
           style: const TextStyle(
@@ -381,14 +381,14 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
             size: 64,
             color: Colors.grey[400],
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             'لا توجد ثيمات مخصصة',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: Colors.grey[600],
             ),
           ),
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
           Text(
             'قم بإنشاء ثيم مخصص جديد\nليعكس شخصيتك الفريدة',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -396,7 +396,7 @@ class _ThemeManagementScreenState extends ConsumerState<ThemeManagementScreen>
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 24),
+          const const SizedBox(height: 24),
           CustomButton(
             text: 'إنشاء ثيم جديد',
             onPressed: _createNewTheme,
@@ -480,7 +480,7 @@ class _ThemePreviewDialog extends ConsumerWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             Expanded(
               child: availableThemesAsync.when(
@@ -496,7 +496,7 @@ class _ThemePreviewDialog extends ConsumerWidget {
               ),
             ),
             
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -537,7 +537,7 @@ class _ThemePreviewDialog extends ConsumerWidget {
                   Icons.menu,
                   color: Color(theme.lightColorPalette.onPrimary),
                 ),
-                const SizedBox(width: 16),
+                const const SizedBox(width: 16),
                 Text(
                   theme.name,
                   style: TextStyle(
@@ -575,18 +575,18 @@ class _ThemePreviewDialog extends ConsumerWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const const SizedBox(height: 8),
                         Text(
                           'وصف البطاقة...',
                           style: TextStyle(
-                            color: Color(theme.lightColorPalette.onSurface).withOpacity(0.7),
+                            color: Color(theme.lightColorPalette.onSurface).withValues(alpha: 0.7),
                           ),
                         ),
                       ],
                     ),
                   ),
                   
-                  const SizedBox(height: 16),
+                  const const SizedBox(height: 16),
                   
                   // زر
                   Container(

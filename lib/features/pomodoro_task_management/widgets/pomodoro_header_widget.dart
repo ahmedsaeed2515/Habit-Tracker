@@ -40,8 +40,8 @@ class PomodoroHeaderWidget extends ConsumerWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Theme.of(context).primaryColor.withOpacity(0.8),
-              Theme.of(context).primaryColor.withOpacity(0.6),
+              Theme.of(context).primaryColor.withValues(alpha: 0.8),
+              Theme.of(context).primaryColor.withValues(alpha: 0.6),
             ],
           ),
           borderRadius: const BorderRadius.only(
@@ -67,7 +67,7 @@ class PomodoroHeaderWidget extends ConsumerWidget {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const const SizedBox(height: 4),
                     const Text(
                       'لنبدأ يوماً منتجاً! 🚀',
                       style: TextStyle(
@@ -105,7 +105,7 @@ class PomodoroHeaderWidget extends ConsumerWidget {
               ],
             ),
 
-            const SizedBox(height: 20),
+            const const SizedBox(height: 20),
 
             // Active Timer or Quick Stats
             if (activeSession != null)

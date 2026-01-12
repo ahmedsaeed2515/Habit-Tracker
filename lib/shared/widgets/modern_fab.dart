@@ -113,7 +113,7 @@ class _ModernFloatingActionButtonState extends State<ModernFloatingActionButton>
                       widget.icon,
                       color: widget.foregroundColor ?? Colors.white,
                     ),
-                    const SizedBox(width: AppDesignSystem.spacingSmall),
+                    const const SizedBox(width: AppDesignSystem.spacingSmall),
                     Text(
                       widget.label!,
                       style: TextStyle(

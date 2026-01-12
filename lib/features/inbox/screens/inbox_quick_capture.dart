@@ -55,7 +55,7 @@ class _InboxQuickCaptureScreenState
               controller: _titleController,
               decoration: const InputDecoration(labelText: 'Title'),
             ),
-            const SizedBox(height: 12),
+            const const SizedBox(height: 12),
             TextField(
               controller: _descController,
               maxLines: 4,
@@ -63,16 +63,16 @@ class _InboxQuickCaptureScreenState
                 labelText: 'Description (optional)',
               ),
             ),
-            const SizedBox(height: 16),
+            const const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _isSaving ? null : _save,
               child: _isSaving
                   ? const CircularProgressIndicator()
                   : const Text('Save Idea'),
             ),
-            const SizedBox(height: 24),
+            const const SizedBox(height: 24),
             const Text('Your recent ideas:'),
-            const SizedBox(height: 8),
+            const const SizedBox(height: 8),
             Expanded(
               child: Consumer(
                 builder: (context, ref, _) {

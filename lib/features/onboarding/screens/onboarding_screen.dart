@@ -126,7 +126,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen>
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withOpacity(0.1),
+                      color: AppTheme.primaryColor.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Text(
@@ -147,7 +147,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen>
                       style: TextStyle(
                         color: Theme.of(
                           context,
-                        ).colorScheme.onSurface.withOpacity(0.6),
+                        ).colorScheme.onSurface.withValues(alpha: 0.6),
                         fontSize: 16,
                       ),
                     ),
@@ -179,7 +179,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen>
                 count: _steps.length,
                 effect: ExpandingDotsEffect(
                   activeDotColor: AppTheme.primaryColor,
-                  dotColor: AppTheme.primaryColor.withOpacity(0.3),
+                  dotColor: AppTheme.primaryColor.withValues(alpha: 0.3),
                   dotHeight: 8,
                   dotWidth: 8,
                 ),
@@ -201,7 +201,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen>
                       borderRadius: BorderRadius.circular(16),
                     ),
                     elevation: 4,
-                    shadowColor: AppTheme.primaryColor.withOpacity(0.3),
+                    shadowColor: AppTheme.primaryColor.withValues(alpha: 0.3),
                   ),
                   child: AnimatedSwitcher(
                     duration: const Duration(milliseconds: 200),

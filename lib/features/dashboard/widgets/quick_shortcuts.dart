@@ -39,7 +39,7 @@ class QuickShortcuts extends ConsumerWidget {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Text(
                   label,
                   textAlign: TextAlign.center,
@@ -66,7 +66,7 @@ class QuickShortcuts extends ConsumerWidget {
             context,
           ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         Row(
           children: [
             _tile(context, Icons.widgets, isArabic ? 'الودجت' : 'Widgets', () {
@@ -77,7 +77,7 @@ class QuickShortcuts extends ConsumerWidget {
                 ),
               );
             }),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             _tile(
               context,
               Icons.videogame_asset,
@@ -93,7 +93,7 @@ class QuickShortcuts extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         Row(
           children: [
             _tile(context, Icons.timer, isArabic ? 'بومودورو' : 'Pomodoro', () {
@@ -102,7 +102,7 @@ class QuickShortcuts extends ConsumerWidget {
                 MaterialPageRoute(builder: (_) => const PomodoroTodoScreen()),
               );
             }),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             _tile(
               context,
               Icons.calendar_month,
@@ -118,7 +118,7 @@ class QuickShortcuts extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const const SizedBox(height: 12),
         Row(
           children: [
             _tile(
@@ -134,7 +134,7 @@ class QuickShortcuts extends ConsumerWidget {
                 );
               },
             ),
-            const SizedBox(width: 12),
+            const const SizedBox(width: 12),
             _tile(
               context,
               Icons.people,

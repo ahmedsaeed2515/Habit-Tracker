@@ -60,7 +60,7 @@ class AppTheme {
     cardTheme: CardThemeData(
       color: lightSurfaceColor,
       elevation: 2,
-      shadowColor: Colors.black.withOpacity(0.1),
+      shadowColor: Colors.black.withValues(alpha: 0.1),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
 
@@ -133,7 +133,7 @@ class AppTheme {
     // تصميم الـ Chip
     chipTheme: ChipThemeData(
       backgroundColor: Colors.grey.shade100,
-      selectedColor: primaryColor.withOpacity(0.2),
+      selectedColor: primaryColor.withValues(alpha: 0.2),
       labelStyle: GoogleFonts.cairo(fontSize: 14),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     ),
@@ -176,7 +176,7 @@ class AppTheme {
     cardTheme: CardThemeData(
       color: darkSurfaceColor,
       elevation: 4,
-      shadowColor: Colors.black.withOpacity(0.3),
+      shadowColor: Colors.black.withValues(alpha: 0.3),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
 
@@ -249,7 +249,7 @@ class AppTheme {
     // تصميم الـ Chip
     chipTheme: ChipThemeData(
       backgroundColor: darkSurfaceColor,
-      selectedColor: primaryColor.withOpacity(0.3),
+      selectedColor: primaryColor.withValues(alpha: 0.3),
       labelStyle: GoogleFonts.cairo(fontSize: 14, color: darkOnSurfaceColor),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     ),
@@ -334,7 +334,7 @@ class AppTheme {
       bodySmall: GoogleFonts.cairo(
         fontSize: 12,
         fontWeight: FontWeight.normal,
-        color: textColor.withOpacity(0.8),
+        color: textColor.withValues(alpha: 0.8),
         height: 1.5,
       ),
 
@@ -354,7 +354,7 @@ class AppTheme {
       labelSmall: GoogleFonts.cairo(
         fontSize: 10,
         fontWeight: FontWeight.w500,
-        color: textColor.withOpacity(0.8),
+        color: textColor.withValues(alpha: 0.8),
         height: 1.4,
       ),
     );
@@ -377,7 +377,7 @@ class AppTheme {
   // أنماط الظلال
   static List<BoxShadow> get lightShadow => [
     BoxShadow(
-      color: Colors.black.withOpacity(0.1),
+      color: Colors.black.withValues(alpha: 0.1),
       blurRadius: 8,
       offset: const Offset(0, 2),
     ),
@@ -385,7 +385,7 @@ class AppTheme {
 
   static List<BoxShadow> get darkShadow => [
     BoxShadow(
-      color: Colors.black.withOpacity(0.3),
+      color: Colors.black.withValues(alpha: 0.3),
       blurRadius: 12,
       offset: const Offset(0, 4),
     ),

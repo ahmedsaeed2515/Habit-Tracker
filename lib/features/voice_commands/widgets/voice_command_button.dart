@@ -74,12 +74,12 @@ class CompactVoiceCommandButton extends ConsumerWidget {
         height: size ?? 48,
         decoration: BoxDecoration(
           color: voiceState.isListening
-              ? Colors.red.withOpacity(0.9)
-              : backgroundColor ?? theme.primaryColor.withOpacity(0.9),
+              ? Colors.red.withValues(alpha: 0.9)
+              : backgroundColor ?? theme.primaryColor.withValues(alpha: 0.9),
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               blurRadius: 6,
               offset: const Offset(0, 2),
             ),
@@ -128,7 +128,7 @@ class VoiceCommandBottomBar extends ConsumerWidget {
         borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 8,
             offset: const Offset(0, -2),
           ),
@@ -152,7 +152,7 @@ class VoiceCommandBottomBar extends ConsumerWidget {
                   shape: BoxShape.circle,
                 ),
               ),
-              const SizedBox(width: 8),
+              const const SizedBox(width: 8),
               Text(
                 voiceState.isListening
                     ? 'جاري الاستماع...'
@@ -172,7 +172,7 @@ class VoiceCommandBottomBar extends ConsumerWidget {
             ],
           ),
 
-          const SizedBox(height: 8),
+          const const SizedBox(height: 8),
 
           // النص المُعترف به
           if (voiceState.lastRecognizedText != null)
@@ -194,12 +194,12 @@ class VoiceCommandBottomBar extends ConsumerWidget {
           if (voiceState.lastResponse != null)
             Column(
               children: [
-                const SizedBox(height: 8),
+                const const SizedBox(height: 8),
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(

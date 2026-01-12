@@ -132,22 +132,22 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
           // Quick Stats
           QuickStatsWidget(stats: stats, analysis: analysis),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Sessions Chart
           _buildSessionsChart(stats),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Focus Time Distribution
           _buildFocusTimeChart(stats),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Daily Pattern
           _buildDailyPatternChart(),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Task Categories
           _buildTaskCategoriesChart(),
@@ -167,22 +167,22 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
           // Productivity Score
           _buildProductivityScoreCard(analysis),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Productivity Trends
           _buildProductivityTrendsChart(),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Focus Quality
           _buildFocusQualityMetrics(analysis),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Break Efficiency
           _buildBreakEfficiencyCard(analysis),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Time of Day Analysis
           _buildTimeOfDayAnalysis(),
@@ -204,7 +204,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
           // Achievement Summary
           _buildAchievementSummary(unlockedAchievements, achievements.length),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Unlocked Achievements
           _buildAchievementSection(
@@ -213,7 +213,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
             true,
           ),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Locked Achievements
           _buildAchievementSection(
@@ -240,8 +240,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.purple.withOpacity(0.2),
-                  Colors.blue.withOpacity(0.2),
+                  Colors.purple.withValues(alpha: 0.2),
+                  Colors.blue.withValues(alpha: 0.2),
                 ],
               ),
               borderRadius: BorderRadius.circular(16),
@@ -251,7 +251,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.purple.withOpacity(0.2),
+                    color: Colors.purple.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(
@@ -260,7 +260,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                     size: 24,
                   ),
                 ),
-                const SizedBox(width: 16),
+                const const SizedBox(width: 16),
                 const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -287,7 +287,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
             ),
           ),
           
-          const SizedBox(height: 20),
+          const const SizedBox(height: 20),
           
           // Recommendations List
           ...recommendations.map(_buildRecommendationCard),
@@ -303,7 +303,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -317,7 +317,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           SizedBox(
             height: 200,
             child: LineChart(
@@ -327,7 +327,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                   horizontalInterval: 2,
                   getDrawingHorizontalLine: (value) {
                     return FlLine(
-                      color: Colors.white.withOpacity(0.1),
+                      color: Colors.white.withValues(alpha: 0.1),
                       strokeWidth: 1,
                     );
                   },
@@ -373,7 +373,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                     isStrokeCapRound: true,
                     belowBarData: BarAreaData(
                       show: true,
-                      color: Colors.blue.withOpacity(0.1),
+                      color: Colors.blue.withValues(alpha: 0.1),
                     ),
                     dotData: FlDotData(
                       getDotPainter: (spot, percent, barData, index) {
@@ -399,7 +399,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -413,7 +413,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Row(
             children: [
               Expanded(
@@ -461,13 +461,13 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                       '${stats.totalFocusTime.inHours}:${(stats.totalFocusTime.inMinutes % 60).toString().padLeft(2, '0')}',
                       Colors.blue,
                     ),
-                    const SizedBox(height: 8),
+                    const const SizedBox(height: 8),
                     _buildLegendItem(
                       'وقت الاستراحة',
                       '${stats.totalBreakTime.inHours}:${(stats.totalBreakTime.inMinutes % 60).toString().padLeft(2, '0')}',
                       Colors.green,
                     ),
-                    const SizedBox(height: 8),
+                    const const SizedBox(height: 8),
                     _buildLegendItem(
                       'النسبة',
                       '${((stats.totalFocusTime.inMinutes / (stats.totalFocusTime.inMinutes + stats.totalBreakTime.inMinutes)) * 100).toInt()}%',
@@ -494,7 +494,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
             borderRadius: BorderRadius.circular(2),
           ),
         ),
-        const SizedBox(width: 8),
+        const const SizedBox(width: 8),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -527,8 +527,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.green.withOpacity(0.2),
-            Colors.blue.withOpacity(0.2),
+            Colors.green.withValues(alpha: 0.2),
+            Colors.blue.withValues(alpha: 0.2),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
@@ -550,7 +550,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: _getScoreColor(analysis.todayScore).withOpacity(0.2),
+                  color: _getScoreColor(analysis.todayScore).withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
@@ -564,7 +564,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Row(
             children: [
               Text(
@@ -589,7 +589,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: CircularProgressIndicator(
                   value: analysis.todayScore / 100,
                   strokeWidth: 8,
-                  backgroundColor: Colors.white.withOpacity(0.2),
+                  backgroundColor: Colors.white.withValues(alpha: 0.2),
                   valueColor: AlwaysStoppedAnimation<Color>(
                     _getScoreColor(analysis.todayScore),
                   ),
@@ -597,7 +597,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const const SizedBox(height: 16),
           Text(
             analysis.todayScore > analysis.averageScore
                 ? 'أداء ممتاز! تحسنت بنسبة ${((analysis.todayScore - analysis.averageScore) / analysis.averageScore * 100).toInt()}%'
